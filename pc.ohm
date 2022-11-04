@@ -1,0 +1,188 @@
+PseudoCode {
+
+  main = toplevel+
+
+  toplevel =
+    | applySyntactic<FunctionDefinition>
+    | applySyntactic<ProcedureDefinition>
+    | applySyntactic<ConstructorDefinition>
+    | applySyntactic<Statement>
+
+  FunctionDefinition = internal? "function" name FormalParameters? Block
+  ProcedureDefinition = internal? "procedure" name FormalParameters? Block
+  ConstructorDefinition = "constructor" name FormalParameters? States Tags Block
+
+  States = "{" stateDefinition* "}"
+  Tags = "{" tagDefinition* "}"
+
+  Block = 
+    | "{" BlockStatement* "}"
+
+  BlockStatement =
+    | FunctionDefinition
+    | Statement
+    
+  Statement =
+    | "synonym" name "≣" expr Block -- synonym
+    | selfFieldName "≣" expr -- constructorsynonym
+    | Block -- block
+    | SelfStateDefinition -- selfStateDefinition
+    | SelfStateUpdate -- selfStateUpdate
+    | die operand* -- die
+    | displayop Parameters -- display
+    | ForAll -- forall
+    | ExternalRoutine -- externRoutine
+    | codeSnippet -- codeSnippet
+    | expr -- expr
+
+  ExternalRoutine = lang basicName Parameters? verbatim
+
+  ForAll = forAllPrefix value tempVariableDefinition Block
+
+  Parameters = "(" operand* ")"
+  FormalParameters = "(" parameterDefinition* ")"
+
+  operand = constant | value
+  expr = operand
+
+  constant =
+    | applySyntactic<Message> -- message
+    | applySyntactic<BasicList>  -- list
+    | applySyntactic<ListOfObjects> -- objectlist
+    | stateReference -- state
+    | tagReference -- tag
+    | port -- port
+    | string -- string
+    
+  value =
+    | applySyntactic<Funcall> -- funcall
+    | applySyntactic<ClassInstantiation> -- instantiation
+    | applySyntactic<MethodCall> -- methodCall
+    | applySyntactic<FieldRef> -- fieldRef
+    | parameterReference -- parameterRef
+    | functionReference -- functionRef
+    | procedureReference -- procedureRef
+    | tempVariableReference -- tempVariable
+    | stateQuery -- stateQuery
+    | tagQuery -- tagQuery
+    | name -- name
+
+  valueOperand = value
+
+  stateQuery = stateQ operand applySyntactic<Block>
+  tagQuery = tagQ operand applySyntactic<Block>
+
+  Funcall = callop operand Parameters?
+
+  ClassInstantiation = knew name Parameters?
+  MethodCall = value call name Parameters?
+  ListOfObjects = ListHeader "[" UnnamedObject+ "]"
+  ListHeader = headerOpen name+ headerClose
+  BasicList = "[" expr* "]"
+  UnnamedObject = "{" expr* "}"
+  Message =
+    | messageBegin portOperand operand operand operand messageEnd -- withDebug
+    | messageBegin portOperand operand messageEnd -- raw
+
+  portOperand = port | valueOperand
+
+  SelfStateDefinition = selfState "≣" expr
+  SelfStateUpdate = expr "⇒" selfState
+  selfFieldName = selfName "." fieldName
+
+
+  name =
+    | compoundName -- compoundName
+    | keywordName -- keywordName
+    | selfName -- selfName
+    | basicName -- basicName
+
+  fieldName = nonSpecialName
+
+  port = outport | inport
+
+  FieldRef = value "." nonSpecialName
+  selfState = selfName
+  parameterReference = "𝜌" nonSpecialName
+  parameterDefinition = parameterReference
+  functionReference = lambda nonSpecialName
+  procedureReference = proc nonSpecialName
+  
+  compoundName = "❲" (~nameBracket any)* "❳"
+  basicName = nameFirst nameRest*
+  nonSpecialName = ~selfName ~keywordName name
+  
+  delimiter = asciiBracket | asciiCharacter | unicodeBracket | unicodeCharacter
+  asciiBracket = "(" | ")" | "{" | "}" | "[" | "]" | "<" | ">" 
+  asciiCharacter = "#" | call | "." 
+  unicodeBracket = headerOpen | headerClose | messageBegin | messageEnd | nameBracket
+    | verbatimBegin | verbatimEnd
+  unicodeCharacter = knew | keywordPrefix | lambda | proc | "◦"| "✕" | tagPrefix
+
+  tempVariableDefinition = tempVariablePrefix nonSpecialName
+  tempVariableReference = tempVariablePrefix nonSpecialName
+  stateDefinition = statePrefix nonSpecialName
+  stateReference = statePrefix nonSpecialName
+  tagDefinition = tagPrefix nonSpecialName
+  tagReference = tagPrefix nonSpecialName
+
+  string = sq (~sq any)* sq
+  sq = "'"
+
+  comment =  "/*" commentInnards* "*/" -- flat
+  commentInnards =
+    | "/*" commentInnards* "*/" -- rec
+    | ~"/*" ~"*/" any -- flat
+
+  nameFirst = ~unicodeCharacter ~keywordName letter
+  nameRest = alnum | "_"
+
+  keywordName = callop | die | stateQ | yes | no | declare | tag
+      | lang | innerFunction | internal | clear
+      | codeSnippetJS | codeSnippetCL
+      | tagQ | displayop
+  codeSnippet = codeSnippetJS | codeSnippetCL
+  codeSnippetJS = snippetPrefix "js" spaces verbatim
+  codeSnippetCL = snippetPrefix "cl" spaces verbatim
+  internal = keywordPrefix "internal"
+  clear = keywordPrefix "clear"
+  innerFunction = keywordPrefix "inner"
+  lang = keywordPrefix "lang"
+  tag = keywordPrefix "tag"
+  declare = keywordPrefix "declare"
+  callop = keywordPrefix "call"
+  die = keywordPrefix "die"
+  stateQ = keywordPrefix "state"
+  tagQ = keywordPrefix "tag"
+  displayop = keywordPrefix call "display"
+  yes = keywordPrefix "yes"
+  no = keywordPrefix "no"
+
+  knew = "↵"
+  lambda = "λ"
+  proc = "ž"
+  outport = "◦" nonSpecialName
+  inport = "✕" nonSpecialName
+  call = "/"
+  snippetPrefix = "##"
+  keywordPrefix = "#"
+  tagPrefix = "▫"
+  statePrefix = "✦"
+  selfName = "š"
+  messageBegin = "⟪"
+  messageEnd = "⟫"
+  headerOpen = "⎨"
+  headerClose = "⎬"
+  nameBracket = "❲" | "❳"
+  tempVariablePrefix = "𝜏"
+  forAllPrefix = "∀"
+  verbatimBegin = "«"
+  verbatimEnd = "»"
+
+  verbatim = verbatimBegin verbatimInnards+ verbatimEnd
+  verbatimInnards =
+    | verbatimBegin expr verbatimEnd -- switchGrammars
+    | ~verbatimBegin ~verbatimEnd any -- flat
+    
+  space += comment
+}

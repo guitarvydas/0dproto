@@ -1,0 +1,5 @@
+# Don't forget including your subrepos' roots to .gitignore!
+subrepos:
+- path: 'fab'
+  repo: 'git@github.com:guitarvydas/fab.git'
+  branch: 'dev'
