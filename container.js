@@ -1,4 +1,4 @@
-function Container (<<childrenArraymap>>) {
+function Container (childrenArraymap) {
 this.reset = reset;
 this.completed___Q = completed___Q;
 this.handle = handle;
@@ -22,7 +22,7 @@ function js (self) {
     });
   }
 }
-function reset (<<>>) {
+function reset () {
 this.children.forAll (child => {
 child.reset ();
 });
@@ -37,7 +37,7 @@ function js (self) {
     return done;
   }
 }
-function handle (<<message>>) {
+function handle (message) {
 this.reset ();
 ;
 this;
@@ -51,13 +51,13 @@ completed;
 }}
 this.acceptInput (message);
 ;
-function send (<<portdata>>) {
+function send (portdata) {
 this.outputs.push (new Message ('port', data, this, message));
 }
 this.runToCompletion (send);
 this.outputs.push (new Message ('out', ϕ, this, message));
 }
-function acceptInput (<<message>>) {
+function acceptInput (message) {
 ;
 this.outputs;
 this.routingMap.forAll (connection => {
@@ -82,7 +82,7 @@ up;
 }}
 });
 }
-function mergeOutputs (<<childOutputs>>) {
+function mergeOutputs (childOutputs) {
 function js (childOutputs) {
     var clonedOuts = Array.from (self.outputs);
     var childOuts = childOutputs.reverse ();
@@ -92,19 +92,19 @@ function js (childOutputs) {
     return clonedOutputs;
   }
 }
-function runToCompletion (<<sendProcedure>>) {
+function runToCompletion (sendProcedure) {
          while (! this.completed ()) {
              this.step (sendProcedure)
              this.route (sendProcedure)
          }
      
 }
-function step (<<sendProcedure>>) {
+function step (sendProcedure) {
 this.children.forAll (child => {
 child.step (sendProcedure);
 });
 }
-function route (<<sendProcedure>>) {
+function route (sendProcedure) {
 this.routingMap.forAll (connection => {
 synonym;
 deferred__message__stack;

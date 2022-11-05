@@ -35,7 +35,7 @@ PseudoCode {
   ForAll [forAllPrefix value tempVariableDefinition Block] = ‛\n«value».forAll («tempVariableDefinition» => {\n«Block»\n});’
 
   Parameters [klb operand* krb] = ‛«operand»’
-  FormalParameters [klb parameterDefinition* krb] = ‛<<«parameterDefinition»>>’
+  FormalParameters [klb parameterDefinition* krb] = ‛«parameterDefinition»’
 
   operand [x] = ‛«x»’
   expr [operand] = ‛«operand»’
