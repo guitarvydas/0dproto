@@ -1,15 +1,7 @@
-function handle (message) {
-this.reset ();
-???stateQuery  this { 
-???StateClause this {completed} {
-die;
-'internal error: container.handle called on completed container';}
-???StateClause this {armed} {} }???;
-this.acceptInput (message);
-;
-function send (portdata) {
-this.outputs.push (new Message ('port', data, this, message));
-}
-this.runToCompletion (send);
-this.outputs.push (new Message ('out', null, this, message));
-}
+error generating code from FMT specification<br><br>Missing semantic action for 'downpush' in operation '_fmt'.
+Action stack (most recent call last):
+  _fmt > top
+  _fmt > _iter
+  _fmt > rule
+  _fmt > _iter
+  _fmt > downpush

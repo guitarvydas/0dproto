@@ -17,6 +17,7 @@ js:
 	~/node_modules/js-beautify/js/bin/js-beautify.js container.js
 
 dev:
+	(cd fab ; make dev)
 	./fab/fab - PseudoCode 0d.ohm js0d.fmt --support='./jssupport.js' <test0.0d | sed -e '/^$$/d' >test0.js
 	~/node_modules/js-beautify/js/bin/js-beautify.js test0.js
 
