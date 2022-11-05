@@ -1,10 +1,10 @@
 function handle (message) {
 this.reset ();
 ???stateQuery  this { 
-???StateClause {completed} {
+???StateClause this {completed} {
 die;
 'internal error: container.handle called on completed container';}
-???StateClause {completed} {} }???;
+???StateClause this {armed} {} }???;
 this.acceptInput (message);
 ;
 function send (portdata) {

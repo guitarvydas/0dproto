@@ -4,7 +4,7 @@ procedure handle (𝜌message) {
         ✦completed {
             die 'internal error: container.handle called on completed container'
         } 
-        ✦completed {}
+        ✦armed {}
     }
     š/acceptInput (𝜌message)
     #inner function send (𝜌port 𝜌data) {
