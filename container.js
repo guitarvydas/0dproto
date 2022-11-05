@@ -1,6 +1,6 @@
 function Container (<<childrenArraymap>>) {
 this.reset = reset;
-this.???jsmangle(completed ?) = ???jsmangle(completed ?);
+this.completed___Q = completed___Q;
 this.handle = handle;
 this.step = step;
 this.setChildren = setChildren;
@@ -11,11 +11,11 @@ this.mergeOutputs = mergeOutputs;
 this.route = route;
 this.runToCompletion = runToCompletion;
 this.children = childrenArray;
-this.???jsmangle(set parent of children) (this);
+this.set__parent__of__children (this);
 this.routingMap = map;
 }
 ;
-function ???jsmangle(set parent of children) () {
+function set__parent__of__children () {
 function js (self) {
     self.children.forEach (child => {
         child.container = self;
@@ -28,7 +28,7 @@ child.reset ();
 });
 }
 ;
-function ???jsmangle(completed ?) () {
+function completed___Q () {
 function js (self) {
     var done = true;
     self.children.forEach (child => {
@@ -107,7 +107,7 @@ child.step (sendProcedure);
 function route (<<sendProcedure>>) {
 this.routingMap.forAll (connection => {
 synonym;
-???jsmangle(deferred message stack);
+deferred__message__stack;
 [];
 {
 ;
@@ -117,16 +117,16 @@ across;
 up;
 {
 synonym;
-???jsmangle(output message);
+output__message;
 connection.sender.outputs;
 {
-???jsmangle(deferred message stack).push (???ListOfObjects{targetmessage}[{connection.receivermessage}]);}}
+deferred__message__stack.push (???ListOfObjects{targetmessage}[{connection.receivermessage}]);}}
 down;
 passThrough;
 {
 }}}
 });
-???jsmangle(deferred message stack).forAll (pair => {
+deferred__message__stack.forAll (pair => {
 pair.target.handle (pair.messagesendProcedure);
 });
 }

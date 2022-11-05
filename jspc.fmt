@@ -100,7 +100,7 @@ PseudoCode {
   functionReference [lambda nonSpecialName] = ‛«nonSpecialName»’
   procedureReference [proc nonSpecialName] = ‛«nonSpecialName»’
   
-  compoundName [klb cs* krb] = ‛???jsmangle(«cs»)’
+  compoundName [klb cs* krb] = ‛«jsmangle(cs)»’
   basicName [nameFirst nameRest*] = ‛«nameFirst»«nameRest»’
   nonSpecialName [name] = ‛«name»’
   
