@@ -15,6 +15,11 @@ PseudoCode {
   Tags [klb tagDefinition* krb] = ‛’
 
   Block [klb BlockStatement* krb] = ‛\n«BlockStatement»’
+  StateBlock [klb StateBlockStatement* krb] = ‛\n«StateBlockStatement»’
+  TagBlock [klb TagBlockStatement* krb] = ‛\n«TagBlockStatement»’
+
+  StateClause [stateReference+ klb BlockStatement* krb] = ‛\n???StateClause {«stateReference»} {«BlockStatement»}’
+  TagClause [tagReference+ klb BlockTagment* krb] = ‛\n???TagClause {«tagReference»} {«BlockStatement»}’
 
   BlockStatement [x] = ‛«x»’
     
@@ -43,8 +48,6 @@ PseudoCode {
   constant_message [x] = ‛«x»’
   constant_list [x] = ‛«x»’
   constant_objectlist [x] = ‛«x»’
-  constant_state [x] = ‛«x»’
-  constant_tag [x] = ‛«x»’
   constant_port [x] = ‛«x»’
   constant_string [x] = ‛«x»’
 
@@ -62,9 +65,9 @@ PseudoCode {
 
   valueOperand [value] = ‛«value»’
 
-  stateQuery [stateQ operand Block] = ‛???stateQuery «stateQ» «operand» { «Block» }???’
+  StateQuery [stateQ operand Block] = ‛???stateQuery «stateQ» «operand» { «Block» }???’
 
-  tagQuery [tagQ operand Block] = ‛tagCase??? «tagQ» «operand» { «Block» }???’
+  TagQuery [tagQ operand Block] = ‛tagCase??? «tagQ» «operand» { «Block» }???’
 
   Funcall [callop operand Parameters?] = ‛«operand» («Parameters»)’
 

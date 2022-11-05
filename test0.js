@@ -1,6 +1,15 @@
-pattern matching error<br><br>Line 4, col 9:
-  3 |     #state š {
-> 4 |         ✦completed {
-              ^
-  5 |             die 'internal error: container.handle called on completed container'
-Expected "}", a letter, "ϕ", "š", "#", "##", "❲", "𝜏", "ž", "λ", "𝜌", "↵", "'", "✕", "◦", "▫", "⎨", "[", "⟪", "∀", "{", "synonym", or "function"
+function handle (message) {
+this.reset ();
+???stateQuery  this { 
+???StateClause {completed} {
+die;
+'internal error: container.handle called on completed container';}
+???StateClause {completed} {} }???;
+this.acceptInput (message);
+;
+function send (portdata) {
+this.outputs.push (new Message ('port', data, this, message));
+}
+this.runToCompletion (send);
+this.outputs.push (new Message ('out', null, this, message));
+}
