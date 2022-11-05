@@ -105,28 +105,26 @@ child.step (sendProcedure);
 });
 }
 function route (sendProcedure) {
-this.routingMap.forAll (connection => {
-synonym;
-deferred__message__stack;
-[];
 {
+var deferred__message__stack = [];
+this.routingMap.forAll (connection => {
 ;
 connection.direction;
 {
 across;
 up;
 {
-synonym;
-output__message;
-connection.sender.outputs;
 {
-deferred__message__stack.push (???ListOfObjects{targetmessage}[{connection.receivermessage}]);}}
+var output__message = connection.sender.outputs;
+deferred__message__stack.push (???ListOfObjects{targetmessage}[{connection.receivermessage}]);
+}}
 down;
 passThrough;
 {
-}}}
+}}
 });
 deferred__message__stack.forAll (pair => {
 pair.target.handle (pair.messagesendProcedure);
 });
+}
 }

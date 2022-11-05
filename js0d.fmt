@@ -63,7 +63,8 @@ PseudoCode {
   valueOperand [value] = ‛«value»’
 
   stateQuery [stateQ operand Block] = ‛???stateQuery «stateQ» «operand» { «Block» }???’
-  tagQuery [tagQ operand Block] = ‛???tagQuery «tagQ» «operand» { «Block» }???’
+
+  tagQuery [tagQ operand Block] = ‛tagCase??? «tagQ» «operand» { «Block» }???’
 
   Funcall [callop operand Parameters?] = ‛«operand» («Parameters»)’
 
