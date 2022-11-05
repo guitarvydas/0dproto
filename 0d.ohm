@@ -18,6 +18,12 @@ PseudoCode {
   Block = 
     | "{" BlockStatement* "}"
 
+  StateBlock = 
+    | "{" StateClause* "}"
+
+  StateClause = 
+    | stateReference+ "{" BlockStatement* "}"
+
   BlockStatement =
     | FunctionDefinition
     | Statement
@@ -49,7 +55,6 @@ PseudoCode {
     | applySyntactic<Message> -- message
     | applySyntactic<BasicList>  -- list
     | applySyntactic<ListOfObjects> -- objectlist
-    | stateReference -- state
     | tagReference -- tag
     | port -- port
     | string -- string
@@ -59,17 +64,17 @@ PseudoCode {
     | applySyntactic<ClassInstantiation> -- instantiation
     | applySyntactic<MethodCall> -- methodCall
     | applySyntactic<FieldRef> -- fieldRef
+    | applySyntactic<StateQuery> -- stateQuery
     | parameterReference -- parameterRef
     | functionReference -- functionRef
     | procedureReference -- procedureRef
     | tempVariableReference -- tempVariable
-    | stateQuery -- stateQuery
     | tagQuery -- tagQuery
     | name -- name
 
   valueOperand = value
 
-  stateQuery = stateQ operand applySyntactic<Block>
+  StateQuery = stateQ operand StateBlock
   tagQuery = tagQ operand applySyntactic<Block>
 
   Funcall = callop operand Parameters?

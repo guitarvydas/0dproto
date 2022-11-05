@@ -1,0 +1,48 @@
+function route (𝜌sendProcedure) {
+    synonym ❲deferred message stack❳ ≣ [] {
+        ∀ š.routingMap 𝜏connection {
+            #tag 𝜏connection.direction {
+                ▫across ▫up {
+                    synonym ❲output message❳ ≣ 𝜏connection.sender.outputs {
+                        ❲deferred message stack❳/push (⎨target message⎬ [{connection.receiver message}])
+                    }
+                }
+                ▫down ▫passThrough {}
+            }
+         }
+        ∀ ❲deferred message stack❳ 𝜏pair {
+            𝜏pair.target/handle (𝜏pair.message 𝜌sendProcedure)
+        }
+    }
+}
+
+/*
+...
+                #tagCase 𝜏connection.direction {▫across ▫up} {
+                    « ... »
+                }
+                #tagCase 𝜏connection.direction {▫down ▫passThrough} {
+                    «»
+		}
+            }
+...
+*/
+
+/*
+...
+            tagCase (
+                connection.direction, 
+                ['across', 'up'], 
+                function () {
+                    var output__message = connection.sender.outputs;
+		    deferred__message__stack.push ({'target': connection.receiver, 'message': message});
+                    }
+                );
+            tagCase (
+                connection.direction, 
+                ['down', 'passThrough'], 
+                function () {}
+                );
+...
+*/
+

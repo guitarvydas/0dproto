@@ -1,24 +1,6 @@
-function route (sendProcedure) {
-{
-var deferred__message__stack = [];
-this.routingMap.forAll (connection => {
-;
-connection.direction;
-{
-across;
-up;
-{
-{
-var output__message = connection.sender.outputs;
-deferred__message__stack.push (???ListOfObjects{targetmessage}[{connection.receivermessage}]);
-}}
-down;
-passThrough;
-{
-}}
-});
-deferred__message__stack.forAll (pair => {
-pair.target.handle (pair.messagesendProcedure);
-});
-}
-}
+pattern matching error<br><br>Line 4, col 9:
+  3 |     #state š {
+> 4 |         ✦completed {
+              ^
+  5 |             die 'internal error: container.handle called on completed container'
+Expected "}", a letter, "ϕ", "š", "#", "##", "❲", "𝜏", "ž", "λ", "𝜌", "↵", "'", "✕", "◦", "▫", "⎨", "[", "⟪", "∀", "{", "synonym", or "function"
