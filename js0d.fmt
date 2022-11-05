@@ -18,8 +18,8 @@ PseudoCode {
   StateBlock [klb StateBlockStatement* krb] = ‛\n«StateBlockStatement»’
   TagBlock [klb TagBlockStatement* krb] = ‛\n«TagBlockStatement»’
 
-  StateClause [stateReference+ klb BlockStatement* krb] = ‛\n???StateClause this {«stateReference»} {«BlockStatement»}’
-  TagClause [tagReference+ klb BlockStatement* krb] = ‛\n???TagClause {«tagReference»} {«BlockStatement»}’
+  StateClause [stateReference+ klb BlockStatement* krb] = {‛stateCase (this)’} ‛\n???StateClause this {«stateReference»} {«BlockStatement»}’
+  TagClause [tagReference+ klb BlockStatement* krb] = {‛tagCase («tagReference»)’} ‛\n???TagClause {«tagReference»} {«BlockStatement»}’
 
   BlockStatement [x] = ‛«x»’
     
