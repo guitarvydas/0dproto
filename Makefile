@@ -5,6 +5,8 @@ support=jssupport.js
 
 all: repos js
 
+dev: js
+
 install: repos npmstuff
 
 repos:
@@ -19,8 +21,6 @@ js:
 	./fab/fab - PseudoCode pc.ohm jspc.fmt --support=/Users/tarvydas/quicklisp/local-projects/0d/jssupport.js <container.0d | sed -e '/^$$/d' >container.js
 	~/node_modules/js-beautify/js/bin/js-beautify.js container.js
 
-dev:
-	./fab/fab - PseudoCode pc.ohm jspc.fmt --support='./jssupport.js' <container.0d
 
 clean:
 	rm *~

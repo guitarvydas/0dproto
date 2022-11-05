@@ -87,6 +87,7 @@ PseudoCode {
   name_compoundName [s] = ‛«s»’
   name_keywordName [n] = ‛«n»’
   name_selfName [n] = ‛this’
+  name_phiName [n] = ‛null’
   name_basicName [n] = ‛«n»’
 
   fieldName [nonSpecialName] = ‛«nonSpecialName»’

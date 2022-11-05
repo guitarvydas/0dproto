@@ -39,7 +39,7 @@ procedure reset () {
   #lang js (self) «
     var done = true;
     self.children.forEach (child => {
-        done = done & child.jsmangle ('❲completed ?❳') ();
+        done = done & child.completed___Q ();
     });
     return done;
   »

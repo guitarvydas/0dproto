@@ -32,7 +32,7 @@ function completed___Q () {
 function js (self) {
     var done = true;
     self.children.forEach (child => {
-        done = done & child.jsmangle ('❲completed ?❳') ();
+        done = done & child.completed___Q ();
     });
     return done;
   }
@@ -55,7 +55,7 @@ function send (portdata) {
 this.outputs.push (new Message ('port', data, this, message));
 }
 this.runToCompletion (send);
-this.outputs.push (new Message ('out', ϕ, this, message));
+this.outputs.push (new Message ('out', null, this, message));
 }
 function acceptInput (message) {
 ;

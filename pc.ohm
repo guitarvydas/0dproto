@@ -95,6 +95,7 @@ PseudoCode {
     | compoundName -- compoundName
     | keywordName -- keywordName
     | selfName -- selfName
+    | phiName -- phiName
     | basicName -- basicName
 
   fieldName = nonSpecialName
@@ -169,6 +170,7 @@ PseudoCode {
   tagPrefix = "▫"
   statePrefix = "✦"
   selfName = "š"
+  phiName = "ϕ"
   messageBegin = "⟪"
   messageEnd = "⟫"
   headerOpen = "⎨"
