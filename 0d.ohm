@@ -140,7 +140,7 @@ PseudoCode {
   asciiBracket = "(" | ")" | "{" | "}" | "[" | "]" | "<" | ">"
 
   asciiCharacter = "#" | call | "." 
-  unicodeBracket = headerOpen | headerClose | messageBegin | messageEnd | nameBracket
+  unicodeBracket = connectionOpen | connectionClose | messageBegin | messageEnd | nameBracket
     | verbatimBegin | verbatimEnd | "⟨" | "⟩"
   unicodeCharacter = knew | keywordPrefix | lambda | proc | "◦"| "✕" | tagPrefix
 
@@ -154,7 +154,7 @@ PseudoCode {
   string = sq (~sq any)* sq
   sq = "'"
 
-  comment =  "/*" commentInnards* "*/" -- flat
+  comment =  "/*" commentInnards* "*/"
   commentInnards =
     | "/*" commentInnards* "*/" -- rec
     | ~"/*" ~"*/" any -- flat
@@ -197,8 +197,8 @@ PseudoCode {
   phiName = "ϕ"
   messageBegin = "⟪"
   messageEnd = "⟫"
-  headerOpen = "⎨"
-  headerClose = "⎬"
+  connectionOpen = "⎨"
+  connectionClose = "⎬"
   nameBracket = "❲" | "❳"
   tempVariablePrefix = "𝜏"
   forAllPrefix = "∀"

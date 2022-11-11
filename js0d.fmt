@@ -45,11 +45,15 @@ PseudoCode {
   operand [x] = ‛«x»’
   expr [operand] = ‛«operand»’
 
-  constant_message [x] = ‛«x»’
-  constant_list [x] = ‛«x»’
-  constant_objectlist [x] = ‛«x»’
   constant_port [x] = ‛«x»’
   constant_string [x] = ‛«x»’
+  constant_tagReference [x] = ‛«x»’
+  constant_stateReference [x] = ‛«x»’
+
+  value_message [x] = ‛«x»’
+  value_connection [x] = ‛«x»’
+  value_list [x] = ‛«x»’
+  value_dtypeConstructor [x] = ‛«x»’
 
   value_funcall [x] = ‛«x»’
   value_instantiation [x] = ‛«x»’
@@ -63,6 +67,12 @@ PseudoCode {
   value_tagQuery [x] = ‛«x»’
   value_name [x] = ‛«x»’
 
+  Connection [lb tag Sender Receiver rb] = ‛«lb»«tag»«Sender»«Receiver»«rb»’
+  DtypeConstructor [lb name operand+ rb] = ‛«lb»«name»«operand»«rb»’
+  Sender [pair] = ‛«pair»’
+  Receiver [pair] = ‛«pair»’
+  Pair [lb valueOperand port rb] = ‛«lb»«valueOperand»«port»«rb»’
+
   valueOperand [value] = ‛«value»’
 
   StateQuery [stateQ operand Block] = ‛???stateQuery «stateQ» «operand» { «Block» }???’
@@ -73,9 +83,7 @@ PseudoCode {
 
   ClassInstantiation [knew name Parameters?] = ‛«name» («Parameters»)’
   MethodCall [value call name Parameters?] = ‛«value».«name» («Parameters»)’
-  ListOfObjects [ListHeader klb UnnamedObject+ krb] = ‛???ListOfObjects{«ListHeader»}[«UnnamedObject»]’
-  ListHeader [headerOpen name+ headerClose] = ‛«name»’
-  BasicList [klb expr* krb] = ‛[«expr»]’
+  List [klb expr* krb] = ‛[«expr»]’
   UnnamedObject [klb expr* krb] = ‛{«expr»}’
   Message_raw [messageBegin portOperand operand messageEnd] = ‛new Message ('«portOperand»', «operand», null, null)’
   Message_withDebug [messageBegin portOperand operand2 operand3 operand4 messageEnd] = ‛new Message ('«portOperand»', «operand2», «operand3», «operand4»)’
@@ -95,6 +103,7 @@ PseudoCode {
   name_basicName [n] = ‛«n»’
 
   fieldName [nonSpecialName] = ‛«nonSpecialName»’
+  dtypeName [nonSpecialName] = ‛«nonSpecialName»’
 
   port  [p] = ‛«p»’
 
@@ -125,7 +134,8 @@ PseudoCode {
   string [sq1 cs3* sq2] = ‛'«cs3»'’
   sq [c] = ‛’
 
-  commentInnards_rec [klb cs2* krb] = ‛’
+  comment [lb commentInnards* rb] = ‛’
+  commentInnards_rec [klb commentInnards* krb] = ‛’
   commentInnards_flat [c] = ‛«c»’
 
   nameFirst [c] = ‛«c»’
@@ -149,12 +159,11 @@ PseudoCode {
   yes [keywordPrefix k] = ‛true’
   no [keywordPrefix k] = ‛false’
 
-  outport [k nonSpecialName] = ‛«nonSpecialName»’
-  inport [k nonSpecialName] = ‛«nonSpecialName»’
-
   knew [k] = ‛’
   lambda [k] = ‛’
   proc [k] = ‛’
+  outport [k nonSpecialName] = ‛«nonSpecialName»’
+  inport [k nonSpecialName] = ‛«nonSpecialName»’
   call [k] = ‛’
   snippetPrefix [k] = ‛’
   keywordPrefix [k] = ‛’
@@ -163,8 +172,8 @@ PseudoCode {
   selfName [k] = ‛’
   messageBegin [k] = ‛’
   messageEnd [k] = ‛’
-  headerOpen [k] = ‛’
-  headerClose [k] = ‛’
+  connectionOpen [k] = ‛’
+  connectionClose [k] = ‛’
   nameBracket [k] = ‛’
   tempVariablePrefix [k] = ‛’
   forAllPrefix [k] = ‛’

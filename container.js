@@ -1,6 +1,3 @@
-pattern matching error<br><br>Line 123, col 56:
-  122 |                     synonym ❲output message❳ ≣ 𝜏connection.sender.outputs {
-> 123 |                         ❲deferred message stack❳/push (⎨target message⎬ [{connection.receiver message}])
-                                                               ^
-  124 |                     }
-Expected ")"
+error in .fmt specification<br><br>Found errors in the action dictionary of the '_fmt' operation:
+- 'constant_tagReference' is not a valid semantic action for 'PseudoCode'
+- 'constant_stateReference' is not a valid semantic action for 'PseudoCode'
