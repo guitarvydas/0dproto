@@ -102,10 +102,7 @@ PseudoCode {
 
   ClassInstantiation = knew name Parameters?
   MethodCall = value call name Parameters?
-  List = DtypeList | TagList | GenericList
-  DtypeList = "[" "⟨" DtypeName "⟩" expr* "]"
-  TagList = "[" "«" TagName "»" expr* "]"
-  GenericList = "[" "*" expr* "]"
+  List = "[" expr* "]"
   UnnamedObject = "{" expr* "}"
   Message =
     | messageBegin portOperand operand operand operand messageEnd -- withDebug

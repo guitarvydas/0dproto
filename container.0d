@@ -1,4 +1,5 @@
 dtype ⟨Dest target port message⟩
+tag ⟨Direction down up across ❲pass through❳⟩
 
 constructor Container (𝜌childrenArray 𝜌map) 
     {✦armed ✦completed}
@@ -66,7 +67,7 @@ procedure handle (𝜌message) {
 #internal procedure acceptInput (𝜌message) {
     #clear š.outputs
     ∀ š.routingMap 𝜏connection {
-        #tag? 𝜏connection {
+        #tag? Direction 𝜏connection {
           ▫down {
             synonym childOutputs ≣ 𝜏connection.receiver/handle (⟪𝜏connection.port 𝜌message.data š 𝜌message⟫ žsendProcedure) {
                 š/mergeOutputs (childOutputs)
@@ -119,7 +120,7 @@ procedure step (𝜌sendProcedure) {
 function route (𝜌sendProcedure) {
     synonym ❲deferred message stack❳ ≣ [] {
         ∀ š.routingMap 𝜏connection {
-            #tag? 𝜏connection.direction {
+            #tag? Direction 𝜏connection.direction {
                 ▫across ▫up {
                     synonym ❲output message❳ ≣ 𝜏connection.sender.outputs {
                         ❲deferred message stack❳/push (⟨Dest connection.receiver connection.port message⟩)

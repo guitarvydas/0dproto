@@ -1,15 +1,27 @@
+tag «Direction down up across ❲pass through❳»
+tag «Input in»
+tag «Output out»
+dtype ⟨Sender component port⟩
+dtype ⟨Receiver component port⟩
+dtype ⟨Message port data⟩
+dtype ⟨MessageWithDebug port data origin trail⟩
+dtype ⟨Connection direction sender receiver⟩
+tag «Boolean true false»
+dtype ⟨Data Value⟩
+dtype Value = «Boolean» | * 
+
 procedure helloWorld {
     'Hello World'
 }
 
 synonym ❲leaf 1❳ ≣ ↵Leaf (žhelloWorld) {
-    synonym routings ≣ [
-                           ⎨▫down (š ✕in) (❲leaf 1❳ ✕in)⎬
-                           ⎨▫up (❲leaf 1❳ ◦out) (š ◦out)⎬
+    synonym routings ≣ [⟨Connection⟩
+                           ⟨Connection «Direction down» ⟨Sender š «Input in»⟩ ⟨Receiver ❲leaf 1❳ «Input in»⟩⟩
+                           ⟨Connection «Direction up» ⟨Sender ❲leaf 1❳ «Output out»⟩ ⟨Receiver š «Output out»⟩⟩
                        ]
     {
-        synonym top ≣ ↵Container ([❲leaf 1❳] routings) {
-          top/handle (⟪✕in true⟫)
+        synonym top ≣ ↵Container ([* ❲leaf 1❳] routings) {
+          top/handle (⟨Message «Input in» «Boolean true»)
           top/runToCompletion 
           #/display (top.outputs)
         }
