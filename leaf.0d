@@ -11,7 +11,7 @@ constructor Leaf (𝜌func) { ✦armed ✦completed } {} {
 }
 
 function handle (𝜌message 𝜌sendFunction) {
-    #state š {
+    #state? š {
         ✦armed {
             function send (𝜌port 𝜌data 𝜌trace) {
                 š.outputs/push (⟪ 𝜌port 𝜌data š 𝜌trace ⟫)
@@ -35,7 +35,7 @@ procedure step (𝜌sendFunction) {
     in a Leaf, (3) step should only be called after (2) handle has been called, hence, there is nothing left to do in step
     in a Leaf (3) step is called only after the Leaf is in the completed state - step is a no-op in Leaf
     */
-    #state š {
+    #state? š {
         ✦completed {}
         ✦armed {
             #die 'internal error: Leaf/step called on armed leaf'
@@ -48,7 +48,7 @@ procedure reset {
 }
 
 function ❲completed ?❳ {
-    #state š {
+    #state? š {
         ✦armed     {#no}
         ✦completed {#yes}
    }

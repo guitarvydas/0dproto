@@ -1,21 +1,23 @@
 function route (𝜌sendProcedure) {
     synonym ❲deferred message stack❳ ≣ [] {
         ∀ š.routingMap 𝜏connection {
-            #tag 𝜏connection.direction {
+            #tagQuery 𝜏connection.direction {
                 ▫across ▫up {
                     synonym ❲output message❳ ≣ 𝜏connection.sender.outputs {
-                        ❲deferred message stack❳/push (⎨target message⎬ [{connection.receiver message}])
+                        ❲deferred message stack❳/push (⟨Dest connection.receiver connection.port message⟩)
+
                     }
                 }
                 ▫down ▫passThrough {}
             }
-         }
-        ∀ ❲deferred message stack❳ 𝜏pair {
-            𝜏pair.target/handle (𝜏pair.message 𝜌sendProcedure)
+        }
+        ∀ ❲deferred message stack❳ 𝜏dest {
+	    synonym m ≣ ⟪𝜏dest.port 𝜏dest.message.data š 𝜏dest.message⟫ {
+                𝜏dest.target/handle (m 𝜌sendProcedure)
+            }
         }
     }
 }
-
 /*
 ...
                 #tagCase 𝜏connection.direction {▫across ▫up} {
