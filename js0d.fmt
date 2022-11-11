@@ -10,6 +10,7 @@ PseudoCode {
     ‛\nfunction «name» («FormalParameters») {«Block»\n}’
   ConstructorDefinition [kconstructor name FormalParameters? States Tags Block] =
     ‛\nfunction «name» («FormalParameters») {«Block»\n}’
+  DtypeDefinition [lb dtypeName+ rb] = ‛«lb»«dtypeName»«rb»’
 
   States [klb stateDefinition* krb] = ‛’
   Tags [klb tagDefinition* krb] = ‛’
@@ -47,8 +48,8 @@ PseudoCode {
 
   constant_port [x] = ‛«x»’
   constant_string [x] = ‛«x»’
-  constant_tagReference [x] = ‛«x»’
-  constant_stateReference [x] = ‛«x»’
+  constant_tag [x] = ‛«x»’
+  constant_state [x] = ‛«x»’
 
   value_message [x] = ‛«x»’
   value_connection [x] = ‛«x»’
