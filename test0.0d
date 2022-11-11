@@ -1,6 +1,6 @@
 procedure handle (𝜌message) {
     š/reset
-    #state š {
+    #stateQuery š {
         ✦completed {
             die 'internal error: container.handle called on completed container'
         } 

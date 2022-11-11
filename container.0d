@@ -1,3 +1,5 @@
+dtype ⟨Dest target port message⟩
+
 constructor Container (𝜌childrenArray 𝜌map) 
     {✦armed ✦completed}
     {▫across ▫up ▫down ▫passThrough}
@@ -47,7 +49,7 @@ procedure reset () {
 
 procedure handle (𝜌message) {
     š/reset
-    #state š {
+    #state? š {
         ✦completed {
             die 'internal error: container.handle called on completed container'
         } 
@@ -64,7 +66,7 @@ procedure handle (𝜌message) {
 #internal procedure acceptInput (𝜌message) {
     #clear š.outputs
     ∀ š.routingMap 𝜏connection {
-        #tag 𝜏connection {
+        #tag? 𝜏connection {
           ▫down {
             synonym childOutputs ≣ 𝜏connection.receiver/handle (⟪𝜏connection.port 𝜌message.data š 𝜌message⟫ žsendProcedure) {
                 š/mergeOutputs (childOutputs)
@@ -117,17 +119,20 @@ procedure step (𝜌sendProcedure) {
 function route (𝜌sendProcedure) {
     synonym ❲deferred message stack❳ ≣ [] {
         ∀ š.routingMap 𝜏connection {
-            #tag 𝜏connection.direction {
+            #tag? 𝜏connection.direction {
                 ▫across ▫up {
                     synonym ❲output message❳ ≣ 𝜏connection.sender.outputs {
-                        ❲deferred message stack❳/push (⎨target message⎬ [{connection.receiver message}])
+                        ❲deferred message stack❳/push (⟨Dest connection.receiver connection.port message⟩)
+
                     }
                 }
                 ▫down ▫passThrough {}
             }
         }
-        ∀ ❲deferred message stack❳ 𝜏pair {
-            𝜏pair.target/handle (𝜏pair.message 𝜌sendProcedure)
+        ∀ ❲deferred message stack❳ 𝜏dest {
+	    synonym m ≣ ⟪𝜏dest.port 𝜏dest.message.data š 𝜏dest.message⟫ {
+                𝜏dest.target/handle (m 𝜌sendProcedure)
+            }
         }
     }
 }

@@ -6,11 +6,14 @@ PseudoCode {
     | applySyntactic<FunctionDefinition>
     | applySyntactic<ProcedureDefinition>
     | applySyntactic<ConstructorDefinition>
+    | applySyntactic<DtypeDefinition>
     | applySyntactic<Statement>
+
 
   FunctionDefinition = internal? "function" name FormalParameters? Block
   ProcedureDefinition = internal? "procedure" name FormalParameters? Block
   ConstructorDefinition = "constructor" name FormalParameters? States Tags Block
+  DtypeDefinition = "⟨" dtypeName+ "⟩"
 
   States = "{" stateDefinition* "}"
   Tags = "{" tagDefinition* "}"
@@ -58,24 +61,35 @@ PseudoCode {
   expr = operand
 
   constant =
-    | applySyntactic<Message> -- message
-    | applySyntactic<BasicList>  -- list
-    | applySyntactic<ListOfObjects> -- objectlist
     | port -- port
+    | tagReference -- tag
+    | stateReference -- state
     | string -- string
     
   value =
+    | applySyntactic<Message> -- message
+    | applySyntactic<Connection> -- connection
+    | applySyntactic<List>  -- list
     | applySyntactic<Funcall> -- funcall
     | applySyntactic<ClassInstantiation> -- instantiation
     | applySyntactic<MethodCall> -- methodCall
     | applySyntactic<FieldRef> -- fieldRef
     | applySyntactic<StateQuery> -- stateQuery
     | applySyntactic<TagQuery> -- tagQuery
+    | applySyntactic<DtypeConstructor> -- dtypeConstructor
     | parameterReference -- parameterRef
     | functionReference -- functionRef
     | procedureReference -- procedureRef
     | tempVariableReference -- tempVariable
     | name -- name
+
+  Connection = "⎨" tag Sender Receiver "⎬"
+
+  DtypeConstructor = "⟨" name operand+ "⟩"
+
+  Sender = Pair
+  Receiver = Pair
+  Pair = "(" valueOperand port ")"
 
   valueOperand = value
 
@@ -86,9 +100,7 @@ PseudoCode {
 
   ClassInstantiation = knew name Parameters?
   MethodCall = value call name Parameters?
-  ListOfObjects = ListHeader "[" UnnamedObject+ "]"
-  ListHeader = headerOpen name+ headerClose
-  BasicList = "[" expr* "]"
+  List = "[" expr* "]"
   UnnamedObject = "{" expr* "}"
   Message =
     | messageBegin portOperand operand operand operand messageEnd -- withDebug
@@ -109,6 +121,7 @@ PseudoCode {
     | basicName -- basicName
 
   fieldName = nonSpecialName
+  dtypeName = nonSpecialName
 
   port = outport | inport
 
@@ -124,10 +137,11 @@ PseudoCode {
   nonSpecialName = ~selfName ~keywordName name
   
   delimiter = asciiBracket | asciiCharacter | unicodeBracket | unicodeCharacter
-  asciiBracket = "(" | ")" | "{" | "}" | "[" | "]" | "<" | ">" 
+  asciiBracket = "(" | ")" | "{" | "}" | "[" | "]" | "<" | ">"
+
   asciiCharacter = "#" | call | "." 
   unicodeBracket = headerOpen | headerClose | messageBegin | messageEnd | nameBracket
-    | verbatimBegin | verbatimEnd
+    | verbatimBegin | verbatimEnd | "⟨" | "⟩"
   unicodeCharacter = knew | keywordPrefix | lambda | proc | "◦"| "✕" | tagPrefix
 
   tempVariableDefinition = tempVariablePrefix nonSpecialName
@@ -163,8 +177,8 @@ PseudoCode {
   declare = keywordPrefix "declare"
   callop = keywordPrefix "call"
   die = keywordPrefix "die"
-  stateQ = keywordPrefix "state"
-  tagQ = keywordPrefix "tag"
+  stateQ = keywordPrefix "state?"
+  tagQ = keywordPrefix "tag?"
   displayop = keywordPrefix call "display"
   yes = keywordPrefix "yes"
   no = keywordPrefix "no"
