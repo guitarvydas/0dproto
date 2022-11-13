@@ -10,7 +10,7 @@ tag «Boolean true false»
 dtype ⟨Data Value⟩
 dtype Value = «Boolean» | * 
 
-procedure helloWorld {
+function helloWorld {
     'Hello World'
 }
 

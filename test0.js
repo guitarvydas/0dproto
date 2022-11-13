@@ -1,15 +1,18 @@
-function handle (message) {
-this.reset ();
-???stateQuery  this { 
-???StateClause this {completed} {
-die;
-'internal error: container.handle called on completed container';}
-???StateClause this {armed} {} }???;
-this.acceptInput (message);
-;
-function send (portdata) {
-this.outputs.push (new Message ('port', data, this, message));
-}
-this.runToCompletion (send);
-this.outputs.push (new Message ('out', null, this, message));
-}
+pattern matching error<br><br>Line 106, col 23:
+  105 |   List = DtypeList | TagList | GenericList
+> 106 |   DtypeList = "[" "⟨" DtypeName "⟩" expr* "]"
+                              ^~~~~~~~~
+  107 |   TagList = "[" "«" TagName "»" expr* "]"
+Errors:
+- Line 106, col 23:
+  105 |   List = DtypeList | TagList | GenericList
+> 106 |   DtypeList = "[" "⟨" DtypeName "⟩" expr* "]"
+                              ^~~~~~~~~
+  107 |   TagList = "[" "«" TagName "»" expr* "]"
+Rule DtypeName is not declared in grammar PseudoCode
+- Line 107, col 21:
+  106 |   DtypeList = "[" "⟨" DtypeName "⟩" expr* "]"
+> 107 |   TagList = "[" "«" TagName "»" expr* "]"
+                            ^~~~~~~
+  108 |   GenericList = "[" "*" expr* "]"
+Rule TagName is not declared in grammar PseudoCode
