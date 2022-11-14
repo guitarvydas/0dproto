@@ -22,13 +22,13 @@ primtives:
   - [⟨#...⟩] Empty List of tag 
 - construct dtype `⟨...⟩` - dtype name is the first item, the rest are expressions
 - construct tag `⟨#...⟩` - tag name is the first item, the rest are tag field names (corresponding to the tag type)
-- query dtype `#?✦`
-- query tag `#?#`
-- query component state
+- query component state `#?✦Name`
+- query dtype `#?⟨Name⟩`
+- query tag `#?⟨#Name⟩`
 - reference a function `λ`
 - reference a procedure `ž`
 - reference an attribute `x.y`
-- call a method (extract an attribute and call it; in JS `x.y()`, in 0d `x/y`)
+- call a method (extract an attribute and call it; when written in JS `x.y()`, but, when written in in 0d `x/y`)
 - call a builtin procedure `/name`
 - parameter list `( ... )` or nothing
 - instantiate a Component `↵` (with or without a parameter list)
