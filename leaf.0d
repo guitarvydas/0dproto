@@ -1,19 +1,19 @@
-constructor Leaf (𝜌func) { ✦armed ✦completed } {} {
+#def constructor Leaf (𝜌func) { ✦armed ✦completed } {
     š.func ≣ 𝜌func
     š.reset ≣ žreset
     š.❲completed ?❳ ≣ λ❲completed ?❳
     š.handle ≣ žhandle
     š.step ≣ žstep
-    š.outputs ≣ []
+    š.outputs ≣ [⟨#Output⟩]
 
     š/reset
     ✦armed ⇒ š
 }
 
-function handle (𝜌message 𝜌sendFunction) {
-    #state? š {
-        ✦armed {
-            function send (𝜌port 𝜌data 𝜌trace) {
+#def function handle (𝜌message 𝜌sendFunction) {
+    #?š {
+        #?š ✦armed {
+            #inner function send (𝜌port 𝜌data 𝜌trace) {
                 š.outputs/push (⟪ 𝜌port 𝜌data š 𝜌trace ⟫)
             }
             synonym val ≣ #call š.func (𝜌message  𝜌send) {
@@ -21,13 +21,13 @@ function handle (𝜌message 𝜌sendFunction) {
                 ✦completed ⇒ š
             }
         }
-	✦completed {
+	#?š ✦completed {
             #die 'Leaf not armed'
         }        
     }
 }
 
-procedure step (𝜌sendFunction) {
+#def procedure step (𝜌sendFunction) {
     /*
     nothing to do
     Leaf calls its function once, then doesn't call it again until reset() has been called
@@ -35,21 +35,21 @@ procedure step (𝜌sendFunction) {
     in a Leaf, (3) step should only be called after (2) handle has been called, hence, there is nothing left to do in step
     in a Leaf (3) step is called only after the Leaf is in the completed state - step is a no-op in Leaf
     */
-    #state? š {
-        ✦completed {}
-        ✦armed {
+    #?š {
+        #?š ✦completed {}
+        #?š ✦armed {
             #die 'internal error: Leaf/step called on armed leaf'
         }
     }
 }
 
-procedure reset {
+#def procedure reset {
     ✦armed ⇒ š /* armed => ready to run function, completed => function already executed once */
 }
 
-function ❲completed ?❳ {
-    #state? š {
-        ✦armed     {#no}
-        ✦completed {#yes}
+#def function ❲completed ?❳ {
+    #?š {
+        #?š ✦armed     {#no}
+        #?š ✦completed {#yes}
    }
 }
