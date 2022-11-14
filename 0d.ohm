@@ -47,8 +47,6 @@ BasicBinaryOperator <: BasicUnaryOperator {
 }
 
 BasicBrackets <: BasicBinaryOperator {
-  messageBegin = "⟪"
-  messageEnd = "⟫"
   verbatimBegin = "«"
   verbatimEnd = "»"
   compoundNameBegin = "❲"
@@ -60,13 +58,12 @@ BasicBrackets <: BasicBinaryOperator {
 
   nameBracket = compoundNameBegin | compoundNameEnd
   dtypeBracket = dtypeBegin | dtypeEnd
-  messageBracket = messageBegin | messageEnd
   verbatimBracket = verbatimBegin | verbatimEnd
   tagBracket = tagBegin | tagEnd
   
   bracket =
     | "(" | ")" | "{" | "}" | "[" | "]" | "<" | ">"
-    | nameBracket | dtypeBracket | messageBracket | verbatimBracket | tagBracket
+    | nameBracket | dtypeBracket | verbatimBracket | tagBracket
 
 }
 
@@ -131,8 +128,6 @@ primary =
   | stateName -- state
   | applySyntactic<Instantiation>
   | phi -- null
-  | applySyntactic<MessageWithDebug> -- messageWithDebugInfo
-  | applySyntactic<MessageWithoutDebug> -- messageWithoutDebugInfo
   | applySyntactic<DtypeValue> -- dtype
   | applySyntactic<TagValue> -- tag
   | applySyntactic<DtypeList> -- dtypeList
@@ -150,8 +145,6 @@ SelfMethodCall = self call name ActualParameterList?
 MethodCall = primary call name ActualParameterList?
 BuiltinCall = kp call name ActualParameterList?
 Instantiation = new primary ActualParameterList?
-MessageWithDebug = messageBegin primary primary primary primary messageEnd
-MessageWithoutDebug = messageBegin primary primary messageEnd
 
 
 
