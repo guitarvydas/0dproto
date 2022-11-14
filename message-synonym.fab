@@ -7,13 +7,13 @@ MessageSynonym {
    matchLR_atLeastOneSpace [sp+] = ‛«sp»’
    matchLR_pattern [lr] = ‛«lr»’
    matchLR_char [char+] = ‛«char»’
-   patternLR [lb ilr1 ilr2 ilr3 ilr4 rb] = ‛«lb»«ilr1»«ilr2»«ilr3»«ilr4»«rb»’
+   patternLR [lb ilr1 ilr2 ilr3 ilr4 rb] = ‛⟨MessageWithDebug «ilr1»«ilr2»«ilr3»«ilr4»⟩’
    ilr [spaces matchLR] = ‛«spaces»«matchLR»’
    
    matchRL_atLeastOneSpace [sp+] = ‛«sp»’
    matchRL_pattern [rl] = ‛«rl»’
    matchRL_char [char+] = ‛«char»’
-   patternRL [lb irl1 irl2 irl3 irl4 irl5 rb] = ‛«lb»«irl1»«irl2»«irl3»«irl4»«irl5»«rb»’
+   patternRL [lb irl1 irl2 irl3 irl4 irl5 rb] = ‛⟪«irl2»«irl3»«irl4»«irl5»⟫’
    irl [spaces matchRL] = ‛«spaces»«matchRL»’
    
 }
