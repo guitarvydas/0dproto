@@ -152,8 +152,8 @@ SelfMethodCall = self call name ActualParameterList?
 MethodCall = primary call name ActualParameterList?
 BuiltinCall = kp call name ActualParameterList?
 Instantiation = new primary ActualParameterList?
-MessageWithDebug = messageBegin primary primary primary primary
-MessageWithoutDebug = messageBegin primary primary
+MessageWithDebug = messageBegin primary primary primary primary messageEnd
+MessageWithoutDebug = messageBegin primary primary messageEnd
 
 
 
