@@ -1,11 +1,8 @@
-Forward {
-  // these must be redefined (":=") in the final grammar
-  main = "forward"
-  Expression = "forward"
-  name = "forward
+Basic {
+  main = "don't care, this must be redefined"
 }
 
-BasicComment {
+BasicComment <: Basic {
   comment =  "/*" commentInnards* "*/"
   commentInnards =
     | "/*" commentInnards* "*/" -- rec
@@ -14,35 +11,23 @@ BasicComment {
   space += comment
 }
 
-oBasicVerbatim {
-  verbatim = verbatimBegin verbatimInnards+ verbatimEnd
-  verbatimInnards =
-    | verbatimBegin expr verbatimEnd -- switchGrammars
-    | ~verbatimBegin ~verbatimEnd any -- flat
-  expr = applySyntactic<Expression>
-}
-
-BasicCodeSnippets {
-  snippetPrefix = "##"
-}
-
-BasicString {
+BasicString <: BasicComment {
   string = sq (~sq any)* sq
   sq = "'"
 }
 
-BasicKeywordPrefix {
+BasicKeywordPrefix <: BasicString {
   kp = "#"
 }
 
-BasicPrefixes {
+BasicPrefix <: BasicKeywordPrefix {
   lambdaPrefix = "λ"
   procedurePrefix = "ž"
   statePrefix = "✦"
   parameterPrefix = "𝜌"
 }
 
-BasicUnaryOperators {
+BasicUnaryOperator <: BasicPrefix {
   new = "↵"
   call = "/"
   self = "š"
@@ -51,13 +36,17 @@ BasicUnaryOperators {
   forAll = "∀"
   query = "#?" 
   defineop = "≣"
+
+  unaryOperator = new | call | self | phi | temp | forAll | query | defineop | kp
 }
 
-BasicBinaryOperator {
+BasicBinaryOperator <: BasicUnaryOperator {
   dot = "."
+  updateState = "⇒"
+  binaryOperator = dot | updateState
 }
 
-BasicBrackets {
+BasicBrackets <: BasicBinaryOperator {
   messageBegin = "⟪"
   messageEnd = "⟫"
   verbatimBegin = "«"
@@ -81,11 +70,11 @@ BasicBrackets {
 
 }
 
-BasicDelimiter {
+BasicDelimiter <: BasicBrackets {
   delimiter = bracket | unaryOperator | kp
 }
 
-BasicKeywords <: BasicKeywordPrefix {
+BasicKeywords <: BasicDelimiter {
   // keyword prefix - strictly not necessary, but helps with visual inspection during bootstrap
   
   yes = kp "yes"
@@ -96,34 +85,99 @@ BasicKeywords <: BasicKeywordPrefix {
   keyword = yes | no | def
 }
 
-BasicTag {
-  tagName = "⟨#" name "⟩"
-  tagDefinition = "⟨#" name name+ "⟩"
-  tag = 
-    | "⟨#" name Expression "⟩"
-    | "⟨#" name name "⟩"
+BasicGrammar <: BasicKeywords {
 }
 
-BasicDtype {
-  dtypeName = "⟨" name "⟩"
-  dtypeDefinition = "⟨#" name name+ "⟩"
-  dtype =
+
+
+ZeroD <: BasicGrammar {
+  main := definition+
+
+  Definition = DtypeDefinition | TagDefinition | FunctionDefinition | ProcedureDefinition
+    | ConstructorDefinition
+  definition = applySyntactic<Definition>
+    
+  FunctionDefinition = def "function" FormalParameterList Block
+  ProcedureDefinition = def "procedure" FormalParameterList Block
+  ConstructorDefinition = def "constructor" FormalParameterList PossibleStates Block
+
+  ConstructionExpression = ConstructorFieldAssign | Expression
+
+  ConstructorFieldAssign = selfFieldName defineop Expression
+
+  Expression =
+    | ForallExpression
+    | StateUpdateExpression
+    | StateQueryExpression
+    | DtypeQueryExpression
+    | TagQueryExpression
+    | verbatim
+    | primary
+
+primary = 
+  | self call name -- methodCallOfSelf
+  | primary call name -- methodCallOfPrimary
+  | selfFieldName -- fieldOfSelf
+  | self -- self
+  | primary dot name -- fieldOfPrimary
+  | temporaryName -- temp
+  | lambdaPrefix name -- function
+  | procedurePrefix name -- procedure
+  | parameterPrefix name -- parameter
+  | statePrefix name -- state
+  | new primary -- instantiation
+  | phi -- null
+  | messageBegin primary primary primary primary -- messageWithDebugInfo
+  | messageBegin primary primary -- messageWithoutDebugInfo
+  | applySyntactic<Dtype> -- dtype
+  | applySyntactic<Tag> -- tag
+  | applySyntactic<DtypeList> -- dtypeList
+  | applySyntactic<TagList> -- tagList
+  | applySyntactic<GenericList> -- genericList
+  | name -- name
+
+selfFieldName = self dot name
+temporaryName = temp name 
+
+
+
+//Verbatim {
+  verbatim = verbatimBegin verbatimInnards+ verbatimEnd
+  verbatimInnards =
+    | verbatimBegin expr verbatimEnd -- switchGrammars
+    | ~verbatimBegin ~verbatimEnd any -- flat
+  expr = applySyntactic<Expression>
+//}
+
+
+
+//Tag {
+  TagName = "⟨#" name "⟩"
+  TagDefinition = "⟨#" name name+ "⟩"
+  Tag = 
+    | "⟨#" name expr "⟩"
+    | "⟨#" name name "⟩"
+//}
+
+//Dtype {
+  DtypeName = "⟨" name "⟩"
+  DtypeDefinition = "⟨#" name name+ "⟩"
+  Dtype =
     | "⟨#" name Expression "⟩"
     | "⟨#" name name "⟩"
-}
+//}
 
-BasicList {
+//List {
   listEnd = "]"
   dtypeListBegin = "[⟨"
   tagListBegin = "[⟨#"
   genericListBegin = "["
-  dtypeList = dtypeListBegin Expression* listEnd
-  tagList = tagListBegin Expression* listEnd
-  genericList = genericListBegin Expression* listEnd
-}
+  DtypeList = dtypeListBegin Expression* listEnd
+  TagList = tagListBegin Expression* listEnd
+  GenericList = genericListBegin Expression* listEnd
+//}
 
-
-Name {
+//Name {
   name =
     | compoundName -- compoundName
     | self -- self
@@ -137,82 +191,39 @@ Name {
   nameFirst = letter | "_"
   nameRest = alnum | "_"
 
-}
+//}
 
-Operator {
-  queryState = query state
-  queryDtype = query dtypeName
-  queryTag = query tagName
-  forall = forAll
-  unaryOperator = new | lambda | proc | call | state | self | phi | temp  | parameter
-    | forAll
-    | kp
-  binaryOperator = dot
-}
+//Operator {
+  StateQueryExpression = query self StateQueryClause+
+  DtypeQueryExpression = query DtypeName DtypeQueryClause+
+  TagQueryExpression = query TagName TagQueryClause+
+  ForallExpression = forAll Expression temporaryName Block
 
-ParameterList <: Forward {
+StateQueryClause = query self "{" Expression Expression "}"
+DtypeQueryClause = query DtypeName "{" Expression Expression "}"
+TagQueryClause = query TagName "{" Expression Expression "}"
+
+  StateUpdateExpression = Expression updateState self 
+//}
+
+//ParameterList {
   FormalParameterList = "(" pname* ")"
   ActualParameterList = "(" Expression* ")"
   pname = parameterPrefix name
-}
+//}
 
-StateList <: Forward {
+// StateList {
   PossibleStates = "{" sname+ "}"
   sname = statePrefix name
-}
+//}
 
-Block {
+//Block {
   Block = "{" Expression* "}"
-}
+//}
 
-Synonym {
+//Synonym {
   SynonymScopedBlock = synonym name defineop Block
-}
+//}
   
 
-GrammarBackbone <: ??? {
-}
-
-ZeroD <: GrammarBackBone {
-  main := definition+
-
-  Definition = dtypeDefinition | tagDefinition | functionDefinition | procedureDefinition
-    | ConstructorDefinition
-    
-  functionDefinition = def "function" FormalParameters Block
-  procedureDefinition = def "procedure" FormalParameters Block
-  ConstructorDefinition = def "constructor" FormalParameters PossibleStates Block
-
-  ConstructionExpression = ConstructorFieldAssign | Expression
-
-  ConstructorFieldAssign = selfFieldName defineop Expression
-
-  Expression =
-    | forallExpression
-    | stateUpdateExpression
-    | stateQueryExpression
-    | dtypeQueryExpression
-    | tagQueryExpression
-    | verbatim
-    | primary
-
-primary = 
-  | self call name -- methodCallOfSelf
-  | primary call name -- methodCallOfPrimary
-  | self (dot name)? -- fieldOfSelf
-  | primary (dot name)? -- fieldOfPrimary
-  | temporary name -- temp
-  | lambdaPrefix name -- function
-  | procedurePrefix name -- procedure
-  | parameterPrefix name -- parameter
-  | statePrefix name -- state
-  | new primary -- instantiation
-  | phi -- null
-  | messageBegin primary primary primary primary -- messageWithDebugInfo
-  | messageBegin primary primary -- messageWithoutDebugInfo
-  | dtype -- dtype
-  | tag -- tag
-  | dtypeList -- dtypeList
-  | tagList -- tagList
-  | genericList -- genericList
 }
