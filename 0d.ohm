@@ -94,12 +94,13 @@ ZeroD <: BasicGrammar {
   main := definition+
 
   Definition = DtypeDefinition | TagDefinition | FunctionDefinition | ProcedureDefinition
-    | ConstructorDefinition
+    | ConstructorDefinition | Immediate
   definition = applySyntactic<Definition>
+  Immediate = Expression
     
-  FunctionDefinition = def "function" FormalParameterList Block
-  ProcedureDefinition = def "procedure" FormalParameterList Block
-  ConstructorDefinition = def "constructor" FormalParameterList PossibleStates Block
+  FunctionDefinition = def "function" name FormalParameterList? Block
+  ProcedureDefinition = def "procedure" name FormalParameterList? Block
+  ConstructorDefinition = def "constructor" name FormalParameterList? PossibleStates Block
 
   ConstructionExpression = ConstructorFieldAssign | Expression
 
@@ -114,9 +115,10 @@ ZeroD <: BasicGrammar {
     | verbatim
     | primary
 
-primary = 
-  | self call name -- methodCallOfSelf
-  | primary call name -- methodCallOfPrimary
+primary =
+  | applySyntactic<SelfMethodCall> -- methodCallOfSelf
+  | applySyntactic<MethodCall> -- methodCallOfPrimary
+  | applySyntactic<BuiltinCall> -- builtinCall
   | selfFieldName -- fieldOfSelf
   | self -- self
   | primary dot name -- fieldOfPrimary
@@ -125,19 +127,27 @@ primary =
   | procedurePrefix name -- procedure
   | parameterPrefix name -- parameter
   | statePrefix name -- state
-  | new primary -- instantiation
+  | applySyntactic<Instantiation>
   | phi -- null
-  | messageBegin primary primary primary primary -- messageWithDebugInfo
-  | messageBegin primary primary -- messageWithoutDebugInfo
+  | applySyntactic<MessageWithDebug> -- messageWithDebugInfo
+  | applySyntactic<MessageWithoutDebug> -- messageWithoutDebugInfo
   | applySyntactic<Dtype> -- dtype
   | applySyntactic<Tag> -- tag
   | applySyntactic<DtypeList> -- dtypeList
   | applySyntactic<TagList> -- tagList
   | applySyntactic<GenericList> -- genericList
+  | string -- string
+  | applySyntactic<SynonymScopedBlock>
   | name -- name
 
 selfFieldName = self dot name
 temporaryName = temp name 
+SelfMethodCall = self call name ActualParameterList?
+MethodCall = primary call name ActualParameterList?
+BuiltinCall = kp call name ActualParameterList?
+Instantiation = new primary ActualParameterList?
+MessageWithDebug = messageBegin primary primary primary primary
+MessageWithoutDebug = messageBegin primary primary
 
 
 
@@ -153,28 +163,28 @@ temporaryName = temp name
 
 //Tag {
   TagName = "⟨#" name "⟩"
-  TagDefinition = "⟨#" name name+ "⟩"
+  TagDefinition = def "tag" "⟨#" name name+ "⟩"
   Tag = 
-    | "⟨#" name expr "⟩"
-    | "⟨#" name name "⟩"
+    | "⟨#" name Expression+ "⟩"
 //}
 
 //Dtype {
   DtypeName = "⟨" name "⟩"
-  DtypeDefinition = "⟨#" name name+ "⟩"
+  DtypeDefinition =
+    | def "dtype" name "=" CompoundDtype+ ("|" "*")? -- compound
+    | def "dtype" "⟨" name name+ "⟩" -- single
   Dtype =
-    | "⟨#" name Expression "⟩"
-    | "⟨#" name name "⟩"
+    | "⟨" name Expression+ "⟩"
+
+  CompoundDtype = DtypeName | TagName
 //}
 
 //List {
   listEnd = "]"
-  dtypeListBegin = "[⟨"
-  tagListBegin = "[⟨#"
   genericListBegin = "["
-  DtypeList = dtypeListBegin Expression* listEnd
-  TagList = tagListBegin Expression* listEnd
-  GenericList = genericListBegin Expression* listEnd
+  DtypeList = genericListBegin DtypeName Expression* listEnd
+  TagList = genericListBegin TagName Expression* listEnd
+  GenericList = genericListBegin "*" Expression* listEnd
 //}
 
 //Name {
@@ -222,7 +232,7 @@ TagQueryClause = query TagName "{" Expression Expression "}"
 //}
 
 //Synonym {
-  SynonymScopedBlock = synonym name defineop Block
+  SynonymScopedBlock = synonym name defineop Expression Block
 //}
   
 

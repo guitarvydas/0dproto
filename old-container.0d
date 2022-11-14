@@ -1,0 +1,140 @@
+dtype ⟨Dest target port message⟩
+tag ⟨#Direction down up across ❲pass through❳⟩
+
+constructor Container (𝜌childrenArray 𝜌map) 
+    {✦armed ✦completed}
+    {▫across ▫up ▫down ▫passThrough}
+{
+    š.reset ≣ žreset
+    š.❲completed ?❳ ≣ λ❲completed ?❳
+    š.handle ≣ λhandle
+    š.step ≣ λstep
+    š.setChildren ≣ λsetChildren
+    š.setRoutings ≣ λsetRoutings
+    š.outputs ≣ []
+
+    /* helper functions */
+    š.acceptInput ≣ žacceptInput
+    š.mergeOutputs ≣ λmergeOutputs
+    š.route ≣ žroute
+    š.runToCompletion ≣ žrunToCompletion
+
+    š.children ≣ 𝜌childrenArray
+    š/❲set parent of children❳ (š)
+    š.routingMap ≣ 𝜌map
+}
+
+#declare procedure ❲set parent of children❳ {
+  #lang js (self) «
+    self.children.forEach (child => {
+        child.container = self;
+    });
+  »
+}
+
+procedure reset () {
+  ∀ š.children 𝜏child {
+    𝜏child/reset
+  }
+}
+
+#declare function ❲completed ?❳ {
+  #lang js (self) «
+    var done = true;
+    self.children.forEach (child => {
+        done = done & child.completed___Q ();
+    });
+    return done;
+  »
+}
+
+procedure handle (𝜌message) {
+    š/reset
+    #state? š {
+        ✦completed {
+            die 'internal error: container.handle called on completed container'
+        } 
+        ✦armed {}
+    }
+    š/acceptInput (𝜌message)
+    #inner function send (𝜌port 𝜌data) {
+        š.outputs/push (⟪𝜌port 𝜌data š 𝜌message⟫)
+    }
+    š/runToCompletion (žsend)
+    š.outputs/push (⟪◦out ϕ š 𝜌message⟫)
+}
+
+#internal procedure acceptInput (𝜌message) {
+    #clear š.outputs
+    ∀ š.routingMap 𝜏connection {
+        #tag? Direction 𝜏connection {
+          ▫down {
+            synonym childOutputs ≣ 𝜏connection.receiver/handle (⟪𝜏connection.port 𝜌message.data š 𝜌message⟫ žsendProcedure) {
+                š/mergeOutputs (childOutputs)
+            }
+          }
+          ▫passthrough {
+            synonym childOutputs ≣ [⟪𝜏connection.port 𝜌message.data š 𝜌message⟫] {
+                š/mergeOutputs (childOutputs)
+            }
+          }
+          ▫across ▫up {}
+        }
+    }
+}
+
+#internal function mergeOutputs (𝜌childOutputs) {
+    /* merge childOutputs with self.outputs in situ */
+    /* outputs & childOutputs are queues
+       copy from least recent to most recent */
+  #lang js (childOutputs) «
+    var clonedOuts = Array.from (self.outputs);
+    var childOuts = childOutputs.reverse ();
+    childOuts.forEach (cout => {
+        clonedOutputs.push (cout);
+    });
+    return clonedOutputs;
+  »
+}
+
+#internal procedure runToCompletion (𝜌sendProcedure) {
+     ##js «
+         while (! «š/completed») {
+             «š/step (𝜌sendProcedure)»
+             «š/route (𝜌sendProcedure)»
+         }
+     »
+     ##cl «
+         (loop while (not «š/completed»)
+             do (progn «š/step (𝜌sendProcedure)»
+                       «š/route (𝜌sendProcedure)»))
+     »
+}
+
+procedure step (𝜌sendProcedure) {
+    ∀ š.children 𝜏child {
+        𝜏child/step (𝜌sendProcedure)
+    }
+}
+
+function route (𝜌sendProcedure) {
+    synonym ❲deferred message stack❳ ≣ [] {
+        ∀ š.routingMap 𝜏connection {
+            #tag? Direction 𝜏connection.direction {
+                ▫across ▫up {
+                    synonym ❲output message❳ ≣ 𝜏connection.sender.outputs {
+                        ❲deferred message stack❳/push (⟨Dest connection.receiver connection.port message⟩)
+
+                    }
+                }
+                ▫down ▫passThrough {}
+            }
+        }
+        ∀ ❲deferred message stack❳ 𝜏dest {
+	    synonym m ≣ ⟪𝜏dest.port 𝜏dest.message.data š 𝜏dest.message⟫ {
+                𝜏dest.target/handle (m 𝜌sendProcedure)
+            }
+        }
+    }
+}
+
