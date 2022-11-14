@@ -21,7 +21,7 @@ dev:
 	~/node_modules/js-beautify/js/bin/js-beautify.js test0.js
 
 be:
-	./fab/fab - MessageSynonym message-synonym.ohm message-synonym.fab <message-synonym-test3.txt
+	./fab/fab - MessageSynonym message-synonym.ohm message-synonym.fab <container.0d
 
 clean:
 	rm *~
