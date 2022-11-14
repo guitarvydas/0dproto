@@ -1,0 +1,23 @@
+MessageSynonym {
+  top = spaces matchLR spaces matchRL spaces
+
+  bracket =
+    | "(" | ")" | "{" | "}" | "[" | "]" | "<" | ">"
+    |  "❲" |  "❳" |  "«" | "»" | "⟨" |  "⟩" | "⟪" | "⟫"
+
+   x = spaces char+
+   char =  ~space ~bracket any
+
+   matchLR =
+     | space+ -- atLeastOneSpace
+     | patternLR -- pattern
+     | char -- char
+   patternLR = "⟪" x x x x "⟫"
+
+   matchRL =
+     | space+ -- atLeastOneSpace
+     | patternRL -- pattern
+     | char -- char
+   patternRL = "⟨" x x x x x "⟩"
+   
+}

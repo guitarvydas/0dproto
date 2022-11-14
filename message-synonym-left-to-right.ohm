@@ -1,0 +1,22 @@
+BasicBrackets {
+  top = "don't care"
+  bracket =
+    | "(" | ")" | "{" | "}" | "[" | "]" | "<" | ">"
+    |  "❲" |  "❳" |  "«" | "»" | "⟨" |  "⟩" | "⟪" | "⟫"
+
+}
+
+MessageSynonymLeftToRight <: BasicBrackets {
+   top := match+
+   match =
+     | space+ -- atLeastOneSpace
+     | pattern -- pattern
+     | char -- char
+   pattern = "⟪" port data origin trail "⟫"
+   port = item
+   data = item
+   origin = item
+   trail = item
+   item = spaces char+
+   char =  ~space ~bracket any
+}

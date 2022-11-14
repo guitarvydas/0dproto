@@ -76,9 +76,11 @@ BasicKeywords <: BasicDelimiter {
   
   def = kp "def"
   inner = kp "inner"
+  private = kp "private"
   synonym = kp "synonym"
+  lang = kp "lang"
 
-  keyword = def | inner
+  keyword = def | inner | private | synonym | lang
 }
 
 BasicGrammar <: BasicKeywords {
@@ -90,7 +92,9 @@ ZeroD <: BasicGrammar {
   main := definition+
 
   Definition = DtypeDefinition | TagDefinition | FunctionDefinition | ProcedureDefinition
-    | ConstructorDefinition | Immediate
+    | ConstructorDefinition 
+    | UnexportedFunctionDefinition | UnexportedProcedureDefinition
+    | Immediate
   definition = applySyntactic<Definition>
   Immediate = Expression
     
@@ -98,6 +102,8 @@ ZeroD <: BasicGrammar {
   ProcedureDefinition = def "procedure" name FormalParameterList? Block
   InnerFunctionDefinition = inner "function" name FormalParameterList? Block
   InnerProcedureDefinition = inner "procedure" name FormalParameterList? Block
+  UnexportedFunctionDefinition = private "function" name FormalParameterList? Block
+  UnexportedProcedureDefinition = private "procedure" name FormalParameterList? Block
   ConstructorDefinition = def "constructor" name FormalParameterList? PossibleStates ConstructorBlock
 
   ConstructionExpression = ConstructorFieldAssign | Expression
@@ -135,6 +141,8 @@ primary =
   | applySyntactic<GenericList> -- genericList
   | string -- string
   | applySyntactic<SynonymScopedBlock>
+  | applySyntactic<LangFunction>
+  | applySyntactic<LangSnippet>
   | self -- self
   | name -- name
 
@@ -145,7 +153,8 @@ SelfMethodCall = self call name ActualParameterList?
 MethodCall = primary call name ActualParameterList?
 BuiltinCall = kp call name ActualParameterList?
 Instantiation = new primary ActualParameterList?
-
+LangFunction = lang name ActualParameterList verbatim
+LangSnippet = lang name verbatim
 
 
 //Verbatim {
@@ -201,9 +210,9 @@ Instantiation = new primary ActualParameterList?
 //}
 
 //Operator {
-  StateQueryExpression = query self "{" StateQueryClause+ "}"
-  DtypeQueryExpression = query DtypeName "{" DtypeQueryClause+ "}"
-  TagQueryExpression = query TagName "{" TagQueryClause+ "}"
+  StateQueryExpression = (query self)+ "{" StateQueryClause+ "}"
+  DtypeQueryExpression = (query DtypeName)+ "{" DtypeQueryClause+ "}"
+  TagQueryExpression = (query TagName)+ "{" TagQueryClause+ "}"
   ForallExpression = forAll Expression temporaryName Block
 
 StateQueryClause = query self stateName Block
