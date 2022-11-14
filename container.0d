@@ -1,3 +1,4 @@
+./fab/fab - MessageSynonym message-synonym.ohm message-synonym.fab <container.0d
 #def tag ⟨#Direction down up across ❲pass through❳⟩
 #def tag ⟨#Input in⟩
 #def tag ⟨#Output out⟩
@@ -66,10 +67,10 @@
     }
     š/acceptInput (𝜌message)
     #inner function send (𝜌port 𝜌data) {
-        š.outputs/push (⟪𝜌port 𝜌data š 𝜌message⟫)
+        š.outputs/push (⟨MessageWithDebug 𝜌port 𝜌data š 𝜌message⟩)
     }
     š/runToCompletion (žsend)
-    š.outputs/push (⟪◦out ϕ š 𝜌message⟫)
+    š.outputs/push (⟨MessageWithDebug ⟨#Output out⟩ ϕ š 𝜌message⟩)
 }
 
 #internal procedure acceptInput (𝜌message) {
@@ -77,12 +78,12 @@
     ∀ š.routingMap 𝜏connection {
         #?⟨#Direction⟩ 𝜏connection {
           #?⟨#Direction down⟩ {
-            #synonym childOutputs ≣ 𝜏connection.receiver/handle (⟪𝜏connection.port 𝜌message.data š 𝜌message⟫ žsendProcedure) {
+            #synonym childOutputs ≣ 𝜏connection.receiver/handle (⟨MessageWithDebug 𝜏connection.port 𝜌message.data š 𝜌message⟩ žsendProcedure) {
                 š/mergeOutputs (childOutputs)
             }
           }
           #?⟨#Direction ❲pass through❳⟩ {
-            #synonym childOutputs ≣ [⟪𝜏connection.port 𝜌message.data š 𝜌message⟫] {
+            #synonym childOutputs ≣ [⟨MessageWithDebug 𝜏connection.port 𝜌message.data š 𝜌message⟩] {
                 š/mergeOutputs (childOutputs)
             }
           }
@@ -140,10 +141,11 @@ function route (𝜌sendProcedure) {
             }
         }
         ∀ ❲deferred message stack❳ 𝜏dest {
-	    #synonym m ≣ ⟪𝜏dest.port 𝜏dest.message.data š 𝜏dest.message⟫ {
+	    #synonym m ≣ ⟨MessageWithDebug 𝜏dest.port 𝜏dest.message.data š 𝜏dest.message⟩ {
                 𝜏dest.target/handle (m 𝜌sendProcedure)
             }
         }
     }
 }
+
 
