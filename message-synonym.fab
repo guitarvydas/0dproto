@@ -1,0 +1,19 @@
+MessageSynonym {
+  top [ws1 matchLR ws2 matchRL ws3] = ‛«ws1»«matchLR»«ws2»«matchRL»«ws3»’
+
+  bracket [c] = ‛«c»’
+  char [c] = ‛«c»’
+
+   matchLR_atLeastOneSpace [sp+] = ‛«sp»’
+   matchLR_pattern [lr] = ‛«lr»’
+   matchLR_char [char+] = ‛«char»’
+   patternLR [lb ilr1 ilr2 ilr3 ilr4 rb] = ‛«lb»«ilr1»«ilr2»«ilr3»«ilr4»«rb»’
+   ilr [spaces matchLR] = ‛«spaces»«matchLR»’
+   
+   matchRL_atLeastOneSpace [sp+] = ‛«sp»’
+   matchRL_pattern [rl] = ‛«rl»’
+   matchRL_char [char+] = ‛«char»’
+   patternRL [lb irl1 irl2 irl3 irl4 irl5 rb] = ‛«lb»«irl1»«irl2»«irl3»«irl4»«irl5»«rb»’
+   irl [spaces matchRL] = ‛«spaces»«matchRL»’
+   
+}

@@ -11,13 +11,13 @@ MessageSynonym {
      | space+ -- atLeastOneSpace
      | patternLR -- pattern
      | char+ -- char
-   patternLR = spaces "⟪" ilr ilr ilr ilr"⟫" spaces
+   patternLR = "⟪" ilr ilr ilr ilr"⟫"
    ilr = spaces matchLR
    
    matchRL =
      | space+ -- atLeastOneSpace
      | patternRL -- pattern
-     | char -- char
+     | char+ -- char
    patternRL = "⟨" irl irl irl irl irl "⟩"
    irl = spaces matchRL
    
