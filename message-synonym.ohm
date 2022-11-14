@@ -5,7 +5,6 @@ MessageSynonym {
     | "(" | ")" | "{" | "}" | "[" | "]" | "<" | ">"
     |  "❲" |  "❳" |  "«" | "»" | "⟨" |  "⟩" | "⟪" | "⟫"
 
-   x = spaces char+
    char =  ~space ~bracket any
 
    matchLR =
@@ -19,6 +18,7 @@ MessageSynonym {
      | space+ -- atLeastOneSpace
      | patternRL -- pattern
      | char -- char
-   patternRL = "⟨" x x x x x "⟩"
+   patternRL = "⟨" irl irl irl irl irl "⟩"
+   irl = spaces matchRL
    
 }
