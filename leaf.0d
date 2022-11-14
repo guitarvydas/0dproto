@@ -1,5 +1,17 @@
+#def tag ⟨#Direction down up across ❲pass through❳⟩
+#def tag ⟨#Input in⟩
+#def tag ⟨#Output out⟩
+#def dtype ⟨Sender component port⟩
+#def dtype ⟨Receiver component port⟩
+#def dtype ⟨Message port data⟩
+#def dtype ⟨MessageWithDebug port data origin trail⟩
+#def dtype ⟨Connection direction sender receiver⟩
+#def tag ⟨#YesNo yes no⟩
+#def dtype ⟨Data Value⟩
+#def dtype Value = ⟨#YesNo⟩ | * 
+
 #def constructor Leaf (𝜌func) { ✦armed ✦completed } {
-    š.func ≣ 𝜌func
+    š.handler ≣ 𝜌func
     š.reset ≣ žreset
     š.❲completed ?❳ ≣ λ❲completed ?❳
     š.handle ≣ žhandle
@@ -14,15 +26,15 @@
     #?š {
         #?š ✦armed {
             #inner function send (𝜌port 𝜌data 𝜌trace) {
-                š.outputs/push (⟪ 𝜌port 𝜌data š 𝜌trace ⟫)
+                š.outputs/push (⟨MessageWithDebug 𝜌port 𝜌data š 𝜌trace⟩)
             }
-            synonym val ≣ #call š.func (𝜌message  𝜌send) {
-                š.outputs/push (⟪ ◦out val š 𝜌message ⟫)
+            #synonym val ≣ š/handler (𝜌message  𝜌sendFunction) {
+                š.outputs/push (⟨MessageWithDebug ⟨#Output out⟩ val š 𝜌message⟩)
                 ✦completed ⇒ š
             }
         }
 	#?š ✦completed {
-            #die 'Leaf not armed'
+            #/die 'Leaf not armed'
         }        
     }
 }
@@ -38,7 +50,7 @@
     #?š {
         #?š ✦completed {}
         #?š ✦armed {
-            #die 'internal error: Leaf/step called on armed leaf'
+            #/die 'internal error: Leaf/step called on armed leaf'
         }
     }
 }
@@ -49,7 +61,7 @@
 
 #def function ❲completed ?❳ {
     #?š {
-        #?š ✦armed     {#no}
-        #?š ✦completed {#yes}
+        #?š ✦armed     {⟨#YesNo no⟩}
+        #?š ✦completed {⟨#YesNo yes⟩}
    }
 }

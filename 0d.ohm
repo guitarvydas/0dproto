@@ -77,13 +77,11 @@ BasicDelimiter <: BasicBrackets {
 BasicKeywords <: BasicDelimiter {
   // keyword prefix - strictly not necessary, but helps with visual inspection during bootstrap
   
-  yes = kp "yes"
-  no = kp "no"
   def = kp "def"
   inner = kp "inner"
   synonym = kp "synonym"
 
-  keyword = yes | no | def | inner
+  keyword = def | inner
 }
 
 BasicGrammar <: BasicKeywords {
@@ -215,9 +213,9 @@ MessageWithoutDebug = messageBegin primary primary messageEnd
   TagQueryExpression = query TagName "{" TagQueryClause+ "}"
   ForallExpression = forAll Expression temporaryName Block
 
-StateQueryClause = query self stateName "{" Expression Expression "}"
-DtypeQueryClause = query DtypeName DtypeValue "{" Expression Expression "}"
-TagQueryClause = query TagName TagValue "{" Expression Expression "}"
+StateQueryClause = query self stateName Block
+DtypeQueryClause = query DtypeName DtypeValue Block
+TagQueryClause = query TagName TagValue Block
 
   StateUpdateExpression = Expression updateState self 
 //}

@@ -6,9 +6,9 @@
 #def dtype ⟨Message port data⟩
 #def dtype ⟨MessageWithDebug port data origin trail⟩
 #def dtype ⟨Connection direction sender receiver⟩
-#def tag ⟨#Boolean true false⟩
+#def tag ⟨#YesNo yes no⟩
 #def dtype ⟨Data Value⟩
-#def dtype Value = ⟨#Boolean⟩ | * 
+#def dtype Value = ⟨#YesNo⟩ | * 
 
 #def function helloWorld {
     'Hello World'
@@ -23,7 +23,7 @@
                        ]
     {
         #synonym top ≣ ↵Container ([* ❲leaf 1❳] routings) {
-          top/handle (⟨Message ⟨#Input in⟩ ⟨#Boolean true⟩⟩)
+          top/handle (⟨MessageWithoutDebug ⟨#Input in⟩ ⟨#Boolean true⟩⟩)
           top/runToCompletion 
           #/display (top.outputs)
         }
