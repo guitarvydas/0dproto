@@ -1,222 +1,239 @@
-PseudoCode {
+Basic {
+  main = "don't care, this must be redefined"
+}
 
-  main = toplevel+
-
-  toplevel =
-    | applySyntactic<FunctionDefinition>
-    | applySyntactic<ProcedureDefinition>
-    | applySyntactic<ConstructorDefinition>
-    | applySyntactic<DtypeDefinition>
-    | applySyntactic<TagDefinition>
-    | applySyntactic<Statement>
-
-
-  FunctionDefinition = internal? "function" name FormalParameters? Block
-  ProcedureDefinition = internal? "procedure" name FormalParameters? Block
-  ConstructorDefinition = "constructor" name FormalParameters? States Tags Block
-  DtypeDefinition = "⟨" dtypeName dtypeFieldName+ "⟩"
-  TagDefinition = "⟨" tagName tagFieldName+ "⟩"
-
-  States = "{" stateDefinition* "}"
-  Tags = "{" tagDefinition* "}"
-
-  Block = 
-    | "{" BlockStatement* "}"
-
-  BlockStatement =
-    | FunctionDefinition
-    | Statement
-    
-  StateBlock = 
-    | "{" StateClause* "}"
-
-  StateClause = 
-    | stateReference+ "{" BlockStatement* "}"
-
-  TagBlock = 
-    | "{" TagClause* "}"
-
-  TagClause = 
-    | tagReference+ "{" BlockStatement* "}"
-
-  Statement =
-    | "synonym" name "≣" expr Block -- synonym
-    | selfFieldName "≣" expr -- constructorsynonym
-    | Block -- block
-    | SelfStateDefinition -- selfStateDefinition
-    | SelfStateUpdate -- selfStateUpdate
-    | die operand* -- die
-    | displayop Parameters -- display
-    | ForAll -- forall
-    | ExternalRoutine -- externRoutine
-    | codeSnippet -- codeSnippet
-    | expr -- expr
-
-  ExternalRoutine = lang basicName Parameters? verbatim
-
-  ForAll = forAllPrefix value tempVariableDefinition Block
-
-  Parameters = "(" operand* ")"
-  FormalParameters = "(" parameterDefinition* ")"
-
-  operand = constant | value
-  expr = operand
-
-  constant =
-    | port -- port
-    | tagReference -- tag
-    | stateReference -- state
-    | string -- string
-    
-  value =
-    | applySyntactic<Message> -- message
-    | applySyntactic<Connection> -- connection
-    | applySyntactic<List>  -- list
-    | applySyntactic<Funcall> -- funcall
-    | applySyntactic<ClassInstantiation> -- instantiation
-    | applySyntactic<MethodCall> -- methodCall
-    | applySyntactic<FieldRef> -- fieldRef
-    | applySyntactic<StateQuery> -- stateQuery
-    | applySyntactic<TagQuery> -- tagQuery
-    | applySyntactic<DtypeConstructor> -- dtypeConstructor
-    | parameterReference -- parameterRef
-    | functionReference -- functionRef
-    | procedureReference -- procedureRef
-    | tempVariableReference -- tempVariable
-    | name -- name
-
-  Connection = "⎨" tagFieldName Sender Receiver "⎬"
-
-  DtypeConstructor = "⟨" name operand+ "⟩"
-
-  Sender = Pair
-  Receiver = Pair
-  Pair = "(" valueOperand port ")"
-
-  valueOperand = value
-
-  StateQuery = stateQ operand StateBlock
-  TagQuery = tagQ dtypeName operand TagBlock
-
-  Funcall = callop operand Parameters?
-
-  ClassInstantiation = knew name Parameters?
-  MethodCall = value call name Parameters?
-  List = DtypeList | TagList | GenericList
-  DtypeList = "[" "⟨" DtypeName "⟩" expr* "]"
-  TagList = "[" "«" TagName "»" expr* "]"
-  GenericList = "[" "*" expr* "]"
-  UnnamedObject = "{" expr* "}"
-  Message =
-    | messageBegin portOperand operand operand operand messageEnd -- withDebug
-    | messageBegin portOperand operand messageEnd -- raw
-
-  portOperand = port | valueOperand
-
-  SelfStateDefinition = selfState "≣" expr
-  SelfStateUpdate = expr "⇒" selfState
-  selfFieldName = selfName "." fieldName
-
-
-  name =
-    | compoundName -- compoundName
-    | keywordName -- keywordName
-    | selfName -- selfName
-    | phiName -- phiName
-    | basicName -- basicName
-
-  fieldName = nonSpecialName
-  dtypeName = nonSpecialName
-  tagName = nonSpecialName
-  dtypeFieldName = nonSpecialName
-  tagFieldName = nonSpecialName
-
-  port = outport | inport
-
-  FieldRef = value "." nonSpecialName
-  selfState = selfName
-  parameterReference = "𝜌" nonSpecialName
-  parameterDefinition = parameterReference
-  functionReference = lambda nonSpecialName
-  procedureReference = proc nonSpecialName
-  
-  compoundName = "❲" (~nameBracket any)* "❳"
-  basicName = nameFirst nameRest*
-  nonSpecialName = ~selfName ~keywordName name
-  
-  delimiter = asciiBracket | asciiCharacter | unicodeBracket | unicodeCharacter
-  asciiBracket = "(" | ")" | "{" | "}" | "[" | "]" | "<" | ">"
-
-  asciiCharacter = "#" | call | "." 
-  unicodeBracket = connectionOpen | connectionClose | messageBegin | messageEnd | nameBracket
-    | verbatimBegin | verbatimEnd | "⟨" | "⟩"
-  unicodeCharacter = knew | keywordPrefix | lambda | proc | "◦"| "✕" | tagPrefix
-
-  tempVariableDefinition = tempVariablePrefix nonSpecialName
-  tempVariableReference = tempVariablePrefix nonSpecialName
-  stateDefinition = statePrefix nonSpecialName
-  stateReference = statePrefix nonSpecialName
-  tagDefinition = tagPrefix nonSpecialName
-  tagReference = tagPrefix nonSpecialName
-
-  string = sq (~sq any)* sq
-  sq = "'"
-
+BasicComment <: Basic {
   comment =  "/*" commentInnards* "*/"
   commentInnards =
     | "/*" commentInnards* "*/" -- rec
     | ~"/*" ~"*/" any -- flat
 
-  nameFirst = ~unicodeCharacter ~keywordName letter
-  nameRest = alnum | "_"
+  space += comment
+}
 
-  keywordName = callop | die | stateQ | yes | no | declare | tag
-      | lang | innerFunction | internal | clear
-      | codeSnippetJS | codeSnippetCL
-      | tagQ | displayop
-  codeSnippet = codeSnippetJS | codeSnippetCL
-  codeSnippetJS = snippetPrefix "js" spaces verbatim
-  codeSnippetCL = snippetPrefix "cl" spaces verbatim
-  internal = keywordPrefix "internal"
-  clear = keywordPrefix "clear"
-  innerFunction = keywordPrefix "inner"
-  lang = keywordPrefix "lang"
-  tag = keywordPrefix "tag"
-  declare = keywordPrefix "declare"
-  callop = keywordPrefix "call"
-  die = keywordPrefix "die"
-  stateQ = keywordPrefix "state?"
-  tagQ = keywordPrefix "tag?"
-  displayop = keywordPrefix call "display"
-  yes = keywordPrefix "yes"
-  no = keywordPrefix "no"
+BasicString <: BasicComment {
+  string = sq (~sq any)* sq
+  sq = "'"
+}
 
-  knew = "↵"
-  lambda = "λ"
-  proc = "ž"
-  outport = "◦" nonSpecialName
-  inport = "✕" nonSpecialName
-  call = "/"
-  snippetPrefix = "##"
-  keywordPrefix = "#"
-  tagPrefix = "▫"
+BasicKeywordPrefix <: BasicString {
+  kp = "#"
+}
+
+BasicPrefix <: BasicKeywordPrefix {
+  lambdaPrefix = "λ"
+  procedurePrefix = "ž"
   statePrefix = "✦"
-  selfName = "š"
-  phiName = "ϕ"
+  parameterPrefix = "𝜌"
+}
+
+BasicUnaryOperator <: BasicPrefix {
+  new = "↵"
+  call = "/"
+  self = "š"
+  phi = "ϕ"
+  temp = "𝜏"
+  forAll = "∀"
+  query = "#?" 
+  defineop = "≣"
+
+  unaryOperator = new | call | self | phi | temp | forAll | query | defineop | kp
+}
+
+BasicBinaryOperator <: BasicUnaryOperator {
+  dot = "."
+  updateState = "⇒"
+  binaryOperator = dot | updateState
+}
+
+BasicBrackets <: BasicBinaryOperator {
   messageBegin = "⟪"
   messageEnd = "⟫"
-  connectionOpen = "⎨"
-  connectionClose = "⎬"
-  nameBracket = "❲" | "❳"
-  tempVariablePrefix = "𝜏"
-  forAllPrefix = "∀"
   verbatimBegin = "«"
   verbatimEnd = "»"
+  compoundNameBegin = "❲"
+  compoundNameEnd = "❳"
+  dtypeBegin = "⟨"
+  dtypeEnd = "⟩"
+  tagBegin = "⟨#"
+  tagEnd = "⟩"
 
+  nameBracket = compoundNameBegin | compoundNameEnd
+  dtypeBracket = dtypeBegin | dtypeEnd
+  messageBracket = messageBegin | messageEnd
+  verbatimBracket = verbatimBegin | verbatimEnd
+  tagBracket = tagBegin | tagEnd
+  
+  bracket =
+    | "(" | ")" | "{" | "}" | "[" | "]" | "<" | ">"
+    | nameBracket | dtypeBracket | messageBracket | verbatimBracket | tagBracket
+
+}
+
+BasicDelimiter <: BasicBrackets {
+  delimiter = bracket | unaryOperator | kp
+}
+
+BasicKeywords <: BasicDelimiter {
+  // keyword prefix - strictly not necessary, but helps with visual inspection during bootstrap
+  
+  yes = kp "yes"
+  no = kp "no"
+  def = kp "def"
+  synonym = kp "synonym"
+
+  keyword = yes | no | def
+}
+
+BasicGrammar <: BasicKeywords {
+}
+
+
+
+ZeroD <: BasicGrammar {
+  main := definition+
+
+  Definition = DtypeDefinition | TagDefinition | FunctionDefinition | ProcedureDefinition
+    | ConstructorDefinition | Immediate
+  definition = applySyntactic<Definition>
+  Immediate = Expression
+    
+  FunctionDefinition = def "function" name FormalParameterList? Block
+  ProcedureDefinition = def "procedure" name FormalParameterList? Block
+  ConstructorDefinition = def "constructor" name FormalParameterList? PossibleStates Block
+
+  ConstructionExpression = ConstructorFieldAssign | Expression
+
+  ConstructorFieldAssign = selfFieldName defineop Expression
+
+  Expression =
+    | ForallExpression
+    | StateUpdateExpression
+    | StateQueryExpression
+    | DtypeQueryExpression
+    | TagQueryExpression
+    | verbatim
+    | primary
+
+primary =
+  | applySyntactic<SelfMethodCall> -- methodCallOfSelf
+  | applySyntactic<MethodCall> -- methodCallOfPrimary
+  | applySyntactic<BuiltinCall> -- builtinCall
+  | selfFieldName -- fieldOfSelf
+  | self -- self
+  | primary dot name -- fieldOfPrimary
+  | temporaryName -- temp
+  | lambdaPrefix name -- function
+  | procedurePrefix name -- procedure
+  | parameterPrefix name -- parameter
+  | statePrefix name -- state
+  | applySyntactic<Instantiation>
+  | phi -- null
+  | applySyntactic<MessageWithDebug> -- messageWithDebugInfo
+  | applySyntactic<MessageWithoutDebug> -- messageWithoutDebugInfo
+  | applySyntactic<Dtype> -- dtype
+  | applySyntactic<Tag> -- tag
+  | applySyntactic<DtypeList> -- dtypeList
+  | applySyntactic<TagList> -- tagList
+  | applySyntactic<GenericList> -- genericList
+  | string -- string
+  | applySyntactic<SynonymScopedBlock>
+  | name -- name
+
+selfFieldName = self dot name
+temporaryName = temp name 
+SelfMethodCall = self call name ActualParameterList?
+MethodCall = primary call name ActualParameterList?
+BuiltinCall = kp call name ActualParameterList?
+Instantiation = new primary ActualParameterList?
+MessageWithDebug = messageBegin primary primary primary primary
+MessageWithoutDebug = messageBegin primary primary
+
+
+
+//Verbatim {
   verbatim = verbatimBegin verbatimInnards+ verbatimEnd
   verbatimInnards =
     | verbatimBegin expr verbatimEnd -- switchGrammars
     | ~verbatimBegin ~verbatimEnd any -- flat
-    
-  space += comment
+  expr = applySyntactic<Expression>
+//}
+
+
+
+//Tag {
+  TagName = "⟨#" name "⟩"
+  TagDefinition = def "tag" "⟨#" name name+ "⟩"
+  Tag = 
+    | "⟨#" name Expression+ "⟩"
+//}
+
+//Dtype {
+  DtypeName = "⟨" name "⟩"
+  DtypeDefinition =
+    | def "dtype" name "=" CompoundDtype+ ("|" "*")? -- compound
+    | def "dtype" "⟨" name name+ "⟩" -- single
+  Dtype =
+    | "⟨" name Expression+ "⟩"
+
+  CompoundDtype = DtypeName | TagName
+//}
+
+//List {
+  listEnd = "]"
+  genericListBegin = "["
+  DtypeList = genericListBegin DtypeName Expression* listEnd
+  TagList = genericListBegin TagName Expression* listEnd
+  GenericList = genericListBegin "*" Expression* listEnd
+//}
+
+//Name {
+  name =
+    | compoundName -- compoundName
+    | self -- self
+    | phi -- null
+    | basicName -- basicName
+
+  compoundName = "❲" (~nameBracket any)* "❳"
+  basicName = nameFirst nameRest*
+  nonSpecialName = ~self ~keyword name
+  
+  nameFirst = letter | "_"
+  nameRest = alnum | "_"
+
+//}
+
+//Operator {
+  StateQueryExpression = query self StateQueryClause+
+  DtypeQueryExpression = query DtypeName DtypeQueryClause+
+  TagQueryExpression = query TagName TagQueryClause+
+  ForallExpression = forAll Expression temporaryName Block
+
+StateQueryClause = query self "{" Expression Expression "}"
+DtypeQueryClause = query DtypeName "{" Expression Expression "}"
+TagQueryClause = query TagName "{" Expression Expression "}"
+
+  StateUpdateExpression = Expression updateState self 
+//}
+
+//ParameterList {
+  FormalParameterList = "(" pname* ")"
+  ActualParameterList = "(" Expression* ")"
+  pname = parameterPrefix name
+//}
+
+// StateList {
+  PossibleStates = "{" sname+ "}"
+  sname = statePrefix name
+//}
+
+//Block {
+  Block = "{" Expression* "}"
+//}
+
+//Synonym {
+  SynonymScopedBlock = synonym name defineop Expression Block
+//}
+  
+
 }
