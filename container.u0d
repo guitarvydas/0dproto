@@ -123,7 +123,7 @@ function route (𝜌sendProcedure) {
             #tag? Direction 𝜏connection.direction {
                 ▫across ▫up {
                     synonym ❲output message❳ ≣ 𝜏connection.sender.outputs {
-                        ❲deferred message stack❳/push (⟨Dest connection.receiver connection.port message⟩)
+                        ❲deferred message stack❳/push (⟨Dest connection.receiver connection.port ❲output message❳⟩)
 
                     }
                 }

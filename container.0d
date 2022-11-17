@@ -1,18 +1,9 @@
-./fab/fab - MessageSynonym message-synonym.ohm message-synonym.fab <container.0d
-#def tag ⟨#Direction down up across ❲pass through❳⟩
-#def tag ⟨#Input in⟩
-#def tag ⟨#Output out⟩
-#def dtype ⟨Sender component port⟩
-#def dtype ⟨Receiver component port⟩
-#def dtype ⟨Message port data⟩
-#def dtype ⟨MessageWithDebug port data origin trail⟩
-#def dtype ⟨Connection direction sender receiver⟩
-#def tag ⟨#YesNo yes no⟩
-#def dtype ⟨Data Value⟩
-#def dtype Value = ⟨#YesNo⟩ | * 
+dtype ⟨Dest target port message⟩
+tag ⟨#Direction down up across ❲pass through❳⟩
 
-#def constructor Container (𝜌childrenArray 𝜌map) 
+constructor Container (𝜌childrenArray 𝜌map) 
     {✦armed ✦completed}
+    {▫across ▫up ▫down ▫passThrough}
 {
     š.reset ≣ žreset
     š.❲completed ?❳ ≣ λ❲completed ?❳
@@ -20,7 +11,7 @@
     š.step ≣ λstep
     š.setChildren ≣ λsetChildren
     š.setRoutings ≣ λsetRoutings
-    š.outputs ≣ [⟨#Output⟩]
+    š.outputs ≣ []
 
     /* helper functions */
     š.acceptInput ≣ žacceptInput
@@ -33,7 +24,7 @@
     š.routingMap ≣ 𝜌map
 }
 
-#def procedure ❲set parent of children❳ {
+#declare procedure ❲set parent of children❳ {
   #lang js (self) «
     self.children.forEach (child => {
         child.container = self;
@@ -41,13 +32,13 @@
   »
 }
 
-#def procedure reset () {
+procedure reset () {
   ∀ š.children 𝜏child {
     𝜏child/reset
   }
 }
 
-#def function ❲completed ?❳ {
+#declare function ❲completed ?❳ {
   #lang js (self) «
     var done = true;
     self.children.forEach (child => {
@@ -57,38 +48,37 @@
   »
 }
 
-#def procedure handle (𝜌message) {
+procedure handle (𝜌message) {
     š/reset
-    #?š {
-        #?š ✦completed {
+    #state? š {
+        ✦completed {
             die 'internal error: container.handle called on completed container'
         } 
-        #?š ✦armed {}
+        ✦armed {}
     }
     š/acceptInput (𝜌message)
     #inner function send (𝜌port 𝜌data) {
-        š.outputs/push (⟨MessageWithDebug 𝜌port 𝜌data š 𝜌message⟩)
+        š.outputs/push (⟨MessageWithDebug 𝜌port  𝜌data  š  𝜌message⟩)
     }
     š/runToCompletion (žsend)
-    š.outputs/push (⟨MessageWithDebug ⟨#Output out⟩ ϕ š 𝜌message⟩)
+    š.outputs/push (⟨MessageWithDebug ◦out  ϕ  š  𝜌message⟩)
 }
 
 #internal procedure acceptInput (𝜌message) {
     #clear š.outputs
     ∀ š.routingMap 𝜏connection {
-        #?⟨#Direction⟩ 𝜏connection {
-          #?⟨#Direction down⟩ {
-            #synonym childOutputs ≣ 𝜏connection.receiver/handle (⟨MessageWithDebug 𝜏connection.port 𝜌message.data š 𝜌message⟩ žsendProcedure) {
+        #tag? Direction 𝜏connection {
+          ▫down {
+            synonym childOutputs ≣ 𝜏connection.receiver/handle (⟨MessageWithDebug 𝜏connection.port  𝜌message.data  š  𝜌message⟩ žsendProcedure) {
                 š/mergeOutputs (childOutputs)
             }
           }
-          #?⟨#Direction ❲pass through❳⟩ {
-            #synonym childOutputs ≣ [⟨MessageWithDebug 𝜏connection.port 𝜌message.data š 𝜌message⟩] {
+          ▫passthrough {
+            synonym childOutputs ≣ [⟨MessageWithDebug 𝜏connection.port  𝜌message.data  š  𝜌message⟩] {
                 š/mergeOutputs (childOutputs)
             }
           }
-          #?⟨#Direction across⟩ {}
-          #?⟨#Direction up⟩ {}
+          ▫across ▫up {}
         }
     }
 }
@@ -108,40 +98,40 @@
 }
 
 #internal procedure runToCompletion (𝜌sendProcedure) {
-     #lang js «
+     ##js «
          while (! «š/completed») {
              «š/step (𝜌sendProcedure)»
              «š/route (𝜌sendProcedure)»
          }
      »
-     #lang cl «
+     ##cl «
          (loop while (not «š/completed»)
              do (progn «š/step (𝜌sendProcedure)»
                        «š/route (𝜌sendProcedure)»))
      »
 }
 
-#def procedure step (𝜌sendProcedure) {
+procedure step (𝜌sendProcedure) {
     ∀ š.children 𝜏child {
         𝜏child/step (𝜌sendProcedure)
     }
 }
 
 function route (𝜌sendProcedure) {
-    #synonym ❲deferred message stack❳ ≣ [] {
+    synonym ❲deferred message stack❳ ≣ [] {
         ∀ š.routingMap 𝜏connection {
-            #?⟨#Direction⟩ 𝜏connection.direction {
-                #?⟨#Direction up⟩ #?⟨#Direction across⟩ {
-                    #synonym ❲output message❳ ≣ 𝜏connection.sender.outputs {
-                        ❲deferred message stack❳/push (⟨Dest connection.receiver connection.port message⟩)
+            #tag? Direction 𝜏connection.direction {
+                ▫across ▫up {
+                    synonym ❲output message❳ ≣ 𝜏connection.sender.outputs {
+                        ❲deferred message stack❳/push (⟨Dest connection.receiver connection.port ❲output message❳⟩)
 
                     }
                 }
-                #?⟨#Direction down⟩ #?⟨#Direction ❲pass through❳⟩ {}
+                ▫down ▫passThrough {}
             }
         }
         ∀ ❲deferred message stack❳ 𝜏dest {
-	    #synonym m ≣ ⟨MessageWithDebug 𝜏dest.port 𝜏dest.message.data š 𝜏dest.message⟩ {
+	    synonym m ≣ ⟨MessageWithDebug 𝜏dest.port  𝜏dest.message.data  š  𝜏dest.message⟩ {
                 𝜏dest.target/handle (m 𝜌sendProcedure)
             }
         }

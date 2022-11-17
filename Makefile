@@ -12,19 +12,17 @@ npmstuff:
 	npm install cli
 	npm install js-beautify
 
-js:
+js: container.0d
 	./fab/fab - PseudoCode 0d.ohm js0d.fmt --support='./jssupport.js' <container.0d | sed -e '/^$$/d' >container.js
 	~/node_modules/js-beautify/js/bin/js-beautify.js container.js
 
 dev:
-	./fab/fab - PseudoCode 0d.ohm js0d.fmt --support='./jssupport.js' <test0.0d | sed -e '/^$$/d' >test0.js
-	~/node_modules/js-beautify/js/bin/js-beautify.js test0.js
+	touch container.u0d
+	(make)
 
-bedev:
-	./fab/fab - MessageSynonym message-synonym.ohm message-synonym.fab <message-synonym-test3.txt
-
-be:
-	./fab/fab - MessageSynonym message-synonym.ohm message-synonym.fab <container.0d
+container.0d : container.u0d
+	bred/bred.bash message.bred container.u0d >container.0d
 
 clean:
 	rm *~
+	rm container.0d

@@ -37,7 +37,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "message-synonym.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               }
@@ -110,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "message-synonym.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "message-synonym.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "message-synonym.md"
+                "file": "README.md"
               }
             }
           }
@@ -163,9 +163,9 @@
   },
   "active": "1d0750fd84bfabd8",
   "lastOpenFiles": [
+    "message-synonym.md",
     "Synonym.md",
     "Message.md",
-    "message-synonym.md",
     "Untitled.md"
   ]
 }
