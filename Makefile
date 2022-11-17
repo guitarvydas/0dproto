@@ -13,7 +13,7 @@ npmstuff:
 	npm install js-beautify
 
 js: container.0d
-	./fab/fab - PseudoCode 0d.ohm js0d.fmt --support='./jssupport.js' <container.0d | sed -e '/^$$/d' >container.js
+	./fab/fab - ZeroD 0d.ohm js0d.fmt --support='./jssupport.js' <container.0d | sed -e '/^$$/d' >container.js
 	~/node_modules/js-beautify/js/bin/js-beautify.js container.js
 
 dev:
