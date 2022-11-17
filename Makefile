@@ -18,10 +18,11 @@ js: container.0d
 
 dev:
 	touch container.u0d
-	(make)
+	(make container.0d)
 
 container.0d : container.u0d
-	bred/bred.bash message.bred container.u0d >container.0d
+	bred/bred.bash message.bred container.u0d >/tmp/container.out
+	bred/bred.bash outputport.bred /tmp/container.out >container.0d
 
 clean:
 	rm *~

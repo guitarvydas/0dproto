@@ -146,6 +146,19 @@ primary =
   | self -- self
   | name -- name
 
+variable = primary
+  /* same as primary, but some cases are illegal */
+  | applySyntactic<SelfMethodCall> -- methodCallOfSelf
+  | applySyntactic<MethodCall> -- methodCallOfPrimary
+  | applySyntactic<BuiltinCall> -- builtinCall
+  | selfFieldName -- fieldOfSelf
+  | primary dot name -- fieldOfPrimary
+  | temporaryName -- temp
+  | parameterPrefix name -- parameter
+  | applySyntactic<LangSnippet>
+  | self -- self
+  | name -- name
+
 selfFieldName = self dot name
 temporaryName = temp name 
 stateName = statePrefix name
@@ -211,8 +224,8 @@ LangSnippet = lang name verbatim
 
 //Operator {
   StateQueryExpression = (query self)+ "{" StateQueryClause+ "}"
-  DtypeQueryExpression = (query DtypeName)+ "{" DtypeQueryClause+ "}"
-  TagQueryExpression = (query TagName)+ "{" TagQueryClause+ "}"
+  DtypeQueryExpression = (query DtypeName)+ variable "{" DtypeQueryClause+ "}"
+  TagQueryExpression = (query TagName)+ variable "{" TagQueryClause+ "}"
   ForallExpression = forAll Expression temporaryName Block
 
 StateQueryClause = query self stateName Block
