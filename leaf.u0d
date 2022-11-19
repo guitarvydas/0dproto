@@ -3,8 +3,8 @@
 #def tag ⟨#Output out⟩
 #def dtype ⟨Sender component port⟩
 #def dtype ⟨Receiver component port⟩
-#def dtype ⟨Message port data⟩
-#def dtype ⟨MessageWithDebug port data origin trail⟩
+#def dtype ⟨MessageWithoutDebug port data⟩
+#def dtype ⟨Message port data origin trail⟩
 #def dtype ⟨Connection direction sender receiver⟩
 #def tag ⟨#YesNo yes no⟩
 #def dtype ⟨Data Value⟩
