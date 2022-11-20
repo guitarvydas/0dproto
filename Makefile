@@ -19,6 +19,7 @@ container.js: container.0d
 dev:
 	touch test.u0d
 	(make test.0d)
+	cat test.0d
 
 container.0d : container.u0d
 	bred/bred.bash message.bred container.u0d >/tmp/container.out
@@ -29,7 +30,8 @@ leaf.0d : leaf.u0d
 	bred/bred.bash outputport.bred /tmp/leaf.out >leaf.0d
 
 test.0d : test.u0d
-	bred/bred.bash connection.bred test.u0d >/tmp/test.out0
+	bred/bred.bash senderreceiver.bred test.u0d >/tmp/test.outA
+	bred/bred.bash connection.bred /tmp/test.outA >/tmp/test.out0
 	bred/bred.bash outputport.bred /tmp/test.out0 >/tmp/test.out1
 	bred/bred.bash inputport.bred /tmp/test.out1 >/tmp/test.out2
 	bred/bred.bash direction.bred /tmp/test.out2 >/tmp/test.out3

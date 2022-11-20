@@ -94,6 +94,7 @@ ZeroD <: BasicGrammar {
   Definition = DtypeDefinition | TagDefinition | FunctionDefinition | ProcedureDefinition
     | ConstructorDefinition 
     | UnexportedFunctionDefinition | UnexportedProcedureDefinition
+    | SynonymScopedBlock
     | Immediate
   definition = applySyntactic<Definition>
   Immediate = Expression
