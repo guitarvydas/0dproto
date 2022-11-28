@@ -18,8 +18,7 @@ container.js: container.0d
 
 dev:
 	(make install)
-	bred/bred.bash message.bred container.u0d bred >/tmp/container.out
-	cat /tmp/container.out
+	bred/bred.bash message.bred container.u0d bred
 
 devcontainer:
 	(make install)

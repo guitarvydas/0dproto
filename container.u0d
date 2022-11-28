@@ -104,14 +104,14 @@
     /* merge childOutputs with self.outputs in situ */
     /* outputs & childOutputs are queues
        copy from least recent to most recent */
-  #lang js (childOutputs) «
+  #lang js (childOutputs) “
     var clonedOuts = Array.from (self.outputs);
     var childOuts = childOutputs.reverse ();
     childOuts.forEach (cout => {
         clonedOutputs.push (cout);
     });
     return clonedOutputs;
-  »
+  ”
 }
 
 #private procedure runToCompletion (𝜌sendProcedure) {

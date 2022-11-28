@@ -47,8 +47,8 @@ BasicBinaryOperator <: BasicUnaryOperator {
 }
 
 BasicBrackets <: BasicBinaryOperator {
-  verbatimBegin = "«"
-  verbatimEnd = "»"
+  verbatimBegin = "«" | "“"
+  verbatimEnd = "»" | "”"
   compoundNameBegin = "❲"
   compoundNameEnd = "❳"
   dtypeBegin = "⟨"
