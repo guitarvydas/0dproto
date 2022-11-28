@@ -16,7 +16,9 @@ container.js: container.0d
 	./fab/fab - ZeroD 0d.ohm js0d.fmt --support='./jssupport.js' <container.0d | sed -e '/^$$/d' >container.js
 	~/node_modules/js-beautify/js/bin/js-beautify.js container.js
 
-dev:
+dev: devtest
+
+dev0:
 	(make install)
 	bred/bred.bash message.bred container.u0d bred
 
@@ -40,12 +42,13 @@ leaf.0d : leaf.u0d
 	bred/bred.bash outputport.bred /tmp/leaf.out bred >leaf.0d
 
 test.0d : test.u0d
-	bred/bred.bash senderreceiver.bred test.u0d bred >/tmp/test.outA
-	bred/bred.bash connection.bred /tmp/test.outA bred >/tmp/test.out0
-	bred/bred.bash outputport.bred /tmp/test.out0 bred >/tmp/test.out1
-	bred/bred.bash inputport.bred /tmp/test.out1 bred >/tmp/test.out2
-	bred/bred.bash direction.bred /tmp/test.out2 bred >/tmp/test.out3
-	bred/bred.bash message.bred /tmp/test.out3 bred >test.0d
+	sed -e 's/\([^ ⇉]*\) +⇉ +\\([^ ⇉]*\)$/⟨Connection \1 \2⟩/' <test.u0d
+	# bred/bred.bash senderreceiver.bred test.u0d bred >/tmp/test.outA
+	# bred/bred.bash connection.bred /tmp/test.outA bred >/tmp/test.out0
+	# bred/bred.bash outputport.bred /tmp/test.out0 bred >/tmp/test.out1
+	# bred/bred.bash inputport.bred /tmp/test.out1 bred >/tmp/test.out2
+	# bred/bred.bash direction.bred /tmp/test.out2 bred >/tmp/test.out3
+	# bred/bred.bash message.bred /tmp/test.out3 bred >test.0d
 
 clean:
 	rm *~
