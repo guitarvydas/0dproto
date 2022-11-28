@@ -1,9 +1,6 @@
 import re
 import sys
-str = '''                           ⎨✕in ⇉ ❲leaf 1❳ ✕in⎬
-    ⎨✕in ⇉ ❲leaf 4❳ ✕in⎬'''
-# print (str)
-pattern = r'⎨([^ ⇉]*) +⇉ +([^⎬]*)⎬'
+pattern = r'⎨([^⇉]*) +⇉ +([^⎬]*)⎬'
 replacement = r'⟨Connection ⟨xSender \1⟩ ⟨xReceiver \2⟩⟩'
 
 for line in sys.stdin:

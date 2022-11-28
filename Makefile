@@ -42,7 +42,10 @@ leaf.0d : leaf.u0d
 	bred/bred.bash outputport.bred /tmp/leaf.out bred >leaf.0d
 
 test.0d : test.u0d
-	sed -e 's/\([^ ⇉]*\) +⇉ +\\([^ ⇉]*\)$/⟨Connection \1 \2⟩/' <test.u0d
+	@echo
+	python3 repl_connection.py <junk.txt
+	# python3 repl_connection.py <test.u0d
+	@echo
 	# bred/bred.bash senderreceiver.bred test.u0d bred >/tmp/test.outA
 	# bred/bred.bash connection.bred /tmp/test.outA bred >/tmp/test.out0
 	# bred/bred.bash outputport.bred /tmp/test.out0 bred >/tmp/test.out1
