@@ -43,8 +43,8 @@ leaf.0d : leaf.u0d
 
 test.0d : test.u0d
 	@echo
-	python3 repl_connection.py <junk.txt
-	# python3 repl_connection.py <test.u0d
+	# python3 repl_connection.py <junk.txt
+	python3 repl_connection.py <test.u0d
 	@echo
 	# bred/bred.bash senderreceiver.bred test.u0d bred >/tmp/test.outA
 	# bred/bred.bash connection.bred /tmp/test.outA bred >/tmp/test.out0

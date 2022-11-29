@@ -17,8 +17,9 @@
 #synonym ❲leaf 1❳ ≣ ↵Leaf (žhelloWorld) {
     #synonym routings ≣ [⟨Connection⟩
                            ⎨✕in ⇉ [❲leaf 1❳ ✕in]⎬
-                           ⎨▫down [š ✕in] ⇉ [❲leaf 1❳ ✕in]⎬
-                           ⎨▫up ⎡❲leaf 1❳ ◦out⎤ ⎣š ◦out⎦⎬
+                           ⎨▫down š ✕in ⇉ ❲leaf 1❳ ✕in⎬
+                           ⎨▫up ❲leaf 1❳ ◦out ⇉ š ◦out⎬
+			]
     | "⎡" matchLR* "⎤" -- sender
     | "⎣" matchLR* "⎦" -- receiver
                        ]
