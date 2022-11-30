@@ -41,14 +41,33 @@ leaf.0d : leaf.u0d
 	bred/bred.bash message.bred leaf.u0d bred >/tmp/leaf.out
 	bred/bred.bash outputport.bred /tmp/leaf.out bred >leaf.0d
 
+identity:
+	@echo
+	python3 repl_connection.py <test.u0d >/tmp/test.outA
+	bred/bred0.bash downdirection.bred /tmp/test.outA bred
+	@echo
+
+pattern:
+	@echo
+	python3 repl_connection.py <test.u0d >/tmp/test.outA
+	bred/bred1.bash downdirection.bred /tmp/test.outA bred
+	@echo
+
+fabricator:
+	@echo
+	python3 repl_connection.py <test.u0d >/tmp/test.outA
+	bred/bred2.bash downdirection.bred /tmp/test.outA bred
+	@echo
+
 test.0d : test.u0d
 	@echo
 	python3 repl_connection.py <test.u0d >/tmp/test.outA
-	bred/bred.bash acrossdirection.bred /tmp/test.outA bred >/tmp/test.outAa
+	bred/bred.bash downdirection.bred /tmp/test.outA bred >/tmp/test.outAa
+	# bred/bred.bash updirection.bred /tmp/test.outAa bred >/tmp/test.outAb
 	cp /tmp/test.outAa test.0d
 	@echo
 
-junk:
+Junk:
 	# bred/bred.bash senderreceiver.bred test.u0d bred >/tmp/test.outA
 	# bred/bred.bash connection.bred /tmp/test.outA bred >/tmp/test.out0
 	# bred/bred.bash outputport.bred /tmp/test.out0 bred >/tmp/test.out1
