@@ -80,7 +80,7 @@ test.0dD : test.0dC
 	cp test.0dD test.0d
 	@echo
 
-test.0d : test.0dC
+test.0d : test.0dD
 
 Junk:
 	# bred/bred.bash senderreceiver.bred test.u0d bred >/tmp/test.outA

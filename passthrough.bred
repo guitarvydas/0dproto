@@ -1,2 +1,2 @@
-‛⟨Connection ⟨xSender «◦«sport»⟩ ⟨xReceiver ◦«rport»⟩⟩’
-‛⟨Connection ⟨#Direction up⟩ ⟨Sender š «sport»⟩ ⟨Receiver š «rport»⟩⟩’
+‛⟨Connection ⟨xSender ◦«sport»⟩ ⟨xReceiver ◦«rport»⟩⟩’
+‛⟨Connection ⟨#Direction illegal⟩ ⟨Sender š «sport»⟩ ⟨Receiver š «rport»⟩⟩’
