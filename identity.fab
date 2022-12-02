@@ -106,7 +106,7 @@ ZeroD {
   SelfMethodCall [self call name ActualParameterList?] = ‛«self»«call»«name»«ActualParameterList»’
   MethodCall [primary call name ActualParameterList?] = ‛«primary»«call»«name»«ActualParameterList»’
   BuiltinCall [kp call name ActualParameterList?] = ‛«kp»«call»«name»«ActualParameterList»’
-  Instantiation [n primary ActualParameterList?] ‛«n»«primary»«ActualParameterList»’
+  Instantiation [n primary ActualParameterList?] = ‛«n»«primary»«ActualParameterList»’
   LangFunction [lang name ActualParameterList verbatim] = ‛«lang»«name»«ActualParameterList»«verbatim»’
   LangSnippet [lang name verbatim] = ‛«lang»«name»«verbatim»’
 
@@ -120,7 +120,7 @@ ZeroD {
 
   DtypeName [left name right] = ‛«left»«name»«right»’
   DtypeDefinition_compound [def k name eq CompoundDtype+ kseparator?] = ‛«def»«k»«name»«eq»«CompounDtype»«kseparator»’
-  DtypeDefinition_single [def k left name fieldname+ right] ‛«def»«k»«left»«name»«fieldname»«right»’
+  DtypeDefinition_single [def k left name fieldname+ right] = ‛«def»«k»«left»«name»«fieldname»«right»’
   DtypeValue [left e+ right] = ‛«left»«e»«right»’
   CompoundDtype [x] = ‛«x»’
 
@@ -145,14 +145,14 @@ ZeroD {
   DtypeQueryExpression [caseslabels+ left clause+ right] = ‛«caselabels»«left»«clause»«right»’
   TagQueryExpression [caseslabels+ left clause+ right] = ‛«caselabels»«left»«clause»«right»’
 
-  querySelf [k n] = ‛«k»«n»’
-  queryDtypeName [k n] = ‛«k»«n»’
-  queryTagName [k n] = ‛«k»«n»’
+  querySelf [k ws n] = ‛«k»«ws»«n»’
+  queryDtypeName [k ws n] = ‛«k»«ws»«n»’
+  queryTagName [k ws n] = ‛«k»«ws»«n»’
 
   StateUpdateExpression [e k self] = ‛«e»«k»«self»’
 
-  FormalParameterList [left x* right = ‛«left»«x»«right»’
-  ActualParameterList [left x* right = ‛«left»«x»«right»’
+  FormalParameterList [left x* right] = ‛«left»«x»«right»’
+  ActualParameterList [left x* right] = ‛«left»«x»«right»’
   pname [k name] = ‛«k»«name»’
 
   PossibleStates [left snames+ right] = ‛«left»«snames»«right»’

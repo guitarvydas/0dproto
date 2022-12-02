@@ -234,9 +234,9 @@ StateQueryClause = query self stateName Block
 DtypeQueryClause = query DtypeName DtypeValue Block
 TagQueryClause = query TagName TagValue Block
 
-querySelf = query self
-queryDtypeName = query DtypeName
-queryTagName = query TagName
+querySelf = query spaces self
+queryDtypeName = query spaces applySyntactic<DtypeName>
+queryTagName = query spaces applySyntactic<TagName>
 
   StateUpdateExpression = Expression updateState self 
 //}
