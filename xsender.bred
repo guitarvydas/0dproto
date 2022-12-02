@@ -1,5 +1,0 @@
-‛⟨xSender «port» «s» «port»⟩’
-‛⟨Sender ⟨#Output «port»⟩ «d» «s» «m»⟩’
-
-⟨⟩
-#def dtype ⟨Connection direction sender receiver⟩

@@ -36,7 +36,7 @@
                 š.outputs/push (⟨Message 𝜌port 𝜌data š 𝜌trace⟩)
             }
             #synonym val ≣ š/func (𝜌message  𝜌send) {
-                š.outputs/push (⟪ ◦out val š 𝜌message ⟫)
+                š.outputs/push (⟪ ⟨#Output out⟩ val š 𝜌message ⟫)
                 ✦completed ⇒ š
             }
         }
@@ -72,4 +72,11 @@
         #?š ✦completed {⟨#YesNo yes⟩}
    }
 }
+
+
+
+
+
+
+
 
