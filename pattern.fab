@@ -1,0 +1,34 @@
+
+NestingGrammar {
+
+  topLevel [items+] = ‛«items»’
+  
+  item_pattern [p] = ‛«p»’
+  item_container [c] = ‛«c»’
+  item_leaf [L] = ‛«L»’
+  item_whitespace [s] = ‛«s»’
+
+  iteminpattern_container [c] = ‛«c»’
+  iteminpattern_leaf [uc+] = ‛«uc»’
+
+  leaf [sp1* c1+ sp2* c2*] = ‛«sp1»«c1»«sp2»«c2»’
+  container [b] = ‛«b»’
+
+  runOfSpaces [s+] = ‛«s»’
+  runOfUninterestingChars [cs+] = ‛«cs»’
+  uninterestingChar [c] = ‛«c»’
+
+  bracket [c] = ‛«c»’
+  // bracketed [x] ... handled implicitly by Ohm-JS
+  brack [lb item+ rb] = ‛«lb»«item»«rb»’
+  verbatim [lq cs* rq] = ‛«lq»«cs»«rq»’
+  name [n] = ‛«n»’
+  bracketedName [lb cs+ rb] = ‛❲«cs»❳’
+  classicName [nFirst nRest*] = ‛«nFirst»«nRest»’
+  nameFirst [c] = ‛«c»’
+  nameRest [c] = ‛«c»’
+
+  literal [c] = ‛«c»’
+  pattern [_k1 p _s2 d _s3 s _s4 m _k5 ] = ‛⟨Message «p» «d» «s» «m»⟩’
+}
+

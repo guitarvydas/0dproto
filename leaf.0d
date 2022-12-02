@@ -3,8 +3,8 @@
 #def tag ⟨#Output out⟩
 #def dtype ⟨Sender component port⟩
 #def dtype ⟨Receiver component port⟩
-#def dtype ⟨Message port data⟩
-#def dtype ⟨MessageWithDebug port data origin trail⟩
+#def dtype ⟨MessageWithoutDebug port data⟩
+#def dtype ⟨Message port data origin trail⟩
 #def dtype ⟨Connection direction sender receiver⟩
 #def tag ⟨#YesNo yes no⟩
 #def dtype ⟨Data Value⟩
@@ -33,10 +33,10 @@
     #?š {
         #?š ✦armed {
             #inner function send (𝜌port 𝜌data 𝜌trace) {
-                š.outputs/push (⟨Message  𝜌port  𝜌data  š  𝜌trace ⟩)
+                š.outputs/push (⟨Message 𝜌port 𝜌data š 𝜌trace⟩)
             }
             #synonym val ≣ š/func (𝜌message  𝜌send) {
-                š.outputs/push (⟨Message  ⟨#Output out  ⟩val  š  𝜌message ⟩)
+                š.outputs/push (⟪ ◦out val š 𝜌message ⟫)
                 ✦completed ⇒ š
             }
         }
@@ -72,5 +72,4 @@
         #?š ✦completed {⟨#YesNo yes⟩}
    }
 }
-
 

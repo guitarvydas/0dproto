@@ -29,42 +29,50 @@ devcontainer:
 	cat container.0d
 
 devtest:
-	touch test.u0d
-	(make test.0d)
-	cat test.0d
+	touch test.0dA
+	(make test.0dB)
+	cat test.0dB
 
 container.0d : container.u0d
 	bred/bred.bash message.bred container.u0d bred >/tmp/container.out
 	bred/bred.bash outputport.bred /tmp/container.out bred >container.0d
 
 leaf.0d : leaf.u0d
-	bred/bred.bash message.bred leaf.u0d bred >/tmp/leaf.out
-	bred/bred.bash outputport.bred /tmp/leaf.out bred >leaf.0d
+	bred/bred-transpile.bash message.bred bred <leaf.u0d >leaf.0d
+	# bred/bred.bash message.bred leaf.u0d bred >/tmp/leaf.out
+	# bred/bred.bash outputport.bred /tmp/leaf.out bred >leaf.0d
 
 identity:
 	@echo
-	python3 repl_connection.py <test.u0d >/tmp/test.outA
+	python3 repl_connection.py <test.u0d >/tmp/test.identity
 	bred/bred0.bash downdirection.bred /tmp/test.outA bred
 	@echo
 
 pattern:
 	@echo
-	python3 repl_connection.py <test.u0d >/tmp/test.outA
+	python3 repl_connection.py <test.u0d >/tmp/test.pattern
 	bred/bred1.bash downdirection.bred /tmp/test.outA bred
 	@echo
 
 fabricator:
 	@echo
-	python3 repl_connection.py <test.u0d >/tmp/test.outA
+	python3 repl_connection.py <test.u0d >/tmp/test.fabricator
 	bred/bred2.bash downdirection.bred /tmp/test.outA bred
 	@echo
 
-test.0d : test.u0d
+test.0dA : test.u0d
 	@echo
-	python3 repl_connection.py <test.u0d >/tmp/test.outA
-	bred/bred.bash downdirection.bred /tmp/test.outA bred >/tmp/test.outAa
-	# bred/bred.bash updirection.bred /tmp/test.outAa bred >/tmp/test.outAb
-	cp /tmp/test.outAa test.0d
+	python3 repl_connection.py <test.u0d >test.0dA
+
+test.0dB : test.0dA
+	@echo
+	bred/bred-tranpile.bash downdirection.bred bred <test.0dA >test.0dB
+	cp /tmp/test.0dB test.0d
+	@echo
+
+test.0d : test.0dB
+	@echo
+	cp /tmp/test.0dB test.0d
 	@echo
 
 Junk:

@@ -1,2 +1,2 @@
 ‛⟨Connection ⟨xSender ✕«p»⟩ ⟨xReceiver «child» ✕«cport»⟩⟩’
-‛⟨Connection ⟨#Direction down⟩ ⟨Sender š «p»⟩ ⟨xReceiver «child» «cport»⟩⟩’
+‛⟨Connection ⟨#Direction down⟩ ⟨Sender š «p»⟩ ⟨Receiver «child» «cport»⟩⟩’
