@@ -77,7 +77,7 @@
         š.outputs/push (⟨Message 𝜌port 𝜌data š 𝜌message⟩)
     }
     š/runToCompletion (žsend)
-    š.outputs/push (⟨Message ⟨#Output out⟩ ϕ š 𝜌message⟩)
+    š.outputs/push (⟨Message ◦out ϕ š 𝜌message⟩)
 }
 
 #private procedure acceptInput (𝜌message) {
@@ -162,6 +162,5 @@
         }
     }
 }
-
 
 

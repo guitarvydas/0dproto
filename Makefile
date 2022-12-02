@@ -1,6 +1,8 @@
 here=`pwd`
 
-all: install repos container.js
+all: container.0d leaf.0d test.0d
+
+full: install repos container.0d leaf.0d test.0d
 
 install: repos npmstuff
 
@@ -34,8 +36,8 @@ devtest:
 	cat test.0d
 
 container.0d : container.u0d
-	bred/bred.bash message.bred container.u0d bred >container.out
-	bred/bred.bash outputport.bred container.out bred >container.0d
+	bred/bred.bash message.bred container.u0d bred >container.0dA
+	bred/bred.bash outputport.bred container.odA bred >container.0d
 
 leaf.0d : leaf.u0d
 	bred/bred-transpile.bash message.bred bred <leaf.u0d >leaf.0d
@@ -98,9 +100,9 @@ test.0d : test.u0d
 	python3 repl_connection.py <test.u0d >test.0dA
 	bred/bred-transpile.bash downdirection.bred bred <test.0dA >test.0dB
 	bred/bred-transpile.bash updirection.bred bred <test.0dB >test.0dC
-	bred/bred-transpile.bash passthrough.bred bred <test.0dC >test.0dD
+	bred/bred-transpile.bash passthrough.bred bred <test.0dC >test.0dD1
+	bred/bred-transpile.bash across.bred bred <test.0dD1 >test.0dD
 	bred/bred-transpile.bash shortmessage.bred bred <test.0dD >test.0dE
-	bred/bred-transpile.bash message.bred bred <test.0dE >test.0dF
 	bred/bred-transpile.bash message.bred bred <test.0dE >test.0dF
 	bred/bred-transpile.bash outputport.bred bred <test.0dF >test.0dG
 	bred/bred-transpile.bash inputport.bred bred <test.0dG >test.0dH
