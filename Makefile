@@ -80,7 +80,19 @@ test.0dD : test.0dC
 	cp test.0dD test.0d
 	@echo
 
-test.0d : test.0dC
+test.0dE : test.0dD
+	@echo
+	bred/bred-transpile.bash shortmessage.bred bred <test.0dD >test.0dE
+	cp test.0dE test.0d
+	@echo
+
+test.0dF : test.0dE
+	@echo
+	bred/bred-transpile.bash message.bred bred <test.0dE >test.0dF
+	cp test.0dF test.0d
+	@echo
+
+test.0d : test.0dF
 
 Junk:
 	# bred/bred.bash senderreceiver.bred test.u0d bred >/tmp/test.outA

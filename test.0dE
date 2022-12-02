@@ -21,11 +21,12 @@
 			]
     {
         #synonym top ≣ ↵Container ([❲leaf 1❳] routings) {
-          top/handle (⟪✕in true⟫)
+          top/handle (⟨Message ✕in true ϕ ϕ⟩)
           top/runToCompletion 
           #/display (top.outputs)
         }
     }
 }
+
 
 

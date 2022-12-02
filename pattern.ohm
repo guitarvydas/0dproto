@@ -52,6 +52,6 @@ NestingGrammar {
   angleprefix = "=" | "<" | ">"
   anglesuffix = "=" | "<" | ">"
 
-  pattern = "⟨" "C" "o" "n" "n" "e" "c" "t" "i" "o" "n" " " "⟨" "x" "S" "e" "n" "d" "e" "r" " " iteminpattern " " "◦" iteminpattern "⟩" " " "⟨" "x" "R" "e" "c" "e" "i" "v" "e" "r" " " "◦" iteminpattern "⟩" "⟩" 
-  literal = | "⟨" | "C" | "o" | "n" | "n" | "e" | "c" | "t" | "i" | "o" | "n" | " " | "⟨" | "x" | "S" | "e" | "n" | "d" | "e" | "r" | " " | " " | "◦" | "⟩" | " " | "⟨" | "x" | "R" | "e" | "c" | "e" | "i" | "v" | "e" | "r" | " " | "◦" | "⟩" | "⟩" | bracket
+  pattern = "⟪" iteminpattern " " iteminpattern " " iteminpattern " " iteminpattern "⟫" 
+  literal = | "⟪" | " " | " " | " " | "⟫" | bracket
 }
