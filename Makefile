@@ -30,34 +30,32 @@ devcontainer:
 
 devtest:
 	touch test.0dA
-	(make test.0dB)
-	cat test.0dB
+	(make test.0d)
+	cat test.0d
 
 container.0d : container.u0d
-	bred/bred.bash message.bred container.u0d bred >/tmp/container.out
-	bred/bred.bash outputport.bred /tmp/container.out bred >container.0d
+	bred/bred.bash message.bred container.u0d bred >container.out
+	bred/bred.bash outputport.bred container.out bred >container.0d
 
 leaf.0d : leaf.u0d
 	bred/bred-transpile.bash message.bred bred <leaf.u0d >leaf.0d
-	# bred/bred.bash message.bred leaf.u0d bred >/tmp/leaf.out
-	# bred/bred.bash outputport.bred /tmp/leaf.out bred >leaf.0d
 
 identity:
 	@echo
-	python3 repl_connection.py <test.u0d >/tmp/test.identity
-	bred/bred0.bash downdirection.bred /tmp/test.outA bred
+	python3 repl_connection.py <test.u0d >test.identity
+	bred/bred0.bash downdirection.bred test.outA bred
 	@echo
 
 pattern:
 	@echo
-	python3 repl_connection.py <test.u0d >/tmp/test.pattern
-	bred/bred1.bash downdirection.bred /tmp/test.outA bred
+	python3 repl_connection.py <test.u0d >test.pattern
+	bred/bred1.bash downdirection.bred test.outA bred
 	@echo
 
 fabricator:
 	@echo
-	python3 repl_connection.py <test.u0d >/tmp/test.fabricator
-	bred/bred2.bash downdirection.bred /tmp/test.outA bred
+	python3 repl_connection.py <test.u0d >test.fabricator
+	bred/bred2.bash downdirection.bred test.outA bred
 	@echo
 
 test.0dA : test.u0d
@@ -66,14 +64,23 @@ test.0dA : test.u0d
 
 test.0dB : test.0dA
 	@echo
-	bred/bred-tranpile.bash downdirection.bred bred <test.0dA >test.0dB
-	cp /tmp/test.0dB test.0d
+	bred/bred-transpile.bash downdirection.bred bred <test.0dA >test.0dB
+	cp test.0dB test.0d
 	@echo
 
-test.0d : test.0dB
+test.0dC : test.0dB
 	@echo
-	cp /tmp/test.0dB test.0d
+	bred/bred-transpile.bash updirection.bred bred <test.0dB >test.0dC
+	cp test.0dC test.0d
 	@echo
+
+test.0dD : test.0dC
+	@echo
+	bred/bred-transpile.bash updirection.bred bred <test.0dC >test.0dD
+	cp test.0dD test.0d
+	@echo
+
+test.0d : test.0dD
 
 Junk:
 	# bred/bred.bash senderreceiver.bred test.u0d bred >/tmp/test.outA
