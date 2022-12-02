@@ -1,0 +1,92 @@
+ZeroD {
+  comment [left cs* right] = ‛«left»«cs»«right»’
+  commentInnards_rec [left cs* right] = ‛«left»«cs»«right»’
+  commentInnards_flat [c] = ‛«c»’
+  space [c] = ‛«c»’
+  sq [c] = ‛«c»’
+  string [left cs* right] =  ‛«left»«cs»«right»’
+  kp [c] = ‛«c»’
+  lambdaPrefix [c] = ‛«c»’
+  procedurePrefix [c] = ‛«c»’
+  statePrefix [c] = ‛«c»’
+  parameterPrefix [c] = ‛«c»’
+
+  new [c] = ‛«c»’
+  call [c] = ‛«c»’
+  self [c] = ‛«c»’
+  phi [c] = ‛«c»’
+  temp [c] = ‛«c»’
+  forall [c] = ‛«c»’
+  query [c] = ‛«c»’
+  defineop [c] = ‛«c»’
+  unaryOperator [c] = ‛«c»’
+
+  dot [c] = ‛«c»’
+  updateState [c] = ‛«c»’
+  binaryOperator [c] = ‛«c»’
+
+  verbatimBegin [c] = ‛«c»’
+  verbatimEnd [c] = ‛«c»’
+  compoundNameBegin [c] = ‛«c»’
+  compoundNameEnd [c] = ‛«c»’
+  dtypeBegin [c] = ‛«c»’
+  dtypeEnd [c] = ‛«c»’
+  tagBegin [c] = ‛«c»’
+  tagEnd [c] = ‛«c»’
+
+  nameBracket [c] = ‛«c»’
+  dtypeBracket [c] = ‛«c»’
+  verbatimBracket [c] = ‛«c»’
+  tagBracket [c] = ‛«c»’
+  bracket [c] = ‛«c»’
+  delimiter [c] = ‛«c»’
+
+  def [k c] = ‛«k»«c»’
+  inner [k c] = ‛«k»«c»’
+  private [k c] = ‛«k»«c»’
+  synonym [k c] = ‛«k»«c»’
+  lang [k c] = ‛«k»«c»’
+  keyword [kw] = ‛«kw»’
+
+  main [definition+] = ‛«definition»’
+  Definition [x] = ‛«x»’
+  definition [x] = ‛«x»’
+  Immediate [x] = ‛«x»’
+
+  FunctionDefinition [def k name FormalParameterList? Block] = ‛«def»«k»«name»«FormalParameterList»«Block»’
+  ProcedureDefinition [def k name FormalParameterList? Block] = ‛«def»«k»«name»«FormalParameterList»«Block»’
+  InnerFunctionDefinition [inner k name FormalParameterList? Block] = ‛«inner»«k»«name»«FormalParameterList»«Block»’
+  InnerProcedureDefinition [inner k name FormalParameterList? Block] = ‛«inner»«k»«name»«FormalParameterList»«Block»’
+  UnexportedFunctionDefinition [private k name FormalParameterList? Block] = ‛«private»«k»«name»«FormalParameterList»«Block»’
+  UnexportedProcedureDefinition [private k name FormalParameterList? Block] = ‛«private»«k»«name»«FormalParameterList»«Block»’
+  ConstructorDefinition [def k name FormalParameterList? PossibleStates ConstructorBlock] = ‛«def»«k»«name»«FormalParameterList»«PossibleStates»«ConstructorBlock»’
+  ConstructionExpression [e] = ‛«e»’
+  ConstructorFieldAssign [name defineop Expression] = ‛«name»«defineop»«Expression»’
+  Expression [e] = ‛«e»’
+
+  primary_methodCallOfSelf [x] = ‛«x»’
+  primary_methodCallOfPrimary [x] = ‛«x»’
+  primary_builtinCall [x] = ‛«x»’
+  primary_fieldOfSelf [x] = ‛«x»’
+  primary_fieldOfPrimary [p dot name] = ‛«p»«dot»«name»’
+  primary_temp [x] = ‛«x»’
+  primary_function
+  primary_procedure
+  primary_parameter
+  primary_state [x] = ‛«x»’
+  primary_instantiation [x] = ‛«x»’
+  primary_null [x] = ‛«x»’
+  primary_dtype [x] = ‛«x»’
+  primary_tag [x] = ‛«x»’
+  primary_dtypeList [x] = ‛«x»’
+  primary_tagList [x] = ‛«x»’
+  primary_genericList [x] = ‛«x»’
+  primary_string [x] = ‛«x»’
+  primary__synonym [x] = ‛«x»’
+  primary_langfunction [x] = ‛«x»’
+  primary_langsnippet [x] = ‛«x»’
+  primary_self [x] = ‛«x»’
+  primary_name [x] = ‛«x»’
+}
+
+«»

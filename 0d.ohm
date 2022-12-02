@@ -133,7 +133,7 @@ primary =
   | procedurePrefix name -- procedure
   | parameterPrefix name -- parameter
   | stateName -- state
-  | applySyntactic<Instantiation>
+  | applySyntactic<Instantiation> -- instantiation
   | phi -- null
   | applySyntactic<DtypeValue> -- dtype
   | applySyntactic<TagValue> -- tag
@@ -141,14 +141,15 @@ primary =
   | applySyntactic<TagList> -- tagList
   | applySyntactic<GenericList> -- genericList
   | string -- string
-  | applySyntactic<SynonymScopedBlock>
-  | applySyntactic<LangFunction>
-  | applySyntactic<LangSnippet>
+  | applySyntactic<SynonymScopedBlock> -- synonym
+  | applySyntactic<LangFunction> -- langfunction
+  | applySyntactic<LangSnippet> -- langsnippet
   | self -- self
   | name -- name
 
-variable = primary
+variable = 
   /* same as primary, but some cases are illegal */
+  | primary -- primary
   | applySyntactic<SelfMethodCall> -- methodCallOfSelf
   | applySyntactic<MethodCall> -- methodCallOfPrimary
   | applySyntactic<BuiltinCall> -- builtinCall
@@ -156,7 +157,7 @@ variable = primary
   | primary dot name -- fieldOfPrimary
   | temporaryName -- temp
   | parameterPrefix name -- parameter
-  | applySyntactic<LangSnippet>
+  | applySyntactic<LangSnippet> -- langsnippet
   | self -- self
   | name -- name
 
@@ -224,14 +225,18 @@ LangSnippet = lang name verbatim
 //}
 
 //Operator {
-  StateQueryExpression = (query self)+ "{" StateQueryClause+ "}"
-  DtypeQueryExpression = (query DtypeName)+ variable "{" DtypeQueryClause+ "}"
-  TagQueryExpression = (query TagName)+ variable "{" TagQueryClause+ "}"
+  StateQueryExpression = querySelf+ "{" StateQueryClause+ "}"
+  DtypeQueryExpression = queryDtypeName+ variable "{" DtypeQueryClause+ "}"
+  TagQueryExpression = queryTagName+ variable "{" TagQueryClause+ "}"
   ForallExpression = forAll Expression temporaryName Block
 
 StateQueryClause = query self stateName Block
 DtypeQueryClause = query DtypeName DtypeValue Block
 TagQueryClause = query TagName TagValue Block
+
+querySelf = query self
+queryDtypeName = query DtypeName
+queryTagName = query TagName
 
   StateUpdateExpression = Expression updateState self 
 //}

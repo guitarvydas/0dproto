@@ -28,3 +28,8 @@ clean:
 	rm -f *~
 	rm -f container.0d
 	rm -f *.0dA *.0dB *.0dC *.0dD1 *.0dD *.0dE *.0dF *.0dG *.0dH
+	rm -f pattern.ohm pattern.fab
+
+container.js: container.0d
+	./fab/fab - ZeroD 0d.ohm js0d.fmt --support='./jssupport.js' <container.0d | sed -e '/^$$/d' >container.js
+	~/node_modules/js-beautify/js/bin/js-beautify.js container.js
