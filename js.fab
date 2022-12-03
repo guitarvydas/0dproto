@@ -117,7 +117,7 @@ ZeroD {
 
   TagName [left name right] = ‛«left»«name»«right»’
   TagDefinition [def k left name tags+ right] = ‛’
-  TagValue [left name e+ right] = ‛«left»«name»«e»«right»’
+  TagValue [left name e+ right] = ‛'«e»'’
 
   DtypeName [left name right] = ‛«left»«name»«right»’
   DtypeDefinition_compound [def k name eq CompoundDtype more*] = ‛’
@@ -144,14 +144,14 @@ ZeroD {
   nameFirst [c] = ‛«c»’
   nameRest [c] = ‛«c»’
 
-  StateQueryExpression [caselabels+ left clause+ right] = ‛«caselabels» «left» «clause» «right»’
-  DtypeQueryExpression [caselabels+ v left clause+ right] = ‛«caselabels» «v» «left» «clause» «right»’
-  TagQueryExpression [caselabels+ v left clause+ right] = ‛«caselabels» «v» «left» «clause» «right»’
+  StateQueryExpression [caselabels+ left clause+ right] = ‛{«clause»}’
+  DtypeQueryExpression [caselabels+ v left clause+ right] = ‛«v» {\n«clause»\n}’
+  TagQueryExpression [caselabels+ v left clause+ right] = ‛«v» {\n«clause»\n}’
   ForallExpression [k e temp Block] = ‛«e».forAll («temp» => «Block»);’
 
-  StateQueryClause [k self name Block] = ‛«k» «self» «name» «Block»’
-  DtypeQueryClause [k name v Block] = ‛«k» «name» «v» «Block»’
-  TagQueryClause [k name v Block] = ‛«k» «name» «v» «Block»’
+  StateQueryClause [k self name Block] = ‛\nif («self»._state === '«name»') {«Block»}’
+  DtypeQueryClause [k name v Block] = ‛\nif («name» === '«v»') {«Block»}’
+  TagQueryClause [k name v Block] = ‛\nif («name» === '«v»') {«Block»}’
 
   querySelf [k ws n] = ‛«k»«ws»«n»’
   queryDtypeName [k ws n] = ‛«k»«ws»«n»’

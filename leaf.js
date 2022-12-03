@@ -11,25 +11,31 @@ function clear__outputs () {langjs(self )«
     self.outputs = [];
   » 
 }
-function handle (message, sendFunction) {#?this { #? this armed {
+function handle (message, sendFunction) {{
+if (this._state === 'armed') {{
 function send (port, data, trace) {this.outputs.push(⟨Messageport data this trace ⟩ ) 
 } 
 {
 var val = this.func(message , send ) ; 
-{this.outputs.push(⟨Message⟨#Outputout ⟩ val this message ⟩ ) 
+{this.outputs.push(⟨Message'out ' val this message ⟩ ) 
 this = completed ; 
 } 
-}#? this completed {.die 'Leaf not armed' 
-} } 
+}}
+if (this._state === 'completed') {{.die 'Leaf not armed' 
+}}} 
 }
-function step (sendFunction) {#?this { #? this completed {
-}#? this armed {.die 'internal error: Leaf/step called on armed leaf' 
-} } 
+function step (sendFunction) {{
+if (this._state === 'completed') {{
+}}
+if (this._state === 'armed') {{.die 'internal error: Leaf/step called on armed leaf' 
+}}} 
 }
 function reset () {
 this = armed ; 
 }
-function completed___Q () {#? this { #? this armed {⟨#YesNono ⟩ 
-}#? this completed {⟨#YesNoyes ⟩ 
-} } 
+function completed___Q () {{
+if (this._state === 'armed') {{'no ' 
+}}
+if (this._state === 'completed') {{'yes ' 
+}}} 
 }
