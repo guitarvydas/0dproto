@@ -99,9 +99,7 @@ ZeroD <: BasicGrammar {
   definition = applySyntactic<Definition>
   Immediate = Expression
     
-  FunctionDefinition = 
-    | def "function" name FormalParameterList Block -- withformals
-    | def "function" name Block -- withoutformals
+  FunctionDefinition =  def "function" name FormalParameterList? Block
   ProcedureDefinition = def "procedure" name FormalParameterList? Block
   InnerFunctionDefinition = inner "function" name FormalParameterList? Block
   InnerProcedureDefinition = inner "procedure" name FormalParameterList? Block
@@ -269,4 +267,12 @@ queryTagName = query spaces applySyntactic<TagName>
 //}
   
 
+}
+
+// grammar tweaks for JS transpiler
+
+jsZeroD <: ZeroD {
+   FormalParameterList := 
+     | "(" pname* ")" -- withformals
+     |                -- withoutformals
 }

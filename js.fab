@@ -53,9 +53,7 @@ ZeroD {
   definition [x] = ‛«x»’
   Immediate [x] = ‛«x»’
 
-  FunctionDefinition_withformals [def k name FormalParameterList Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
-  FunctionDefinition_withoutformals [def k name Block] = ‛\nfunction «name» () «Block»’
-
+  FunctionDefinition [def k name FormalParameterList? Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
   ProcedureDefinition [def k name FormalParameterList? Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
   InnerFunctionDefinition [inner k name FormalParameterList? Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
   InnerProcedureDefinition [inner k name FormalParameterList? Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
@@ -161,7 +159,6 @@ ZeroD {
 
   StateUpdateExpression [e k self] = ‛\n«self» = «e»;’
 
-  FormalParameterList [left x* right] = ‛«left»«x»«right»’
   ActualParameterList [left x* right] = ‛«left»«x»«right»’
   pname [k name] = ‛«name», ’
   ActualParameterExpression [e] = ‛«e», ’
@@ -173,4 +170,8 @@ ZeroD {
   ConstructorBlock [left e* right] = ‛\n«left»«e»«right»’
 
   SynonymScopedBlock [k name op e Block] = ‛\n{\nvar «name» = «e»; \n«Block»’
+
+  FormalParameterList_withformals [left x* right] = ‛«left»«x»«right»’
+  FormalParameterList_withoutformals [] = ‛()’
+
 }

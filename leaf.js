@@ -7,7 +7,7 @@ this.completed___Q = completed___Q ;
 this.handle = handle ; 
 this.step = step ; this.clear__outputs  this.reset  
 this = armed ;  }}
-function clear__outputs  {langjs(self )«
+function clear__outputs () {langjs(self )«
     self.outputs = [];
   » 
 }
@@ -26,7 +26,7 @@ function step (sendFunction) {#?this { #? this completed {
 }#? this armed {.die 'internal error: Leaf/step called on armed leaf' 
 } } 
 }
-function reset  {
+function reset () {
 this = armed ; 
 }
 function completed___Q () {#? this { #? this armed {⟨#YesNono ⟩ 
