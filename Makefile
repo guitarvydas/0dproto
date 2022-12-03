@@ -1,6 +1,10 @@
 here=`pwd`
 
-all: container.0d leaf.0d test.0d
+all: container.js leaf.0d test.0d
+
+dev:
+	rm -f container.js
+	(make container.js)
 
 full: install repos container.0d leaf.0d test.0d
 
@@ -32,6 +36,10 @@ clean:
 
 identity:
 	./fab/fab - ZeroD 0d.ohm identity.fab --support='./jssupport.js' <container.0d | sed -e '/^$$/d'
+
+container.js: container.0d
+	./fab/fab - ZeroD 0d.ohm js.fab --support='./jssupport.js' <container.0d | sed -e '/^$$/d' >container.js
+	cat container.js
 
 # container.js: container.0d
 # 	./fab/fab - ZeroD 0d.ohm js0d.fmt --support='./jssupport.js' <container.0d | sed -e '/^$$/d' >container.js

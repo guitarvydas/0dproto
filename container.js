@@ -1,115 +1,84 @@
-error in .fmt specification<br><br>Found errors in the action dictionary of the '_fmt' operation:
-- 'toplevel' is not a valid semantic action for 'ZeroD'
-- Semantic action 'DtypeDefinition' has the wrong arity: expected 1, got 3
-- 'States' is not a valid semantic action for 'ZeroD'
-- 'Tags' is not a valid semantic action for 'ZeroD'
-- 'StateBlock' is not a valid semantic action for 'ZeroD'
-- 'TagBlock' is not a valid semantic action for 'ZeroD'
-- 'StateClause' is not a valid semantic action for 'ZeroD'
-- 'TagClause' is not a valid semantic action for 'ZeroD'
-- 'BlockStatement' is not a valid semantic action for 'ZeroD'
-- 'Statement_synonym' is not a valid semantic action for 'ZeroD'
-- 'Statement_constructorsynonym' is not a valid semantic action for 'ZeroD'
-- 'Statement_block' is not a valid semantic action for 'ZeroD'
-- 'Statement_selfStateDefinition' is not a valid semantic action for 'ZeroD'
-- 'Statement_selfStateUpdate' is not a valid semantic action for 'ZeroD'
-- 'Statement_die' is not a valid semantic action for 'ZeroD'
-- 'Statement_display' is not a valid semantic action for 'ZeroD'
-- 'Statement_forall' is not a valid semantic action for 'ZeroD'
-- 'Statement_externRoutine' is not a valid semantic action for 'ZeroD'
-- 'Statement_codeSnippet' is not a valid semantic action for 'ZeroD'
-- 'Statement_expr' is not a valid semantic action for 'ZeroD'
-- 'ExternalRoutine' is not a valid semantic action for 'ZeroD'
-- 'ForAll' is not a valid semantic action for 'ZeroD'
-- 'Parameters' is not a valid semantic action for 'ZeroD'
-- 'FormalParameters' is not a valid semantic action for 'ZeroD'
-- 'operand' is not a valid semantic action for 'ZeroD'
-- 'constant_port' is not a valid semantic action for 'ZeroD'
-- 'constant_string' is not a valid semantic action for 'ZeroD'
-- 'constant_tag' is not a valid semantic action for 'ZeroD'
-- 'constant_state' is not a valid semantic action for 'ZeroD'
-- 'value_message' is not a valid semantic action for 'ZeroD'
-- 'value_connection' is not a valid semantic action for 'ZeroD'
-- 'value_list' is not a valid semantic action for 'ZeroD'
-- 'value_dtypeConstructor' is not a valid semantic action for 'ZeroD'
-- 'value_funcall' is not a valid semantic action for 'ZeroD'
-- 'value_instantiation' is not a valid semantic action for 'ZeroD'
-- 'value_methodCall' is not a valid semantic action for 'ZeroD'
-- 'value_fieldRef' is not a valid semantic action for 'ZeroD'
-- 'value_parameterRef' is not a valid semantic action for 'ZeroD'
-- 'value_functionRef' is not a valid semantic action for 'ZeroD'
-- 'value_procedureRef' is not a valid semantic action for 'ZeroD'
-- 'value_tempVariable' is not a valid semantic action for 'ZeroD'
-- 'value_stateQuery' is not a valid semantic action for 'ZeroD'
-- 'value_tagQuery' is not a valid semantic action for 'ZeroD'
-- 'value_name' is not a valid semantic action for 'ZeroD'
-- 'Connection' is not a valid semantic action for 'ZeroD'
-- 'DtypeConstructor' is not a valid semantic action for 'ZeroD'
-- 'Sender' is not a valid semantic action for 'ZeroD'
-- 'Receiver' is not a valid semantic action for 'ZeroD'
-- 'Pair' is not a valid semantic action for 'ZeroD'
-- 'valueOperand' is not a valid semantic action for 'ZeroD'
-- 'StateQuery' is not a valid semantic action for 'ZeroD'
-- 'TagQuery' is not a valid semantic action for 'ZeroD'
-- 'Funcall' is not a valid semantic action for 'ZeroD'
-- 'ClassInstantiation' is not a valid semantic action for 'ZeroD'
-- 'List' is not a valid semantic action for 'ZeroD'
-- 'UnnamedObject' is not a valid semantic action for 'ZeroD'
-- 'Message_raw' is not a valid semantic action for 'ZeroD'
-- 'Message_withDebug' is not a valid semantic action for 'ZeroD'
-- 'portOperand' is not a valid semantic action for 'ZeroD'
-- 'SelfStateDefinition' is not a valid semantic action for 'ZeroD'
-- 'SelfStateUpdate' is not a valid semantic action for 'ZeroD'
-- 'name_keywordName' is not a valid semantic action for 'ZeroD'
-- 'name_selfName' is not a valid semantic action for 'ZeroD'
-- 'name_phiName' is not a valid semantic action for 'ZeroD'
-- 'fieldName' is not a valid semantic action for 'ZeroD'
-- 'dtypeName' is not a valid semantic action for 'ZeroD'
-- 'port' is not a valid semantic action for 'ZeroD'
-- 'FieldRef' is not a valid semantic action for 'ZeroD'
-- 'selfState' is not a valid semantic action for 'ZeroD'
-- 'parameterReference' is not a valid semantic action for 'ZeroD'
-- 'parameterDefinition' is not a valid semantic action for 'ZeroD'
-- 'functionReference' is not a valid semantic action for 'ZeroD'
-- 'procedureReference' is not a valid semantic action for 'ZeroD'
-- 'asciiBracket' is not a valid semantic action for 'ZeroD'
-- 'asciiCharacter' is not a valid semantic action for 'ZeroD'
-- 'unicodeBracket' is not a valid semantic action for 'ZeroD'
-- 'unicodeCharacter' is not a valid semantic action for 'ZeroD'
-- 'tempVariableDefinition' is not a valid semantic action for 'ZeroD'
-- 'tempVariableReference' is not a valid semantic action for 'ZeroD'
-- 'stateDefinition' is not a valid semantic action for 'ZeroD'
-- 'stateReference' is not a valid semantic action for 'ZeroD'
-- 'tagDefinition' is not a valid semantic action for 'ZeroD'
-- 'tagReference' is not a valid semantic action for 'ZeroD'
-- 'keywordName' is not a valid semantic action for 'ZeroD'
-- 'codeSnippet' is not a valid semantic action for 'ZeroD'
-- 'codeSnippetJS' is not a valid semantic action for 'ZeroD'
-- 'codeSnippetCL' is not a valid semantic action for 'ZeroD'
-- 'internal' is not a valid semantic action for 'ZeroD'
-- 'clear' is not a valid semantic action for 'ZeroD'
-- 'innerFunction' is not a valid semantic action for 'ZeroD'
-- 'tag' is not a valid semantic action for 'ZeroD'
-- 'declare' is not a valid semantic action for 'ZeroD'
-- 'callop' is not a valid semantic action for 'ZeroD'
-- 'die' is not a valid semantic action for 'ZeroD'
-- 'stateQ' is not a valid semantic action for 'ZeroD'
-- 'tagQ' is not a valid semantic action for 'ZeroD'
-- 'displayop' is not a valid semantic action for 'ZeroD'
-- 'yes' is not a valid semantic action for 'ZeroD'
-- 'no' is not a valid semantic action for 'ZeroD'
-- 'knew' is not a valid semantic action for 'ZeroD'
-- 'lambda' is not a valid semantic action for 'ZeroD'
-- 'proc' is not a valid semantic action for 'ZeroD'
-- 'outport' is not a valid semantic action for 'ZeroD'
-- 'inport' is not a valid semantic action for 'ZeroD'
-- 'snippetPrefix' is not a valid semantic action for 'ZeroD'
-- 'keywordPrefix' is not a valid semantic action for 'ZeroD'
-- 'tagPrefix' is not a valid semantic action for 'ZeroD'
-- 'selfName' is not a valid semantic action for 'ZeroD'
-- 'messageBegin' is not a valid semantic action for 'ZeroD'
-- 'messageEnd' is not a valid semantic action for 'ZeroD'
-- 'connectionOpen' is not a valid semantic action for 'ZeroD'
-- 'connectionClose' is not a valid semantic action for 'ZeroD'
-- 'tempVariablePrefix' is not a valid semantic action for 'ZeroD'
-- 'forAllPrefix' is not a valid semantic action for 'ZeroD'
+def tag ⟨# Direction downupacross❲pass through❳ ⟩
+def tag ⟨# Input in ⟩
+def tag ⟨# Output out ⟩
+def dtype ⟨ Sender componentport ⟩
+def dtype ⟨ Receiver componentport ⟩
+def dtype ⟨ MessageWithoutDebug portdata ⟩
+def dtype ⟨ Message portdataorigintrail ⟩
+def dtype ⟨ Connection directionsenderreceiver ⟩
+def tag ⟨# YesNo yesno ⟩
+def dtype ⟨ Data Value ⟩
+def dtype Value = ⟨#YesNo⟩ | * 
+function Container (childrenArray, map, ) {armed completed } 
+{this.reset ≣ reset  this.❲completed ?❳ ≣ ❲completed ?❳  this.handle ≣ handle  this.step ≣ step  this.setChildren ≣ setChildren  this.setRoutings ≣ setRoutings  this.❲clear outputs❳  this.acceptInput ≣ acceptInput  this.mergeOutputs ≣ mergeOutputs  this.route ≣ route  this.runToCompletion ≣ runToCompletion  this.children ≣ childrenArray  this.❲set parent of children❳(this )  this.routingMap ≣ map  }
+function ❲clear outputs❳  
+{langjs(self )«
+    self.outputs = [];
+  » }
+function ❲set parent of children❳  
+{langjs(self )«
+    self.children.forEach (child => {
+        child.container = self;
+    });
+  » }
+function reset () 
+{∀ this.children  child 
+{child.reset } }
+function ❲completed ?❳  
+{langjs(self )«
+    var done = true;
+    self.children.forEach (child => {
+        done = done & child.completed___Q ();
+    });
+    return done;
+  » }
+function handle (message, ) 
+{this.reset #? this { #? this completed 
+{die 'internal error: container.handle called on completed container' }#? this armed 
+{} } this.acceptInput(message ) 
+function send (port, data, ) 
+{this.outputs.push(⟨Messageport data this message ⟩ ) } this.runToCompletion(send ) this.outputs.push(⟨Message⟨#Outputout ⟩ null this message ⟩ ) }
+function acceptInput (message, ) 
+{this.❲clear outputs❳ ∀ this.routingMap  connection 
+{#? ⟨#Direction⟩ connection { #? ⟨#Direction⟩ ⟨#Directiondown ⟩ 
+{synonym childOutputs ≣ connection.receiver.handle(⟨Messageconnection.port message.data this message ⟩ sendProcedure )  
+{this.mergeOutputs(childOutputs ) } }#? ⟨#Direction⟩ ⟨#Direction❲pass through❳ ⟩ 
+{synonym childOutputs ≣ [⟨Message⟩ ⟨Messageconnection.port message.data this message ⟩  ]  
+{this.mergeOutputs(childOutputs ) } }#? ⟨#Direction⟩ ⟨#Directionacross ⟩ 
+{}#? ⟨#Direction⟩ ⟨#Directionup ⟩ 
+{} } } }
+function mergeOutputs (childOutputs, ) 
+{langjs(childOutputs )“
+    var clonedOuts = Array.from (self.outputs);
+    var childOuts = childOutputs.reverse ();
+    childOuts.forEach (cout => {
+        clonedOutputs.push (cout);
+    });
+    return clonedOutputs;
+  ” }
+function runToCompletion (sendProcedure, ) 
+{langjs«
+         while (! «this.completed ») {
+             «this.step(sendProcedure ) »
+             «this.route(sendProcedure ) »
+         }
+     » langcl«
+         (loop while (not «this.completed »)
+             do (progn «this.step(sendProcedure ) »
+                       «this.route(sendProcedure ) »))
+     » }
+function step (sendProcedure, ) 
+{∀ this.children  child 
+{child.step(sendProcedure ) } }
+function route (sendProcedure, ) 
+{synonym ❲deferred message stack❳ ≣ [⟨Message⟩  ]  
+{∀ this.routingMap  connection 
+{#? ⟨#Direction⟩ connection.direction { #? ⟨#Direction⟩ ⟨#Directionacross ⟩ 
+{synonym ❲output message❳ ≣ connection.sender.outputs  
+{❲deferred message stack❳.push(⟨Destconnection.receiver connection.port ❲output message❳ ⟩ ) } }#? ⟨#Direction⟩ ⟨#Directionup ⟩ 
+{synonym ❲output message❳ ≣ connection.sender.outputs  
+{❲deferred message stack❳.push(⟨Destconnection.receiver connection.port ❲output message❳ ⟩ ) } }#? ⟨#Direction⟩ ⟨#Directiondown ⟩ 
+{}#? ⟨#Direction⟩ ⟨#Direction❲pass through❳ ⟩ 
+{} } } ∀ ❲deferred message stack❳  dest 
+{synonym m ≣ ⟨Messagedest.port dest.message.data this dest.message ⟩  
+{dest.target.handle(m sendProcedure ) } } } }
