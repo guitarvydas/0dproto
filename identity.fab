@@ -119,11 +119,11 @@ ZeroD {
   TagDefinition [def k left name tags+ right] = ‛«def»«k»«left»«name»«tags»«right»’
 
   DtypeName [left name right] = ‛«left»«name»«right»’
-  DtypeDefinition_compound [def k name eq CompoundDtype more*] = ‛«def»«k»«name»«eq»«CompounDtype»«more»’
+  DtypeDefinition_compound [def k name eq CompoundDtype more*] = ‛«def»«k»«name»«eq»«CompoundDtype»«more»’
   DtypeDefinition_single [def k left name fieldname+ right] = ‛«def»«k»«left»«name»«fieldname»«right»’
-  DtypeValue [left e+ right] = ‛«left»«e»«right»’
-  moreCompound_any [k star] = ‛«k»«star»’
-  moreCompound_named [k name] = ‛«k»«name»’
+  DtypeValue [left name e+ right] = ‛«left»«name»«e»«right»’
+  MoreCompound_any [k star] = ‛«k»«star»’
+  MoreCompound_named [k name] = ‛«k»«name»’
   CompoundDtype [x] = ‛«x»’
 
   listEnd [c] = ‛«c»’
@@ -134,7 +134,7 @@ ZeroD {
 
   name_compoundName [x] = ‛«x»’
   name_self [x] = ‛«x»’
-  name_phi [x] = ‛«x»’
+  name_null [x] = ‛«x»’
   name_basicName [x] = ‛«x»’
 
   compoundName [left cs* right] = ‛«left»«cs»«right»’
@@ -144,8 +144,9 @@ ZeroD {
   nameRest [c] = ‛«c»’
 
   StateQueryExpression [caseslabels+ left clause+ right] = ‛«caselabels»«left»«clause»«right»’
-  DtypeQueryExpression [caseslabels+ left clause+ right] = ‛«caselabels»«left»«clause»«right»’
-  TagQueryExpression [caseslabels+ left clause+ right] = ‛«caselabels»«left»«clause»«right»’
+  DtypeQueryExpression [caseslabels+ v left clause+ right] = ‛«caselabels»«v»«left»«clause»«right»’
+  TagQueryExpression [caseslabels+ v left clause+ right] = ‛«caselabels»«v»«left»«clause»«right»’
+  ForallExpression [k e temp Block] = ‛«k»«e»«temp»«Block»’
 
   querySelf [k ws n] = ‛«k»«ws»«n»’
   queryDtypeName [k ws n] = ‛«k»«ws»«n»’
