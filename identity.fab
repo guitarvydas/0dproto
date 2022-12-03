@@ -16,7 +16,7 @@ ZeroD {
   self [c] = ‛«c»’
   phi [c] = ‛«c»’
   temp [c] = ‛«c»’
-  forall [c] = ‛«c»’
+  forAll [c] = ‛«c»’
   query [c] = ‛«c»’
   defineop [c] = ‛«c»’
   unaryOperator [c] = ‛«c»’
@@ -82,7 +82,7 @@ ZeroD {
   primary_tagList [x] = ‛«x»’
   primary_genericList [x] = ‛«x»’
   primary_string [x] = ‛«x»’
-  primary__synonym [x] = ‛«x»’
+  primary_synonym [x] = ‛«x»’
   primary_langfunction [x] = ‛«x»’
   primary_langsnippet [x] = ‛«x»’
   primary_self [x] = ‛«x»’
@@ -93,9 +93,9 @@ ZeroD {
   variable_methodCallOfPrimary [x] = ‛«x»’
   variable_builtinCall [x] = ‛«x»’
   variable_fieldOfSelf [x] = ‛«x»’
-  variable_fieldOfPrimary [x] = ‛«x»’
+  variable_fieldOfPrimary [p dot name] = ‛«p»«dot»«name»’
   variable_temp [x] = ‛«x»’
-  variable_parameter [x] = ‛«x»’
+  variable_parameter [k x] = ‛«k»«x»’
   variable_langsnippet [x] = ‛«x»’
   variable_self [x] = ‛«x»’
   variable_name [x] = ‛«x»’
@@ -119,9 +119,11 @@ ZeroD {
   TagDefinition [def k left name tags+ right] = ‛«def»«k»«left»«name»«tags»«right»’
 
   DtypeName [left name right] = ‛«left»«name»«right»’
-  DtypeDefinition_compound [def k name eq CompoundDtype+ kseparator?] = ‛«def»«k»«name»«eq»«CompounDtype»«kseparator»’
+  DtypeDefinition_compound [def k name eq CompoundDtype more*] = ‛«def»«k»«name»«eq»«CompounDtype»«more»’
   DtypeDefinition_single [def k left name fieldname+ right] = ‛«def»«k»«left»«name»«fieldname»«right»’
   DtypeValue [left e+ right] = ‛«left»«e»«right»’
+  moreCompound_any [k star] = ‛«k»«star»’
+  moreCompound_named [k name] = ‛«k»«name»’
   CompoundDtype [x] = ‛«x»’
 
   listEnd [c] = ‛«c»’

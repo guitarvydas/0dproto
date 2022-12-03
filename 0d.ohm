@@ -192,11 +192,15 @@ LangSnippet = lang name verbatim
 //Dtype {
   DtypeName = "⟨" name "⟩"
   DtypeDefinition =
-    | def "dtype" name "=" CompoundDtype+ ("|" "*")? -- compound
+    | def "dtype" name "=" CompoundDtype MoreCompound* -- compound
     | def "dtype" "⟨" name name+ "⟩" -- single
   DtypeValue =
     | "⟨" name Expression+ "⟩"
 
+  MoreCompound =
+    | "|" "*" -- any
+    | "|" CompoundDtype -- named
+  
   CompoundDtype = DtypeName | TagName
 //}
 
