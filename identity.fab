@@ -117,6 +117,7 @@ ZeroD {
 
   TagName [left name right] = ‛«left»«name»«right»’
   TagDefinition [def k left name tags+ right] = ‛«def»«k»«left»«name»«tags»«right»’
+  TagValue [left name e+ right] = ‛«left»«name»«e»«right»’
 
   DtypeName [left name right] = ‛«left»«name»«right»’
   DtypeDefinition_compound [def k name eq CompoundDtype more*] = ‛«def»«k»«name»«eq»«CompoundDtype»«more»’
