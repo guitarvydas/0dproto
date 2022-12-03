@@ -18,7 +18,7 @@ ZeroD {
   temp [c] = ‛’
   forAll [c] = ‛«c»’
   query [c] = ‛«c»’
-  defineop [c] = ‛«c»’
+  defineop [c] = ‛=’
   unaryOperator [c] = ‛«c»’
 
   dot [c] = ‛«c»’
@@ -59,9 +59,9 @@ ZeroD {
   InnerProcedureDefinition [inner k name FormalParameterList? Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
   UnexportedFunctionDefinition [private k name FormalParameterList? Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
   UnexportedProcedureDefinition [private k name FormalParameterList? Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
-  ConstructorDefinition [def k name FormalParameterList? PossibleStates ConstructorBlock] = ‛\nfunction «name» «FormalParameterList» «PossibleStates» «ConstructorBlock»’
+  ConstructorDefinition [def k name FormalParameterList? PossibleStates ConstructorBlock] = ‛\nfunction «name» «FormalParameterList» «ConstructorBlock»}’
   ConstructionExpression [e] = ‛«e» ’
-  ConstructorFieldAssign [name defineop Expression] = ‛«name» «defineop» «Expression»’
+  ConstructorFieldAssign [name defineop Expression] = ‛\n«name» = «Expression»;’
   Expression [e] = ‛«e» ’
 
   primary_methodCallOfSelf [x] = ‛«x»’
@@ -116,12 +116,12 @@ ZeroD {
   expr [x] = ‛«x»’
 
   TagName [left name right] = ‛«left»«name»«right»’
-  TagDefinition [def k left name tags+ right] = ‛\n«def» «k» «left» «name» «tags» «right»’
+  TagDefinition [def k left name tags+ right] = ‛’
   TagValue [left name e+ right] = ‛«left»«name»«e»«right»’
 
   DtypeName [left name right] = ‛«left»«name»«right»’
-  DtypeDefinition_compound [def k name eq CompoundDtype more*] = ‛\n«def» «k» «name» «eq» «CompoundDtype» «more»’
-  DtypeDefinition_single [def k left name fieldname+ right] = ‛\n«def» «k» «left» «name» «fieldname» «right»’
+  DtypeDefinition_compound [def k name eq CompoundDtype more*] = ‛’
+  DtypeDefinition_single [def k left name fieldname+ right] = ‛’
   DtypeValue [left name e+ right] = ‛«left»«name»«e»«right»’
   MoreCompound_any [k star] = ‛«k» «star» ’
   MoreCompound_named [k name] = ‛«k» «name» ’
@@ -138,7 +138,7 @@ ZeroD {
   name_null [x] = ‛«x»’
   name_basicName [x] = ‛«x»’
 
-  compoundName [left cs* right] = ‛«left»«cs»«right»’
+  compoundName [left cs* right] = ‛«jsmangle (cs)»’
   basicName [nameFirst nameRest*] = ‛«nameFirst»«nameRest»’
   nonSpecialName [name] = ‛«name»’
   nameFirst [c] = ‛«c»’
@@ -147,7 +147,7 @@ ZeroD {
   StateQueryExpression [caselabels+ left clause+ right] = ‛«caselabels» «left» «clause» «right»’
   DtypeQueryExpression [caselabels+ v left clause+ right] = ‛«caselabels» «v» «left» «clause» «right»’
   TagQueryExpression [caselabels+ v left clause+ right] = ‛«caselabels» «v» «left» «clause» «right»’
-  ForallExpression [k e temp Block] = ‛«k» «e» «temp» «Block»’
+  ForallExpression [k e temp Block] = ‛«e».forAll («temp» => «Block»);’
 
   StateQueryClause [k self name Block] = ‛«k» «self» «name» «Block»’
   DtypeQueryClause [k name v Block] = ‛«k» «name» «v» «Block»’
@@ -162,12 +162,13 @@ ZeroD {
   FormalParameterList [left x* right] = ‛«left»«x»«right»’
   ActualParameterList [left x* right] = ‛«left»«x»«right»’
   pname [k name] = ‛«name», ’
+  ActualParameterExpression [e] = ‛«e», ’
 
   PossibleStates [left snames+ right] = ‛«left»«snames»«right»’
   sname [k name] = ‛«k»«name» ’
 
-  Block [left e* right] = ‛\n«left»«e»«right»’
+  Block [left e* right] = ‛{«e»\n}’
   ConstructorBlock [left e* right] = ‛\n«left»«e»«right»’
 
-  SynonymScopedBlock [k name op e Block] = ‛«k» «name» «op» «e» «Block»’
+  SynonymScopedBlock [k name op e Block] = ‛\n{\nvar «name» = «e»; \n«Block»’
 }

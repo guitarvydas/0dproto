@@ -247,8 +247,9 @@ queryTagName = query spaces applySyntactic<TagName>
 
 //ParameterList {
   FormalParameterList = "(" pname* ")"
-  ActualParameterList = "(" Expression* ")"
+  ActualParameterList = "(" ActualParameterExpression* ")"
   pname = parameterPrefix name
+  ActualParameterExpression = Expression
 //}
 
 // StateList {
