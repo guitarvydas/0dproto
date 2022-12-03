@@ -12,7 +12,7 @@ function clear__outputs () {langjs(self )«
   » 
 }
 function handle (message, sendFunction) {{
-if (this._state === 'armed') {{
+if (this._state === 'armed') {
 function send (port, data, trace) {this.outputs.push(⟨Messageport data this trace ⟩ ) 
 } 
 {
@@ -20,22 +20,22 @@ var val = this.func(message , send ) ;
 {this.outputs.push(⟨Message'out ' val this message ⟩ ) 
 this = completed ; 
 } 
-}}
-if (this._state === 'completed') {{.die 'Leaf not armed' 
-}}} 
+}
+if (this._state === 'completed') {.die 'Leaf not armed' 
+}} 
 }
 function step (sendFunction) {{
-if (this._state === 'completed') {{
-}}
-if (this._state === 'armed') {{.die 'internal error: Leaf/step called on armed leaf' 
-}}} 
+if (this._state === 'completed') {
+}
+if (this._state === 'armed') {.die 'internal error: Leaf/step called on armed leaf' 
+}} 
 }
 function reset () {
 this = armed ; 
 }
 function completed___Q () {{
-if (this._state === 'armed') {{'no ' 
-}}
-if (this._state === 'completed') {{'yes ' 
-}}} 
+if (this._state === 'armed') {'no ' 
+}
+if (this._state === 'completed') {'yes ' 
+}} 
 }

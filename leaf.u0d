@@ -41,7 +41,7 @@
             }
         }
 	#?š ✦completed {
-            #/die 'Leaf not armed'
+            #/die ('Leaf not armed')
         }        
     }
 }
@@ -57,7 +57,7 @@
     #?š {
         #?š ✦completed {}
         #?š ✦armed {
-            #/die 'internal error: Leaf/step called on armed leaf'
+            #/die ('internal error: Leaf/step called on armed leaf')
         }
     }
 }

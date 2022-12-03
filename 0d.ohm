@@ -269,9 +269,9 @@ queryTagName = query spaces applySyntactic<TagName>
 
 }
 
-// grammar tweaks for JS transpiler
+// grammar tweaks for Common Lisp transpiler
 
-jsZeroD <: ZeroD {
+clZeroD <: ZeroD {
    FormalParameterList := 
      | "(" pname* ")" -- withformals
      |                -- withoutformals

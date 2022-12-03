@@ -3,8 +3,8 @@ here=`pwd`
 all: container.js leaf.0d test.0d
 
 dev:
-	rm -f leaf.js
-	(make leaf.js)
+	rm -f leaf.lisp
+	(make leaf.lisp)
 
 full: install repos container.0d leaf.0d test.0d
 
@@ -45,6 +45,12 @@ leaf.js: leaf.0d
 	./fab/fab - jsZeroD 0d.ohm js.fab --support='./jssupport.js' <leaf.0d >temp.0d
 	python3 repl_cleanup.py <temp.0d >leaf.js
 	cat leaf.js
+
+leaf.lisp: leaf.0d
+	./fab/fab - clZeroD 0d.ohm clclasses.fab --support='./jssupport.js' <leaf.0d >temp.0d
+	#./fab/fab - clZeroD 0d.ohm cl.fab --support='./jssupport.js' <leaf.0d >>temp.0d
+	python3 repl_cleanup.py <temp.0d >leaf.lisp
+	cat leaf.lisp
 
 # container.js: container.0d
 # 	./fab/fab - ZeroD 0d.ohm js0d.fmt --support='./jssupport.js' <container.0d | sed -e '/^$$/d' >container.js

@@ -4,17 +4,17 @@ ZeroD {
   commentInnards_flat [c] = ‛«c»’
   space [c] = ‛«c»’
   sq [c] = ‛«c»’
-  string [left cs* right] =  ‛«left»«cs»«right»’
+  string [left cs* right] =  ‛"«cs»"’
   kp [c] = ‛’
   lambdaPrefix [c] = ‛’
   procedurePrefix [c] = ‛’
   statePrefix [c] = ‛’
   parameterPrefix [c] = ‛’
 
-  new [c] = ‛«c»’
-  call [c] = ‛.’
-  self [c] = ‛this’
-  phi [c] = ‛null’
+  new [c] = ‛’
+  call [c] = ‛ / ’
+  self [c] = ‛self’
+  phi [c] = ‛nil’
   temp [c] = ‛’
   forAll [c] = ‛«c»’
   query [c] = ‛«c»’
@@ -53,13 +53,13 @@ ZeroD {
   definition [x] = ‛«x»’
   Immediate [x] = ‛«x»’
 
-  FunctionDefinition [def k name FormalParameterList? Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
-  ProcedureDefinition [def k name FormalParameterList? Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
-  InnerFunctionDefinition [inner k name FormalParameterList? Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
-  InnerProcedureDefinition [inner k name FormalParameterList? Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
-  UnexportedFunctionDefinition [private k name FormalParameterList? Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
-  UnexportedProcedureDefinition [private k name FormalParameterList? Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
-  ConstructorDefinition [def k name FormalParameterList? PossibleStates ConstructorBlock] = ‛\nfunction «name» «FormalParameterList» «ConstructorBlock»}’
+  FunctionDefinition [def k name FormalParameterList? Block] = ‛\n(defun «name» «FormalParameterList» «Block»)’
+  ProcedureDefinition [def k name FormalParameterList? Block] = ‛\n(defun «name» «FormalParameterList» «Block»)’
+  InnerFunctionDefinition [inner k name FormalParameterList? Block] = ‛\n(defun «name» «FormalParameterList» «Block»)’
+  InnerProcedureDefinition [inner k name FormalParameterList? Block] = ‛\(defun «name» «FormalParameterList» «Block»)’
+  UnexportedFunctionDefinition [private k name FormalParameterList? Block] = ‛\n(defun «name» «FormalParameterList» «Block»)’
+  UnexportedProcedureDefinition [private k name FormalParameterList? Block] = ‛\(defun «name» «FormalParameterList» «Block»)’
+  ConstructorDefinition [def k name FormalParameterList? PossibleStates ConstructorBlock] = ‛\ndefclass «name» «FormalParameterList» «ConstructorBlock»}’
   ConstructionExpression [e] = ‛«e» ’
   ConstructorFieldAssign [name defineop Expression] = ‛\n«name» = «Expression»;’
   Expression [e] = ‛«e» ’
@@ -70,9 +70,9 @@ ZeroD {
   primary_fieldOfSelf [x] = ‛«x»’
   primary_fieldOfPrimary [p dot name] = ‛«p»«dot»«name»’
   primary_temp [x] = ‛«x»’
-  primary_function [k name] = ‛«k»«name»’
-  primary_procedure [k name] = ‛«k»«name»’
-  primary_parameter [k name] = ‛«k»«name»’
+  primary_function [k name] = ‛#'«name»’
+  primary_procedure [k name] = ‛#'«name»’
+  primary_parameter [k name] = ‛«name»’
   primary_state [x] = ‛«x»’
   primary_instantiation [x] = ‛«x»’
   primary_null [x] = ‛«x»’
@@ -89,23 +89,23 @@ ZeroD {
   primary_name [x] = ‛«x»’
 
   variable_primary [x] = ‛«x»’
-  variable_methodCallOfSelf [x] = ‛«x»’
+  variable_methodCallOfSelf [x] = ‛(slot-value self '«x»)’
   variable_methodCallOfPrimary [x] = ‛«x»’
   variable_builtinCall [x] = ‛«x»’
-  variable_fieldOfSelf [x] = ‛«x»’
-  variable_fieldOfPrimary [p dot name] = ‛«p»«dot»«name»’
+  variable_fieldOfSelf [x] = ‛(slot-value self '«x»)’
+  variable_fieldOfPrimary [p dot name] = ‛(slot-value «p» '«name»)’
   variable_temp [x] = ‛«x»’
   variable_parameter [k x] = ‛«k»«x»’
   variable_langsnippet [x] = ‛«x»’
   variable_self [x] = ‛«x»’
   variable_name [x] = ‛«x»’
 
-  selfFieldName [self dot name] = ‛«self»«dot»«name»’
-  temporaryName [temp name] = ‛«temp»«name»’
-  stateName [prefix name] = ‛«prefix»«name»’
-  SelfMethodCall [self call name ActualParameterList?] = ‛«self»«call»«name»«ActualParameterList»’
-  MethodCall [primary call name ActualParameterList?] = ‛«primary»«call»«name»«ActualParameterList»’
-  BuiltinCall [kp call name ActualParameterList?] = ‛«kp»«call»«name»«ActualParameterList»’
+  selfFieldName [self dot name] = ‛(slot-value self '«name»)’
+  temporaryName [temp name] = ‛«name»’
+  stateName [prefix name] = ‛'«name»’
+  SelfMethodCall [self call name ActualParameterList?] = ‛(funcall «name» «ActualParameterList»)’
+  MethodCall [primary call name ActualParameterList?] = ‛(funcall «name» «ActualParameterList»)’
+  BuiltinCall [kp call name ActualParameterList?] = ‛(«name» «ActualParameterList»)’
   Instantiation [n primary ActualParameterList?] = ‛«n»«primary»«ActualParameterList»’
   LangFunction [lang name ActualParameterList verbatim] = ‛«lang»«name»«ActualParameterList»«verbatim»’
   LangSnippet [lang name verbatim] = ‛«lang»«name»«verbatim»’
@@ -117,7 +117,7 @@ ZeroD {
 
   TagName [left name right] = ‛«left»«name»«right»’
   TagDefinition [def k left name tags+ right] = ‛’
-  TagValue [left name e+ right] = ‛'«e»'’
+  TagValue [left name e+ right] = ‛'«e»’
 
   DtypeName [left name right] = ‛«left»«name»«right»’
   DtypeDefinition_compound [def k name eq CompoundDtype more*] = ‛’
@@ -149,24 +149,24 @@ ZeroD {
   TagQueryExpression [caselabels+ v left clause+ right] = ‛«v» {\n«clause»\n}’
   ForallExpression [k e temp Block] = ‛«e».forAll («temp» => «Block»);’
 
-  StateQueryClause [k self name Block] = ‛\nif («self»._state === '«name»') «Block»’
-  DtypeQueryClause [k name v Block] = ‛\nif («name» === '«v»') «Block»’
-  TagQueryClause [k name v Block] = ‛\nif («name» === '«v»') «Block»’
+  StateQueryClause [k self name Block] = ‛\n(cond ((eq (slot-value self 'state) '«name») «Block»))’
+  DtypeQueryClause [k name v Block] = ‛\n(cond ((eq «name» '«v») «Block»))’
+  TagQueryClause [k name v Block] = ‛\n(cond ((eq «name» '«v») «Block»))’
 
   querySelf [k ws n] = ‛«k»«ws»«n»’
   queryDtypeName [k ws n] = ‛«k»«ws»«n»’
   queryTagName [k ws n] = ‛«k»«ws»«n»’
 
-  StateUpdateExpression [e k self] = ‛\n«self» = «e»;’
+  StateUpdateExpression [e k self] = ‛\n(setf (slot-value self) «e»)’
 
-  ActualParameterList [left x* right] = ‛«left»«x»«right»’
-  pname [k name] = ‛«name», ’
-  ActualParameterExpression [e] = ‛«e», ’
+  ActualParameterList [left x* right] = ‛«x»’
+  pname [k name] = ‛«name» ’
+  ActualParameterExpression [e] = ‛«e» ’
 
   PossibleStates [left snames+ right] = ‛«left»«snames»«right»’
   sname [k name] = ‛«k»«name» ’
 
-  Block [left e* right] = ‛{«e»\n}’
+  Block [left e* right] = ‛(let () «e»\n)’
   ConstructorBlock [left e* right] = ‛\n«left»«e»«right»’
 
   SynonymScopedBlock [k name op e Block] = ‛\n{\nvar «name» = «e»; \n«Block»’

@@ -1,0 +1,178 @@
+ZeroD {
+  comment [left cs* right] = ‛’
+  commentInnards_rec [left cs* right] = ‛’
+  commentInnards_flat [c] = ‛’
+  space [c] = ‛’
+  sq [c] = ‛’
+  string [left cs* right] =  ‛’
+  kp [c] = ‛’
+  lambdaPrefix [c] = ‛’
+  procedurePrefix [c] = ‛’
+  statePrefix [c] = ‛’
+  parameterPrefix [c] = ‛’
+
+  new [c] = ‛’
+  call [c] = ‛’
+  self [c] = ‛’
+  phi [c] = ‛’
+  temp [c] = ‛’
+  forAll [c] = ‛’
+  query [c] = ‛’
+  defineop [c] = ‛’
+  unaryOperator [c] = ‛’
+
+  dot [c] = ‛’
+  updateState [c] = ‛’
+  binaryOperator [c] = ‛’
+
+  verbatimBegin [c] = ‛’
+  verbatimEnd [c] = ‛’
+  compoundNameBegin [c] = ‛’
+  compoundNameEnd [c] = ‛’
+  dtypeBegin [c] = ‛’
+  dtypeEnd [c] = ‛’
+  tagBegin [c] = ‛’
+  tagEnd [c] = ‛’
+
+  nameBracket [c] = ‛’
+  dtypeBracket [c] = ‛’
+  verbatimBracket [c] = ‛’
+  tagBracket [c] = ‛’
+  bracket [c] = ‛’
+  delimiter [c] = ‛’
+
+  def [k c] = ‛’
+  inner [k c] = ‛’
+  private [k c] = ‛’
+  synonym [k c] = ‛’
+  lang [k c] = ‛’
+  keyword [kw] = ‛’
+
+  main [definition+] = ‛«definition»’
+  Definition [x] = ‛«x»’
+  definition [x] = ‛«x»’
+  Immediate [x] = ‛’
+
+  FunctionDefinition [def k name FormalParameterList? Block] = ‛’
+  ProcedureDefinition [def k name FormalParameterList? Block] = ‛’
+  InnerFunctionDefinition [inner k name FormalParameterList? Block] = ‛’
+  InnerProcedureDefinition [inner k name FormalParameterList? Block] = ‛’
+  UnexportedFunctionDefinition [private k name FormalParameterList? Block] = ‛’
+  UnexportedProcedureDefinition [private k name FormalParameterList? Block] = ‛’
+  ConstructorDefinition [def k name FormalParameterList? PossibleStates ConstructorBlock] = ‛\n(defclass «name» 
+((state :accessor state) «ConstructorBlock»))’
+  ConstructionExpression [e] = ‛«e»’
+  ConstructorFieldAssign [name defineop Expression] = ‛\n(«name» :accessor «name» :initform nil)’
+  Expression [e] = ‛«e» ’
+
+  primary_methodCallOfSelf [x] = ‛’
+  primary_methodCallOfPrimary [x] = ‛’
+  primary_builtinCall [x] = ‛’
+  primary_fieldOfSelf [x] = ‛’
+  primary_fieldOfPrimary [p dot name] = ‛’
+  primary_temp [x] = ‛’
+  primary_function [k name] = ‛’
+  primary_procedure [k name] = ‛’
+  primary_parameter [k name] = ‛’
+  primary_state [x] = ‛’
+  primary_instantiation [x] = ‛’
+  primary_null [x] = ‛’
+  primary_dtype [x] = ‛’
+  primary_tag [x] = ‛’
+  primary_dtypeList [x] = ‛’
+  primary_tagList [x] = ‛’
+  primary_genericList [x] = ‛’
+  primary_string [x] = ‛’
+  primary_synonym [x] = ‛’
+  primary_langfunction [x] = ‛’
+  primary_langsnippet [x] = ‛’
+  primary_self [x] = ‛’
+  primary_name [x] = ‛’
+
+  variable_primary [x] = ‛’
+  variable_methodCallOfSelf [x] = ‛’
+  variable_methodCallOfPrimary [x] = ‛’
+  variable_builtinCall [x] = ‛’
+  variable_fieldOfSelf [x] = ‛’
+  variable_fieldOfPrimary [p dot name] = ‛’
+  variable_temp [x] = ‛’
+  variable_parameter [k x] = ‛’
+  variable_langsnippet [x] = ‛’
+  variable_self [x] = ‛’
+  variable_name [x] = ‛’
+
+  selfFieldName [self dot name] = ‛«name»’
+  temporaryName [temp name] = ‛’
+  stateName [prefix name] = ‛’
+  SelfMethodCall [self call name ActualParameterList?] = ‛’
+  MethodCall [primary call name ActualParameterList?] = ‛’
+  BuiltinCall [kp call name ActualParameterList?] = ‛’
+  Instantiation [n primary ActualParameterList?] = ‛’
+  LangFunction [lang name ActualParameterList verbatim] = ‛’
+  LangSnippet [lang name verbatim] = ‛’
+
+  verbatim [left innards+ right] = ‛’
+  verbatimInnards_switchGrammars [left expr right] = ‛’
+  verbatimInnards_flat [c] = ‛’
+  expr [x] = ‛’
+
+  TagName [left name right] = ‛’
+  TagDefinition [def k left name tags+ right] = ‛’
+  TagValue [left name e+ right] = ‛’
+
+  DtypeName [left name right] = ‛’
+  DtypeDefinition_compound [def k name eq CompoundDtype more*] = ‛’
+  DtypeDefinition_single [def k left name fieldname+ right] = ‛’
+  DtypeValue [left name e+ right] = ‛’
+  MoreCompound_any [k star] = ‛’
+  MoreCompound_named [k name] = ‛’
+  CompoundDtype [x] = ‛’
+
+  listEnd [c] = ‛’
+  genericListBegin [c] = ‛’
+  DtypeList [left DtypeName e* right] = ‛’
+  TagList [left TagName e* right] = ‛’
+  GenericList [left k e* right] = ‛’
+
+  name_compoundName [x] = ‛«x»’
+  name_self [x] = ‛«x»’
+  name_null [x] = ‛«x»’
+  name_basicName [x] = ‛«x»’
+
+  compoundName [left cs* right] = ‛«jsmangle (cs)»’
+  basicName [nameFirst nameRest*] = ‛«nameFirst»«nameRest»’
+  nonSpecialName [name] = ‛«name»’
+  nameFirst [c] = ‛«c»’
+  nameRest [c] = ‛«c»’
+
+  StateQueryExpression [caselabels+ left clause+ right] = ‛{«clause»}’
+  DtypeQueryExpression [caselabels+ v left clause+ right] = ‛«v» {\n«clause»\n}’
+  TagQueryExpression [caselabels+ v left clause+ right] = ‛«v» {\n«clause»\n}’
+  ForallExpression [k e temp Block] = ‛«e».forAll («temp» => «Block»);’
+
+  StateQueryClause [k self name Block] = ‛\n(cond ((eq (slot-value self 'state) '«name») «Block»))’
+  DtypeQueryClause [k name v Block] = ‛\n(cond ((eq «name» '«v») «Block»))’
+  TagQueryClause [k name v Block] = ‛\n(cond ((eq «name» '«v») «Block»))’
+
+  querySelf [k ws n] = ‛«k»«ws»«n»’
+  queryDtypeName [k ws n] = ‛«k»«ws»«n»’
+  queryTagName [k ws n] = ‛«k»«ws»«n»’
+
+  StateUpdateExpression [e k self] = ‛’
+
+  ActualParameterList [left x* right] = ‛«x»’
+  pname [k name] = ‛«name» ’
+  ActualParameterExpression [e] = ‛«e» ’
+
+  PossibleStates [left snames+ right] = ‛«left»«snames»«right»’
+  sname [k name] = ‛«k»«name» ’
+
+  Block [left e* right] = ‛(let () «e»\n)’
+  ConstructorBlock [left e* right] = ‛\n«e»’
+
+  SynonymScopedBlock [k name op e Block] = ‛\n{\nvar «name» = «e»; \n«Block»’
+
+  FormalParameterList_withformals [left x* right] = ‛«left»«x»«right»’
+  FormalParameterList_withoutformals [] = ‛()’
+
+}
