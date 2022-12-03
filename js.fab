@@ -53,7 +53,9 @@ ZeroD {
   definition [x] = ‛«x»’
   Immediate [x] = ‛«x»’
 
-  FunctionDefinition [def k name FormalParameterList? Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
+  FunctionDefinition_withformals [def k name FormalParameterList Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
+  FunctionDefinition_withoutformals [def k name Block] = ‛\nfunction «name» () «Block»’
+
   ProcedureDefinition [def k name FormalParameterList? Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
   InnerFunctionDefinition [inner k name FormalParameterList? Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
   InnerProcedureDefinition [inner k name FormalParameterList? Block] = ‛\nfunction «name» «FormalParameterList» «Block»’
@@ -157,7 +159,7 @@ ZeroD {
   queryDtypeName [k ws n] = ‛«k»«ws»«n»’
   queryTagName [k ws n] = ‛«k»«ws»«n»’
 
-  StateUpdateExpression [e k self] = ‛«e» «k» «self»’
+  StateUpdateExpression [e k self] = ‛\n«self» = «e»;’
 
   FormalParameterList [left x* right] = ‛«left»«x»«right»’
   ActualParameterList [left x* right] = ‛«left»«x»«right»’

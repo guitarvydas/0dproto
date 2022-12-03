@@ -99,7 +99,9 @@ ZeroD <: BasicGrammar {
   definition = applySyntactic<Definition>
   Immediate = Expression
     
-  FunctionDefinition = def "function" name FormalParameterList? Block
+  FunctionDefinition = 
+    | def "function" name FormalParameterList Block -- withformals
+    | def "function" name Block -- withoutformals
   ProcedureDefinition = def "procedure" name FormalParameterList? Block
   InnerFunctionDefinition = inner "function" name FormalParameterList? Block
   InnerProcedureDefinition = inner "procedure" name FormalParameterList? Block
