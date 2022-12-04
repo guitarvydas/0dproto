@@ -60,7 +60,7 @@ ZeroD {
   UnexportedFunctionDefinition [private k name FormalParameterList? Block] = ‛’
   UnexportedProcedureDefinition [private k name FormalParameterList? Block] = ‛’
   ConstructorDefinition [def k name FormalParameterList? PossibleStates ConstructorBlock] = ‛\n(defclass «name» 
-((state :accessor state) «ConstructorBlock»))’
+((%state :accessor %state) «ConstructorBlock»))’
   ConstructionExpression [e] = ‛«e»’
   ConstructorFieldAssign [name defineop Expression] = ‛\n(«name» :accessor «name» :initform nil)’
   Expression [e] = ‛«e» ’
@@ -145,34 +145,34 @@ ZeroD {
   nameFirst [c] = ‛«c»’
   nameRest [c] = ‛«c»’
 
-  StateQueryExpression [caselabels+ left clause+ right] = ‛{«clause»}’
-  DtypeQueryExpression [caselabels+ v left clause+ right] = ‛«v» {\n«clause»\n}’
-  TagQueryExpression [caselabels+ v left clause+ right] = ‛«v» {\n«clause»\n}’
-  ForallExpression [k e temp Block] = ‛«e».forAll («temp» => «Block»);’
+  StateQueryExpression [caselabels+ left clause+ right] = ‛’
+  DtypeQueryExpression [caselabels+ v left clause+ right] = ‛’
+  TagQueryExpression [caselabels+ v left clause+ right] = ‛’
+  ForallExpression [k e temp Block] = ‛’
 
-  StateQueryClause [k self name Block] = ‛\n(cond ((eq (slot-value self 'state) '«name») «Block»))’
-  DtypeQueryClause [k name v Block] = ‛\n(cond ((eq «name» '«v») «Block»))’
-  TagQueryClause [k name v Block] = ‛\n(cond ((eq «name» '«v») «Block»))’
+  StateQueryClause [k self name Block] = ‛’
+  DtypeQueryClause [k name v Block] = ‛’
+  TagQueryClause [k name v Block] = ‛’
 
-  querySelf [k ws n] = ‛«k»«ws»«n»’
-  queryDtypeName [k ws n] = ‛«k»«ws»«n»’
-  queryTagName [k ws n] = ‛«k»«ws»«n»’
+  querySelf [k ws n] = ‛’
+  queryDtypeName [k ws n] = ‛’
+  queryTagName [k ws n] = ‛’
 
   StateUpdateExpression [e k self] = ‛’
 
-  ActualParameterList [left x* right] = ‛«x»’
-  pname [k name] = ‛«name» ’
-  ActualParameterExpression [e] = ‛«e» ’
+  ActualParameterList [left x* right] = ‛’
+  pname [k name] = ‛’
+  ActualParameterExpression [e] = ‛’
 
-  PossibleStates [left snames+ right] = ‛«left»«snames»«right»’
-  sname [k name] = ‛«k»«name» ’
+  PossibleStates [left snames+ right] = ‛’
+  sname [k name] = ‛’
 
-  Block [left e* right] = ‛(let () «e»\n)’
-  ConstructorBlock [left e* right] = ‛\n«e»’
+  Block [left e* right] = ‛’
+  ConstructorBlock [left e* right] = ‛«e»’
 
-  SynonymScopedBlock [k name op e Block] = ‛\n{\nvar «name» = «e»; \n«Block»’
+  SynonymScopedBlock [k name op e Block] = ‛’
 
-  FormalParameterList_withformals [left x* right] = ‛«left»«x»«right»’
-  FormalParameterList_withoutformals [] = ‛()’
+  FormalParameterList_withformals [left x* right] = ‛’
+  FormalParameterList_withoutformals [] = ‛’
 
 }

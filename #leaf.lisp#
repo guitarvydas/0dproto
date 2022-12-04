@@ -1,0 +1,50 @@
+
+;;
+(defun initialize-instance Leaf :after (func ) 
+       (let () 
+	 (setf (slot-value self 'func) func ) 
+	 (setf (slot-value self 'reset) #'reset ) 
+	 (setf (slot-value self 'completed___Q) #'completed___Q ) 
+	 (setf (slot-value self 'handle) #'handle ) 
+	 (setf (slot-value self 'step) #'step ) (funcall clear__outputs )  (funcall reset )  
+	 (setf (slot-value self) 'armed )  ))
+;;
+(defun clear__outputs () (let () langjsself  «
+			      self.outputs = [];
+			      » 
+			      ))
+;;
+(defun handle (message sendFunction )
+  (let () 
+    (cond ((eq (slot-value self 'state) 'armed) 
+	   (let () 
+	     ;;
+	     (defun send (port data trace ) (let () (funcall push ⟨Messageport data self trace ⟩  ) 
+						 )) 
+{
+var val = (funcall func message  send  ) ; 
+(let () (funcall push ⟨Message'out  val self message ⟩  ) 
+(setf (slot-value self) 'completed ) 
+) 
+)))
+(cond ((eq (slot-value self 'state) 'completed) (let () (die "Leaf not armed"  ) 
+))) 
+))
+;;
+(defun step (sendFunction ) (let () 
+(cond ((eq (slot-value self 'state) 'completed) (let () 
+)))
+(cond ((eq (slot-value self 'state) 'armed) (let () (die "internal error: Leaf/step called on armed leaf"  ) 
+))) 
+))
+;;
+(defun reset () (let () 
+(setf (slot-value self) 'armed ) 
+))
+;;
+(defun completed___Q () (let () 
+(cond ((eq (slot-value self 'state) 'armed) (let () 'no  
+)))
+(cond ((eq (slot-value self 'state) 'completed) (let () 'yes  
+))) 
+))

@@ -1,0 +1,12 @@
+#def constructor Leaf (𝜌func) { ✦armed ✦completed } {
+    š.func ≣ 𝜌func
+    š/reset
+    ✦armed ⇒ š
+}
+
+
+
+
+
+
+

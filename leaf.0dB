@@ -27,6 +27,9 @@
   #lang js (self) «
     self.outputs = [];
   »
+  #lang cl (self) «
+    (setf (slot-value %self 'outputs) nil)
+  »
 }
 
 #def function handle (𝜌message 𝜌sendFunction) {
