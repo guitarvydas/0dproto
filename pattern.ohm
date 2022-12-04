@@ -52,6 +52,6 @@ NestingGrammar {
   angleprefix = "=" | "<" | ">"
   anglesuffix = "=" | "<" | ">"
 
-  pattern = "✕" iteminpattern 
-  literal = | "✕" | bracket
+  pattern = "#" "c" "l" "a" "s" "s" " " iteminpattern " " "{" dontcare "}" 
+  literal = | "#" | "c" | "l" | "a" | "s" | "s" | " " | " " | "{" | "}" | bracket
 }

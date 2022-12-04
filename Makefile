@@ -3,10 +3,10 @@ here=`pwd`
 all: container.js leaf.0d test.0d
 
 dev:
-	touch leaf.u0d
-	(make leaf.0d)
-	# rm -f smalltest.lisp
-	# (make smalltest.lisp)
+	# touch leaf.u0d
+	# (make leaf.0d)
+	rm -f smalltest.lisp
+	(make smalltest.lisp)
 
 full: install repos container.0d leaf.0d test.0d
 
