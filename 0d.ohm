@@ -79,8 +79,9 @@ BasicKeywords <: BasicDelimiter {
   private = kp "private"
   synonym = kp "synonym"
   lang = kp "lang"
+  class = kp "class"
 
-  keyword = def | inner | private | synonym | lang
+  keyword = def | inner | private | synonym | lang | class
 }
 
 BasicGrammar <: BasicKeywords {
@@ -89,7 +90,7 @@ BasicGrammar <: BasicKeywords {
 
 
 ZeroD <: BasicGrammar {
-  main := definition+
+  main := class spaces name spaces "{" definition+ "}" spaces
 
   Definition = DtypeDefinition | TagDefinition | FunctionDefinition | ProcedureDefinition
     | ConstructorDefinition 
@@ -105,7 +106,7 @@ ZeroD <: BasicGrammar {
   InnerProcedureDefinition = inner "procedure" name FormalParameterList? Block
   UnexportedFunctionDefinition = private "function" name FormalParameterList? Block
   UnexportedProcedureDefinition = private "procedure" name FormalParameterList? Block
-  ConstructorDefinition = def "constructor" name FormalParameterList? PossibleStates ConstructorBlock
+  ConstructorDefinition = def "constructor" FormalParameterList? PossibleStates ConstructorBlock
 
   ConstructionExpression = ConstructorFieldAssign | Expression
 

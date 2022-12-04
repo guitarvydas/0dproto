@@ -58,10 +58,12 @@ leaf.lisp: leaf.0d
 
 smalltest.lisp: smalltest.0d
 	echo >temp.lisp
+	echo >env.txt
+	./fab/fab - clZeroD 0d.ohm classname.fab --support='./jssupport.js' <smalltest.0d
 	#./fab/fab - clZeroD 0d.ohm clclasses.fab --support='./jssupport.js' <smalltest.0d >>temp.lisp
-	./fab/fab - clZeroD 0d.ohm cl.fab --support='./jssupport.js' <smalltest.0d >>temp.lisp
-	python3 repl_cleanup.py <temp.lisp >smalltest.lisp
-	cat smalltest.lisp
+	#./fab/fab - clZeroD 0d.ohm cl.fab --support='./jssupport.js' <smalltest.0d >>temp.lisp
+	#python3 repl_cleanup.py <temp.lisp >smalltest.lisp
+	#cat smalltest.lisp
 
 # container.js: container.0d
 # 	./fab/fab - ZeroD 0d.ohm js0d.fmt --support='./jssupport.js' <container.0d | sed -e '/^$$/d' >container.js

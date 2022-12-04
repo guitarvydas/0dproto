@@ -1,9 +1,10 @@
-#def constructor Leaf (𝜌func) { ✦armed ✦completed } {
-    š.func ≣ 𝜌func
-    š/reset
-    ✦armed ⇒ š
+#class Leaf {
+  #def constructor (𝜌func) { ✦armed ✦completed } {
+      š.func ≣ 𝜌func
+      š/reset
+      ✦armed ⇒ š
+  }
 }
-
 
 
 

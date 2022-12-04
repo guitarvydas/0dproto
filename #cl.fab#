@@ -48,7 +48,7 @@ ZeroD {
   lang [k c] = ‛«k»«c»’
   keyword [kw] = ‛«kw»’
 
-  main [definition+] = ‛«definition»’
+  main [kclass lb definition+ rb] = ‛«definition»’
   Definition [x] = ‛«x»’
   definition [x] = ‛«x»’
   Immediate [x] = ‛«x»’
