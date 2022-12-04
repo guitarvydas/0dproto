@@ -58,7 +58,6 @@ leaf.lisp: leaf.0d
 
 smalltest.lisp: smalltest.0d
 	echo >temp.lisp
-	echo >env.txt
 	./fab/fab - clZeroD 0d.ohm classname.fab --support='./jssupport.js' <smalltest.0d
 	#./fab/fab - clZeroD 0d.ohm clclasses.fab --support='./jssupport.js' <smalltest.0d >>temp.lisp
 	#./fab/fab - clZeroD 0d.ohm cl.fab --support='./jssupport.js' <smalltest.0d >>temp.lisp
