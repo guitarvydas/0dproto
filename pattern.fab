@@ -14,8 +14,6 @@ NestingGrammar {
   leaf [sp1* c1+ sp2* c2*] = ‛«sp1»«c1»«sp2»«c2»’
   container [b] = ‛«b»’
 
-  runOfSpaces [s+] = ‛«s»’
-  runOfUninterestingChars [cs+] = ‛«cs»’
   uninterestingChar [c] = ‛«c»’
 
   bracket [c] = ‛«c»’

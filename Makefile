@@ -3,8 +3,10 @@ here=`pwd`
 all: container.js leaf.0d test.0d
 
 dev:
-	rm -f smalltest.lisp
-	(make smalltest.lisp)
+	touch leaf.u0d
+	(make leaf.0d)
+	# rm -f smalltest.lisp
+	# (make smalltest.lisp)
 
 full: install repos container.0d leaf.0d test.0d
 
@@ -56,9 +58,10 @@ leaf.lisp: leaf.0d
 	python3 repl_cleanup.py <temp.lisp >leaf.lisp
 	cat leaf.lisp
 
-smalltest.lisp: smalltest.0d
+smalltest.lisp: smalltest.u0d
 	echo >temp.lisp
-	./fab/fab - clZeroD 0d.ohm classname.fab --support='./jssupport.js' <smalltest.0d
+	bred/bred-transpile.bash classname.bred bred <smalltest.u0d
+	#./fab/fab - clZeroD 0d.ohm classname.fab --support='./jssupport.js' <smalltest.0d
 	#./fab/fab - clZeroD 0d.ohm clclasses.fab --support='./jssupport.js' <smalltest.0d >>temp.lisp
 	#./fab/fab - clZeroD 0d.ohm cl.fab --support='./jssupport.js' <smalltest.0d >>temp.lisp
 	#python3 repl_cleanup.py <temp.lisp >smalltest.lisp

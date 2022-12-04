@@ -1,0 +1,5 @@
+‛#class «name» {«stuff»}’
+‛#meta pushvar class = “«name»”’
+
+‛#class «name» {_}’
+‛#meta pushvar class = “«name»”’
