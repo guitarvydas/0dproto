@@ -5,4 +5,4 @@ subrepos:
   branch: 'dev'
 - path: 'fab'
   repo: 'git@github.com:guitarvydas/fab.git'
-  branch: 'dev'
+  branch: 'v1'
