@@ -1,64 +1,37 @@
 {
   "main": {
-    "id": "3e3dd69acf932ee6",
+    "id": "35d5ee7c4a2c288d",
     "type": "split",
     "children": [
       {
-        "id": "eec17f2d7370477c",
+        "id": "382745f1b1db5dba",
         "type": "tabs",
         "children": [
           {
-            "id": "f7d18f1980bab0d1",
+            "id": "dda0d586fa2556a9",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "Message.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "d71a08c13f235192",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Synonym.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "1d0750fd84bfabd8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
-                "mode": "source",
-                "source": false
+                "file": "cl/play/Syntax Knob Photo.jpg"
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "adf6209bdbb8f69a",
+    "id": "6628ece40f6ac815",
     "type": "split",
     "children": [
       {
-        "id": "1d154ad77e233bb2",
+        "id": "24402354b3bdba01",
         "type": "tabs",
         "children": [
           {
-            "id": "9faaad81ff72ce11",
+            "id": "d40dc63e774df8cd",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -68,7 +41,7 @@
             }
           },
           {
-            "id": "84264de166aa906e",
+            "id": "b21b9145d626a848",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -83,10 +56,10 @@
             }
           },
           {
-            "id": "39c29f576ecb8850",
+            "id": "3338ecbd9e778fd7",
             "type": "leaf",
             "state": {
-              "type": "starred",
+              "type": "bookmarks",
               "state": {}
             }
           }
@@ -97,20 +70,20 @@
     "width": 300
   },
   "right": {
-    "id": "46c05bcf66c23545",
+    "id": "f6d161511d35adf7",
     "type": "split",
     "children": [
       {
-        "id": "f18ef78ff974cf01",
+        "id": "68f0b702f676da56",
         "type": "tabs",
         "children": [
           {
-            "id": "9988294a6f3d8568",
+            "id": "3159a3d537b79706",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "cl/play/Syntax Knob Photo.jpg",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -122,19 +95,19 @@
             }
           },
           {
-            "id": "2ea64f7f40e0cba6",
+            "id": "768d73765bed1000",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "cl/play/Syntax Knob Photo.jpg",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
           },
           {
-            "id": "ac0a730952e85e88",
+            "id": "0ff477f1eef95596",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -145,12 +118,12 @@
             }
           },
           {
-            "id": "f3b4b918ca5e7443",
+            "id": "99ac54e06a97d129",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md"
+                "file": "cl/play/Syntax Knob Photo.jpg"
               }
             }
           }
@@ -161,11 +134,20 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "1d0750fd84bfabd8",
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "dda0d586fa2556a9",
   "lastOpenFiles": [
-    "message-synonym.md",
-    "Synonym.md",
-    "Message.md",
-    "Untitled.md"
+    "cl/#aux.lisp#",
+    "cl/play/Syntax Knob.md",
+    "cl/play/Syntax Knob Photo.jpg"
   ]
 }

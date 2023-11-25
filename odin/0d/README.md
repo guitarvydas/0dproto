@@ -1,0 +1,12 @@
+clarification:
+- The comment on the odin0d/0d/0d.odin:Message struct says `"port" refers to the name of the incoming port to this component.`
+- This is not strictly true, a Message port refers to the name of the incoming OR outgoing port
+- This implies that a Component has an input api AND an output api, which is vital for flexibility and plugability.
+- The idea of a Component refering only to its own namespace makes it possible to build Components that are stand-alone and pluggable at runtime.
+- Plugability implies indirection, which is also seen in "dependency injection", hence, has a runtime cost.
+- It might be possible to optimize-away outgoing ports in specific cases, but, such code becomes non-pluggable at "runtime".Such code might still be pluggable at edit-time.
+- Indirection of this kind is also seen in DLLs and loaders of object files (.o, .obj, etc).  Operating system loaders optimize the indirection once while loading (via mutation), thus, reducing the runtime cost and amortizing the cost-of-indirection for successive accesses.
+- Early Lisps did this kind of thing in "fastcalls".
+- Smalltalk does it by caching lookups.
+- Self invented JIT compilation, i.e. reduce runtime cost by a one-time cost of compiling optimized code during runtime.
+- Modern JITs use Self's invention.
