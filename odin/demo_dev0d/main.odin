@@ -1,4 +1,4 @@
-package kinopio2md
+package dev0d
 
 import "core:fmt"
 import "core:log"
@@ -8,7 +8,6 @@ import "core:slice"
 import "core:os"
 import "core:unicode/utf8"
 
-import      "../das2json"
 import reg  "../registry0d"
 import zd   "../0d"
 import leaf "../leaf0d"
@@ -116,7 +115,6 @@ initialize_component_palette :: proc (diagram_source_file: string) -> (palette: 
 
     project_specific_components (&leaves)
 
-    das2json.drawio2json (diagram_source_file)
     containers := reg.json2internal (diagram_source_file)
     palette = reg.make_component_registry(leaves[:], containers)
     return palette
