@@ -11,9 +11,11 @@
             "id": "dda0d586fa2556a9",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "cl/play/Syntax Knob Photo.jpg"
+                "file": "odin/README.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -83,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "cl/play/Syntax Knob Photo.jpg",
+                "file": "odin/README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "cl/play/Syntax Knob Photo.jpg",
+                "file": "odin/README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -123,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "cl/play/Syntax Knob Photo.jpg"
+                "file": "odin/README.md"
               }
             }
           }
@@ -136,6 +138,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "khoj:Khoj": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -146,8 +149,9 @@
   },
   "active": "dda0d586fa2556a9",
   "lastOpenFiles": [
+    "odin/0d/README.md",
+    "cl/play/Syntax Knob Photo.jpg",
     "cl/#aux.lisp#",
-    "cl/play/Syntax Knob.md",
-    "cl/play/Syntax Knob Photo.jpg"
+    "cl/play/Syntax Knob.md"
   ]
 }
