@@ -1,0 +1,1 @@
+- remove "name_prefix" from instantiators - fully qualify "name" before calling the instantiator

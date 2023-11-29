@@ -147,10 +147,25 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "dda0d586fa2556a9",
+  "active": "d40dc63e774df8cd",
   "lastOpenFiles": [
+    "DPL syntax/DPL syntax-input gate.drawio.svg",
+    "DPL syntax/DPL syntax-output gate.drawio.svg",
+    "odin/#README.md#",
+    "DPL syntax/DPL syntax-notes.drawio.svg",
+    "DPL syntax/DPL syntax-send().drawio.svg",
+    "DPL syntax/DPL syntax-handle().drawio.svg",
+    "DPL syntax/DPL syntax-Leaf.drawio.svg",
+    "DPL syntax/DPL syntax-Container.drawio.svg",
+    "DPL syntax/DPL syntax-errrors, exceptions.drawio.svg",
+    "DPL syntax/DPL syntax-active and idle.drawio.svg",
+    "DPL syntax/DPL syntax-concurrency.drawio.svg",
+    "DPL syntax/DPL syntax-parallel.drawio.svg",
+    "odin/TODO.md",
+    "DPL syntax/DPL syntax.drawio",
+    "DPL syntax",
     "odin/0d/README.md",
-    "cl/play/Syntax Knob Photo.jpg",
+    "odin/README.md",
     "cl/#aux.lisp#",
     "cl/play/Syntax Knob.md"
   ]

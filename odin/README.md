@@ -2,9 +2,9 @@
 
 Convert diagrams in src/*.drawio to executable code.
 
-Parse a given diagram, with given syntax rules, and emit the diagram as JSON.
-
-Inhale the JSON and execute.
+## Steps
+1. Parse iagrams, with given syntax rules, and emit the diagram as JSON.
+2. Inhale the JSON and execute.
 
 # Details
 
@@ -17,50 +17,124 @@ Fundamentally, internal language doesn't matter when designing a solution to a p
 If you need to optimize the solution (a Big If), then internal language and niggly details do matter.
 
 # Syntax Rules 
+## Overview
+### Visual Syntax
+- bare component
+- Container
+- Leaf
+- input gate
+- output gate 
+- input port
+- output port
+- connection
+- VSH component
+- comment
 
-# DaS - Diagrams as Syntax
+#### Notes
+- "VSH" means Visual SHell (like a `draw.io` version of */bin/bash*, but simplified).
+- *gates* and *ports* are similar, except that *gates* represent inputs and outputs of drawings, where *ports* represent in/out ports of components inside diagrams.
+- Containers can contain other Containers or Leaves, Leaves are at the *bottom* and contain nothing but code.
+- these diagrams can be found in ../DPL syntax/DPL syntax.drawio.
+### Visual Semantics
+- down
+- up
+- across
+- through
+- fan-out (split)
+- fan-in (join)
 
-I use the name "DaS" to mean any use of diagrams instead of text for writing programs.
+### Style, Readability
+- opacity
+- line style
+- line thickness
 
-Note that most diagrams include text, but are not exclusively text.
+### Idioms
+- feedback
+- sequential
+- parallel
+- concurrency
+- errors, exceptions
 
-Text is better for expressing *some* things, like equations.
+### Low Level Technicalities
+- kickoff inject
+- handle ()
+- send ()
+- message copying
+- active and idle
+- notes
 
-Diagrams are better for expressing *some* things, like control flow.
+## Visual Syntax
+### bare component
+![[DPL syntax-bare component.drawio.svg]]
+### Container
+![[DPL syntax-Container.drawio.svg]]
+### Leaf
+![[DPL syntax-Leaf.drawio.svg]]
+### input gate
+![[DPL syntax-input gate.drawio.svg]]
+### output gate 
+![[DPL syntax-output port.drawio.svg]]
+### input port
+![[DPL syntax-input port.drawio.svg]]
+### output port
+![[DPL syntax-output port.drawio.svg]]
+### connection
+![[DPL syntax-connection.drawio.svg]]
+### VSH component
+![[DPL syntax-vsh component.drawio.svg]]
+### comment
+![[DPL syntax-comment.drawio.svg]]
 
-It is better to draw diagrams in way that layered and structured.  My advice is to follow the Rule of 7, and to build solutions as layers of diagrams within diagrams - Containers down to Leaves. Containers can contain Containers and/or Leaves. Leaves contain code (Currently textual code. In the future, maybe Leaf components will contain StateCharts and Drakon diagrams).
+## Visual Semantics
+### down
+![[DPL syntax-down.drawio.svg]]
+### up
+![[DPL syntax-up.drawio.svg]]
+### across
+![[DPL syntax-across.drawio.svg]]
+### through
+![[DPL syntax-through.drawio.svg]]
+### fan-out (split)
+![[DPL syntax-fan-out (split).drawio.svg]]
+### fan-in (join)
+![[DPL syntax-fan-in (join).drawio.svg]]
 
-# Drawware
+## Style, Readability
+### opacity
+![[DPL syntax-opacity.drawio.svg]]
+### line style
+![[DPL syntax-line style.drawio.svg]]
+### line thickness
+![[DPL syntax-line thickness.drawio.svg]]
 
-Drawware is software written in diagram form.
+## Idioms
+### feedback
+![[DPL syntax-feedback.drawio.svg]]
+### sequential
+![[DPL syntax-sequential.drawio.svg]]
+### parallel
+![[DPL syntax-parallel.drawio.svg]]
+### concurrency
+![[DPL syntax-concurrency.drawio.svg]]
+### errors, exceptions
+![[DPL syntax-errrors, exceptions.drawio.svg]]
 
-Drawware uses DaS.
+## Low Leval Technicalities
+### kickoff inject
+![[DPL syntax-kickoff inject.drawio.svg]]
+### handle ()
+![[DPL syntax-handle().drawio.svg]]
+### send ()
+![[DPL syntax-send().drawio.svg]]
+### message copying
+![[DPL syntax-message copying.drawio.svg]]
+### active and idle
+![[DPL syntax-active and idle.drawio.svg]]
+### notes
+![[DPL syntax-notes.drawio.svg]]
 
-The language designer(s) makes up the Rules for what symbols may be used and what they mean.
-
-## What are the Differences Between Textual Syntax and Diagrammatic Syntax?
-### Stretching, Resizing
-  - Syntactic elements can be stretched and resized
-	- e.g. a rectangle can be resized, yet, still be recognized as a rectangle
-  - vector
-  - in contrast, syntactic elements in textual languages tend to be little, fixed-sized bitmaps
-  - zooming
-	- diagrams can be zoomed, whole diagrams can be resized
-	- we see some of this kind of thing in modern text editors - they give a detailed view of the code in one window, and an overall view of most of the code, shrunk down, in another window
-		- modern text windows can be zoomed in and out using command+ and command- keys, thinking of code in DaS terms just makes this kind of thing more obvious
-
-### Overlap
-  - syntactic elements of DaS can overlap (like windows in windowing systems) 
-  - in contrast, syntactic elements of TaS (Text as Syntax) tend to be arranged in grids of non-overlapping cells (in general, characters do not overlap other characters) - a hold-over from the days of EBCDIC and ASCII
-
-### Declarative vs. Sequential
-  - most TaS languages (C, Python, Rust, etc.) tend to be read left-to-right, top-to-bottom
-  - there are *some* TaS languages that are declarative - PROLOG, HTML, etc. - these imply no reading / execution ordering
-  - Lisp has a "recursive syntax" - you read Lisp inside then out
-  - sequential syntax is a hold-over from the EE design of CPUs 
-	- CPUs are but bits of electronics that sequentially process commands
-	- CPUs are meant for single threads (global, mutable, shared stack, global, mutable, shared instruction pointer, global, shared, mutable RAM, etc.) 
-		- single-threaded CPUs can be forced to operate in multi-threaded mode, but, this requires extra work and extra code
-		- in the 1950's CPUs were expensive and Memory was scarce, hence, it made sense to squeeze blood out of CPUs and trade off programmer-time for cost of CPUs and Memory
-		- in 2023, CPUs are no longer expensive (Arduinos, rPIs, etc.) and Memory is abundant, yet, we needlessly continue to use methods, like time-sharing and garbage collection and worrying about memory allocation and we spend copious amounts of programmer time to preserve resources that are no longer in short supply
-		
+# Examples
+## Basics
+## Drawio
+## VSH
+## Dev0D

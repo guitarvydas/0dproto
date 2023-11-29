@@ -64,19 +64,19 @@ sleep_instantiate :: proc(name_prefix: string, name: string, owner : ^zd.Eh) -> 
 
 sleep_handler :: proc(eh: ^Eh, message: ^Message) {
     first_time :: proc (m: ^Message) -> bool {
-	return ! zd.is_tick (m)
+        return ! zd.is_tick (m)
     }
     info := &eh.instance_data.(SleepInfo)
     if first_time (message) {
-	info.saved_message = message
-	zd.set_active (eh) // tell engine to keep running this component with 'ticks'
+        info.saved_message = message
+        zd.set_active (eh) // tell engine to keep running this component with 'ticks'
     }
     count := info.counter
     count += 1
     if count >= SLEEPDELAY {
-	zd.set_idle (eh) // tell engine that we're finally done
-	zd.forward (eh=eh, port="output", msg=info.saved_message)
-	count = 0
+        zd.set_idle (eh) // tell engine that we're finally done
+        zd.forward (eh=eh, port="output", msg=info.saved_message)
+        count = 0
     }
    info.counter = count
 }
