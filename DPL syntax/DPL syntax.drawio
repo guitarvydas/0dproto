@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2023-11-29T14:26:51.724Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.8 Chrome/114.0.5735.289 Electron/25.5.0 Safari/537.36" etag="mHo0pWrqdqMAy5dhMayG" version="21.6.8" type="device" pages="31">
+<mxfile host="Electron" modified="2023-12-01T13:04:25.232Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.8 Chrome/114.0.5735.289 Electron/25.5.0 Safari/537.36" etag="fKEEWue4sy8snvLXSFX6" version="21.6.8" type="device" pages="31">
   <diagram name="input gate" id="C4jyvQIFThiQjirVfPnj">
     <mxGraphModel dx="961" dy="774" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
@@ -962,10 +962,10 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="5aZwqiTn1-Ik3uZTuc0R-1" value="a &quot;door&quot; is a &quot;port&quot;, but, is distinguished by the fact that it belongs to the enclosing Container, i.e. the input/output of a single diagram" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=6;" parent="1" vertex="1">
+        <mxCell id="5aZwqiTn1-Ik3uZTuc0R-1" value="a &quot;gate&quot; is a &quot;port&quot;, but, is distinguished by the fact that it belongs to the enclosing Container, i.e. the input/output of a single diagram" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=6;" parent="1" vertex="1">
           <mxGeometry x="48" y="96" width="192" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="5aZwqiTn1-Ik3uZTuc0R-2" value="&quot;doors&quot; are rendered differently (rhombus instead of pill-shaped) to distinguish them from the ports of children components, and, to help the compiler figure out what a specific diagram means" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=6;" parent="1" vertex="1">
+        <mxCell id="5aZwqiTn1-Ik3uZTuc0R-2" value="&quot;gates&quot; are rendered differently (rhombus instead of pill-shaped) to distinguish them from the ports of children components, and, to help the compiler figure out what a specific diagram means" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=6;" parent="1" vertex="1">
           <mxGeometry x="72" y="180" width="216" height="72" as="geometry" />
         </mxCell>
         <mxCell id="5aZwqiTn1-Ik3uZTuc0R-3" value="A single diagram contains components and wiring between the components (and itself, the parent Container).&amp;nbsp; It is not possible to tell if a component is a Leaf or another Container.&amp;nbsp; If a given component is another container, then its diagram &lt;i&gt;must&lt;/i&gt;&amp;nbsp;appear as another tab (with exactly the same name) in the same draw.io project." style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" parent="1" vertex="1">

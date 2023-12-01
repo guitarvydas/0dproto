@@ -1,5 +1,5 @@
-<mxfile host="Electron" modified="2023-11-29T13:50:09.559Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.8 Chrome/114.0.5735.289 Electron/25.5.0 Safari/537.36" etag="-pHPz1r3qZxrIAKr5iGx" version="21.6.8" type="device" pages="31">
-  <diagram name="input door" id="C4jyvQIFThiQjirVfPnj">
+<mxfile host="Electron" modified="2023-11-29T14:26:51.724Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.8 Chrome/114.0.5735.289 Electron/25.5.0 Safari/537.36" etag="mHo0pWrqdqMAy5dhMayG" version="21.6.8" type="device" pages="31">
+  <diagram name="input gate" id="C4jyvQIFThiQjirVfPnj">
     <mxGraphModel dx="961" dy="774" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
@@ -10,12 +10,12 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="HvFLehKjoOY9Xbcp95X2" name="output door">
-    <mxGraphModel dx="961" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+  <diagram id="HvFLehKjoOY9Xbcp95X2" name="output gate">
+    <mxGraphModel dx="961" dy="774" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="Z8rkv5cHNNC_B8Id97pS-2" value="output" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;" vertex="1" parent="1">
+        <mxCell id="Z8rkv5cHNNC_B8Id97pS-2" value="output" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;" parent="1" vertex="1">
           <mxGeometry x="80" y="80" width="80" height="80" as="geometry" />
         </mxCell>
       </root>
@@ -57,17 +57,17 @@
     </mxGraphModel>
   </diagram>
   <diagram id="Cq7fRe73HG6ycsxYxR5m" name="connection">
-    <mxGraphModel dx="961" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="961" dy="774" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="8nNeKoGxQh4lTTYBOIv6-3" value="input" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;" vertex="1" parent="1">
+        <mxCell id="8nNeKoGxQh4lTTYBOIv6-3" value="input" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;" parent="1" vertex="1">
           <mxGeometry x="200" y="70" width="66" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="8nNeKoGxQh4lTTYBOIv6-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="8nNeKoGxQh4lTTYBOIv6-4" target="8nNeKoGxQh4lTTYBOIv6-3">
+        <mxCell id="8nNeKoGxQh4lTTYBOIv6-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="8nNeKoGxQh4lTTYBOIv6-4" target="8nNeKoGxQh4lTTYBOIv6-3" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="8nNeKoGxQh4lTTYBOIv6-4" value="output" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;" vertex="1" parent="1">
+        <mxCell id="8nNeKoGxQh4lTTYBOIv6-4" value="output" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;" parent="1" vertex="1">
           <mxGeometry x="40" y="70" width="66" height="25" as="geometry" />
         </mxCell>
       </root>
@@ -693,151 +693,151 @@
     </mxGraphModel>
   </diagram>
   <diagram id="KN6xEyqNsoiodLe3PVa3" name="parallel">
-    <mxGraphModel dx="961" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="961" dy="774" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="mYq0q-khSP34I9SF3RHz-1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="mYq0q-khSP34I9SF3RHz-3" target="mYq0q-khSP34I9SF3RHz-6">
+        <mxCell id="mYq0q-khSP34I9SF3RHz-1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="mYq0q-khSP34I9SF3RHz-3" target="mYq0q-khSP34I9SF3RHz-6" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="mYq0q-khSP34I9SF3RHz-2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="mYq0q-khSP34I9SF3RHz-3" target="mYq0q-khSP34I9SF3RHz-9">
+        <mxCell id="mYq0q-khSP34I9SF3RHz-2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="mYq0q-khSP34I9SF3RHz-3" target="mYq0q-khSP34I9SF3RHz-9" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="mYq0q-khSP34I9SF3RHz-3" value="par" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;" vertex="1" parent="1">
+        <mxCell id="mYq0q-khSP34I9SF3RHz-3" value="par" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;" parent="1" vertex="1">
           <mxGeometry x="80" y="257" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="mYq0q-khSP34I9SF3RHz-4" value="output" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;" vertex="1" parent="1">
+        <mxCell id="mYq0q-khSP34I9SF3RHz-4" value="output" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;" parent="1" vertex="1">
           <mxGeometry x="649" y="257" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="mYq0q-khSP34I9SF3RHz-5" value="Echo" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="mYq0q-khSP34I9SF3RHz-5" value="Echo" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;" parent="1" vertex="1">
           <mxGeometry x="346" y="366" width="134" height="87" as="geometry">
             <mxRectangle x="-98" y="-1230" width="99" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="mYq0q-khSP34I9SF3RHz-6" value="input" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;" vertex="1" parent="mYq0q-khSP34I9SF3RHz-5">
+        <mxCell id="mYq0q-khSP34I9SF3RHz-6" value="input" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;" parent="mYq0q-khSP34I9SF3RHz-5" vertex="1">
           <mxGeometry x="-16.75" y="36" width="66" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="mYq0q-khSP34I9SF3RHz-7" value="output" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;" vertex="1" parent="mYq0q-khSP34I9SF3RHz-5">
+        <mxCell id="mYq0q-khSP34I9SF3RHz-7" value="output" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;" parent="mYq0q-khSP34I9SF3RHz-5" vertex="1">
           <mxGeometry x="84.75" y="36" width="66" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="mYq0q-khSP34I9SF3RHz-8" value="Echo" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="mYq0q-khSP34I9SF3RHz-8" value="Echo" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;" parent="1" vertex="1">
           <mxGeometry x="346" y="134" width="134" height="87" as="geometry">
             <mxRectangle x="-98" y="-1230" width="99" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="mYq0q-khSP34I9SF3RHz-9" value="input" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;" vertex="1" parent="mYq0q-khSP34I9SF3RHz-8">
+        <mxCell id="mYq0q-khSP34I9SF3RHz-9" value="input" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;" parent="mYq0q-khSP34I9SF3RHz-8" vertex="1">
           <mxGeometry x="-16.75" y="36" width="66" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="mYq0q-khSP34I9SF3RHz-10" value="output" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;" vertex="1" parent="mYq0q-khSP34I9SF3RHz-8">
+        <mxCell id="mYq0q-khSP34I9SF3RHz-10" value="output" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;" parent="mYq0q-khSP34I9SF3RHz-8" vertex="1">
           <mxGeometry x="84.75" y="36" width="66" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="mYq0q-khSP34I9SF3RHz-11" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="mYq0q-khSP34I9SF3RHz-10" target="mYq0q-khSP34I9SF3RHz-4">
+        <mxCell id="mYq0q-khSP34I9SF3RHz-11" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="mYq0q-khSP34I9SF3RHz-10" target="mYq0q-khSP34I9SF3RHz-4" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="mYq0q-khSP34I9SF3RHz-12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="mYq0q-khSP34I9SF3RHz-7" target="mYq0q-khSP34I9SF3RHz-4">
+        <mxCell id="mYq0q-khSP34I9SF3RHz-12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="mYq0q-khSP34I9SF3RHz-7" target="mYq0q-khSP34I9SF3RHz-4" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="mYq0q-khSP34I9SF3RHz-13" value="&lt;b&gt;&lt;font style=&quot;font-size: 24px;&quot;&gt;Parallel Routing&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="mYq0q-khSP34I9SF3RHz-13" value="&lt;b&gt;&lt;font style=&quot;font-size: 24px;&quot;&gt;Parallel Routing&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="80" y="40" width="201" height="41" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="6l0RDXmp64g7ZEK4k0z0" name="concurrency">
-    <mxGraphModel dx="961" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="961" dy="774" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="kSFe2pH-IC4mA15q6XF1-1" value="see &quot;parallell&quot;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;shadow=1;" vertex="1" parent="1">
+        <mxCell id="kSFe2pH-IC4mA15q6XF1-1" value="see &quot;parallell&quot;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;shadow=1;" parent="1" vertex="1">
           <mxGeometry x="90" y="80" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="fKqz0FJS9WOKreCdlvjI" name="active and idle">
-    <mxGraphModel dx="2061" dy="-52" grid="1" gridSize="3" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="2061" dy="-76" grid="1" gridSize="3" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--19" value="&lt;div&gt;&lt;div&gt;sleep_handler :: proc(eh: ^Eh, message: ^Message) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; first_time :: proc (m: ^Message) -&amp;gt; bool {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; return ! zd.is_tick (m)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; info := &amp;amp;eh.instance_data.(SleepInfo)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; if first_time (message) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; info.saved_message = message&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; zd.set_active (eh) // tell engine to keep running this component with &#39;ticks&#39;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; count := info.counter&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; count += 1&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; if count &amp;gt;= SLEEPDELAY {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; zd.set_idle (eh) // tell engine that we&#39;re finally done&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; zd.forward (eh=eh, port=&quot;output&quot;, msg=info.saved_message)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; count = 0&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;info.counter = count&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;align=left;dashed=1;" vertex="1" parent="1">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--19" value="&lt;div&gt;&lt;div&gt;sleep_handler :: proc(eh: ^Eh, message: ^Message) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; first_time :: proc (m: ^Message) -&amp;gt; bool {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; return ! zd.is_tick (m)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; info := &amp;amp;eh.instance_data.(SleepInfo)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; if first_time (message) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; info.saved_message = message&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; zd.set_active (eh) // tell engine to keep running this component with &#39;ticks&#39;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; count := info.counter&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; count += 1&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; if count &amp;gt;= SLEEPDELAY {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; zd.set_idle (eh) // tell engine that we&#39;re finally done&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; zd.forward (eh=eh, port=&quot;output&quot;, msg=info.saved_message)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; count = 0&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;info.counter = count&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;align=left;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="360" y="1520" width="430" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="UrJD5xWP9_EKfNPNAEj--3" target="UrJD5xWP9_EKfNPNAEj--6">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="UrJD5xWP9_EKfNPNAEj--3" target="UrJD5xWP9_EKfNPNAEj--6" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="UrJD5xWP9_EKfNPNAEj--3" target="UrJD5xWP9_EKfNPNAEj--12">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="UrJD5xWP9_EKfNPNAEj--3" target="UrJD5xWP9_EKfNPNAEj--12" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--3" value="delayed" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;" vertex="1" parent="1">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--3" value="delayed" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;" parent="1" vertex="1">
           <mxGeometry x="-11" y="1181" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--4" value="output" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;" vertex="1" parent="1">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--4" value="output" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;" parent="1" vertex="1">
           <mxGeometry x="699" y="1181" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--5" value="Sleep" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--5" value="Sleep" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;" parent="1" vertex="1">
           <mxGeometry x="194.88" y="1015" width="134" height="87" as="geometry">
             <mxRectangle x="-98" y="-1230" width="99" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--6" value="wait" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;" vertex="1" parent="UrJD5xWP9_EKfNPNAEj--5">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--6" value="wait" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;" parent="UrJD5xWP9_EKfNPNAEj--5" vertex="1">
           <mxGeometry x="-16.75" y="36" width="66" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--7" value="output" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;" vertex="1" parent="UrJD5xWP9_EKfNPNAEj--5">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--7" value="output" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;" parent="UrJD5xWP9_EKfNPNAEj--5" vertex="1">
           <mxGeometry x="84.75" y="36" width="66" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--8" value="Echo" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--8" value="Echo" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;" parent="1" vertex="1">
           <mxGeometry x="417.13" y="1015" width="134" height="87" as="geometry">
             <mxRectangle x="-98" y="-1230" width="99" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--9" value="input" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;" vertex="1" parent="UrJD5xWP9_EKfNPNAEj--8">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--9" value="input" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;" parent="UrJD5xWP9_EKfNPNAEj--8" vertex="1">
           <mxGeometry x="-16.75" y="36" width="66" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--10" value="output" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;" vertex="1" parent="UrJD5xWP9_EKfNPNAEj--8">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--10" value="output" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;" parent="UrJD5xWP9_EKfNPNAEj--8" vertex="1">
           <mxGeometry x="84.75" y="36" width="66" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--11" value="Echo" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--11" value="Echo" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;" parent="1" vertex="1">
           <mxGeometry x="296" y="1268" width="134" height="87" as="geometry">
             <mxRectangle x="-98" y="-1230" width="99" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--12" value="input" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;" vertex="1" parent="UrJD5xWP9_EKfNPNAEj--11">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--12" value="input" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;" parent="UrJD5xWP9_EKfNPNAEj--11" vertex="1">
           <mxGeometry x="-16.75" y="36" width="66" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--13" value="output" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;" vertex="1" parent="UrJD5xWP9_EKfNPNAEj--11">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--13" value="output" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;" parent="UrJD5xWP9_EKfNPNAEj--11" vertex="1">
           <mxGeometry x="84.75" y="36" width="66" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--14" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="UrJD5xWP9_EKfNPNAEj--7" target="UrJD5xWP9_EKfNPNAEj--9">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--14" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="UrJD5xWP9_EKfNPNAEj--7" target="UrJD5xWP9_EKfNPNAEj--9" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--15" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="UrJD5xWP9_EKfNPNAEj--10" target="UrJD5xWP9_EKfNPNAEj--4">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--15" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="UrJD5xWP9_EKfNPNAEj--10" target="UrJD5xWP9_EKfNPNAEj--4" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--16" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="UrJD5xWP9_EKfNPNAEj--13" target="UrJD5xWP9_EKfNPNAEj--4">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--16" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="UrJD5xWP9_EKfNPNAEj--13" target="UrJD5xWP9_EKfNPNAEj--4" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--17" value="&lt;b&gt;&lt;font style=&quot;font-size: 24px;&quot;&gt;Delay&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--17" value="&lt;b&gt;&lt;font style=&quot;font-size: 24px;&quot;&gt;Delay&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="-12" y="932" width="82" height="41" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--18" value="Any Leaf that performs an operation that takes longer than one step (e.g. delay, or sell-out to another language) must set itself as &#39;active&#39; then reset itself to &#39;idle&#39; when finished" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;" vertex="1" parent="1">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--18" value="Any Leaf that performs an operation that takes longer than one step (e.g. delay, or sell-out to another language) must set itself as &#39;active&#39; then reset itself to &#39;idle&#39; when finished" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="80" y="1400" width="210" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--20" value="" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=#333333;fillColor=#f5f5f5;strokeColor=#666666;opacity=70;" vertex="1" parent="1">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--20" value="" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=#333333;fillColor=#f5f5f5;strokeColor=#666666;opacity=70;" parent="1" vertex="1">
           <mxGeometry x="360" y="1614" width="430" height="16" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--21" value="" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=#333333;fillColor=#f5f5f5;strokeColor=#666666;opacity=70;" vertex="1" parent="1">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--21" value="" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=#333333;fillColor=#f5f5f5;strokeColor=#666666;opacity=70;" parent="1" vertex="1">
           <mxGeometry x="360" y="1653" width="430" height="37" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--22" value="" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=#333333;fillColor=#f5f5f5;strokeColor=#666666;opacity=70;" vertex="1" parent="1">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--22" value="" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=#333333;fillColor=#f5f5f5;strokeColor=#666666;opacity=70;" parent="1" vertex="1">
           <mxGeometry x="360" y="1710" width="430" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--23" value="" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=#333333;fillColor=#f5f5f5;strokeColor=#666666;opacity=70;" vertex="1" parent="1">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--23" value="" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=#333333;fillColor=#f5f5f5;strokeColor=#666666;opacity=70;" parent="1" vertex="1">
           <mxGeometry x="360" y="1746" width="430" height="14" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--24" value="" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=#333333;fillColor=#f5f5f5;strokeColor=#666666;opacity=70;" vertex="1" parent="1">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--24" value="" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=#333333;fillColor=#f5f5f5;strokeColor=#666666;opacity=70;" parent="1" vertex="1">
           <mxGeometry x="360" y="1580" width="430" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="UrJD5xWP9_EKfNPNAEj--26" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=1;labelBackgroundColor=default;strokeColor=default;fontFamily=Helvetica;fontSize=11;fontColor=default;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="UrJD5xWP9_EKfNPNAEj--18" target="UrJD5xWP9_EKfNPNAEj--19">
+        <mxCell id="UrJD5xWP9_EKfNPNAEj--26" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=1;labelBackgroundColor=default;strokeColor=default;fontFamily=Helvetica;fontSize=11;fontColor=default;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;dashed=1;" parent="1" source="UrJD5xWP9_EKfNPNAEj--18" target="UrJD5xWP9_EKfNPNAEj--19" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="549" y="1670" as="sourcePoint" />
             <mxPoint x="599" y="1620" as="targetPoint" />
@@ -847,108 +847,108 @@
     </mxGraphModel>
   </diagram>
   <diagram id="FTVDaDLFOgkA4Ru1HT-z" name="errrors, exceptions">
-    <mxGraphModel dx="961" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="961" dy="774" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="y1IeQccEFC2YXkljCoJv-3" value="error" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;" vertex="1" parent="1">
+        <mxCell id="y1IeQccEFC2YXkljCoJv-3" value="error" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;" parent="1" vertex="1">
           <mxGeometry x="203" y="70" width="66" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="VYYc81SD3uZx3Tc5JmKV-1" value="there is nothing exceptional about exceptions - exceptions are events (the Architect decides whether the event is special)" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;" vertex="1" parent="1">
+        <mxCell id="VYYc81SD3uZx3Tc5JmKV-1" value="there is nothing exceptional about exceptions - exceptions are events (the Architect decides whether the event is special)" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="140" y="150" width="184" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="TzwWmOFVv79Ea7tpLyGH" name="Container">
-    <mxGraphModel dx="961" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="961" dy="774" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="l7D6c3XB0V34icbwi2tX-1" value="A Container is a TAB in draw.io (a single drawing with a name)" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;" vertex="1" parent="1">
+        <mxCell id="l7D6c3XB0V34icbwi2tX-1" value="A Container is a TAB in draw.io (a single drawing with a name)" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="80" y="120" width="140" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="R6l_R-kQZsmrZ2e0Zju-" name="Leaf">
-    <mxGraphModel dx="961" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="961" dy="774" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="oKgQRufvtjkwaXSQgVwp-1" value="Echo" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="oKgQRufvtjkwaXSQgVwp-1" value="Echo" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;fontFamily=Helvetica;fontSize=11;" parent="1" vertex="1">
           <mxGeometry x="205" y="90" width="130" height="110" as="geometry">
             <mxRectangle x="-98" y="-1230" width="99" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="oKgQRufvtjkwaXSQgVwp-2" value="input" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;fontFamily=Helvetica;fontSize=11;fontColor=default;" vertex="1" parent="oKgQRufvtjkwaXSQgVwp-1">
+        <mxCell id="oKgQRufvtjkwaXSQgVwp-2" value="input" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;fontFamily=Helvetica;fontSize=11;fontColor=default;" parent="oKgQRufvtjkwaXSQgVwp-1" vertex="1">
           <mxGeometry x="-16.75" y="27.5" width="66" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="oKgQRufvtjkwaXSQgVwp-3" value="output" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;fontFamily=Helvetica;fontSize=11;" vertex="1" parent="oKgQRufvtjkwaXSQgVwp-1">
+        <mxCell id="oKgQRufvtjkwaXSQgVwp-3" value="output" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;fontFamily=Helvetica;fontSize=11;" parent="oKgQRufvtjkwaXSQgVwp-1" vertex="1">
           <mxGeometry x="84.75" y="27.5" width="66" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="oKgQRufvtjkwaXSQgVwp-4" value="error" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;fontFamily=Helvetica;fontSize=11;" vertex="1" parent="oKgQRufvtjkwaXSQgVwp-1">
+        <mxCell id="oKgQRufvtjkwaXSQgVwp-4" value="error" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;fontFamily=Helvetica;fontSize=11;" parent="oKgQRufvtjkwaXSQgVwp-1" vertex="1">
           <mxGeometry x="84.75" y="70" width="66" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="oKgQRufvtjkwaXSQgVwp-5" value="A Leaf is just a piece of code written in some other language (e.g. Odin).&amp;nbsp; Leaves must be added to the palette of components.&amp;nbsp; See 0d/odin/demo_drawio/main.odin and 0d/odin/demo_dev0d/main.odin for suggestions.&amp;nbsp; See, also, 0d/odin/leaf0d/lefa0d.odin" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" vertex="1" parent="1">
+        <mxCell id="oKgQRufvtjkwaXSQgVwp-5" value="A Leaf is just a piece of code written in some other language (e.g. Odin).&amp;nbsp; Leaves must be added to the palette of components.&amp;nbsp; See 0d/odin/demo_drawio/main.odin and 0d/odin/demo_dev0d/main.odin for suggestions.&amp;nbsp; See, also, 0d/odin/leaf0d/lefa0d.odin" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" parent="1" vertex="1">
           <mxGeometry x="120" y="340" width="300" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="oKgQRufvtjkwaXSQgVwp-7" value="A Leaf is drawn as a blue box with input and output ports, in draw.io diagrams." style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" vertex="1" parent="1">
+        <mxCell id="oKgQRufvtjkwaXSQgVwp-7" value="A Leaf is drawn as a blue box with input and output ports, in draw.io diagrams." style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" parent="1" vertex="1">
           <mxGeometry x="120" y="240" width="300" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="oKgQRufvtjkwaXSQgVwp-8" value="Leaf code must provide a way to instantiate the component with unique instance data, and a procedure for handling messages." style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" vertex="1" parent="1">
+        <mxCell id="oKgQRufvtjkwaXSQgVwp-8" value="Leaf code must provide a way to instantiate the component with unique instance data, and a procedure for handling messages." style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" parent="1" vertex="1">
           <mxGeometry x="120" y="500" width="300" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="oKgQRufvtjkwaXSQgVwp-9" value="for example, Odin, we write:&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;echo_instantiate :: proc(name_prefix: string, name: string, owner : ^zd.Eh) -&amp;gt; ^zd.Eh {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; name_with_id := zd.gensym(&quot;?&quot;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; return zd.make_leaf (name_prefix, name_with_id, owner, nil, echo_handler)&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;echo_handler :: proc(eh: ^Eh, message: ^Message) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; send(eh=eh, port=&quot;output&quot;, datum=message.datum, causingMessage=nil)&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;align=left;spacing=5;dashed=1;" vertex="1" parent="1">
+        <mxCell id="oKgQRufvtjkwaXSQgVwp-9" value="for example, Odin, we write:&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;echo_instantiate :: proc(name_prefix: string, name: string, owner : ^zd.Eh) -&amp;gt; ^zd.Eh {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; name_with_id := zd.gensym(&quot;?&quot;)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; return zd.make_leaf (name_prefix, name_with_id, owner, nil, echo_handler)&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;echo_handler :: proc(eh: ^Eh, message: ^Message) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; send(eh=eh, port=&quot;output&quot;, datum=message.datum, causingMessage=nil)&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;align=left;spacing=5;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="140" y="570" width="440" height="160" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="LrD7VQFPQpuAhTzQ2Fyf" name="handle()">
-    <mxGraphModel dx="961" dy="798" grid="1" gridSize="3" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="961" dy="774" grid="1" gridSize="3" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="37kl-3vKitGbF2vL1JXf-1" value="&lt;div&gt;echo_handler :: proc(eh: ^Eh, message: ^Message) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; ...&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;align=left;spacing=5;dashed=1;" vertex="1" parent="1">
+        <mxCell id="37kl-3vKitGbF2vL1JXf-1" value="&lt;div&gt;echo_handler :: proc(eh: ^Eh, message: ^Message) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; ...&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;align=left;spacing=5;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="96" y="96" width="315" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="37kl-3vKitGbF2vL1JXf-2" value="&lt;div&gt;A handler() accepts 2 parameters:&amp;nbsp;&lt;/div&gt;1. the Component&#39;s &quot;self&quot; (an ė (spelled &quot;eh&quot; in ASCII)),&amp;nbsp;&lt;br&gt;2. a Message to be handled" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;align=left;spacing=5;dashed=1;" vertex="1" parent="1">
+        <mxCell id="37kl-3vKitGbF2vL1JXf-2" value="&lt;div&gt;A handler() accepts 2 parameters:&amp;nbsp;&lt;/div&gt;1. the Component&#39;s &quot;self&quot; (an ė (spelled &quot;eh&quot; in ASCII)),&amp;nbsp;&lt;br&gt;2. a Message to be handled" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;align=left;spacing=5;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="123" y="192" width="312" height="75" as="geometry" />
         </mxCell>
-        <mxCell id="tFDRdt6RUaoq5NJO21A--1" value="to see the definition of an ė, look in odin/0d/0d.odin (but, you really don&#39;t need to know this)&lt;div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;align=left;spacing=5;dashed=1;" vertex="1" parent="1">
+        <mxCell id="tFDRdt6RUaoq5NJO21A--1" value="to see the definition of an ė, look in odin/0d/0d.odin (but, you really don&#39;t need to know this)&lt;div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;align=left;spacing=5;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="165" y="456" width="312" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="tFDRdt6RUaoq5NJO21A--2" value="to see the definition of a Message, look in odin/0d/message.odin (which will cause you to look at odin/0d/datum.odin)&lt;div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;align=left;spacing=5;dashed=1;" vertex="1" parent="1">
+        <mxCell id="tFDRdt6RUaoq5NJO21A--2" value="to see the definition of a Message, look in odin/0d/message.odin (which will cause you to look at odin/0d/datum.odin)&lt;div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;align=left;spacing=5;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="168" y="531" width="312" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="tFDRdt6RUaoq5NJO21A--3" value="Once activated (called), a handler can do anything it wants, but, typically, it process the incoming Message and sends 0, 1, or more Messages back out.&amp;nbsp; Then, it terminates, allowing its Container to route its output Messages.&lt;br&gt;&lt;br&gt;Typically, Leaf components are written as state machines, which keep and update their state in their own (private) instance data (accessed as a field in their ė structure&amp;nbsp; (eh.instance_data)).&lt;br&gt;&lt;br&gt;Simple Leaves, like &lt;i&gt;probe&lt;/i&gt;, don&#39;t need to keep state, hence, they ignore their instance data.&amp;nbsp; Such Leaves are initialized with &lt;i&gt;nil&lt;/i&gt;&amp;nbsp;instance data.&lt;br&gt;&lt;div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;align=left;spacing=5;dashed=1;" vertex="1" parent="1">
+        <mxCell id="tFDRdt6RUaoq5NJO21A--3" value="Once activated (called), a handler can do anything it wants, but, typically, it process the incoming Message and sends 0, 1, or more Messages back out.&amp;nbsp; Then, it terminates, allowing its Container to route its output Messages.&lt;br&gt;&lt;br&gt;Typically, Leaf components are written as state machines, which keep and update their state in their own (private) instance data (accessed as a field in their ė structure&amp;nbsp; (eh.instance_data)).&lt;br&gt;&lt;br&gt;Simple Leaves, like &lt;i&gt;probe&lt;/i&gt;, don&#39;t need to keep state, hence, they ignore their instance data.&amp;nbsp; Such Leaves are initialized with &lt;i&gt;nil&lt;/i&gt;&amp;nbsp;instance data.&lt;br&gt;&lt;div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;align=left;spacing=5;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="120" y="288" width="438" height="138" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="S30rva6GbEDJes1EQxwN" name="send()">
-    <mxGraphModel dx="961" dy="798" grid="1" gridSize="3" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="961" dy="774" grid="1" gridSize="3" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="6zCsJ4XUFwdoS3DwhASF-1" value="&lt;div style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;&amp;nbsp; &amp;nbsp; send(eh=eh, port=&quot;output&quot;, datum=message.datum, causingMessage=nil)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" vertex="1" parent="1">
+        <mxCell id="6zCsJ4XUFwdoS3DwhASF-1" value="&lt;div style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;&amp;nbsp; &amp;nbsp; send(eh=eh, port=&quot;output&quot;, datum=message.datum, causingMessage=nil)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" parent="1" vertex="1">
           <mxGeometry x="72" y="72" width="387" height="45" as="geometry" />
         </mxCell>
-        <mxCell id="6zCsJ4XUFwdoS3DwhASF-2" value="&lt;div style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;&quot;send()&quot; is the way that a Leaf component creates a Message and places the Message on the Leaf&#39;s own input queue.&amp;nbsp; The parent Container of the Leaf routes the output Messages created by a Leaf, when the Leaf is finished handling an event.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" vertex="1" parent="1">
+        <mxCell id="6zCsJ4XUFwdoS3DwhASF-2" value="&lt;div style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;&quot;send()&quot; is the way that a Leaf component creates a Message and places the Message on the Leaf&#39;s own input queue.&amp;nbsp; The parent Container of the Leaf routes the output Messages created by a Leaf, when the Leaf is finished handling an event.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" parent="1" vertex="1">
           <mxGeometry x="99" y="168" width="387" height="66" as="geometry" />
         </mxCell>
-        <mxCell id="6zCsJ4XUFwdoS3DwhASF-3" value="&lt;div style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;&quot;send()&quot; is supplied with 4 parameters - 1. the Component&#39;s &quot;self&quot; (an ė (spelled &quot;eh&quot; in ASCII)), 2. a port id (in this version, port ids are always strings), 3. a datum (a blob of data - see odin/0d/datum.odin), and, 4. the causing Message, i.e. the Message that the handler is currently responding to [this helps debugging, by essentially keeping a trail of breadcrumbs]&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" vertex="1" parent="1">
+        <mxCell id="6zCsJ4XUFwdoS3DwhASF-3" value="&lt;div style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;&quot;send()&quot; is supplied with 4 parameters - 1. the Component&#39;s &quot;self&quot; (an ė (spelled &quot;eh&quot; in ASCII)), 2. a port id (in this version, port ids are always strings), 3. a datum (a blob of data - see odin/0d/datum.odin), and, 4. the causing Message, i.e. the Message that the handler is currently responding to [this helps debugging, by essentially keeping a trail of breadcrumbs]&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" parent="1" vertex="1">
           <mxGeometry x="96" y="264" width="387" height="66" as="geometry" />
         </mxCell>
-        <mxCell id="6zCsJ4XUFwdoS3DwhASF-4" value="&lt;div style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;N.B. the unoptimized, debug, version of the code simply needs to keep all Messages in a heap, and, never delete any Messages, hence, making it possible to track message details backwards in time (kind of like a stack trace, but a tree of stack traces is needed for 0D apps), whereas the optimized version depends on the needs of a project - Messages can be deleted &quot;soon&quot; after use, or, kept in an Arena, or ... .&amp;nbsp; It is assumed that&lt;i&gt;&amp;nbsp;&lt;/i&gt;0D apps&amp;nbsp;are short-lived, and, that - on today&#39;s hardware - we have lots of memory, so, keeping messages is not a big deal.&amp;nbsp; The Biblical Flood method of garbage collection is &quot;good enough&quot; for development. Obviously, a 0D app that runs forever (e.g. a daemon) needs to worry about getting rid of stale Messages and reclaiming storage.&amp;nbsp; See the odin0d repo (a separate repo, not this one) for ideas on implementing optimized versions of 0D.&amp;nbsp; For Production Engineering, i.e. optimization, it helps to know what kind of data (datum) is being used, e.g. datum can be defined as a union of very specific types, allowing the Odin compiler and Production Engineer to produce better, more &quot;efficient&quot; code.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" vertex="1" parent="1">
+        <mxCell id="6zCsJ4XUFwdoS3DwhASF-4" value="&lt;div style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;N.B. the unoptimized, debug, version of the code simply needs to keep all Messages in a heap, and, never delete any Messages, hence, making it possible to track message details backwards in time (kind of like a stack trace, but a tree of stack traces is needed for 0D apps), whereas the optimized version depends on the needs of a project - Messages can be deleted &quot;soon&quot; after use, or, kept in an Arena, or ... .&amp;nbsp; It is assumed that&lt;i&gt;&amp;nbsp;&lt;/i&gt;0D apps&amp;nbsp;are short-lived, and, that - on today&#39;s hardware - we have lots of memory, so, keeping messages is not a big deal.&amp;nbsp; The Biblical Flood method of garbage collection is &quot;good enough&quot; for development. Obviously, a 0D app that runs forever (e.g. a daemon) needs to worry about getting rid of stale Messages and reclaiming storage.&amp;nbsp; See the odin0d repo (a separate repo, not this one) for ideas on implementing optimized versions of 0D.&amp;nbsp; For Production Engineering, i.e. optimization, it helps to know what kind of data (datum) is being used, e.g. datum can be defined as a union of very specific types, allowing the Odin compiler and Production Engineer to produce better, more &quot;efficient&quot; code.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" parent="1" vertex="1">
           <mxGeometry x="96" y="359" width="462" height="184" as="geometry" />
         </mxCell>
-        <mxCell id="6zCsJ4XUFwdoS3DwhASF-5" value="&lt;div style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;N.B. this protocol allows a Leaf to produce 0 or more output events in response to any input Message, which is very different from the 1-in 1-out protocol of Functional Programming (FP uses 1-in, 2-out in reality), which hard-wires routing decisions, etc. (whereas this Message Passing protocol leaves the routing decisions up to the Software Architect (aka programmer))&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" vertex="1" parent="1">
+        <mxCell id="6zCsJ4XUFwdoS3DwhASF-5" value="&lt;div style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;N.B. this protocol allows a Leaf to produce 0 or more output events in response to any input Message, which is very different from the 1-in 1-out protocol of Functional Programming (FP uses 1-in, 2-out in reality), which hard-wires routing decisions, etc. (whereas this Message Passing protocol leaves the routing decisions up to the Software Architect (aka programmer))&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" parent="1" vertex="1">
           <mxGeometry x="627" y="558" width="387" height="66" as="geometry" />
         </mxCell>
-        <mxCell id="6zCsJ4XUFwdoS3DwhASF-6" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=1;labelBackgroundColor=default;strokeColor=default;fontFamily=Helvetica;fontSize=11;fontColor=default;entryX=0.25;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;dashed=1;dashPattern=1 4;" edge="1" parent="1" source="6zCsJ4XUFwdoS3DwhASF-2" target="6zCsJ4XUFwdoS3DwhASF-5">
+        <mxCell id="6zCsJ4XUFwdoS3DwhASF-6" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=1;labelBackgroundColor=default;strokeColor=default;fontFamily=Helvetica;fontSize=11;fontColor=default;entryX=0.25;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;dashed=1;dashPattern=1 4;" parent="1" source="6zCsJ4XUFwdoS3DwhASF-2" target="6zCsJ4XUFwdoS3DwhASF-5" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="462" y="437" as="sourcePoint" />
             <mxPoint x="512" y="387" as="targetPoint" />
@@ -958,17 +958,17 @@
     </mxGraphModel>
   </diagram>
   <diagram id="RZvajqEphYDkF4qvejj3" name="notes">
-    <mxGraphModel dx="961" dy="798" grid="1" gridSize="3" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="961" dy="774" grid="1" gridSize="3" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="5aZwqiTn1-Ik3uZTuc0R-1" value="a &quot;door&quot; is a &quot;port&quot;, but, is distinguished by the fact that it belongs to the enclosing Container, i.e. the input/output of a single diagram" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=6;" vertex="1" parent="1">
+        <mxCell id="5aZwqiTn1-Ik3uZTuc0R-1" value="a &quot;door&quot; is a &quot;port&quot;, but, is distinguished by the fact that it belongs to the enclosing Container, i.e. the input/output of a single diagram" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=6;" parent="1" vertex="1">
           <mxGeometry x="48" y="96" width="192" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="5aZwqiTn1-Ik3uZTuc0R-2" value="&quot;doors&quot; are rendered differently (rhombus instead of pill-shaped) to distinguish them from the ports of children components, and, to help the compiler figure out what a specific diagram means" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=6;" vertex="1" parent="1">
+        <mxCell id="5aZwqiTn1-Ik3uZTuc0R-2" value="&quot;doors&quot; are rendered differently (rhombus instead of pill-shaped) to distinguish them from the ports of children components, and, to help the compiler figure out what a specific diagram means" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=6;" parent="1" vertex="1">
           <mxGeometry x="72" y="180" width="216" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="5aZwqiTn1-Ik3uZTuc0R-3" value="A single diagram contains components and wiring between the components (and itself, the parent Container).&amp;nbsp; It is not possible to tell if a component is a Leaf or another Container.&amp;nbsp; If a given component is another container, then its diagram &lt;i&gt;must&lt;/i&gt;&amp;nbsp;appear as another tab (with exactly the same name) in the same draw.io project." style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" vertex="1" parent="1">
+        <mxCell id="5aZwqiTn1-Ik3uZTuc0R-3" value="A single diagram contains components and wiring between the components (and itself, the parent Container).&amp;nbsp; It is not possible to tell if a component is a Leaf or another Container.&amp;nbsp; If a given component is another container, then its diagram &lt;i&gt;must&lt;/i&gt;&amp;nbsp;appear as another tab (with exactly the same name) in the same draw.io project." style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;spacing=5;" parent="1" vertex="1">
           <mxGeometry x="48" y="291" width="348" height="72" as="geometry" />
         </mxCell>
       </root>

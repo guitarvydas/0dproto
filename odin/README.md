@@ -98,74 +98,75 @@ It turned out to be trivial to represent shell commands as Leaf Components.  Thi
 
 ## Visual Syntax
 ### bare component
-![[DPL syntax-bare component.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-bare%20component.drawio.svg)
 ### Container
-![[DPL syntax-Container.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-Container.drawio.svg)
 ### Leaf
-![[DPL syntax-Leaf.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-Leaf.drawio.svg)
 ### input gate
-![[DPL syntax-input gate.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-input%20gate.drawio.svg)
 ### output gate 
-![[DPL syntax-output gate.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-output%20gate.drawio.svg)
 ### input port
-![[DPL syntax-input port.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-input%20port.drawio.svg)
 ### output port
-![[DPL syntax-output port.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-output%20port.drawio.svg)
 ### connection
-![[DPL syntax-connection.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-connection.drawio.svg)
 ### VSH component
-![[DPL syntax-vsh component.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-vsh%20component.drawio.svg)
 ### comment
-![[DPL syntax-comment.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-comment.drawio.svg)
 
 ## Visual Semantics
 ### down
-![[DPL syntax-down.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-down.drawio.svg)
 ### up
-![[DPL syntax-up.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-up.drawio.svg)
 ### across
-![[DPL syntax-across.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-across.drawio.svg)
 ### through
-![[DPL syntax-through.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-through.drawio.svg)
 ### fan-out (split)
-![[DPL syntax-fan-out (split).drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-fan-out%20(split).drawio.svg)
 ### fan-in (join)
+![](../DPL%20syntax/DPL%20syntax-fan-in%20(join).drawio.svg)
 ![[DPL syntax-fan-in (join).drawio.svg]]
 
 ## Style, Readability
 ### opacity
-![[DPL syntax-opacity.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-opacity.drawio.svg)
 ### line style
-![[DPL syntax-line style.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-line%20style.drawio.svg)
 ### line thickness
-![[DPL syntax-line thickness.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-line%20thickness.drawio.svg)
 
 ## Idioms
 ### feedback
-![[DPL syntax-feedback.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-feedback.drawio.svg)
 ### sequential
-![[DPL syntax-sequential.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-sequential.drawio.svg)
 ### parallel
-![[DPL syntax-parallel.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-parallel.drawio.svg)
 ### concurrency
-![[DPL syntax-concurrency.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-concurrency.drawio.svg)
 ### errors, exceptions
-![[DPL syntax-errrors, exceptions.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-errrors,%20exceptions.drawio.svg)
 
 ## Low Leval Technicalities
 ### kickoff inject
-![[DPL syntax-kickoff inject.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-kickoff%20inject.drawio.svg)
 ### handle ()
-![[DPL syntax-handle().drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-handle().drawio.svg)
 ### send ()
-![[DPL syntax-send().drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-send().drawio.svg)
 ### message copying
-![[DPL syntax-message copying.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-message%20copying.drawio.svg)
 
 ### active and idle
-![[DPL syntax-active and idle.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-active%20and%20idle.drawio.svg)
 ### notes
-![[DPL syntax-notes.drawio.svg]]
+![](../DPL%20syntax/DPL%20syntax-notes.drawio.svg)
 
 # Examples
 ## Basics

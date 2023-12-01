@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 299.50390243530273
   },
   "right": {
     "id": "f6d161511d35adf7",
@@ -147,12 +147,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d40dc63e774df8cd",
+  "active": "dda0d586fa2556a9",
   "lastOpenFiles": [
+    "DPL syntax/DPL syntax-notes.drawio.svg",
+    "odin/README.md",
     "DPL syntax/DPL syntax-input gate.drawio.svg",
     "DPL syntax/DPL syntax-output gate.drawio.svg",
     "odin/#README.md#",
-    "DPL syntax/DPL syntax-notes.drawio.svg",
     "DPL syntax/DPL syntax-send().drawio.svg",
     "DPL syntax/DPL syntax-handle().drawio.svg",
     "DPL syntax/DPL syntax-Leaf.drawio.svg",
@@ -160,12 +161,10 @@
     "DPL syntax/DPL syntax-errrors, exceptions.drawio.svg",
     "DPL syntax/DPL syntax-active and idle.drawio.svg",
     "DPL syntax/DPL syntax-concurrency.drawio.svg",
-    "DPL syntax/DPL syntax-parallel.drawio.svg",
     "odin/TODO.md",
     "DPL syntax/DPL syntax.drawio",
     "DPL syntax",
     "odin/0d/README.md",
-    "odin/README.md",
     "cl/#aux.lisp#",
     "cl/play/Syntax Knob.md"
   ]
