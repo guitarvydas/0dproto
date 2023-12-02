@@ -96,74 +96,74 @@ First, I list summaries for the various sections, then the details of each secti
 
 ## Visual Syntax
 ### bare component
-![](../DPL%20syntax/DPL%20syntax-bare%20component.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-bare%20component.drawio.svg)
 ### Container
-![](../DPL%20syntax/DPL%20syntax-Container.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-Container.drawio.svg)
 ### Leaf
-![](../DPL%20syntax/DPL%20syntax-Leaf.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-Leaf.drawio.svg)
 ### input gate
-![](../DPL%20syntax/DPL%20syntax-input%20gate.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-input%20gate.drawio.svg)
 ### output gate 
-![](../DPL%20syntax/DPL%20syntax-output%20gate.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-output%20gate.drawio.svg)
 ### input port
-![](../DPL%20syntax/DPL%20syntax-input%20port.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-input%20port.drawio.svg)
 ### output port
-![](../DPL%20syntax/DPL%20syntax-output%20port.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-output%20port.drawio.svg)
 ### connection
-![](../DPL%20syntax/DPL%20syntax-connection.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-connection.drawio.svg)
 ### VSH component
-![](../DPL%20syntax/DPL%20syntax-vsh%20component.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-vsh%20component.drawio.svg)
 ### comment
-![](../DPL%20syntax/DPL%20syntax-comment.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-comment.drawio.svg)
 
 ## Visual Semantics
 ### down
-![](../DPL%20syntax/DPL%20syntax-down.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-down.drawio.svg)
 ### up
-![](../DPL%20syntax/DPL%20syntax-up.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-up.drawio.svg)
 ### across
-![](../DPL%20syntax/DPL%20syntax-across.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-across.drawio.svg)
 ### through
-![](../DPL%20syntax/DPL%20syntax-through.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-through.drawio.svg)
 ### fan-out (split)
-![](../DPL%20syntax/DPL%20syntax-fan-out%20(split).drawio.svg)
+![](DPL%20syntax/DPL%20syntax-fan-out%20(split).drawio.svg)
 ### fan-in (join)
-![](../DPL%20syntax/DPL%20syntax-fan-in%20(join).drawio.svg)
+![](DPL%20syntax/DPL%20syntax-fan-in%20(join).drawio.svg)
 
 ## Style, Readability
 ### opacity
-![](../DPL%20syntax/DPL%20syntax-opacity.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-opacity.drawio.svg)
 ### line style
-![](../DPL%20syntax/DPL%20syntax-line%20style.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-line%20style.drawio.svg)
 ### line thickness
-![](../DPL%20syntax/DPL%20syntax-line%20thickness.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-line%20thickness.drawio.svg)
 
 ## Idioms
 ### feedback
-![](../DPL%20syntax/DPL%20syntax-feedback.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-feedback.drawio.svg)
 ### sequential
-![](../DPL%20syntax/DPL%20syntax-sequential.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-sequential.drawio.svg)
 ### parallel
-![](../DPL%20syntax/DPL%20syntax-parallel.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-parallel.drawio.svg)
 ### concurrency
-![](../DPL%20syntax/DPL%20syntax-concurrency.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-concurrency.drawio.svg)
 ### errors, exceptions
-![](../DPL%20syntax/DPL%20syntax-errrors,%20exceptions.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-errrors,%20exceptions.drawio.svg)
 
 ## Low Leval Technicalities
 ### kickoff inject
-![](../DPL%20syntax/DPL%20syntax-kickoff%20inject.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-kickoff%20inject.drawio.svg)
 ### handle ()
-![](../DPL%20syntax/DPL%20syntax-handle().drawio.svg)
+![](DPL%20syntax/DPL%20syntax-handle().drawio.svg)
 ### send ()
-![](../DPL%20syntax/DPL%20syntax-send().drawio.svg)
+![](DPL%20syntax/DPL%20syntax-send().drawio.svg)
 ### message copying
-![](../DPL%20syntax/DPL%20syntax-message%20copying.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-message%20copying.drawio.svg)
 
 ### active and idle
-![](../DPL%20syntax/DPL%20syntax-active%20and%20idle.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-active%20and%20idle.drawio.svg)
 ### notes
-![](../DPL%20syntax/DPL%20syntax-notes.drawio.svg)
+![](DPL%20syntax/DPL%20syntax-notes.drawio.svg)
 
 # Examples
 ## Basics
