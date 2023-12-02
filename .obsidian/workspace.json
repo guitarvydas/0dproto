@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "odin/README.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "odin/README.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "odin/README.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "odin/README.md"
+                "file": "README.md"
               }
             }
           }
@@ -147,10 +147,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "dda0d586fa2556a9",
+  "active": "d40dc63e774df8cd",
   "lastOpenFiles": [
     "DPL syntax/DPL syntax-fan-out (split).drawio.svg",
-    "odin/README.md",
+    "README.md",
     "DPL syntax/DPL syntax-notes.drawio.svg",
     "DPL syntax/DPL syntax-input gate.drawio.svg",
     "DPL syntax/DPL syntax-output gate.drawio.svg",

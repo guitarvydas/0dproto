@@ -246,7 +246,51 @@ A Datum is like a simplified object, with (at least) the following fields:
 - kind:     function ()       -> string -- returns a string that uniquely identifies the type of the this Datum
 - raw:      function (^Datum) -> []byte -- returns a byte array (essentially a fat pointer) to the contiguous bytes that make up the given Datum (a fat pointer is a pair {pointer,length})
 
+# Project Directories
+## Main Body
+### src
+Contains drawings (i.e. source code), in .drawio format, for the demos
+### das2json
+Tool that inhales .drawio drawings and exhales .json.
 
+First, of 2, passes in the compilation process.
+
+Foreseen to be used by compiler backends implemented in other languages, like Common Lisp, Python, etc.  But, only the Odin back-end exists at this moment.
+### ir
+A small set of common definitions used by the front end (das2json) and the back end (odin, at present)
+### odin
+Implementation of 0D using the Odin language.
+
+Odin is like a "better C".  Programmers need to explicitly write code to manage memory.
+
+Essentially, implementation of 0D in Odin is the most extreme use-case.  Writing 0D in other, garbage-collected, languages should be as easy as simply stripping out the types from the Odin code and changing the syntax.
+## Documentation
+### DPL syntax
+SVG Diagrams of the syntax.
+
+All of the diagrams are contained in `DPL syntax.drawio` in .drawio format, then exported to SVG.
+
+If changes / updates are needed, one would edit `DPL syntax.drawio`, then export to SVG.
+## Future
+Beginnings of 0D implementations in other languages.
+
+WIP
+### cl
+0D in Common Lisp
+### rt
+0D written in a meta-syntax which I call Recursive Text.  
+
+The goal is to write 0D once - in RT - then use a transpiler technology, like OhmJS + RWR, to exhale 0D in various languages.
+
+I'm still experimenting with what should be, and shouldn't be, in RT. Currently, I believe that there needs to be an explicit differentiation between *operations* and *operands*.  
+
+Operands are basically OOP and functions.  
+
+Operations are "syntax" (probably OhmJS will be used to make this quick and easy).
+
+Pure functions, mathematics, can be used to describe *data*, but don't do so well at describing *control flow*.  Data and control flow are two separate issues (data is "shape", control flow is "meaning/stepping-through/interpretation of data").  Currently, in most exiting languages (e.g. Python, Rust, etc.) we use conditional evaluation of functions to fake out control flow.  Yet, conditional evaluation and control flow are very separate issues, that should be treated separately.
+
+Inspiration for this thread of thinking comes from *gcc* and Cordy's *Orthogonal Code Generator* work.  *GCC* uses ideas from Fraser/Davidson peephole technology, namely *RTL*, to make it easier to generate great code.  *OCG* is a further elaboration on such ideas and suggests the design and use of a declarative DSL for expressing code exhalation decision trees. 
 # Appendix - Parameters and Return Values
 
 A group of parameters passed to a function in modern languages, is actually just a *single*, contiguous blob of data that is deconstructed into multiple data types.  You can see this in assembler code.  In assembler, we see that values are placed into a array, pointed to be the Stack Pointer.  The parameter list is a heterogenous array (actually a CDR-less List) of various kinds of data.  The receiving procedure immediately deconstructs the bytes in this array and acts like it has several typed data structures in the array.
@@ -273,3 +317,23 @@ If you need to optimize the solution (a big IF), then internal language and nigg
 - Boken Lin
 - Ken Kan
 - in the past, various people at TS Controls - John Shuve, Jeff Roberts, Stephen Gretton, Norm Sanford, Minnan Uppal, Jahan Mazlekzadeh, Ernie doForno, et al. My apologies to those who I've forgotten to mention by name (it's been a while).
+# Appendix - Related Technologies
+- FBP - Flow Based Programming, J. Paul Morrison
+### DPL Syntaxes
+DPL means Diagrammatic Programming Languages.
+
+The following DPL syntaxes could be used to describe the innards of ISUs (Isolated Software Units, i.e. Components).  They simply need to be hooked to 0D technology to offer more flexible pluggability.
+
+- Statecharts, Harel
+- Drakon
+- spreadsheets
+- ideas from Jonathan Edwards, such as Subtext
+
+### Editors Which Could Be Used For Writing DPL Programs
+DaS means Diagrams as Syntax.  DPL means Diagrammatic Programming Languages.
+- draw.io
+- Excalidraw
+- yEd
+
+### TPL - Textual Programming Languages
+N.B. TPLs, such as Python, Rust, Javascript, etc. can, also, be used to write textual code for 0D Components.  See demo_basics above.
