@@ -147,8 +147,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d40dc63e774df8cd",
+  "active": "dda0d586fa2556a9",
   "lastOpenFiles": [
+    "src/pong/url.txt",
+    "src/pong/#url.txt#",
+    "src/pong/atari pong.tiff",
+    "src/pong",
+    "pong",
+    "untitled folder",
     "DPL syntax/DPL syntax-fan-out (split).drawio.svg",
     "README.md",
     "DPL syntax/DPL syntax-notes.drawio.svg",
@@ -161,7 +167,6 @@
     "DPL syntax/DPL syntax-Container.drawio.svg",
     "DPL syntax/DPL syntax-errrors, exceptions.drawio.svg",
     "DPL syntax/DPL syntax-active and idle.drawio.svg",
-    "DPL syntax/DPL syntax-concurrency.drawio.svg",
     "odin/TODO.md",
     "DPL syntax/DPL syntax.drawio",
     "DPL syntax",
