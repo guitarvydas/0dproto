@@ -12,10 +12,6 @@ This version uses the Odin language internally.
 
 More languages are expected.
 
-Fundamentally, internal language doesn't matter when designing a solution to a problem.
-
-If you need to optimize the solution (a Big If), then internal language and niggly details do matter.  Note that optimization (e.g. type checking, etc.) reduces scalability, hence, should be used sparingly.
-
 # Syntax Rules 
 
 This section describes the "syntax" used in our compilable diagrams.
@@ -29,29 +25,31 @@ There are two major classes of Component:
 
 Containers are drawings that can contain Components and Connections.  Containers can contain other Container components and/or Leaf components.  In `draw.io`, we represent each Container as a separate drawing on a separate *tab* in the `draw.io` editor.
 
-Leaves represent code.  Leaves are represented on diagrams as dark blue rectangles.  The actual code is in other files. In this case, most of the Leaves are in `leaf0d/leaf0d.odin`.  The code must provide two entry points
+Leaves represent code.  Leaves are represented on diagrams as dark blue rectangles.  The actual code is in other files. In this demo, most of the Leaves are in `leaf0d/leaf0d.odin`.   That's only a convention, not a requirement. The code must provide two entry points
 1. instantiate
 2. handle
 
-and, typically, uses the *send* function to create output messages.
+Typically, *handle* uses the *send* function to create output messages.
 
 Components are *templates* (similar to *classes*).  Components can be instantiated multiple times in a project.  Each instantiation is unique and has a blob of unique storage (state) associated with it (similar to *self* in class-based languages).
 
 Templates have unique names.  Instances do not need to be explicitly named. The underlying 0D engine guarantees that each instance is unique (in a manner similar to *references* to *objects* in class-based languages).
 
-Components had input and output *ports*.  Input ports are drawn as white pills (small rounded rectangles), and output ports are drawn as dark-blue pills.  Each port has a unique name.  The names are scoped within their parent component.  The scope of input port names is unique from the scope of output port names within the same component, i.e. a component can use the same name for an input port as for an output port, but every input name must be different from every other input name and every output name must be different from every other output name within the same component.  Different components can use the same names for ports as other components, for example, many components have input ports named "input".  Those port names do not clash, they are "locally scoped" to their parent components.
-
-Connections within Containers are used to hook output ports to input ports of child components in a 1:many and many:1 manner.
+Components have input and output *ports*.  Input ports are drawn as white pills (small rounded rectangles), and output ports are drawn as dark-blue pills.  Each port has a unique name.  The names are scoped to be visible only within their parent component.  The scope of input port names is unique from the scope of output port names within the same component, i.e. a component can use the same name for an input port as for an output port, but every input name must be different from every other input name and every output name must be different from every other output name within the same component.  Different components can use the same names for ports as other components, for example, many components have input ports named "input".  Those port names do not clash, they are "locally scoped" to their parent components.
 
 Containers also have special ports called *gates*.  Gates represent the top-level inputs and outputs of a Container.  Input gates are drawn as white rhombuses with a name, and, output gates are drawn as blue rhombuses with a name.
 
-Components can only *send* messages to their own output ports and gates.  This is similar to *input parameter lists* in other programming languages, except that the parameter lists are for *outputs* (the set of input ports are like input parameter lists, the set of output ports are like output parameter lists).  In other programming languages, a function cannot know where a particular input parameter came from.  Likewise, a component cannot know where a particular output will go.
+Connections within Containers are used to hook output ports to input ports of child components in a 1:many and many:1 manner.  And, Connections hook *gates* to *ports*.
+
+Components can only *send* messages to their own output ports and gates.  This is similar to *input parameter lists* in other programming languages, except that the parameter lists are for *outputs* (the set of input ports are like input parameter lists, the set of output ports are like output parameter lists).  In other programming languages, a function cannot know where a particular input parameter came from.  Likewise, a component cannot know where a particular output will go nor where an input came from.
 
 Unlike procedures and functions in most programming languages, inputs to and outputs from a component can happen at any time, in any order.  For example, if a component has two inputs A and B, it might be the case that inputs arrive on port B, and, some time later, inputs arrive on port A, or, the inputs might arrive very closely spaced together in time, or, multiple B inputs might arrive before any A inputs arrive, or, inputs *never* arrive on port A, and so on.
 
 It turned out to be trivial to represent shell commands as Leaf Components.  This repo includes a demo of such components.  We call this VSH - for Visual SHell.  It is possible to draw shell pipelines in `draw.io` and to execute the pipelines.  Combinations beyond simple pipelines are possible to express and are easier to express visually than as pure text.  [*Aside: an outcome of this approach is that it is convenient to visually express component programs that contain relatively heavy concepts.  For example, a parser can be drawn and implemented as a single component with input ports and output ports.  We are considering making A.I. and LLM components.*]
 ## Visual Overview
-### Visual Syntax
+
+First, I list summaries for the various sections, then the details of each section...
+### Visual Syntax Summary
 - bare component
 - Container
 - Leaf
@@ -68,7 +66,7 @@ It turned out to be trivial to represent shell commands as Leaf Components.  Thi
 - *gates* and *ports* are similar, except that *gates* represent inputs and outputs of drawings, where *ports* represent in/out ports of components inside diagrams.
 - Containers can contain other Containers or Leaves, Leaves are at the *bottom* and contain nothing but code.
 - these diagrams can be found in ../DPL syntax/DPL syntax.drawio.
-### Visual Semantics
+### Visual Semantics Summary
 - down
 - up
 - across
@@ -76,19 +74,19 @@ It turned out to be trivial to represent shell commands as Leaf Components.  Thi
 - fan-out (split)
 - fan-in (join)
 
-### Style, Readability
+### Style, Readability Summary
 - opacity
 - line style
 - line thickness
 
-### Idioms
+### Idioms Summary
 - feedback
 - sequential
 - parallel
 - concurrency
 - errors, exceptions
 
-### Low Level Technicalities
+### Low Level Technicalities Summary
 - kickoff inject
 - handle ()
 - send ()
@@ -131,7 +129,6 @@ It turned out to be trivial to represent shell commands as Leaf Components.  Thi
 ![](../DPL%20syntax/DPL%20syntax-fan-out%20(split).drawio.svg)
 ### fan-in (join)
 ![](../DPL%20syntax/DPL%20syntax-fan-in%20(join).drawio.svg)
-![[DPL syntax-fan-in (join).drawio.svg]]
 
 ## Style, Readability
 ### opacity
@@ -178,7 +175,7 @@ The demo defines a Container component called "Top" which contains
 1. two instances of the "echo" Leaf component hooked up in a sequential combination.
 2. two instances of the "echo" Leaf component hooked up in a parallel combination.
 
-The instances in this demo are given unimaginative names like "10", "11", "20", and, "21".  When you build these things with a drawing compiler, you don't need to give the instances names at all since (x,y) position on a diagram is enough to uniquely identify each component instance.  
+The instances in this demo are given unimaginative names like "10", "11", "20", and, "21".  Were  you to build these things with a drawing compiler, you wouldn't need to give the instances names at all since (x,y) position on a diagram is enough to uniquely identify each component instance.  
 ## Drawio
 This demo `demo_drawio/main.odin` is of drawings compiled to running code.
 
@@ -223,7 +220,7 @@ It is expected that we will be able to replace step (2) with programs written in
 ### Message and Datum
 
 Message is defined as a *3-tuple*:
-1. tag (some sort of id, in the Odin implementation, the id is a *string*)
+1. tag
 2. data
 3. cause.
 
@@ -260,4 +257,19 @@ True multiple input parameters, are blobs of data that arrive at *different time
 
 A parameter list in conventional programming languages, is just a single input port.  A complete blob of data arrives - all at once, with no time separation - at the input port.  The receiving procedure / function immediately deconstructs the blob into distinct types of data.  The input data, though, all arrives at once grouped together into a homogenous blob of data, hence, it is but a single input, regardless of how it is deconstructed.
 
+# Appendix - Optimization
 
+Fundamentally, internal language doesn't matter when designing a solution to a problem.
+
+If you need to optimize the solution (a big IF), then internal language and niggly details do matter.  Note that optimization (e.g. type checking, etc.) reduces scalability, hence, should be used sparingly.
+
+# Appendix - About
+## Opinions, Gendankener, Author
+- Paul Tarvydas
+## Odin Implementarian
+- Zac Nowicki
+## Kibitzers
+- Rajiv Abraham
+- Boken Lin
+- Ken Kan
+- in the past, various people at TS Controls - John Shuve, Jeff Roberts, Stephen Gretton, Norm Sanford, Minnan Uppal, Jahan Mazlekzadeh, Ernie doForno, et al. My apologies to those who I've forgotten to mention by name (it's been a while).
