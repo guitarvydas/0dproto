@@ -47,13 +47,16 @@ demo_vsh.bin: demo_vsh/*.odin $(0D)
 	@echo 'building...'
 	odin build demo_vsh $(ODIN_FLAGS)
 
-demo_agency.bin: demo_agency/*.odin $(0D)
+demo_agency.bin: demo_agency/*.odin $(0D) ../llm/agency/main
 	@echo 'building...'
 	odin build demo_agency $(ODIN_FLAGS)
 
 demo_dev0d.bin: demo_dev0d/*.odin $(0D)
 	@echo 'building...'
 	odin build demo_dev0d $(ODIN_FLAGS)
+
+../llm/agency/main:
+	(cd ../llm/agency/main ; make)
 
 clean:
 	rm -f *.bin
