@@ -79,6 +79,7 @@ make_component_registry :: proc(leaves: []Leaf_Template, containers: []ir.Contai
 }
 
 get_component_instance :: proc(reg: ^Component_Registry, name_prefix: string, name: string, owner : ^zd.Eh) -> (instance: ^zd.Eh, ok: bool) {
+
     descriptor: Template
     descriptor, ok = reg.templates[name]
     if ok {
@@ -108,6 +109,8 @@ container_instantiator :: proc(reg: ^Component_Registry, owner : ^zd.Eh, name_pr
     // collect children
     {
         for child_decl in decl.children {
+	    fmt.printf ("  DEBUG: child_decl %v\n", child_decl)
+	    fmt.printf ("  DEBUG: child_decl.name %v\n", child_decl.name)
             child_instance, ok := get_component_instance(reg, container_name, child_decl.name, container)
             fmt.assertf (ok, "\n*** Error: Can't find component %v\n", child_decl.name)
             append(&children, child_instance)
@@ -213,7 +216,7 @@ append_leaf :: proc (template_map: ^[dynamic]Leaf_Instantiator, template: Leaf_T
     append (template_map, template)
 }
 
-dump_registry:: proc (reg : Component_Registry) {
+dump_registry:: proc (reg : ^Component_Registry) {
   fmt.println ()
   fmt.println ("*** PALETTE ***")
   for c in reg.templates {

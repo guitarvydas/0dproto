@@ -39,6 +39,10 @@ project_specific_components :: proc (leaves: ^[dynamic]reg.Leaf_Template) {
 
 run :: proc (r : ^reg.Component_Registry, main_container_name : string, diagram_source_file : string, injectfn : #type proc (^zd.Eh)) {
     pregistry := r
+
+    fmt.printf ("DEBUG: main_container_name = %v\n", main_container_name)
+    fmt.printf ("DEBUG: diagram_source_file = %v\n", diagram_source_file)
+
     // get entrypoint container
     main_container, ok := reg.get_component_instance(pregistry, "", main_container_name, owner=nil)
     fmt.assertf(
