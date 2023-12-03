@@ -1,4 +1,4 @@
-package kinopio2md
+package vsh
 
 import "core:fmt"
 import "core:log"
