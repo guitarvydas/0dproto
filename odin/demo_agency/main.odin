@@ -1,4 +1,4 @@
-package vsh
+package agency
 
 import "core:fmt"
 import "core:log"
@@ -56,10 +56,8 @@ run :: proc (r : ^reg.Component_Registry, main_container_name : string, diagram_
 
 print_output :: proc (main_container : ^zd.Eh) {
     fmt.println("\n\n--- RESULT ---")
-    fmt.printf ("...processes that include the name 'vsh' (ps | grep vsh)...\n")
-    zd.print_specific_output (main_container, "ps")
-    fmt.printf ("...number of processes + 1 (header) (ps | wc -l)...\n")
-    zd.print_specific_output (main_container, "processes")
+    fmt.printf ("... response ... \n")
+    zd.print_specific_output (main_container, "output")
 }
 print_error_maybe :: proc (main_container : ^zd.Eh) {
     error_port := "error"
