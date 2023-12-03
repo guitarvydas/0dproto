@@ -60,19 +60,19 @@ make_component_registry :: proc(leaves: []Leaf_Template, containers: []ir.Contai
     reg: Component_Registry
 
     for leaf_template in leaves {
-	fmt.assertf (!(leaf_template.name in reg.templates), "Leaf \"%v\" already declared", leaf_template.name)
+        fmt.assertf (!(leaf_template.name in reg.templates), "Leaf \"%v\" already declared", leaf_template.name)
         reg.templates[leaf_template.name] = leaf_template
-	reg.stats.nleaves += 1
+        reg.stats.nleaves += 1
     }
 
     for decl in containers {
         container_template := Container_Template {
-	    name=decl.name,
+            name=decl.name,
             decl = decl,
         }
-	fmt.assertf (!(decl.name in reg.templates), "component \"%v\" already declared", decl.name)
+        fmt.assertf (!(decl.name in reg.templates), "component \"%v\" already declared", decl.name)
         reg.templates[decl.name] = container_template
-	reg.stats.ncontainers += 1
+        reg.stats.ncontainers += 1
     }
 
     return reg
@@ -89,7 +89,7 @@ get_component_instance :: proc(reg: ^Component_Registry, name_prefix: string, na
         case Container_Template:
             instance = container_instantiator(reg, owner, name_prefix, template.decl)
         }
-	reg.stats.ninstances += 1
+        reg.stats.ninstances += 1
     }
     return instance, ok
 }
@@ -109,8 +109,8 @@ container_instantiator :: proc(reg: ^Component_Registry, owner : ^zd.Eh, name_pr
     // collect children
     {
         for child_decl in decl.children {
-	    fmt.printf ("  DEBUG: child_decl %v\n", child_decl)
-	    fmt.printf ("  DEBUG: child_decl.name %v\n", child_decl.name)
+            fmt.printf ("  DEBUG: child_decl %v\n", child_decl)
+            fmt.printf ("  DEBUG: child_decl.name %v\n", child_decl.name)
             child_instance, ok := get_component_instance(reg, container_name, child_decl.name, container)
             fmt.assertf (ok, "\n*** Error: Can't find component %v\n", child_decl.name)
             append(&children, child_instance)
@@ -137,7 +137,7 @@ container_instantiator :: proc(reg: ^Component_Registry, owner : ^zd.Eh, name_pr
             case .Down:
                 connector.direction = .Down
                 connector.sender = {
-		    "",
+                    "",
                     nil,
                     c.source_port,
                 }
@@ -145,7 +145,7 @@ container_instantiator :: proc(reg: ^Component_Registry, owner : ^zd.Eh, name_pr
 
                 target_component, target_ok = child_id_map[c.target.id]
                 connector.receiver = {
-		    target_component.name,
+                    target_component.name,
                     &target_component.input,
                     c.target_port,
                 }
@@ -155,13 +155,13 @@ container_instantiator :: proc(reg: ^Component_Registry, owner : ^zd.Eh, name_pr
                 target_component, target_ok = child_id_map[c.target.id]
 
                 connector.sender = {
-		    source_component.name,
+                    source_component.name,
                     source_component,
                     c.source_port,
                 }
 
                 connector.receiver = {
-		    target_component.name,
+                    target_component.name,
                     &target_component.input,
                     c.target_port,
                 }
@@ -169,13 +169,13 @@ container_instantiator :: proc(reg: ^Component_Registry, owner : ^zd.Eh, name_pr
                 connector.direction = .Up
                 source_component, source_ok = child_id_map[c.source.id]
                 connector.sender = {
-		    source_component.name,
+                    source_component.name,
                     source_component,
                     c.source_port,
                 }
 
                 connector.receiver = {
-		    "",
+                    "",
                     &container.output,
                     c.target_port,
                 }
@@ -183,14 +183,14 @@ container_instantiator :: proc(reg: ^Component_Registry, owner : ^zd.Eh, name_pr
             case .Through:
                 connector.direction = .Through
                 connector.sender = {
-		    "",
+                    "",
                     nil,
                     c.source_port,
                 }
                 source_ok = true
 
                 connector.receiver = {
-		    "",
+                    "",
                     &container.output,
                     c.target_port,
                 }
@@ -200,10 +200,10 @@ container_instantiator :: proc(reg: ^Component_Registry, owner : ^zd.Eh, name_pr
             if source_ok && target_ok {
                 append(&connectors, connector)
             } else if source_ok {              
-	      fmt.println ("no target", c)
+              fmt.println ("no target", c)
             } else {              
-	      fmt.println ("no source", c)
-	    }
+              fmt.println ("no source", c)
+            }
         }
 
         container.connections = connectors[:]
