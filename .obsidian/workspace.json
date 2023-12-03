@@ -11,12 +11,8 @@
             "id": "dda0d586fa2556a9",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "README.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -149,17 +141,18 @@
   },
   "active": "dda0d586fa2556a9",
   "lastOpenFiles": [
-    "odin/demo_dev0d.bin.dSYM/Contents/Resources/DWARF/demo_dev0d.bin",
-    "odin/demo_dev0d.bin.dSYM/Contents/Resources/DWARF",
-    "odin/demo_dev0d.bin.dSYM/Contents/Resources",
-    "odin/demo_dev0d.bin.dSYM/Contents/Info.plist",
-    "odin/demo_dev0d.bin.dSYM/Contents",
-    "odin/demo_dev0d.bin.dSYM",
-    "odin/demo_dev0d.bin",
-    "odin/demo_dev0d.o",
-    "odin/demo_vsh.bin.dSYM/Contents/Resources/DWARF/demo_vsh.bin",
-    "odin/demo_vsh.bin.dSYM/Contents/Resources/DWARF",
-    "odin/demo_vsh.bin.dSYM/Contents/Resources",
+    "README.md",
+    "llm/devnotes.md",
+    "src/pong/pong0dA.tiff",
+    "src/pong/atari pong.tiff",
+    "src/pong/pong0dC.tiff",
+    "src/pong/pong0dB.tiff",
+    "src/pong/url.txt",
+    "src/pong/pong.drawio",
+    "src/pong",
+    "odin/demo_agency.bin.dSYM/Contents/Resources/DWARF/demo_agency.bin",
+    "odin/demo_agency.bin.dSYM/Contents/Resources/DWARF",
+    "odin/demo_agency.bin.dSYM/Contents/Resources",
     "odin/README.md",
     "llm/agency/examples/README.md",
     "llm/agency/assets/dracula.png",
@@ -176,7 +169,6 @@
     "src/agency/agency/README.md",
     "src/agency/README.md",
     "DPL syntax/DPL syntax-fan-out (split).drawio.svg",
-    "README.md",
     "DPL syntax/DPL syntax-notes.drawio.svg",
     "DPL syntax/DPL syntax-input gate.drawio.svg",
     "DPL syntax/DPL syntax-output gate.drawio.svg",
