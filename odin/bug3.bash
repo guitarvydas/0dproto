@@ -1,6 +1,7 @@
 #!/bin/bash
-# clone 
-# ensure that pwd is ..../0d/odin
+# clone https://github.com/guitarvydas/0d/tree/bug3
+# git checkout bug3
+# cd odin # ensure that pwd is ..../0d/odin
 lldb agency.bin ../src/agency.drawio
 # > run
 # > bt
