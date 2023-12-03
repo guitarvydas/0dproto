@@ -205,6 +205,15 @@ It is customary to use these utilities in a command-line shell, like `/bin/bash`
 
 This demo is basically the same as the above VSH demo, but the code `demo_dev0d/main.odin` uses and defines extra utility functions that can be used to debug this prototype code and demos.  These utility functions are mostly interesting to developers who still need to work in the text-only paradigm while debugging this Proof of Concept.  The utility functions are not needed by drawware programmers, as it is easier to debug programs using drawings instead of textual code.
 
+## Agency
+
+The demo `demo_agency/main.odin` uses VSH to run a hard-wired query via 'agency' engine (written in 'go').
+
+Runs the 'agency' LLM (open-ai api) with the command line `-model gpt-3.5-turbo -maxTokens 1000 -temp=1 -prompt "Translate to Russian" "I love winter"`.
+
+[agency](https://github.com/neurocult/agency/tree/main)
+
+N.B. openai's *ChatGPT-3.5* is free, but you need to park some $s to use the API for gpt-3.5-turbo.  You need to generate an API Key and export the key in the shell variable `OPENAI_API_KEY`.
 ## Points of Interest
 
 ### Das2json
@@ -264,6 +273,11 @@ Implementation of 0D using the Odin language.
 Odin is like a "better C".  Programmers need to explicitly write code to manage memory.
 
 Essentially, implementation of 0D in Odin is the most extreme use-case.  Writing 0D in other, garbage-collected, languages should be as easy as simply stripping out the types from the Odin code and changing the syntax.
+
+### llm
+LLMs as Components.
+
+Currently, contains only one example - "agency" with hard-wired command line parameters.
 ## Documentation
 ### DPL syntax
 SVG Diagrams of the syntax.
