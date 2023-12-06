@@ -141,6 +141,7 @@
   },
   "active": "dda0d586fa2556a9",
   "lastOpenFiles": [
+<<<<<<< HEAD
     "odin/agency.bin.dSYM/Contents/Resources/DWARF/agency.bin",
     "odin/agency.bin.dSYM/Contents/Resources/DWARF",
     "odin/agency.bin.dSYM/Contents/Resources",
@@ -152,6 +153,20 @@
     "odin/agency/main.odin~",
     "odin/agency/main.odin",
     "odin/agency/Makefile~",
+=======
+    "odin/demo_agency.bin.dSYM/Contents/Resources/DWARF/demo_agency.bin",
+    "odin/demo_agency.bin.dSYM/Contents/Resources/DWARF",
+    "odin/demo_agency.bin.dSYM/Contents/Resources",
+    "odin/demo_agency.bin.dSYM/Contents/Info.plist",
+    "odin/demo_agency.bin.dSYM/Contents",
+    "odin/demo_agency.bin.dSYM",
+    "odin/demo_agency.bin",
+    "odin/demo_agency.o",
+    "odin/demo_dev0d.bin.dSYM/Contents/Resources/DWARF/demo_dev0d.bin",
+    "odin/demo_dev0d.bin.dSYM/Contents/Resources/DWARF",
+    "odin/demo_dev0d.bin.dSYM/Contents/Resources",
+    "odin/issue-bug.md",
+>>>>>>> main
     "README.md",
     "llm/README.md",
     "llm/devnotes.md",
