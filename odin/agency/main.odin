@@ -24,8 +24,8 @@ main :: proc() {
 
 
 start_function :: proc (main_container : ^zd.Eh) {
-    b := zd.new_datum_bang ()
-    msg := zd.make_message("input", b, zd.make_cause (main_container, nil) )
+    d := zd.new_datum_string ("I love autumn")
+    msg := zd.make_message("input", d, zd.make_cause (main_container, nil) )
     main_container.handler(main_container, msg)
 }
 
@@ -34,6 +34,7 @@ start_function :: proc (main_container : ^zd.Eh) {
 project_specific_components :: proc (leaves: ^[dynamic]reg.Leaf_Template) {
     append(leaves, reg.Leaf_Template { name = "?", instantiate = leaf.probe_instantiate })
     append(leaves, reg.Leaf_Template { name = "trash", instantiate = leaf.trash_instantiate })
+    append(leaves, leaf.string_constant ("Translate to Lithuanian"))
 }
 
 
