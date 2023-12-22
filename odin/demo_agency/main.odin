@@ -15,7 +15,7 @@ import      "../debug"
 
 
 main :: proc() {
-    diagram_name, main_container_name := parse_command_line_args ()
+    diagram_name, main_container_name := parse_command_line_args ("<specify on command line>", "main")
     palette := initialize_component_palette (diagram_name)
     run (&palette, main_container_name, diagram_name, start_function)
 }
@@ -68,9 +68,9 @@ print_error_maybe :: proc (main_container : ^zd.Eh) {
     }
 }
 
-parse_command_line_args :: proc () -> (diagram_source_file, main_container_name: string) {
-    diagram_source_file = slice.get(os.args, 1) or_else "<specify on command line>"
-    main_container_name = slice.get(os.args, 2) or_else "main"
+parse_command_line_args :: proc (default_diagram_source_file, default_main_container_name : string) -> (diagram_source_file, main_container_name: string) {
+    diagram_source_file = slice.get(os.args, 1) or_else default_diagram_source_file
+    main_container_name = slice.get(os.args, 2) or_else default_main_container_name
     
     if !os.exists(diagram_source_file) {
         fmt.println("Source diagram file", diagram_source_file, "does not exist.")
