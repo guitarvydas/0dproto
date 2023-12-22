@@ -10,7 +10,7 @@ import "core:unicode/utf8"
 
 import reg  "../registry0d"
 import zd   "../0d"
-import leaf "../leaf0d"
+import lib "../lib0d"
 import      "../debug"
 
 
@@ -32,8 +32,8 @@ start_function :: proc (main_container : ^zd.Eh) {
 
 ////////
 project_specific_components :: proc (leaves: ^[dynamic]reg.Leaf_Template) {
-    append(leaves, reg.Leaf_Template { name = "?", instantiate = leaf.probe_instantiate })
-    append(leaves, reg.Leaf_Template { name = "trash", instantiate = leaf.trash_instantiate })
+    append(leaves, reg.Leaf_Template { name = "?", instantiate = lib.probe_instantiate })
+    append(leaves, reg.Leaf_Template { name = "trash", instantiate = lib.trash_instantiate })
 }
 
 
@@ -83,12 +83,12 @@ initialize_component_palette :: proc (diagram_source_file: string) -> (palette: 
     leaves := make([dynamic]reg.Leaf_Instantiator)
 
     // set up shell leaves
-    leaf.collect_process_leaves(diagram_source_file, &leaves)
+    lib.collect_process_leaves(diagram_source_file, &leaves)
 
     // export native leaves
     reg.append_leaf (&leaves, reg.Leaf_Instantiator {
         name = "stdout",
-        instantiate = leaf.stdout_instantiate,
+        instantiate = lib.stdout_instantiate,
     })
 
     project_specific_components (&leaves)

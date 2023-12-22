@@ -1,4 +1,4 @@
-package leaf0d
+package lib
 
 import "core:fmt"
 import "core:runtime"
