@@ -1,0 +1,50 @@
+<mxfile host="Electron" modified="2023-12-23T03:54:16.455Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.11 Chrome/114.0.5735.289 Electron/25.9.8 Safari/537.36" etag="8nvaKAu8-of2OCQvDUOq" version="22.1.11" type="device">
+  <diagram name="devlib0d" id="wWQFBM5gfX409Yp0wWLz">
+    <mxGraphModel dx="982" dy="782" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Ov_3WarNkFZcmBV0NYa0-1" value="?" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#b85450;fillColor=#f8cecc;fontFamily=Helvetica;fontSize=11;dashed=1;opacity=30;gradientColor=#ea6b66;" vertex="1" parent="1">
+          <mxGeometry x="720" y="75" width="80" height="70" as="geometry">
+            <mxRectangle x="-98" y="-1230" width="99" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ov_3WarNkFZcmBV0NYa0-2" value="input" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;textOpacity=50;opacity=30;" vertex="1" parent="Ov_3WarNkFZcmBV0NYa0-1">
+          <mxGeometry x="-16.75" y="27.5" width="66" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="Ov_3WarNkFZcmBV0NYa0-5" value="Basic components to help with debugging diagrams&lt;br&gt;&lt;br&gt;copy/paste these outlines into your project diagram&lt;br&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="185" width="300" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="Ov_3WarNkFZcmBV0NYa0-6" value="trash" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#6c8ebf;fillColor=#dae8fc;fontFamily=Helvetica;fontSize=11;dashed=1;opacity=30;gradientColor=#0050EF;" vertex="1" parent="1">
+          <mxGeometry x="720" y="200" width="80" height="70" as="geometry">
+            <mxRectangle x="-98" y="-1230" width="99" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Ov_3WarNkFZcmBV0NYa0-7" value="input" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;fontFamily=Helvetica;fontSize=11;fontColor=default;dashed=1;textOpacity=50;opacity=30;" vertex="1" parent="Ov_3WarNkFZcmBV0NYa0-6">
+          <mxGeometry x="-16.75" y="27.5" width="66" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="Ov_3WarNkFZcmBV0NYa0-8" value="&lt;b&gt;probe&lt;/b&gt; - displays input as a string on stderr" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="75" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Ov_3WarNkFZcmBV0NYa0-9" value="&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;add the following lines to&amp;nbsp;components_to_include_in_project proc:&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; append(leaves, reg.Leaf_Template { name = &quot;?&quot;, instantiate = lib.probe_instantiate })&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; append(leaves, reg.Leaf_Template { name = &quot;trash&quot;, instantiate = lib.trash_instantiate })&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="440" width="500" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Ov_3WarNkFZcmBV0NYa0-10" value="&lt;b&gt;trash&lt;/b&gt; - during debug and development, you might want to stub out certain components, but, if they output anything, the engine will complain that the output has been dropped on the floor - attach such outputs to &quot;trash&quot; to appease the engine" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="200" width="240" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="Ov_3WarNkFZcmBV0NYa0-13" value="&lt;div&gt;example:&amp;nbsp;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;components_to_include_in_project :: proc (leaves: ^[dynamic]reg.Leaf_Template) {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; append(leaves, reg.Leaf_Template { name = &quot;?&quot;, instantiate = lib.probe_instantiate })&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; append(leaves, reg.Leaf_Template { name = &quot;trash&quot;, instantiate = lib.trash_instantiate })&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="200" y="600" width="560" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="Ov_3WarNkFZcmBV0NYa0-14" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Ov_3WarNkFZcmBV0NYa0-9" target="Ov_3WarNkFZcmBV0NYa0-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Ov_3WarNkFZcmBV0NYa0-15" value="devlib0d" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillStyle=solid;direction=west;gradientDirection=north;shadow=1;size=20;pointerEvents=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="10" y="5" width="140" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="Ov_3WarNkFZcmBV0NYa0-16" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Ov_3WarNkFZcmBV0NYa0-15" target="Ov_3WarNkFZcmBV0NYa0-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
