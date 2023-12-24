@@ -17,8 +17,9 @@ drawio: demo_drawio.bin $(D2J) $(SRC)/demo_drawio.drawio
 	./demo_drawio.bin $(SRC)/demo_drawio.drawio
 
 vsh: demo_vsh.bin $(D2J) $(SRC)/demo_vsh.drawio
-	@echo 'running...'
+	@echo '*** Compiling to JSON...'
 	$(D2J) $(SRC)/demo_vsh.drawio
+	@echo '*** running...'
 	./demo_vsh.bin $(SRC)/demo_vsh.drawio
 
 agency: demo_agency.bin $(D2J) $(SRC)/demo_agency.drawio
@@ -70,3 +71,4 @@ demo_dev0d.bin: demo_dev0d/*.odin $(0D)
 clean:
 	rm -f *.bin
 	rm -rf *.dSYM
+

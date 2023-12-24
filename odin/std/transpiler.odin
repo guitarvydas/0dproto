@@ -8,23 +8,11 @@ import "core:slice"
 import "core:os"
 import "core:unicode/utf8"
 
-import "../../../ir"
-import zd "../../engine/0d"
-import reg "../../engine/registry0d"
-import "../../engine/process"
+import "../../ir"
+import zd "../engine/0d"
+import reg "../engine/registry0d"
+import "../engine/process"
 
-
-initialize :: proc(r : ^reg.Component_Registry) {
-    // for ohmjs
-    reg.add_leaf (r, reg.Leaf_Template { name = "OhmJS", instantiate = ohmjs_instantiate })
-    reg.add_leaf (r, string_constant ("RWR"))
-    reg.add_leaf (r, string_constant ("rwr.ohm"))
-    reg.add_leaf (r, string_constant ("rwr.sem.js"))
-}
-
-///////////
-
-////////
 
 OhmJS_Instance_Data :: struct {
     grammarname : string, // grammar name

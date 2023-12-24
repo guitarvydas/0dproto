@@ -32,7 +32,7 @@ initialize :: proc(diagram_name: string) -> [dynamic]reg.Leaf_Instantiator {
     leaves : [dynamic]reg.Leaf_Instantiator = make([dynamic]reg.Leaf_Instantiator)
     collect_process_leaves (diagram_name, &leaves)
     // export standard native leaves
-    reg.append_leaf (&leaves, reg.Leaf_Instantiator {
+    append(&leaves, reg.Leaf_Instantiator {
         name = "stdout",
         instantiate = std.stdout_instantiate,
     })

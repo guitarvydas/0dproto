@@ -1,18 +1,9 @@
 package agency
 
-import "core:fmt"
-import "core:log"
-import "core:runtime"
-import "core:strings"
-import "core:slice"
-import "core:os"
-import "core:unicode/utf8"
-
-import reg  "../registry0d"
-import zd   "../0d"
-import lib "../lib0d"
+import reg  "../engine/registry0d"
+import zd   "../engine/0d"
+import std "../std"
 import libdev "../libdev0d"
-import      "../debug"
 
 
 main :: proc() {
@@ -32,8 +23,9 @@ start_function :: proc (main_container : ^zd.Eh) {
 
 
 components_to_include_in_project :: proc (leaves: ^[dynamic]reg.Leaf_Template) {
-    append(leaves, reg.Leaf_Template { name = "?", instantiate = libdev.probe_instantiate })
-    append(leaves, reg.Leaf_Template { name = "trash", instantiate = libdev.trash_instantiate })
+    // examples:
+    //    reg.append_leaf (&leaves, reg.Leaf_Template { name = "trash", instantiate = trash_instantiate })
+    //    reg.append_leaf (&leaves, string_constant ("rwr.ohm"))
 }
 
 

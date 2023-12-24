@@ -238,10 +238,6 @@ container_instantiator :: proc(reg: ^Component_Registry, owner : ^zd.Eh, decl: i
     return container
 }
 
-append_leaf :: proc (template_map: ^[dynamic]Leaf_Instantiator, template: Leaf_Template) {
-    append (template_map, template)
-}
-
 dump_registry:: proc (reg : Component_Registry) {
   fmt.println ()
   fmt.println ("*** PALETTE ***")
@@ -255,3 +251,8 @@ dump_registry:: proc (reg : Component_Registry) {
 print_stats :: proc (reg: ^Component_Registry) {
     fmt.printf ("registry statistics: %v\n", reg.stats)
 }
+
+append_leaf :: proc (template_map: ^[dynamic]Leaf_Instantiator, template: Leaf_Template) {
+    append (template_map, template)
+}
+
