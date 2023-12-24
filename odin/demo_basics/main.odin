@@ -9,7 +9,7 @@ package demo_basics
 
 import "core:fmt"
 
-import zd "../0d"
+import zd "../engine/0d"
 
 Eh                :: zd.Eh
 Message           :: zd.Message
@@ -27,7 +27,7 @@ main :: proc() {
         }
 
 	makeleaf :: proc (name: string, handler: #type proc(^Eh, ^Message)) -> ^Eh {
-            return make_leaf(name_prefix="", name=name, owner=nil, instance_data=nil, handler=echo_handler)
+            return make_leaf(name=name, owner=nil, instance_data=nil, handler=echo_handler)
 	}
 	
         echo0 := makeleaf("10", echo_handler)
@@ -57,7 +57,7 @@ main :: proc() {
         }
 
 	makeleaf :: proc (name: string, handler: #type proc(^Eh,^Message)) -> ^Eh{
-            return make_leaf(name_prefix="", name=name, owner=nil, instance_data=nil, handler=echo_handler)
+            return make_leaf(name=name, owner=nil, instance_data=nil, handler=echo_handler)
 	}
 	
         top := make_container("Top", nil)

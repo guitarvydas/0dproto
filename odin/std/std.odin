@@ -1,7 +1,4 @@
-// various useful pre-build components
-// the components should be loaded-on-demand, but, for now, we'll just EVERYTHING in here...
-
-package lib
+package std
 
 import "core:fmt"
 import "core:runtime"
@@ -11,43 +8,64 @@ import "core:slice"
 import "core:os"
 import "core:unicode/utf8"
 
-import reg "../registry0d"
-import "../process"
+import reg "../engine/registry0d"
+import "../engine/process"
 import "../../ir"
-import zd "../0d"
+import zd "../engine/0d"
+import "../std"
 
-//////////
-// Bang
-// create a simple Bang datum
-// for use in creating an event, where the data it contains doesn't matter
-// like an "edge" in EE
-//////////
+///// exported
 
-bang_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
-    name_with_id := gensym("bang[%d]")
-    return zd.make_leaf (name_with_id, owner, nil, bang_handle)
+gensym :: proc (s : string) -> string {
+    @(static) counter := 0
+    counter += 1
+    name_with_id := fmt.aprintf("%s◦%d", s, counter)
+    return name_with_id
 }
 
-bang_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
-    zd.send (eh, "output", zd.new_datum_bang (), msg)
+string_constant :: proc (str: string) -> reg.Leaf_Template {
+    quoted_name := fmt.aprintf ("'%s'", str)
+    return reg.Leaf_Template { name = quoted_name, instantiate = literal_instantiate }
 }
 
-//////////
-// Support for $ (VSH - Visual SHell) components
-//////////
+initialize :: proc(diagram_name: string) -> [dynamic]reg.Leaf_Instantiator {
+    leaves : [dynamic]reg.Leaf_Instantiator = make([dynamic]reg.Leaf_Instantiator)
+    collect_process_leaves (diagram_name, &leaves)
+    // export standard native leaves
+    reg.append_leaf (&leaves, reg.Leaf_Instantiator {
+        name = "stdout",
+        instantiate = std.stdout_instantiate,
+    })
+    append(&leaves, reg.Leaf_Template { name = "1then2", instantiate = std.deracer_instantiate })
+    append(&leaves, reg.Leaf_Template { name = "?", instantiate = std.probe_instantiate })
+    append(&leaves, reg.Leaf_Template { name = "trash", instantiate = std.trash_instantiate })
 
-stdout_instantiate :: proc(name_prefix: string,name: string, owner : ^zd.Eh) -> ^zd.Eh {
-    return zd.make_leaf(name_prefix, name, owner, nil, stdout_handle)
+    append(&leaves, reg.Leaf_Template { name = "Low Level Read Text File", instantiate = std.low_level_read_text_file_instantiate })
+    append(&leaves, reg.Leaf_Template { name = "Read Text From FD", instantiate = std.read_text_from_fd_instantiate })
+    append(&leaves, reg.Leaf_Template { name = "Open Text File", instantiate = std.open_text_file_instantiate })
+    append(&leaves, reg.Leaf_Template { name = "Ensure String Datum", instantiate = std.ensure_string_datum_instantiate })
+
+    append(&leaves, reg.Leaf_Template { name = "syncfilewrite", instantiate = std.syncfilewrite_instantiate })
+    append(&leaves, reg.Leaf_Template { name = "Bang", instantiate = std.bang_instantiate })
+    append(&leaves, reg.Leaf_Template { name = "stringconcat", instantiate = std.stringconcat_instantiate })
+
+    return leaves
+}
+
+//// helpers
+
+stdout_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
+    return zd.make_leaf(name, owner, nil, stdout_handle)
 }
 
 stdout_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
     fmt.printf("%#v", msg.datum)
 }
 
-process_instantiate :: proc(name_prefix: string, name: string, owner : ^zd.Eh) -> ^zd.Eh {
+process_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
     command_string := strings.clone(strings.trim_left(name, "$ "))
     command_string_ptr := new_clone(command_string)
-    return zd.make_leaf(name_prefix, name, owner, command_string_ptr^, process_handle)
+    return zd.make_leaf(name, owner, command_string_ptr^, process_handle)
 }
 
 process_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
@@ -58,15 +76,11 @@ process_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
         return
     }
     
-    send_output :: proc(eh: ^zd.Eh, port: string, output: []byte, causingMsg: ^zd.Message) {
-        if len(output) > 0 {
-            zd.send (eh, port, zd.new_datum_bytes (output), causingMsg)
-        }
-    }
 
     switch msg.port {
     case "input":
-        handle := process.process_start(eh.instance_data.(string))
+	cmd := eh.instance_data.(string)
+        handle := process.process_start(cmd)
         defer process.process_destroy_handle(handle)
 
         // write input, wait for finish
@@ -102,8 +116,8 @@ process_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
 		// fire only one output port
 		// on error, send both, stdout and stderr to the error port
 		if len (stderr) > 0 {
-                    send_output (eh, "error", stdout, msg)
-		    zd.send_string(eh, "error", stderr, msg)
+		    fmt.printf ("%v: %v\n", cmd, stderr) // debug
+		    zd.send_string(eh, "error", fmt.aprintf ("%v: %v", cmd, stderr), msg)
 		} else {
                     zd.send_string (eh, "output", transmute(string)stdout, msg)
 		}
@@ -116,6 +130,8 @@ process_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
     }
 }
 
+
+
 collect_process_leaves :: proc(diagram_name: string, leaves: ^[dynamic]reg.Leaf_Instantiator) {
     ref_is_container :: proc(decls: []ir.Container_Decl, name: string) -> bool {
         for d in decls {
@@ -127,7 +143,7 @@ collect_process_leaves :: proc(diagram_name: string, leaves: ^[dynamic]reg.Leaf_
     }
 
     decls := reg.json2internal (diagram_name)
-    defer delete(decls)
+    defer reg.delete_decls (decls)
 
     // TODO(z64): while harmless, this doesn't ignore duplicate process decls yet.
 
@@ -154,10 +170,10 @@ Command_Instance_Data :: struct {
     buffer : string
 }
 
-command_instantiate :: proc(name_prefix: string, name: string, owner : ^zd.Eh) -> ^zd.Eh {
+command_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
     name_with_id := zd.gensym("command")
     instp := new (Command_Instance_Data)
-    return zd.make_leaf (name_prefix, name_with_id, owner, instp^, command_handle)
+    return zd.make_leaf (name_with_id, owner, instp^, command_handle)
 }
 
 command_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
@@ -173,10 +189,10 @@ command_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
     }
 }
 
-icommand_instantiate :: proc(name_prefix: string, name: string, owner : ^zd.Eh) -> ^zd.Eh {
+icommand_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
     name_with_id := zd.gensym("icommand[%d]")
     instp := new (Command_Instance_Data)
-    return zd.make_leaf (name_prefix, name_with_id, owner, instp^, icommand_handle)
+    return zd.make_leaf (name_with_id, owner, instp^, icommand_handle)
 }
 
 icommand_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
@@ -195,9 +211,9 @@ icommand_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
 
 /////////
 
-probe_instantiate :: proc(name_prefix: string, name: string, owner : ^zd.Eh) -> ^zd.Eh {
+probe_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
     name_with_id := zd.gensym("?")
-    return zd.make_leaf (name_prefix, name_with_id, owner, nil, probe_handle)
+    return zd.make_leaf (name_with_id, owner, nil, probe_handle)
 }
 
 probe_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
@@ -205,20 +221,35 @@ probe_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
     fmt.eprintf ("probe %v: /%v/ len=%v\n", eh.name, s, len (s))
 }
 
-trash_instantiate :: proc(name_prefix: string, name: string, owner : ^zd.Eh) -> ^zd.Eh {
+trash_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
     name_with_id := zd.gensym("trash")
-    return zd.make_leaf (name_prefix, name_with_id, owner, nil, trash_handle)
+    return zd.make_leaf (name_with_id, owner, nil, trash_handle)
 }
 
 trash_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
     // to appease dumped-on-floor checker
 }
 
-//////////
-// time-ordering
-// Deracer
-//////////
+////////
+literal_instantiate :: proc (name: string, owner : ^zd.Eh) -> ^zd.Eh {
+    i := strings.index_rune (name, '\'')
+    quoted := name [i+1:(len (name) - 1)]
+    name_with_id := gensym(name)
+    pstr := string_dup_to_heap (quoted)
+    return zd.make_leaf (name_with_id, owner, pstr^, literal_handle)
+}
 
+literal_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
+    zd.send_string (eh, "output", eh.instance_data.(string), msg)
+}
+
+string_dup_to_heap :: proc (s : string) -> ^string{
+    heap_s := new (string)
+    heap_s^ = strings.clone (s)
+    return heap_s
+}
+
+////////
 
 TwoMessages :: struct {
     first : ^zd.Message,
@@ -289,49 +320,9 @@ deracer_handle :: proc(eh: ^zd.Eh,  msg: ^zd.Message) {
     }
 }
 
-//////////
-// type-checking
-// null tester
-//////////
+/////////
 
-nulltester_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
-    name_with_id := gensym("nulltester")
-    return zd.make_leaf (name_with_id, owner, nil, nulltester_handle)
-}
-
-nulltester_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
-    if "" == msg.datum.data.(string) {
-	zd.send_string (eh, "null", "", msg)
-    } else {
-	zd.send_string (eh, "str", msg.datum.data.(string), msg)
-    }
-}
-
-//////////
-// type-checking
-// forward input only if it is a string, else send a message on "error"
-//////////
-
-ensure_string_datum_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
-    name_with_id := gensym("Ensure String Datum")
-    return zd.make_leaf (name_with_id, owner, nil, ensure_string_datum_handle)
-}
-
-ensure_string_datum_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
-    switch x in msg.datum.data {
-    case string:
-	zd.forward (eh, "output", msg)
-    case:
-	zd.send_string (eh, "error", "ensure: type error (expected a string datum)", msg)
-    }
-}
-
-
-//////////
-// File I/O
-// read, write, fakepipe
-// (a fakepipe is a temporary file scribbled onto disk (say /tmp) to fake out unnamed pipes for operating systems that do not support the concept of true pipes)
-//////////
+////////
 
 low_level_read_text_file_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
     name_with_id := gensym("Low Level Read Text File")
@@ -339,37 +330,40 @@ low_level_read_text_file_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^z
 }
 
 low_level_read_text_file_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
-    fname := msg.datum.data.(string)
+    fname := msg.datum.repr (msg.datum)
     fd, errnum := os.open (fname)
     if errnum == 0 {
 	data, success := os.read_entire_file_from_handle (fd)
 	if success {
 	    zd.send_string (eh, "str", transmute(string)data, msg)
 	} else {
-            emsg := fmt.aprintf("read error on file %s", msg.datum.data.(string))
+            emsg := fmt.aprintf("read error on file %s", msg.datum.repr (msg.datum))
 	    zd.send_string (eh, "error", emsg, msg)
 	}
     } else {
-        emsg := fmt.aprintf("open error on file %s with error code %v", msg.datum.data.(string), errnum)
+        emsg := fmt.aprintf("open error on file %s with error code %v", msg.datum.repr (msg.datum), errnum)
 	zd.send_string (eh, "error", emsg, msg)
     }
 }
 
 
+////////
 open_text_file_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
     name_with_id := gensym("Open Text File")
     return zd.make_leaf (name_with_id, owner, nil, open_text_file_handle)
 }
 
 open_text_file_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
-    fd, errnum := os.open (msg.datum.data.(string))
+    fd, errnum := os.open (msg.datum.repr (msg.datum))
     if errnum == 0 {
 	zd.send (eh, "fd", zd.new_datum_handle (fd), msg)
     } else {
-        emsg := fmt.aprintf("open error on file %s with error code %v", msg.datum.data.(string), errnum)
+        emsg := fmt.aprintf("open error on file %s with error code %v", msg.datum.repr (msg.datum), errnum)
 	zd.send_string (eh, "error", emsg, msg)
     }
 }
+
+////////
 
 read_text_from_fd_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
     name_with_id := gensym("Low Level Read Text From FD")
@@ -382,95 +376,116 @@ low_level_read_text_from_fd_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
     if success {
 	zd.send_string (eh, "str", transmute(string)data, msg)
     } else {
-        emsg := fmt.aprintf("read error on file %s", msg.datum.data.(string))
+        emsg := fmt.aprintf("read error on file %s", msg.datum.repr (msg.datum))
 	zd.send_string (eh, "error", emsg, msg)
     }
 }
 
-// syncfilewrite sends a Bang on "done" - this will cause a panic ("message dropped on floor") if the "done" output pin is not
-// wired to <something> - wire it to Trash if you don't need it
+////////
+ensure_string_datum_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
+    name_with_id := gensym("Ensure String Datum")
+    return zd.make_leaf (name_with_id, owner, nil, ensure_string_datum_handle)
+}
+
+ensure_string_datum_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
+    switch msg.datum.kind () {
+    case "string":
+	zd.forward (eh, "output", msg)
+    case:
+	emsg := fmt.aprintf ("*** ensure: type error (expected a string datum) but got %v in %v", msg.datum.kind (), msg)
+	zd.send_string (eh, "error", emsg, msg)
+    }
+}
+
+////////
 
 Syncfilewrite_Data :: struct {
     filename : string
 }
 
+// temp copy for bootstrap, sends "done" (error during bootstrap if not wired)
+
 syncfilewrite_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
     name_with_id := gensym("syncfilewrite")
-    instp := new (Syncfilewrite_Data)
-    return zd.make_leaf (name_with_id, owner, instp^, syncfilewrite_handle)
+    inst := new (Syncfilewrite_Data)
+    return zd.make_leaf (name_with_id, owner, inst^, syncfilewrite_handle)
 }
 
 syncfilewrite_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
     inst := &eh.instance_data.(Syncfilewrite_Data)
     switch msg.port {
     case "filename":
-	inst.filename = msg.datum.data.(string)
-    case "stdin":
-	contents := msg.datum.data.(string)
-	ok := os.write_entire_file (inst.filename, transmute([]u8)contents, true)
-	if !ok {
-	    zd.send_string (eh, "stderr", "write error", msg)
+	inst.filename = msg.datum.repr (msg.datum)
+    case "input":
+	contents := msg.datum.repr (msg.datum)
+	// see .../Odin/core/os.odin/write_entire_file - the following code was stolen from there
+	mode: int = 0
+	when os.OS == .Linux || os.OS == .Darwin {
+		// NOTE(justasd): 644 (owner read, write; group read; others read)
+		mode = os.S_IRUSR | os.S_IWUSR | os.S_IRGRP | os.S_IROTH
+	}
+	fd, open_errnum := os.open (path = inst.filename, flags =  os.O_WRONLY|os.O_CREATE, mode = mode)
+	if open_errnum == 0 {
+	    numchars, write_errnum := os.write (fd, transmute([]u8)contents)
+	    if write_errnum == 0 {
+		zd.send (eh, "done", zd.new_datum_bang (), msg)
+	    } else {
+		zd.send_string (eh, "error", fmt.aprintf("/%v/: %v", inst.filename, write_errnum), msg)
+		zd.send_string (eh, "error", "write error", msg)
+	    }
 	} else {
-	    zd.send (eh, "done", zd.new_datum_bang (), msg)
+	    zd.send_string (eh, "error", fmt.aprintf("/%v/: %v", inst.filename, open_errnum), msg)
+		zd.send_string (eh, "error", "open error", msg)
 	}
     }
 }
 
-fakepipename_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
-    name_with_id := gensym("fakepipename")
-    return zd.make_leaf (name_with_id, owner, nil, fakepipename_handle)
+////////
+
+///
+bang_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
+    name_with_id := gensym("bang[%d]")
+    return zd.make_leaf (name_with_id, owner, nil, bang_handle)
 }
 
-fakepipename_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
-    @(static) rand := 0
-    rand += 1
-    zd.send_string (eh, "output", fmt.aprintf ("/tmp/fakepipename%d", rand), msg)
+bang_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
+    zd.send (eh, "output", zd.new_datum_bang (), msg)
 }
 
-
-//////////
-// Panic
-// hard, immediate stop
-// strictly, not necessary, but, convenient to use in Proofs of Concept, where ungraceful error handling is OK
-//////////
-
-panic_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
-    name_with_id := gensym("panic")
-    return zd.make_leaf (name_with_id, owner, nil, panic_handle)
+///
+StringConcat_Instance_Data :: struct {
+    buffer : string
 }
 
-panic_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
-    fmt.println ("PANIC: ", msg.datum.data.(string))
-    // assert (false, msg.datum.data.(string))
+stringconcat_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
+    name_with_id := gensym("stringconcat")
+    instp := new (StringConcat_Instance_Data)
+    return zd.make_leaf (name_with_id, owner, instp^, stringconcat_handle)
 }
 
-//////////
-// Concatenate two strings, 1 then 2, and output the concatenated result
-// re-orders the strings, so that 1 always precedes 2, regardless of arrival order
-//////////
-
-Concat_Instance_Data :: struct {
-    buffer : string,
-}
-
-empty_string := ""
-
-concat_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
-    name_with_id := gensym("concat")
-    instp := new (Concat_Instance_Data)
-    instp.buffer = strings.clone (empty_string)
-    return zd.make_leaf (name_with_id, owner, instp^, concat_handle)
-}
-
-concat_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
-    inst := &eh.instance_data.(Concat_Instance_Data)
-    switch (msg.port) {
-    case "str":
-	delete (inst.buffer)
-	inst.buffer = fmt.aprintf ("%s%s", inst.buffer, msg.datum.data.(string))
-    case "flush":
-	zd.send_string (eh, "str", inst.buffer, msg)
-	delete (inst.buffer)
-	inst.buffer = ""
+stringconcat_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
+    inst := &eh.instance_data.(StringConcat_Instance_Data)
+    switch msg.port {
+    case "1":
+	inst.buffer = strings.clone (msg.datum.repr (msg.datum))
+    case "2":
+	s := strings.clone (msg.datum.repr (msg.datum))
+	if 0 == len (inst.buffer) && 0 == len (s) {
+	    fmt.printf ("stringconcat %d %d\n", len (inst.buffer), len (s))
+	    fmt.assertf (false, "TODO: something is wrong in stringconcat, both strings are 0 length\n")
+	}
+	concatenated_string : string
+	if 0 == len (inst.buffer) {
+	    concatenated_string = fmt.aprintf ("%s", s)
+	} else if 0 == len (s) {
+	    concatenated_string = fmt.aprintf ("%s", inst.buffer)
+	} else {
+	    concatenated_string = fmt.aprintf ("%s%s", inst.buffer, s)
+	}
+	zd.send_string (eh, "output", concatenated_string, msg)
+     case:
+        fmt.assertf (false, "bad msg.port for stringconcat: %v\n", msg.port)
     }
 }
+
+////////
