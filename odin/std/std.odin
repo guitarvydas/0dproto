@@ -63,7 +63,10 @@ stdout_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
 }
 
 process_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
-    command_string := strings.clone(strings.trim_left(name, "$ "))
+    i := strings.index_rune (name, '$')
+    command_local_slice := name [i:(len (name))]
+    command_string := strings.clone(strings.trim_left (command_local_slice, "$ "))
+    fmt.eprintf ("command_string = /%v/\n", command_string)
     command_string_ptr := new_clone(command_string)
     return zd.make_leaf(name, owner, command_string_ptr^, process_handle)
 }
@@ -153,7 +156,8 @@ collect_process_leaves :: proc(diagram_name: string, leaves: ^[dynamic]reg.Leaf_
                 continue
             }
 
-            if strings.has_prefix(child.name, "$") {
+	    i := strings.index_rune (child.name, '$')
+            if i >= 0 {
                 leaf_instantiate := reg.Leaf_Instantiator {
                     name = child.name,
                     instantiate = process_instantiate,
