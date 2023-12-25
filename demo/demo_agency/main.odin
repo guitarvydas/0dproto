@@ -1,7 +1,7 @@
 package agency
 
-import zd   "../0d"
-import std "../std"
+import zd "../../0d/odin/0d"
+import "../../0d/odin/std"
 
 
 main :: proc() {

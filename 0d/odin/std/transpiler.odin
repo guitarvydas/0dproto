@@ -8,8 +8,7 @@ import "core:slice"
 import "core:os"
 import "core:unicode/utf8"
 
-import "../ir"
-import "../0d"
+import zd "../0d"
 
 
 OhmJS_Instance_Data :: struct {

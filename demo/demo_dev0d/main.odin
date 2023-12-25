@@ -4,8 +4,8 @@ import "core:fmt"
 import "core:log"
 import "core:runtime"
 
-import zd   "../0d"
-import std "../std"
+import zd "../../0d/odin/0d"
+import "../../0d/odin/std"
 
 main :: proc() {
     diagram_name, main_container_name := std.parse_command_line_args ("<specify on command line>", "main")

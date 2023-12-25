@@ -8,8 +8,8 @@ import "core:slice"
 import "core:os"
 import "core:unicode/utf8"
 
+import zd "../0d"
 import "../ir"
-import "../0d"
 
 ///// exported
 

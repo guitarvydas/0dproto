@@ -1,7 +1,7 @@
 package std
 
 import "core:fmt"
-import "../0d"
+import zd "../0d"
 
 fakepipename_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
     instance_name := gensym ("fakepipename")

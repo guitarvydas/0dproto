@@ -14,7 +14,7 @@ package demo_drawio
 
 import "core:fmt"
 import "core:time"
-import zd "../0d"
+import zd "../../0d/odin/0d"
 
 import "core:log"
 import "core:runtime"
