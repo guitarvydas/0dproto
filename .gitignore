@@ -10,3 +10,5 @@ pattern_*
 temp.0d
 
 \#Makefile#
+
+odin/std/.#std 3.odin
