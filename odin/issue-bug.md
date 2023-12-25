@@ -1,3 +1,8 @@
+## fixed
+
+https://github.com/odin-lang/Odin/pull/3002
+
+
 ## Context
 
 fmt.assertf on assertion failure, crashes with bad trap
