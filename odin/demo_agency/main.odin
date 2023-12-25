@@ -3,13 +3,12 @@ package agency
 import reg  "../engine/registry0d"
 import zd   "../engine/0d"
 import std "../std"
-import libdev "../libdev0d"
 
 
 main :: proc() {
-    diagram_name, main_container_name := lib.parse_command_line_args ("<specify on command line>", "main")
-    palette := lib.initialize_component_palette (diagram_name, components_to_include_in_project)
-    lib.run_demo (&palette, main_container_name, diagram_name, start_function)
+    diagram_name, main_container_name := std.parse_command_line_args ("<specify on command line>", "main")
+    palette := std.initialize_component_palette (diagram_name, components_to_include_in_project)
+    std.run_demo (&palette, main_container_name, diagram_name, start_function)
 }
 
 
