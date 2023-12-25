@@ -3,7 +3,7 @@ import "core:os"
 import "core:fmt"
 import "core:slice"
 
-import zd   "../0d"
+import "../0d"
 
 parse_command_line_args :: proc (default_diagram_source_file, default_main_container_name : string) -> (diagram_source_file, main_container_name: string) {
     diagram_source_file = slice.get(os.args, 1) or_else default_diagram_source_file

@@ -1,9 +1,9 @@
 .PHONY: run check build vsh
 
-SRC=../src
+SRC=src
 ODIN_FLAGS ?= -debug -o:none
-0D=0d/*.odin std/*.odin
-D2J=../das2json/das2json
+0D=0d/odin/0d/*.odin 0d/odin/std/*.odin
+D2J=0d/odin/das2json/das2json
 
 run: basics drawio vsh dev0d agency
 
@@ -71,4 +71,4 @@ demo_dev0d.bin: demo_dev0d/*.odin $(0D)
 clean:
 	rm -f *.bin
 	rm -rf *.dSYM
-
+	rm -rf demo*.json
