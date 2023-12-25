@@ -1,4 +1,4 @@
-package process
+package zd
 
 import "core:c"
 import "core:c/libc"

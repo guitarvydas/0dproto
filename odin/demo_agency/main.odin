@@ -1,7 +1,6 @@
 package agency
 
-import reg  "../engine/registry0d"
-import zd   "../engine/0d"
+import zd   "../0d"
 import std "../std"
 
 
@@ -21,10 +20,10 @@ start_function :: proc (main_container : ^zd.Eh) {
 }
 
 
-components_to_include_in_project :: proc (leaves: ^[dynamic]reg.Leaf_Template) {
+components_to_include_in_project :: proc (leaves: ^[dynamic]zd.Leaf_Template) {
     // examples:
-    //    reg.append_leaf (&leaves, reg.Leaf_Template { name = "trash", instantiate = trash_instantiate })
-    //    reg.append_leaf (&leaves, string_constant ("rwr.ohm"))
+    //    zd.append_leaf (&leaves, zd.Leaf_Template { name = "trash", instantiate = trash_instantiate })
+    //    zd.append_leaf (&leaves, string_constant ("rwr.ohm"))
 }
 
 

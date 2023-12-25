@@ -8,11 +8,8 @@ import "core:slice"
 import "core:os"
 import "core:unicode/utf8"
 
-import reg "../engine/registry0d"
-import "../engine/process"
 import "../../ir"
-import zd "../engine/0d"
-import "../std"
+import zd "../0d"
 
 ///// exported
 
@@ -23,31 +20,31 @@ gensym :: proc (s : string) -> string {
     return name_with_id
 }
 
-string_constant :: proc (str: string) -> reg.Leaf_Template {
+string_constant :: proc (str: string) -> zd.Leaf_Template {
     quoted_name := fmt.aprintf ("'%s'", str)
-    return reg.Leaf_Template { name = quoted_name, instantiate = literal_instantiate }
+    return zd.Leaf_Template { name = quoted_name, instantiate = literal_instantiate }
 }
 
-initialize :: proc(diagram_name: string) -> [dynamic]reg.Leaf_Instantiator {
-    leaves : [dynamic]reg.Leaf_Instantiator = make([dynamic]reg.Leaf_Instantiator)
+initialize :: proc(diagram_name: string) -> [dynamic]zd.Leaf_Instantiator {
+    leaves : [dynamic]zd.Leaf_Instantiator = make([dynamic]zd.Leaf_Instantiator)
     collect_process_leaves (diagram_name, &leaves)
     // export standard native leaves
-    append(&leaves, reg.Leaf_Instantiator {
+    append(&leaves, zd.Leaf_Instantiator {
         name = "stdout",
-        instantiate = std.stdout_instantiate,
+        instantiate = stdout_instantiate,
     })
-    append(&leaves, reg.Leaf_Template { name = "1then2", instantiate = std.deracer_instantiate })
-    append(&leaves, reg.Leaf_Template { name = "?", instantiate = std.probe_instantiate })
-    append(&leaves, reg.Leaf_Template { name = "trash", instantiate = std.trash_instantiate })
+    append(&leaves, zd.Leaf_Template { name = "1then2", instantiate = deracer_instantiate })
+    append(&leaves, zd.Leaf_Template { name = "?", instantiate = probe_instantiate })
+    append(&leaves, zd.Leaf_Template { name = "trash", instantiate = trash_instantiate })
 
-    append(&leaves, reg.Leaf_Template { name = "Low Level Read Text File", instantiate = std.low_level_read_text_file_instantiate })
-    append(&leaves, reg.Leaf_Template { name = "Read Text From FD", instantiate = std.read_text_from_fd_instantiate })
-    append(&leaves, reg.Leaf_Template { name = "Open Text File", instantiate = std.open_text_file_instantiate })
-    append(&leaves, reg.Leaf_Template { name = "Ensure String Datum", instantiate = std.ensure_string_datum_instantiate })
+    append(&leaves, zd.Leaf_Template { name = "Low Level Read Text File", instantiate = low_level_read_text_file_instantiate })
+    append(&leaves, zd.Leaf_Template { name = "Read Text From FD", instantiate = read_text_from_fd_instantiate })
+    append(&leaves, zd.Leaf_Template { name = "Open Text File", instantiate = open_text_file_instantiate })
+    append(&leaves, zd.Leaf_Template { name = "Ensure String Datum", instantiate = ensure_string_datum_instantiate })
 
-    append(&leaves, reg.Leaf_Template { name = "syncfilewrite", instantiate = std.syncfilewrite_instantiate })
-    append(&leaves, reg.Leaf_Template { name = "Bang", instantiate = std.bang_instantiate })
-    append(&leaves, reg.Leaf_Template { name = "stringconcat", instantiate = std.stringconcat_instantiate })
+    append(&leaves, zd.Leaf_Template { name = "syncfilewrite", instantiate = syncfilewrite_instantiate })
+    append(&leaves, zd.Leaf_Template { name = "Bang", instantiate = bang_instantiate })
+    append(&leaves, zd.Leaf_Template { name = "stringconcat", instantiate = stringconcat_instantiate })
 
     return leaves
 }
@@ -82,8 +79,8 @@ process_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
     switch msg.port {
     case "input":
 	cmd := eh.instance_data.(string)
-        handle := process.process_start(cmd)
-        defer process.process_destroy_handle(handle)
+        handle := zd.process_start(cmd)
+        defer zd.process_destroy_handle(handle)
 
         // write input, wait for finish
         {
@@ -99,17 +96,17 @@ process_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
 			   eh.name, msg.datum.kind ())
             }
             os.close(handle.input)
-            process.process_wait(handle)
+            zd.process_wait(handle)
         }
 
         // breaks bootstrap error check, thus, removed line: zd.send_string (eh, "done", Bang{})
 
         // stdout handling
         {
-            stdout, stdout_ok := process.process_read_handle(handle.output)
+            stdout, stdout_ok := zd.process_read_handle(handle.output)
 
             // stderr handling
-            stderr_untrimmed, stderr_ok := process.process_read_handle(handle.error)
+            stderr_untrimmed, stderr_ok := zd.process_read_handle(handle.error)
 	    stderr : string
             if stderr_ok {
 		stderr = strings.trim_right_space(cast(string)stderr_untrimmed)
@@ -134,7 +131,7 @@ process_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
 
 
 
-collect_process_leaves :: proc(diagram_name: string, leaves: ^[dynamic]reg.Leaf_Instantiator) {
+collect_process_leaves :: proc(diagram_name: string, leaves: ^[dynamic]zd.Leaf_Instantiator) {
     ref_is_container :: proc(decls: []ir.Container_Decl, name: string) -> bool {
         for d in decls {
             if d.name == name {
@@ -144,8 +141,8 @@ collect_process_leaves :: proc(diagram_name: string, leaves: ^[dynamic]reg.Leaf_
         return false
     }
 
-    decls := reg.json2internal (diagram_name)
-    defer reg.delete_decls (decls)
+    decls := zd.json2internal (diagram_name)
+    defer zd.delete_decls (decls)
 
     // TODO(z64): while harmless, this doesn't ignore duplicate process decls yet.
 
@@ -157,7 +154,7 @@ collect_process_leaves :: proc(diagram_name: string, leaves: ^[dynamic]reg.Leaf_
 
 	    i := strings.index_rune (child.name, '$')
             if i >= 0 {
-                leaf_instantiate := reg.Leaf_Instantiator {
+                leaf_instantiate := zd.Leaf_Instantiator {
                     name = child.name,
                     instantiate = process_instantiate,
                 }
@@ -185,7 +182,7 @@ command_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
     case "command":
         inst.buffer = msg.datum.repr (msg.datum)
         received_input := msg.datum.repr (msg.datum)
-        captured_output, _ := process.run_command (inst.buffer, received_input)
+        captured_output, _ := zd.run_command (inst.buffer, received_input)
         zd.send_string (eh, "output", captured_output, msg)
 	case:
         fmt.assertf (false, "!!! ERROR: command got an illegal message port %v", msg.port)
@@ -205,7 +202,7 @@ icommand_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
         inst.buffer = msg.datum.repr (msg.datum)
     case "input":
         received_input := msg.datum.repr (msg.datum)
-        captured_output, _ := process.run_command (inst.buffer, received_input)
+        captured_output, _ := zd.run_command (inst.buffer, received_input)
         zd.send_string (eh, "output", captured_output, msg)
 	case:
         fmt.assertf (false, "!!! ERROR: command got an illegal message port %v", msg.port)

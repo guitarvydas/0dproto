@@ -14,10 +14,8 @@ package demo_drawio
 
 import "core:fmt"
 import "core:time"
-import zd "../engine/0d"
-import reg "../engine/registry0d"
+import zd "../0d"
 
-import "../debug"
 import "core:log"
 import "core:runtime"
 import "core:os"
@@ -84,7 +82,7 @@ sleep_handler :: proc(eh: ^Eh, message: ^Message) {
 ///
 
 main :: proc() {
-    leaves: []reg.Leaf_Template = {
+    leaves: []zd.Leaf_Template = {
         {
             name = "Echo",
             instantiate = echo_instantiate,
@@ -96,12 +94,12 @@ main :: proc() {
     }
 
     diagram_name, main_container_name := parse_command_line_args ()
-    decls := reg.json2internal (diagram_name)
-    parts := reg.make_component_registry(leaves, decls)
+    decls := zd.json2internal (diagram_name)
+    parts := zd.make_component_registry(leaves, decls)
 
     fmt.println("--- Diagram: Sequential Routing ---")
     {
-        main_container, ok := reg.get_component_instance(parts, main_container_name, nil)
+        main_container, ok := zd.get_component_instance(parts, main_container_name, nil)
         assert(ok, "Couldn't find main container... check the page name?")
 
         msg := make_message("seq", zd.new_datum_string ("Hello Sequential!"), nil)
@@ -111,7 +109,7 @@ main :: proc() {
 
     fmt.println("--- Diagram: Parallel Routing ---")
     {
-        main_container, ok := reg.get_component_instance(parts, main_container_name, nil)
+        main_container, ok := zd.get_component_instance(parts, main_container_name, nil)
         assert(ok, "Couldn't find main container... check the page name?")
 
         msg := make_message("par", zd.new_datum_string ("Hello Parallel!"), nil)
@@ -121,7 +119,7 @@ main :: proc() {
 
     fmt.println("--- Diagram: Delay ---")
     {
-        main_container, ok := reg.get_component_instance(parts, main_container_name, nil)
+        main_container, ok := zd.get_component_instance(parts, main_container_name, nil)
         assert(ok, "Couldn't find main container... check the page name?")
 
         msg := make_message("delayed", zd.new_datum_string ("Hello Delayed Parallel!"), nil)
