@@ -1,4 +1,4 @@
-package debug
+package std
 
 import "core:log"
 import "core:fmt"

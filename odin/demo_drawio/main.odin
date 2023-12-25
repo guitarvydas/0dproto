@@ -14,8 +14,8 @@ package demo_drawio
 
 import "core:fmt"
 import "core:time"
-import zd "../0d"
-import reg "../registry0d"
+import zd "../engine/0d"
+import reg "../engine/registry0d"
 
 import "../debug"
 import "core:log"
@@ -33,12 +33,12 @@ send              :: zd.send
 print_output_list :: zd.print_output_list
 
 makeleaf :: proc (name: string, handler: #type proc(^Eh, ^Message)) -> ^Eh {
-    return make_leaf(name_prefix="", name=name, owner=nil, instance_data=nil, handler=echo_handler)
+    return make_leaf(name=name, owner=nil, instance_data=nil, handler=echo_handler)
 }
 
-echo_instantiate :: proc(name_prefix: string, name: string, owner : ^zd.Eh) -> ^zd.Eh {
+echo_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
     name_with_id := zd.gensym("?")
-    return zd.make_leaf (name_prefix, name_with_id, owner, nil, echo_handler)
+    return zd.make_leaf (name_with_id, owner, nil, echo_handler)
 }
 
 echo_handler :: proc(eh: ^Eh, message: ^Message) {
@@ -54,11 +54,11 @@ SleepInfo :: struct {
 
 SLEEPDELAY := 1000000
 
-sleep_instantiate :: proc(name_prefix: string, name: string, owner : ^zd.Eh) -> ^zd.Eh {
+sleep_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
     info := new (SleepInfo)
     info.counter = 0
     name_with_id := zd.gensym("?")
-    eh :=  zd.make_leaf (name_prefix, name_with_id, owner, info^, sleep_handler)
+    eh :=  zd.make_leaf (name_with_id, owner, info^, sleep_handler)
     return eh
 }
 
@@ -101,7 +101,7 @@ main :: proc() {
 
     fmt.println("--- Diagram: Sequential Routing ---")
     {
-        main_container, ok := reg.get_component_instance(&parts, "", main_container_name, nil)
+        main_container, ok := reg.get_component_instance(parts, main_container_name, nil)
         assert(ok, "Couldn't find main container... check the page name?")
 
         msg := make_message("seq", zd.new_datum_string ("Hello Sequential!"), nil)
@@ -111,7 +111,7 @@ main :: proc() {
 
     fmt.println("--- Diagram: Parallel Routing ---")
     {
-        main_container, ok := reg.get_component_instance(&parts, "", main_container_name, nil)
+        main_container, ok := reg.get_component_instance(parts, main_container_name, nil)
         assert(ok, "Couldn't find main container... check the page name?")
 
         msg := make_message("par", zd.new_datum_string ("Hello Parallel!"), nil)
@@ -121,7 +121,7 @@ main :: proc() {
 
     fmt.println("--- Diagram: Delay ---")
     {
-        main_container, ok := reg.get_component_instance(&parts, "", main_container_name, nil)
+        main_container, ok := reg.get_component_instance(parts, main_container_name, nil)
         assert(ok, "Couldn't find main container... check the page name?")
 
         msg := make_message("delayed", zd.new_datum_string ("Hello Delayed Parallel!"), nil)
