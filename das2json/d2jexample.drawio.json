@@ -1,0 +1,194 @@
+[
+    {
+        "file": "../src/d2jexample.drawio",
+        "name": "main",
+        "children": [
+            {
+                "name": "Echo",
+                "id": 6
+            },
+            {
+                "name": "Echo",
+                "id": 9
+            },
+            {
+                "name": "Echo",
+                "id": 12
+            },
+            {
+                "name": "Echo",
+                "id": 17
+            },
+            {
+                "name": "Echo",
+                "id": 20
+            },
+            {
+                "name": "Echo",
+                "id": 23
+            },
+            {
+                "name": "Sleep",
+                "id": 28
+            }
+        ],
+        "connections": [
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "seq",
+                "target": {
+                    "name": "Echo",
+                    "id": 20
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "delayed",
+                "target": {
+                    "name": "Sleep",
+                    "id": 28
+                },
+                "target_port": "wait"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "par",
+                "target": {
+                    "name": "Echo",
+                    "id": 9
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "par",
+                "target": {
+                    "name": "Echo",
+                    "id": 17
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "delayed",
+                "target": {
+                    "name": "Echo",
+                    "id": 12
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "Echo",
+                    "id": 20
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "Echo",
+                    "id": 6
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "Sleep",
+                    "id": 28
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "Echo",
+                    "id": 23
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "Echo",
+                    "id": 9
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "output"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "Echo",
+                    "id": 6
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "output"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "Echo",
+                    "id": 17
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "output"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "Echo",
+                    "id": 23
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "output"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "Echo",
+                    "id": 12
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "output"
+            }
+        ]
+    }
+]

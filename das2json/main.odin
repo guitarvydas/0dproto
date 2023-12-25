@@ -30,7 +30,7 @@ drawio2json :: proc (container_xml : string) -> string {
     nwritten : int
     sjson := string (diagram_json)
     mode: int = 0
-    fname := fmt.aprintf ("/tmp/%v.json", filepath.base (container_xml))
+    fname := fmt.aprintf ("%v.json", filepath.base (container_xml))
     when os.OS == .Linux || os.OS == .Darwin {
 	// NOTE(justasd): 644 (owner read, write; group read; others read)
 	mode = os.S_IRUSR | os.S_IWUSR | os.S_IRGRP | os.S_IROTH

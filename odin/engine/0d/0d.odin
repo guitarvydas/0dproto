@@ -57,15 +57,15 @@ make_container :: proc(name: string, owner : ^Eh) -> ^Eh {
 // Creates a new leaf component out of a handler function, and optionally a user
 // data parameter that will be passed back to your handler when it is run.
 
-make_leaf_with_no_instance_data :: proc(name_prefix: string, name: string, owner : ^Eh, handler: proc(^Eh, ^Message)) -> ^Eh {
-    return make_leaf (name_prefix, name, owner, nil, handler)
+make_leaf_with_no_instance_data :: proc(name: string, owner : ^Eh, handler: proc(^Eh, ^Message)) -> ^Eh {
+    return make_leaf (name, owner, nil, handler)
 }
 
 // Creates a new leaf component out of a handler function, and a data parameter
 // that will be passed back to your handler when called.
-make_leaf :: proc(name_prefix: string, name: string, owner: ^Eh, instance_data: any, handler: proc(^Eh, ^Message)) -> ^Eh {
+make_leaf :: proc(name: string, owner: ^Eh, instance_data: any, handler: proc(^Eh, ^Message)) -> ^Eh {
     eh := new(Eh)
-    eh.name = fmt.aprintf ("%s:%s", name_prefix, name)
+    eh.name = fmt.aprintf ("%s.%s", owner.name, name)
     eh.handler = handler
     eh.instance_data = instance_data
     eh.state = .idle
@@ -299,12 +299,25 @@ route :: proc(container: ^Eh, from: ^Eh, message: ^Message) {
     }
     if ! was_sent {
 	fmt.printf ("\n\n*** Error: ***")
-	fmt.printf (" *** message '%v' from %v dropped on floor...\n%v [%v]\n\n", message.port, from.name, message.datum.repr (message.datum), message.cause)
+	/* // the following code causes a core dump */
+	/* fmt.printf ("\nfrom.name = %s %v\n", from.name, from.name) */
+	/* name := from.name */
+	/* fmt.print ("\nname = %v\n", name) */
+	/* if 0 == len (name) { */
+	/*     name = container.name */
+	/* } */
+	fmt.printf ("\n %v: message '%v' from %v dropped on floor...\n%v [%v]\n\n", container.name, message.port, from.name, message.datum.repr (message.datum), message.cause)
+	dump_possible_connections (container)
+	fmt.printf ("\n***\n")
+    }
+}
+
+dump_possible_connections :: proc (container: ^Eh) {
+    if false {
 	fmt.printf ("\n*** possible connections:")
 	for connector in container.connections {
 	    fmt.printf ("\n\n%v", connector)
 	}
-	fmt.printf ("\n***\n")
     }
 }
 
@@ -373,14 +386,18 @@ fetch_first_output :: proc (eh :^Eh, port: Port_Type) -> (Datum, bool) {
     return Datum{}, false
 }
 
-print_specific_output :: proc(eh: ^Eh, port: string) {
+print_specific_output :: proc(eh: ^Eh, port: string, stderr : bool) {
     sb: strings.Builder
     defer strings.builder_destroy(&sb)
 
     datum, found := fetch_first_output (eh, port)
     if found {
 	fmt.sbprintf(&sb, "%v", datum.repr (&datum))
-	fmt.println(strings.to_string(sb))
+	if stderr {
+	    fmt.eprintln(strings.to_string(sb))
+	} else {
+	    fmt.println(strings.to_string(sb))
+	}
     }
 }
 
