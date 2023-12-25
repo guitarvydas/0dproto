@@ -61,6 +61,4 @@ demo_agency: $(DEMO)/demo_agency/*.odin $(0D) ../llm/agency/main
 	(cd llm/agency ; make)
 
 clean:
-	rm -f *.bin demo_basics demo_drawio demo_vsh demo_dev0d demo_agency
-	rm -rf *.dSYM
-	rm -rf demo*.json
+	rm -rf *.bin demo_*
