@@ -2,7 +2,7 @@
 
 SRC=../src
 ODIN_FLAGS ?= -debug -o:none
-0D=engine/process/*.odin engine/0d/*.odin std/*.odin debug/*.odin engine/registry0d/*.odin
+0D=0d/*.odin std/*.odin
 D2J=../das2json/das2json
 
 run: basics drawio vsh dev0d agency

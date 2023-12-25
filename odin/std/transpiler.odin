@@ -9,9 +9,7 @@ import "core:os"
 import "core:unicode/utf8"
 
 import "../../ir"
-import zd "../engine/0d"
-import reg "../engine/registry0d"
-import "../engine/process"
+import zd "../0d"
 
 
 OhmJS_Instance_Data :: struct {
@@ -30,7 +28,7 @@ ohmjs_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
 ohmjs_maybe :: proc (eh: ^zd.Eh, inst: ^OhmJS_Instance_Data, causingMsg: ^zd.Message) {
     if "" != inst.grammarname && "" != inst.grammarfilename && "" != inst.semanticsfilename && "" != inst.input {
         cmd := fmt.aprintf ("0Dutil/ohmjs.js %s %s %s", inst.grammarname, inst.grammarfilename, inst.semanticsfilename)
-	captured_output, err := process.run_command (cmd, inst.input)
+	captured_output, err := zd.run_command (cmd, inst.input)
         zd.send_string (eh, "output", strings.trim_space (captured_output), causingMsg)
 	zd.send_string (eh, "error", strings.trim_space (err), causingMsg)
     }

@@ -9,7 +9,7 @@ package demo_basics
 
 import "core:fmt"
 
-import zd "../engine/0d"
+import zd "../0d"
 
 Eh                :: zd.Eh
 Message           :: zd.Message
