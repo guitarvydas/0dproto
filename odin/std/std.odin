@@ -66,7 +66,6 @@ process_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
     i := strings.index_rune (name, '$')
     command_local_slice := name [i:(len (name))]
     command_string := strings.clone(strings.trim_left (command_local_slice, "$ "))
-    fmt.eprintf ("command_string = /%v/\n", command_string)
     command_string_ptr := new_clone(command_string)
     return zd.make_leaf(name, owner, command_string_ptr^, process_handle)
 }
