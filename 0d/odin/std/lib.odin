@@ -32,7 +32,6 @@ run :: proc (r : ^zd.Component_Registry, main_container_name : string, diagram_s
     injectfn (main_container)
     print_error_maybe (main_container)
     print_output (main_container)
-    fmt.println("\n\n--- done ---")
 }
 
 run_demo :: proc (r : ^zd.Component_Registry, main_container_name : string, diagram_source_file : string, injectfn : #type proc (^zd.Eh)) {
@@ -73,11 +72,16 @@ run_demo_debug :: proc (r : ^zd.Component_Registry, main_container_name : string
     fmt.println("\n\n--- done ---")
 }
 
-print_output :: proc (main_container : ^zd.Eh) {
+print_output_verbose :: proc (main_container : ^zd.Eh) {
     fmt.println("\n\n--- RESULT ---")
     fmt.printf ("... response ... \n")
     zd.print_specific_output (main_container, "output", false)
 }
+
+print_output :: proc (main_container : ^zd.Eh) {
+    zd.print_specific_output (main_container, "output", false)
+}
+
 print_error_maybe :: proc (main_container : ^zd.Eh) {
     error_port := "error"
     dont_care, found := zd.fetch_first_output (main_container, error_port)

@@ -216,7 +216,7 @@ literal_instantiate :: proc (name: string, owner : ^zd.Eh) -> ^zd.Eh {
 }
 
 literal_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
-    zd.send_string (eh, "output", eh.instance_data.(string), msg)
+    zd.send_string (eh, "⍺", eh.instance_data.(string), msg)
 }
 
 string_dup_to_heap :: proc (s : string) -> ^string{

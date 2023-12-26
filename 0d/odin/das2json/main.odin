@@ -18,7 +18,6 @@ import "syntax"
 main :: proc() {
     diagram_name, main_container_name := parse_command_line_args ()
     fname := drawio2json (diagram_name)
-    fmt.printf ("see %v\n", fname)
 }
 
 

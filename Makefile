@@ -3,14 +3,20 @@
 SRC=src
 ODIN_FLAGS ?= -debug -o:none
 0D=0d/odin/0d/*.odin 0d/odin/std/*.odin
-D2J=0d/odin/das2json/das2json
+D2JDIR=0d/odin/das2json
+D2J=$(D2JDIR)/das2json
 DEMO=demo
 
-run: basics drawio vsh dev0d agency abcjs
+run: hello_world basics drawio vsh dev0d agency abcjs
 
 basics: demo_basics
 	@echo 'running...'
 	./demo_basics
+
+hello_world: demo_hello_world $(D2J) $(SRC)/demo_hello_world.drawio
+	$(D2J) $(SRC)/demo_hello_world.drawio
+	odin build $(DEMO)/demo_hello_world $(ODIN_FLAGS)
+	./demo_hello_world $(SRC)/demo_hello_world.drawio
 
 drawio: demo_drawio $(D2J) $(SRC)/demo_drawio.drawio
 	@echo 'running...'
@@ -39,10 +45,13 @@ abcjs: demo_abcjs $(D2J) $(SRC)/demo_abcjs.drawio
 	./demo_abcjs $(SRC)/demo_abcjs.drawio
 
 
-das2json: ../das2json/das2json
-	@echo 'building...'
-	(cd ../das2json ; make)
+$(D2J):
+	(cd $(D2JDIR) ; make -s)
 
+
+demo_hello_world: $(DEMO)/demo_hello_world/*.odin $(0D)
+	@echo 'building...'
+	odin build $(DEMO)/demo_hello_world $(ODIN_FLAGS)
 
 demo_basics: $(DEMO)/demo_basics/*.odin $(0D)
 	@echo 'building...'
@@ -73,3 +82,5 @@ demo_abcjs: $(DEMO)/demo_abcjs/*.odin $(0D)
 
 clean:
 	rm -rf *.bin demo_*
+	(cd $(D2JDIR) ; make clean)
+
