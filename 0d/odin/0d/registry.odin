@@ -88,7 +88,7 @@ add_leaf :: proc (r : ^Component_Registry, leaf_template : Leaf_Template) {
 get_component_instance :: proc(reg: ^Component_Registry, name: string, owner : ^Eh) -> (instance: ^Eh, ok: bool) {
     descriptor: Template
     descriptor, ok = reg.templates[name]
-    component_name := fmt.aprintf ("%s.%s", owner.name, name)
+    component_name := fmt.aprintf ("  %s.%s", owner.name, name)
     if ok {
         switch template in descriptor {
         case Leaf_Template:

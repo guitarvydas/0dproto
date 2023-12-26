@@ -41,7 +41,7 @@ function makeAST (grammarName, grammarText) {
 	if (ast === undefined) { throw (Error (`can't find grammar ${grammarName} (${grammarName} ${grammarFileName} ${rwrFileName}`)); }
 	return ast
     } catch (e) {
-	console.error (`${grammarName} ${grammarFileName} ${rwrFileName}`);
+	console.error (`internal problem: makeAST threw an error ${grammarName} ${grammarFileName} ${rwrFileName}`);
 	throw (e);
     }
 }
@@ -51,11 +51,12 @@ function patternMatch (src, ast) {
     try {
 	matchResult = ast.match (src);
     } catch (e) {
-	console.error (`${grammarName} ${grammarFileName} ${rwrFileName}`);
+	console.error (`internal problem: patternMatch threw an error ${grammarName} ${grammarFileName} ${rwrFileName}`);
 	throw (e);
     }
     if (matchResult.failed ()) {
-	console.error (`${grammarName} ${grammarFileName} ${rwrFileName}`);
+	fs.writeFileSync ('/tmp/patternMatch_src', src);
+	console.error (`match result failed in patternMatch ${grammarName} ${grammarFileName} ${rwrFileName} (see /tmp/patternMatch_src)`);
 	throw (Error (matchResult.message));
     } else { 
 	return matchResult;
@@ -147,6 +148,7 @@ function processCST (opName, asst, cst) {
 	    return (asst (cst) [opName]) ();
 	} catch (eagain) {
 	    console.error (`${grammarName} ${grammarFileName} ${rwrFileName}`);
+	    console.error (`error during processing of the AST, src written to /tmp/src\n${e}`);
 	    throw eagain;
 	}
     }

@@ -4,24 +4,28 @@
         "name": "main",
         "children": [
             {
+                "name": "'ABC'",
+                "id": 3
+            },
+            {
                 "name": "'demo/demo_abcjs/abc.ohm'",
                 "id": 5
             },
             {
-                "name": "'demo/demo_abcjs/null.js'",
-                "id": 10
+                "name": "Read Text File",
+                "id": 11
             },
             {
                 "name": "'demo/demo_abcjs/abcjs.rwr'",
-                "id": 13
+                "id": 14
             },
             {
                 "name": "Translate",
                 "id": 15
             },
             {
-                "name": "'ABC'",
-                "id": 23
+                "name": "'demo/demo_abcjs/null.js'",
+                "id": 24
             }
         ],
         "connections": [
@@ -34,7 +38,7 @@
                 "source_port": "input",
                 "target": {
                     "name": "'demo/demo_abcjs/null.js'",
-                    "id": 10
+                    "id": 24
                 },
                 "target_port": "go"
             },
@@ -47,7 +51,7 @@
                 "source_port": "input",
                 "target": {
                     "name": "'ABC'",
-                    "id": 23
+                    "id": 3
                 },
                 "target_port": "go"
             },
@@ -73,7 +77,7 @@
                 "source_port": "input",
                 "target": {
                     "name": "'demo/demo_abcjs/abcjs.rwr'",
-                    "id": 13
+                    "id": 14
                 },
                 "target_port": "go"
             },
@@ -85,10 +89,23 @@
                 },
                 "source_port": "input",
                 "target": {
+                    "name": "Read Text File",
+                    "id": 11
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "'ABC'",
+                    "id": 3
+                },
+                "source_port": "output",
+                "target": {
                     "name": "Translate",
                     "id": 15
                 },
-                "target_port": "input"
+                "target_port": "grammar name"
             },
             {
                 "dir": 1,
@@ -107,7 +124,7 @@
                 "dir": 1,
                 "source": {
                     "name": "'demo/demo_abcjs/abcjs.rwr'",
-                    "id": 13
+                    "id": 14
                 },
                 "source_port": "output",
                 "target": {
@@ -119,21 +136,8 @@
             {
                 "dir": 1,
                 "source": {
-                    "name": "'ABC'",
-                    "id": 23
-                },
-                "source_port": "output",
-                "target": {
-                    "name": "Translate",
-                    "id": 15
-                },
-                "target_port": "grammar name"
-            },
-            {
-                "dir": 1,
-                "source": {
                     "name": "'demo/demo_abcjs/null.js'",
-                    "id": 10
+                    "id": 24
                 },
                 "source_port": "output",
                 "target": {
@@ -141,6 +145,32 @@
                     "id": 15
                 },
                 "target_port": "rwrsupportfn"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "Read Text File",
+                    "id": 11
+                },
+                "source_port": "str",
+                "target": {
+                    "name": "Translate",
+                    "id": 15
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "Translate",
+                    "id": 15
+                },
+                "source_port": "error",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "error"
             },
             {
                 "dir": 2,
@@ -158,8 +188,8 @@
             {
                 "dir": 2,
                 "source": {
-                    "name": "Translate",
-                    "id": 15
+                    "name": "Read Text File",
+                    "id": 11
                 },
                 "source_port": "error",
                 "target": {
@@ -191,7 +221,7 @@
                 "id": 22
             },
             {
-                "name": "OhmJS",
+                "name": "Ohm",
                 "id": 28
             },
             {
@@ -246,7 +276,7 @@
                 },
                 "source_port": "grammar name",
                 "target": {
-                    "name": "OhmJS",
+                    "name": "Ohm",
                     "id": 28
                 },
                 "target_port": "grammar name"
@@ -259,7 +289,7 @@
                 },
                 "source_port": "input",
                 "target": {
-                    "name": "OhmJS",
+                    "name": "Ohm",
                     "id": 28
                 },
                 "target_port": "input"
@@ -337,7 +367,7 @@
                 },
                 "source_port": "str",
                 "target": {
-                    "name": "OhmJS",
+                    "name": "Ohm",
                     "id": 28
                 },
                 "target_port": "grammar"
@@ -363,7 +393,7 @@
                 },
                 "source_port": "output",
                 "target": {
-                    "name": "OhmJS",
+                    "name": "Ohm",
                     "id": 28
                 },
                 "target_port": "semantics"
@@ -449,7 +479,7 @@
             {
                 "dir": 2,
                 "source": {
-                    "name": "OhmJS",
+                    "name": "Ohm",
                     "id": 28
                 },
                 "source_port": "error",
@@ -475,7 +505,7 @@
             {
                 "dir": 2,
                 "source": {
-                    "name": "OhmJS",
+                    "name": "Ohm",
                     "id": 28
                 },
                 "source_port": "output",
@@ -518,16 +548,12 @@
         "name": "Ohm (using file names)",
         "children": [
             {
-                "name": "?",
-                "id": 12
-            },
-            {
                 "name": "OhmJS",
-                "id": 14
+                "id": 13
             },
             {
                 "name": "All Before 4",
-                "id": 17
+                "id": 16
             }
         ],
         "connections": [
@@ -540,7 +566,7 @@
                 "source_port": "input",
                 "target": {
                     "name": "All Before 4",
-                    "id": 17
+                    "id": 16
                 },
                 "target_port": "4"
             },
@@ -553,7 +579,7 @@
                 "source_port": "grammar name",
                 "target": {
                     "name": "All Before 4",
-                    "id": 17
+                    "id": 16
                 },
                 "target_port": "1"
             },
@@ -566,7 +592,7 @@
                 "source_port": "grammarfn",
                 "target": {
                     "name": "All Before 4",
-                    "id": 17
+                    "id": 16
                 },
                 "target_port": "2"
             },
@@ -579,33 +605,20 @@
                 "source_port": "semanticsfn",
                 "target": {
                     "name": "All Before 4",
-                    "id": 17
+                    "id": 16
                 },
                 "target_port": "3"
-            },
-            {
-                "dir": 0,
-                "source": {
-                    "name": "",
-                    "id": 0
-                },
-                "source_port": "semanticsfn",
-                "target": {
-                    "name": "?",
-                    "id": 12
-                },
-                "target_port": "input"
             },
             {
                 "dir": 1,
                 "source": {
                     "name": "All Before 4",
-                    "id": 17
+                    "id": 16
                 },
                 "source_port": "1",
                 "target": {
                     "name": "OhmJS",
-                    "id": 14
+                    "id": 13
                 },
                 "target_port": "grammar name"
             },
@@ -613,12 +626,12 @@
                 "dir": 1,
                 "source": {
                     "name": "All Before 4",
-                    "id": 17
+                    "id": 16
                 },
                 "source_port": "3",
                 "target": {
                     "name": "OhmJS",
-                    "id": 14
+                    "id": 13
                 },
                 "target_port": "semantics"
             },
@@ -626,12 +639,12 @@
                 "dir": 1,
                 "source": {
                     "name": "All Before 4",
-                    "id": 17
+                    "id": 16
                 },
                 "source_port": "4",
                 "target": {
                     "name": "OhmJS",
-                    "id": 14
+                    "id": 13
                 },
                 "target_port": "input"
             },
@@ -639,12 +652,12 @@
                 "dir": 1,
                 "source": {
                     "name": "All Before 4",
-                    "id": 17
+                    "id": 16
                 },
                 "source_port": "2",
                 "target": {
                     "name": "OhmJS",
-                    "id": 14
+                    "id": 13
                 },
                 "target_port": "grammar"
             },
@@ -652,7 +665,7 @@
                 "dir": 2,
                 "source": {
                     "name": "OhmJS",
-                    "id": 14
+                    "id": 13
                 },
                 "source_port": "error",
                 "target": {
@@ -665,7 +678,7 @@
                 "dir": 2,
                 "source": {
                     "name": "OhmJS",
-                    "id": 14
+                    "id": 13
                 },
                 "source_port": "output",
                 "target": {
@@ -893,7 +906,369 @@
                 "target_port": "error"
             }
         ]
-    }
-]]       ]
+    },
+    {
+        "file": "src/demo_abcjs.drawio",
+        "name": "Ohm",
+        "children": [
+            {
+                "name": "OhmJS",
+                "id": 16
+            },
+            {
+                "name": "fake pipe",
+                "id": 17
+            },
+            {
+                "name": "fake pipe",
+                "id": 21
+            },
+            {
+                "name": "All Before 4",
+                "id": 30
+            }
+        ],
+        "connections": [
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "grammar name",
+                "target": {
+                    "name": "All Before 4",
+                    "id": 30
+                },
+                "target_port": "1"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "semantics",
+                "target": {
+                    "name": "fake pipe",
+                    "id": 21
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "grammar",
+                "target": {
+                    "name": "fake pipe",
+                    "id": 17
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "All Before 4",
+                    "id": 30
+                },
+                "target_port": "4"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "All Before 4",
+                    "id": 30
+                },
+                "source_port": "1",
+                "target": {
+                    "name": "OhmJS",
+                    "id": 16
+                },
+                "target_port": "grammar name"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "All Before 4",
+                    "id": 30
+                },
+                "source_port": "3",
+                "target": {
+                    "name": "OhmJS",
+                    "id": 16
+                },
+                "target_port": "semantics"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "fake pipe",
+                    "id": 21
+                },
+                "source_port": "filename",
+                "target": {
+                    "name": "All Before 4",
+                    "id": 30
+                },
+                "target_port": "3"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "All Before 4",
+                    "id": 30
+                },
+                "source_port": "4",
+                "target": {
+                    "name": "OhmJS",
+                    "id": 16
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "fake pipe",
+                    "id": 17
+                },
+                "source_port": "filename",
+                "target": {
+                    "name": "All Before 4",
+                    "id": 30
+                },
+                "target_port": "2"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "All Before 4",
+                    "id": 30
+                },
+                "source_port": "2",
+                "target": {
+                    "name": "OhmJS",
+                    "id": 16
+                },
+                "target_port": "grammar"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "OhmJS",
+                    "id": 16
+                },
+                "source_port": "error",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "error"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "OhmJS",
+                    "id": 16
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "output"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "fake pipe",
+                    "id": 17
+                },
+                "source_port": "error",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "error"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "fake pipe",
+                    "id": 21
+                },
+                "source_port": "error",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "error"
+            }
+        ]
+    },
+    {
+        "file": "src/demo_abcjs.drawio",
+        "name": "fake pipe",
+        "children": [
+            {
+                "name": "1then2",
+                "id": 3
+            },
+            {
+                "name": "fakepipename",
+                "id": 7
+            },
+            {
+                "name": "syncfilewrite",
+                "id": 13
+            },
+            {
+                "name": "1then2",
+                "id": 15
+            },
+            {
+                "name": "trash",
+                "id": 20
+            }
+        ],
+        "connections": [
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "1then2",
+                    "id": 15
+                },
+                "target_port": "2"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "fakepipename",
+                    "id": 7
+                },
+                "target_port": "go"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "1then2",
+                    "id": 15
+                },
+                "source_port": "2",
+                "target": {
+                    "name": "syncfilewrite",
+                    "id": 13
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "1then2",
+                    "id": 15
+                },
+                "source_port": "1",
+                "target": {
+                    "name": "syncfilewrite",
+                    "id": 13
+                },
+                "target_port": "filename"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "fakepipename",
+                    "id": 7
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "1then2",
+                    "id": 15
+                },
+                "target_port": "1"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "syncfilewrite",
+                    "id": 13
+                },
+                "source_port": "done",
+                "target": {
+                    "name": "1then2",
+                    "id": 3
+                },
+                "target_port": "1"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "1then2",
+                    "id": 3
+                },
+                "source_port": "1",
+                "target": {
+                    "name": "trash",
+                    "id": 20
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "fakepipename",
+                    "id": 7
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "1then2",
+                    "id": 3
+                },
+                "target_port": "2"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "1then2",
+                    "id": 3
+                },
+                "source_port": "2",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "filename"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "syncfilewrite",
+                    "id": 13
+                },
+                "source_port": "error",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "error"
+            }
+        ]
     }
 ]
