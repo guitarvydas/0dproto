@@ -9,7 +9,7 @@ DEMO=demo
 
 run: hello_world basics drawio vsh dev0d agency abcjs
 
-basics: demo_basics
+basics:  $(D2J)
 	odin build $(DEMO)/demo_basics $(ODIN_FLAGS)
 	./demo_basics
 
