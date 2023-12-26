@@ -28,34 +28,24 @@ vsh: $(D2J) $(SRC)/demo_vsh.drawio
 	odin build  $(DEMO)/demo_vsh $(ODIN_FLAGS)
 	./demo_vsh $(SRC)/demo_vsh.drawio
 
-dev0d: demo_dev0d $(D2J) $(SRC)/demo_dev0d.drawio
+dev0d: $(D2J) $(SRC)/demo_dev0d.drawio
 	$(D2J) $(SRC)/demo_dev0d.drawio
 	odin build  $(DEMO)/demo_dev0d $(ODIN_FLAGS)
 	./demo_dev0d $(SRC)/demo_dev0d.drawio
 
-agency: demo_agency $(D2J) $(SRC)/demo_agency.drawio ../llm/agency/main
+agency: $(D2J) $(SRC)/demo_agency.drawio ../llm/agency/main
 	$(D2J) $(SRC)/demo_agency.drawio
 	odin build  $(DEMO)/demo_agency $(ODIN_FLAGS)
 	./demo_agency $(SRC)/demo_agency.drawio
 
-abcjs: demo_abcjs $(D2J) $(SRC)/demo_abcjs.drawio
-	@echo 'running...'
+abcjs: $(D2J) $(SRC)/demo_abcjs.drawio
 	$(D2J) $(SRC)/demo_abcjs.drawio
+	odin build  $(DEMO)/demo_abcjs $(ODIN_FLAGS)
 	./demo_abcjs $(SRC)/demo_abcjs.drawio
 
 
 $(D2J):
 	@(cd $(D2JDIR) ; make -s)
-
-
-
-
-demo_agency: $(DEMO)/demo_agency/*.odin $(0D)
-	@echo 'building...'
-
-demo_abcjs: $(DEMO)/demo_abcjs/*.odin $(0D)
-	@echo 'building...'
-	odin build  $(DEMO)/demo_abcjs $(ODIN_FLAGS)
 
 ../llm/agency/main:
 	@(cd llm/agency ; make)
