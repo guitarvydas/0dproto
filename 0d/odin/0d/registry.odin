@@ -97,8 +97,18 @@ get_component_instance :: proc(reg: ^Component_Registry, name: string, owner : ^
             instance = container_instantiator(reg, owner, template.decl, component_name)
         }
 	reg.stats.ninstances += 1
+	instance.trace = true
+	instance.depth = calculate_depth (instance)
     }
     return instance, ok
+}
+
+calculate_depth :: proc (eh: ^Eh) -> int {
+    if nil == eh.owner {
+	return 0
+    } else {
+	return 1 + calculate_depth (eh.owner)
+    }
 }
 
 container_instantiator :: proc(reg: ^Component_Registry, owner : ^Eh, decl: ir.Container_Decl, container_name : string) -> ^Eh {

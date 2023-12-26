@@ -39,6 +39,8 @@ Eh :: struct {
     instance_data: any,
     state:       Eh_States,
     kind: enum { container, leaf, }, // for debug
+    trace:        bool, // set 'true' if logging is enabled and if this component should be traced, (false means silence, no tracing for this component)
+    depth:        int, // hierarchical depth of component, 0=top, 1=1st child of top, 2=1st child of 1st child of top, etc.
 }
 
 
@@ -77,21 +79,21 @@ make_leaf :: proc(name: string, owner: ^Eh, instance_data: any, handler: proc(^E
 // of the given component.
 send :: proc(eh: ^Eh, port: string, datum: ^Datum, causingMessage : ^Message) {
     cause := make_cause (eh, causingMessage)
-    sendf("SEND 0x%p %s(%s)[%v]", eh, eh.name, port, cause)
+    sendf(eh, "SEND 0x%p %s(%s)[%v]", eh, eh.name, port, cause)
     msg := make_message(port, datum, cause)
     fifo_push(&eh.output, msg)
 }
 
 send_string :: proc(eh: ^Eh, port: string, s : string, causingMessage : ^Message) {
     cause := make_cause (eh, causingMessage)
-    sendf("SEND 0x%p %s(%s) [%v]", eh, eh.name, port, cause.message.port)
+    sendf(eh, "SEND 0x%p %s(%s) [%v]", eh, eh.name, port, cause.message.port)
     datum := new_datum_string (s)
     msg := make_message(port, datum, cause)
     fifo_push(&eh.output, msg)
 }
 
 forward :: proc(eh: ^Eh, port: string, msg: ^Message) {
-    sendf("FORWARD 0x%p %s->%v", eh, eh.name, port)
+    sendf(eh, "FORWARD 0x%p %s->%v", eh, eh.name, port)
     fwdmsg := make_message(port, msg.datum, make_cause (eh, msg))
     fifo_push(&eh.output, fwdmsg)
 }
@@ -208,19 +210,27 @@ deposit :: proc(c: Connector, message: ^Message) {
     fifo_push(c.receiver.queue, new_message)
 }
 
-light_receivef :: proc(fmt_str: string, args: ..any, location := #caller_location) {
-    log.logf(cast(runtime.Logger_Level)log_light_handlers,   fmt_str, ..args, location=location)
+light_receivef :: proc(eh : ^Eh, fmt_str: string, args: ..any, location := #caller_location) {
+    if (eh.trace) {
+	log.logf(cast(runtime.Logger_Level)log_light_handlers,   fmt_str, ..args, location=location)
+    }
 }
-full_receivef :: proc(fmt_str: string, args: ..any, location := #caller_location) {
-    log.logf(cast(runtime.Logger_Level)log_full_handlers,   fmt_str, ..args, location=location)
+full_receivef :: proc(eh : ^Eh, fmt_str: string, args: ..any, location := #caller_location) {
+    if (eh.trace) {
+	log.logf(cast(runtime.Logger_Level)log_full_handlers,   fmt_str, ..args, location=location)
+    }
 }
 
-sendf :: proc(fmt_str: string, args: ..any, location := #caller_location) {
+sendf :: proc(eh : ^Eh, fmt_str: string, args: ..any, location := #caller_location) {
+    if (eh.trace) {
 	log.logf(cast(runtime.Logger_Level)log_all,   fmt_str, ..args, location=location)
+    }
 }
 
-outputf :: proc(fmt_str: string, args: ..any, location := #caller_location) {
+outputf :: proc(eh : ^Eh, fmt_str: string, args: ..any, location := #caller_location) {
+    if (eh.trace) {
 	log.logf(cast(runtime.Logger_Level)log_all,   fmt_str, ..args, location=location)
+    }
 }
 
 step_children :: proc(container: ^Eh, causingMessage: ^Message) {
@@ -238,8 +248,8 @@ step_children :: proc(container: ^Eh, causingMessage: ^Message) {
         }
 
         if ok {
-            light_receivef("%s <- [%s]", child.name, msg.port)
-            full_receivef("HANDLE  0x%p %s <- %v (%v)", child, child.name, msg, msg.datum.kind ())
+            light_receivef(child, "%s <- [%s]", child.name, msg.port)
+            full_receivef(child, "HANDLE  0x%p %s <- %v (%v)", child, child.name, msg, msg.datum.kind ())
             child.handler(child, msg)
             destroy_message(msg)
         }
@@ -250,7 +260,7 @@ step_children :: proc(container: ^Eh, causingMessage: ^Message) {
 
         for child.output.len > 0 {
             msg, _ = fifo_pop(&child.output)
-            outputf("OUTPUT 0x%p %s -> [%s]", child, child.name, msg.port)
+            outputf(child, "OUTPUT 0x%p %s -> [%s]", child, child.name, msg.port)
             route(container, child, msg)
             destroy_message(msg)
         }
