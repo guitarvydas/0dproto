@@ -187,11 +187,11 @@
                 "id": 19
             },
             {
-                "name": "0d/odin/std/'rwr.sem.js'",
+                "name": "'0d/odin/std/rwr.sem.js'",
                 "id": 22
             },
             {
-                "name": "Ohm",
+                "name": "OhmJS",
                 "id": 28
             },
             {
@@ -246,7 +246,7 @@
                 },
                 "source_port": "grammar name",
                 "target": {
-                    "name": "Ohm",
+                    "name": "OhmJS",
                     "id": 28
                 },
                 "target_port": "grammar name"
@@ -259,7 +259,7 @@
                 },
                 "source_port": "input",
                 "target": {
-                    "name": "Ohm",
+                    "name": "OhmJS",
                     "id": 28
                 },
                 "target_port": "input"
@@ -272,7 +272,7 @@
                 },
                 "source_port": "input",
                 "target": {
-                    "name": "0d/odin/std/'rwr.sem.js'",
+                    "name": "'0d/odin/std/rwr.sem.js'",
                     "id": 22
                 },
                 "target_port": "go"
@@ -319,7 +319,7 @@
             {
                 "dir": 1,
                 "source": {
-                    "name": "0d/odin/std/'rwr.sem.js'",
+                    "name": "'0d/odin/std/rwr.sem.js'",
                     "id": 22
                 },
                 "source_port": "output",
@@ -337,7 +337,7 @@
                 },
                 "source_port": "str",
                 "target": {
-                    "name": "Ohm",
+                    "name": "OhmJS",
                     "id": 28
                 },
                 "target_port": "grammar"
@@ -363,7 +363,7 @@
                 },
                 "source_port": "output",
                 "target": {
-                    "name": "Ohm",
+                    "name": "OhmJS",
                     "id": 28
                 },
                 "target_port": "semantics"
@@ -449,7 +449,7 @@
             {
                 "dir": 2,
                 "source": {
-                    "name": "Ohm",
+                    "name": "OhmJS",
                     "id": 28
                 },
                 "source_port": "error",
@@ -475,7 +475,7 @@
             {
                 "dir": 2,
                 "source": {
-                    "name": "Ohm",
+                    "name": "OhmJS",
                     "id": 28
                 },
                 "source_port": "output",

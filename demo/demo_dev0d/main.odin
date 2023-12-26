@@ -8,19 +8,9 @@ import zd "../../0d/odin/0d"
 import "../../0d/odin/std"
 
 main :: proc() {
+    context.logger = std.log (zd.log_all) // see ../../0d/odin/std/lib.odin for other options
     diagram_name, main_container_name := std.parse_command_line_args ("<specify on command line>", "main")
     palette := std.initialize_component_palette (diagram_name, components_to_include_in_project)
-
-      //log_level := zd.log_light_handlers // set this to only track handlers in Components
-      //log_level := zd.log_full_handlers // set this to only track handlers, in full glory, in Components
-      // log_level := runtime.Logger_Level.Info
-    log_level := zd.log_all // set this to track everything, equivalent to runtime.Logger_Level.Debug
-    fmt.printf ("\n*** starting logger level %v ***\n", log_level)
-    context.logger = log.create_console_logger(
-	lowest=cast(runtime.Logger_Level)log_level,
-        opt={.Level, .Time, .Terminal_Color},
-    )
-
     std.run_demo_debug (&palette, main_container_name, diagram_name, start_function)
 }
 

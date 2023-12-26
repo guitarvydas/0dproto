@@ -25,30 +25,6 @@ string_constant :: proc (str: string) -> zd.Leaf_Template {
     return zd.Leaf_Template { name = quoted_name, instantiate = literal_instantiate }
 }
 
-initialize :: proc(diagram_name: string) -> [dynamic]zd.Leaf_Instantiator {
-    leaves : [dynamic]zd.Leaf_Instantiator = make([dynamic]zd.Leaf_Instantiator)
-    collect_process_leaves (diagram_name, &leaves)
-    // export standard native leaves
-    append(&leaves, zd.Leaf_Instantiator {
-        name = "stdout",
-        instantiate = stdout_instantiate,
-    })
-    append(&leaves, zd.Leaf_Template { name = "1then2", instantiate = deracer_instantiate })
-    append(&leaves, zd.Leaf_Template { name = "?", instantiate = probe_instantiate })
-    append(&leaves, zd.Leaf_Template { name = "trash", instantiate = trash_instantiate })
-
-    append(&leaves, zd.Leaf_Template { name = "Low Level Read Text File", instantiate = low_level_read_text_file_instantiate })
-    append(&leaves, zd.Leaf_Template { name = "Read Text From FD", instantiate = read_text_from_fd_instantiate })
-    append(&leaves, zd.Leaf_Template { name = "Open Text File", instantiate = open_text_file_instantiate })
-    append(&leaves, zd.Leaf_Template { name = "Ensure String Datum", instantiate = ensure_string_datum_instantiate })
-
-    append(&leaves, zd.Leaf_Template { name = "syncfilewrite", instantiate = syncfilewrite_instantiate })
-    append(&leaves, zd.Leaf_Template { name = "Bang", instantiate = bang_instantiate })
-    append(&leaves, zd.Leaf_Template { name = "stringconcat", instantiate = stringconcat_instantiate })
-
-    return leaves
-}
-
 //// helpers
 
 stdout_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
