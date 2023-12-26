@@ -1,0 +1,11 @@
+ABC {
+TopLevel = Assignment+
+
+  Assignment =   Variable "=" Expression -- complex
+               | Variable "=" number -- simple
+  Expression = Variable "+" Variable
+
+    Variable = "a" .. "z"
+    number = dig+
+    dig = "0" .. "9"
+}

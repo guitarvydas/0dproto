@@ -194,7 +194,7 @@ probe_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
 
 probe_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
     s := msg.datum.repr (msg.datum)
-    fmt.eprintf ("probe %v: /%v/ len=%v\n", eh.name, s, len (s))
+    fmt.eprintf ("probe %v: ⌜%v⌝ len=%v\n", eh.name, s, len (s))
 }
 
 trash_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
@@ -448,7 +448,7 @@ stringconcat_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
 	s := strings.clone (msg.datum.repr (msg.datum))
 	if 0 == len (inst.buffer) && 0 == len (s) {
 	    fmt.printf ("stringconcat %d %d\n", len (inst.buffer), len (s))
-	    fmt.assertf (false, "TODO: something is wrong in stringconcat, both strings are 0 length\n")
+	    fmt.assertf (false, "something is wrong in stringconcat, both strings are 0 length\n")
 	}
 	concatenated_string : string
 	if 0 == len (inst.buffer) {

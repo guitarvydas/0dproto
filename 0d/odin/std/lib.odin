@@ -145,6 +145,10 @@ dump_stats :: proc (pregistry : ^zd.Component_Registry) {
 }
 
 log :: proc (level : int) -> log.Logger{
+    // level:
+    // zd.log_light_handlers // set this to only track handlers in Components
+    // zd.log_full_handlers // set this to only track handlers, in full glory, in Components
+    // zd.log_all // set this to track everything, equivalent to runtime.Logger_Level.Debug
     fmt.printf ("\n*** starting logger level %v ***\n", level)
     return log.create_console_logger(
 	lowest=cast(runtime.Logger_Level)level,
