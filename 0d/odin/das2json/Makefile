@@ -2,7 +2,6 @@ ODIN_FLAGS ?= -debug -o:none
 SYNTAX=syntax/*.odin
 
 das2json: *.odin $(SYNTAX)
-	@echo 'building...'
 	odin build . $(ODIN_FLAGS)
 
 clean:
