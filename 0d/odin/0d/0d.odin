@@ -68,6 +68,7 @@ make_leaf_with_no_instance_data :: proc(name: string, owner : ^Eh, handler: proc
 make_leaf :: proc(name: string, owner: ^Eh, instance_data: any, handler: proc(^Eh, ^Message)) -> ^Eh {
     eh := new(Eh)
     eh.name = fmt.aprintf ("%s.%s", owner.name, name)
+    eh.owner = owner
     eh.handler = handler
     eh.instance_data = instance_data
     eh.state = .idle
@@ -79,21 +80,21 @@ make_leaf :: proc(name: string, owner: ^Eh, instance_data: any, handler: proc(^E
 // of the given component.
 send :: proc(eh: ^Eh, port: string, datum: ^Datum, causingMessage : ^Message) {
     cause := make_cause (eh, causingMessage)
-    sendf(eh, "SEND 0x%p %s(%s)[%v]", eh, eh.name, port, cause)
+    sendf(eh, "SEND 0x%p <%v>:%s(%s)[%v]", eh, eh.depth, eh.name, port, cause)
     msg := make_message(port, datum, cause)
     fifo_push(&eh.output, msg)
 }
 
 send_string :: proc(eh: ^Eh, port: string, s : string, causingMessage : ^Message) {
     cause := make_cause (eh, causingMessage)
-    sendf(eh, "SEND 0x%p %s(%s) [%v]", eh, eh.name, port, cause.message.port)
+    sendf(eh, "SEND 0x%p <%v>:%s(%s) [%v]", eh, eh.depth, eh.name, port, cause.message.port)
     datum := new_datum_string (s)
     msg := make_message(port, datum, cause)
     fifo_push(&eh.output, msg)
 }
 
 forward :: proc(eh: ^Eh, port: string, msg: ^Message) {
-    sendf(eh, "FORWARD 0x%p %s->%v", eh, eh.name, port)
+    sendf(eh, "FORWARD 0x%p <%v>:%s->%v", eh, eh.depth, eh.name, port)
     fwdmsg := make_message(port, msg.datum, make_cause (eh, msg))
     fifo_push(&eh.output, fwdmsg)
 }
@@ -248,8 +249,8 @@ step_children :: proc(container: ^Eh, causingMessage: ^Message) {
         }
 
         if ok {
-            light_receivef(child, "%s <- [%s]", child.name, msg.port)
-            full_receivef(child, "HANDLE  0x%p %s <- %v (%v)", child, child.name, msg, msg.datum.kind ())
+            light_receivef(child, "<%v>:%s <- [%s]", child.depth, child.name, msg.port)
+            full_receivef(child, "HANDLE  0x%p <%v>:%s <- %v (%v)", child, child.depth, child.name, msg, msg.datum.kind ())
             child.handler(child, msg)
             destroy_message(msg)
         }
@@ -260,7 +261,7 @@ step_children :: proc(container: ^Eh, causingMessage: ^Message) {
 
         for child.output.len > 0 {
             msg, _ = fifo_pop(&child.output)
-            outputf(child, "OUTPUT 0x%p %s -> [%s]", child, child.name, msg.port)
+            outputf(child, "OUTPUT 0x%p <%v>:%s -> [%s]", child, child.depth, child.name, msg.port)
             route(container, child, msg)
             destroy_message(msg)
         }
