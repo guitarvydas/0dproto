@@ -6,7 +6,7 @@ ODIN_FLAGS ?= -debug -o:none
 D2J=0d/odin/das2json/das2json
 DEMO=demo
 
-run: basics drawio vsh dev0d agency
+run: basics drawio vsh dev0d agency abcjs
 
 basics: demo_basics
 	@echo 'running...'
@@ -33,9 +33,16 @@ agency: demo_agency $(D2J) $(SRC)/demo_agency.drawio
 	$(D2J) $(SRC)/demo_agency.drawio
 	./demo_agency $(SRC)/demo_agency.drawio
 
+abcjs: demo_abcjs $(D2J) $(SRC)/demo_abcjs.drawio
+	@echo 'running...'
+	$(D2J) $(SRC)/demo_abcjs.drawio
+	./demo_abcjs $(SRC)/demo_abcjs.drawio
+
+
 das2json: ../das2json/das2json
 	@echo 'building...'
 	(cd ../das2json ; make)
+
 
 demo_basics: $(DEMO)/demo_basics/*.odin $(0D)
 	@echo 'building...'
@@ -56,6 +63,10 @@ demo_dev0d: $(DEMO)/demo_dev0d/*.odin $(0D)
 demo_agency: $(DEMO)/demo_agency/*.odin $(0D) ../llm/agency/main
 	@echo 'building...'
 	odin build  $(DEMO)/demo_agency $(ODIN_FLAGS)
+
+demo_abcjs: $(DEMO)/demo_abcjs/*.odin $(0D)
+	@echo 'building...'
+	odin build  $(DEMO)/demo_abcjs $(ODIN_FLAGS)
 
 ../llm/agency/main:
 	(cd llm/agency ; make)

@@ -1,0 +1,880 @@
+[
+    {
+        "file": "src/demo_abcjs.drawio",
+        "name": "main",
+        "children": [
+            {
+                "name": "'demo/demo_abcjs/abc.ohm'",
+                "id": 5
+            },
+            {
+                "name": "'demo/demo_abcjs/null.js'",
+                "id": 10
+            },
+            {
+                "name": "'demo/demo_abcjs/abcjs.rwr'",
+                "id": 13
+            },
+            {
+                "name": "Translate",
+                "id": 15
+            },
+            {
+                "name": "'ABC'",
+                "id": 23
+            }
+        ],
+        "connections": [
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "'demo/demo_abcjs/null.js'",
+                    "id": 10
+                },
+                "target_port": "go"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "'ABC'",
+                    "id": 23
+                },
+                "target_port": "go"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "'demo/demo_abcjs/abc.ohm'",
+                    "id": 5
+                },
+                "target_port": "go"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "'demo/demo_abcjs/abcjs.rwr'",
+                    "id": 13
+                },
+                "target_port": "go"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "Translate",
+                    "id": 15
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "'demo/demo_abcjs/abc.ohm'",
+                    "id": 5
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "Translate",
+                    "id": 15
+                },
+                "target_port": "ohmfn"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "'demo/demo_abcjs/abcjs.rwr'",
+                    "id": 13
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "Translate",
+                    "id": 15
+                },
+                "target_port": "rwrfn"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "'ABC'",
+                    "id": 23
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "Translate",
+                    "id": 15
+                },
+                "target_port": "grammar name"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "'demo/demo_abcjs/null.js'",
+                    "id": 10
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "Translate",
+                    "id": 15
+                },
+                "target_port": "rwrsupportfn"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "Translate",
+                    "id": 15
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "output"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "Translate",
+                    "id": 15
+                },
+                "source_port": "error",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "error"
+            }
+        ]
+    },
+    {
+        "file": "src/demo_abcjs.drawio",
+        "name": "Translate",
+        "children": [
+            {
+                "name": "Read Text File",
+                "id": 14
+            },
+            {
+                "name": "'RWR'",
+                "id": 16
+            },
+            {
+                "name": "'0d/odin/std/rwr.ohm'",
+                "id": 19
+            },
+            {
+                "name": "0d/odin/std/'rwr.sem.js'",
+                "id": 22
+            },
+            {
+                "name": "Ohm",
+                "id": 28
+            },
+            {
+                "name": "Read Text File",
+                "id": 37
+            },
+            {
+                "name": "Ohm (using file names)",
+                "id": 40
+            },
+            {
+                "name": "Read Text File",
+                "id": 42
+            },
+            {
+                "name": "stringconcat",
+                "id": 46
+            }
+        ],
+        "connections": [
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "rwrsupportfn",
+                "target": {
+                    "name": "Read Text File",
+                    "id": 42
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "rwrfn",
+                "target": {
+                    "name": "Read Text File",
+                    "id": 37
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "grammar name",
+                "target": {
+                    "name": "Ohm",
+                    "id": 28
+                },
+                "target_port": "grammar name"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "Ohm",
+                    "id": 28
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "0d/odin/std/'rwr.sem.js'",
+                    "id": 22
+                },
+                "target_port": "go"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "'0d/odin/std/rwr.ohm'",
+                    "id": 19
+                },
+                "target_port": "go"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "'RWR'",
+                    "id": 16
+                },
+                "target_port": "go"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "ohmfn",
+                "target": {
+                    "name": "Read Text File",
+                    "id": 14
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "0d/odin/std/'rwr.sem.js'",
+                    "id": 22
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "Ohm (using file names)",
+                    "id": 40
+                },
+                "target_port": "semanticsfn"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "Read Text File",
+                    "id": 14
+                },
+                "source_port": "str",
+                "target": {
+                    "name": "Ohm",
+                    "id": 28
+                },
+                "target_port": "grammar"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "Ohm (using file names)",
+                    "id": 40
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "stringconcat",
+                    "id": 46
+                },
+                "target_port": "2"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "stringconcat",
+                    "id": 46
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "Ohm",
+                    "id": 28
+                },
+                "target_port": "semantics"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "Read Text File",
+                    "id": 42
+                },
+                "source_port": "str",
+                "target": {
+                    "name": "stringconcat",
+                    "id": 46
+                },
+                "target_port": "1"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "'0d/odin/std/rwr.ohm'",
+                    "id": 19
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "Ohm (using file names)",
+                    "id": 40
+                },
+                "target_port": "grammarfn"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "'RWR'",
+                    "id": 16
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "Ohm (using file names)",
+                    "id": 40
+                },
+                "target_port": "grammar name"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "Read Text File",
+                    "id": 37
+                },
+                "source_port": "str",
+                "target": {
+                    "name": "Ohm (using file names)",
+                    "id": 40
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "Ohm (using file names)",
+                    "id": 40
+                },
+                "source_port": "error",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "error"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "stringconcat",
+                    "id": 46
+                },
+                "source_port": "error",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "error"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "Ohm",
+                    "id": 28
+                },
+                "source_port": "error",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "error"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "Read Text File",
+                    "id": 42
+                },
+                "source_port": "error",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "error"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "Ohm",
+                    "id": 28
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "output"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "Read Text File",
+                    "id": 37
+                },
+                "source_port": "error",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "error"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "Read Text File",
+                    "id": 14
+                },
+                "source_port": "error",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "error"
+            }
+        ]
+    },
+    {
+        "file": "src/demo_abcjs.drawio",
+        "name": "Ohm (using file names)",
+        "children": [
+            {
+                "name": "OhmJS",
+                "id": 13
+            },
+            {
+                "name": "All Before 4",
+                "id": 16
+            }
+        ],
+        "connections": [
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "All Before 4",
+                    "id": 16
+                },
+                "target_port": "4"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "grammar name",
+                "target": {
+                    "name": "All Before 4",
+                    "id": 16
+                },
+                "target_port": "1"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "grammarfn",
+                "target": {
+                    "name": "All Before 4",
+                    "id": 16
+                },
+                "target_port": "2"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "semanticsfn",
+                "target": {
+                    "name": "All Before 4",
+                    "id": 16
+                },
+                "target_port": "3"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "All Before 4",
+                    "id": 16
+                },
+                "source_port": "1",
+                "target": {
+                    "name": "OhmJS",
+                    "id": 13
+                },
+                "target_port": "grammar name"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "All Before 4",
+                    "id": 16
+                },
+                "source_port": "3",
+                "target": {
+                    "name": "OhmJS",
+                    "id": 13
+                },
+                "target_port": "semantics"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "All Before 4",
+                    "id": 16
+                },
+                "source_port": "4",
+                "target": {
+                    "name": "OhmJS",
+                    "id": 13
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "All Before 4",
+                    "id": 16
+                },
+                "source_port": "2",
+                "target": {
+                    "name": "OhmJS",
+                    "id": 13
+                },
+                "target_port": "grammar"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "OhmJS",
+                    "id": 13
+                },
+                "source_port": "error",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "error"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "OhmJS",
+                    "id": 13
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "output"
+            }
+        ]
+    },
+    {
+        "file": "src/demo_abcjs.drawio",
+        "name": "All Before 4",
+        "children": [
+            {
+                "name": "1then2",
+                "id": 14
+            },
+            {
+                "name": "1then2",
+                "id": 19
+            },
+            {
+                "name": "1then2",
+                "id": 20
+            }
+        ],
+        "connections": [
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "4",
+                "target": {
+                    "name": "1then2",
+                    "id": 19
+                },
+                "target_port": "2"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "3",
+                "target": {
+                    "name": "1then2",
+                    "id": 20
+                },
+                "target_port": "2"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "2",
+                "target": {
+                    "name": "1then2",
+                    "id": 14
+                },
+                "target_port": "2"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "1",
+                "target": {
+                    "name": "1then2",
+                    "id": 14
+                },
+                "target_port": "1"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "1then2",
+                    "id": 14
+                },
+                "source_port": "2",
+                "target": {
+                    "name": "1then2",
+                    "id": 20
+                },
+                "target_port": "1"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "1then2",
+                    "id": 20
+                },
+                "source_port": "2",
+                "target": {
+                    "name": "1then2",
+                    "id": 19
+                },
+                "target_port": "1"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "1then2",
+                    "id": 20
+                },
+                "source_port": "1",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "2"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "1then2",
+                    "id": 14
+                },
+                "source_port": "1",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "1"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "1then2",
+                    "id": 19
+                },
+                "source_port": "1",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "3"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "1then2",
+                    "id": 19
+                },
+                "source_port": "2",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "4"
+            }
+        ]
+    },
+    {
+        "file": "src/demo_abcjs.drawio",
+        "name": "Read Text File",
+        "children": [
+            {
+                "name": "Low Level Read Text File",
+                "id": 5
+            },
+            {
+                "name": "Ensure String Datum",
+                "id": 6
+            }
+        ],
+        "connections": [
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "Ensure String Datum",
+                    "id": 6
+                },
+                "target_port": "operand"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "Ensure String Datum",
+                    "id": 6
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "Low Level Read Text File",
+                    "id": 5
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "Low Level Read Text File",
+                    "id": 5
+                },
+                "source_port": "str",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "str"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "Low Level Read Text File",
+                    "id": 5
+                },
+                "source_port": "error",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "error"
+            }
+        ]
+    }
+]

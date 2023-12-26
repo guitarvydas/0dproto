@@ -32,7 +32,7 @@ start_function :: proc (main_container : ^zd.Eh) {
 
 components_to_include_in_project :: proc (leaves: ^[dynamic]zd.Leaf_Template) {
     // examples:
-    //    zd.append_leaf (&leaves, zd.Leaf_Template { name = "trash", instantiate = trash_instantiate })
-    //    zd.append_leaf (&leaves, string_constant ("rwr.ohm"))
+    //    zd.append_leaf (leaves, zd.Leaf_Template { name = "trash", instantiate = trash_instantiate })
+    //    zd.append_leaf (leaves, std.string_constant ("rwr.ohm"))
 }
 
