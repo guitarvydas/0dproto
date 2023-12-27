@@ -105,6 +105,9 @@ initialize_component_palette :: proc (diagram_source_file: string, project_speci
     })
     zd.append_leaf (&leaves, zd.Leaf_Template { name = "1then2", instantiate = deracer_instantiate })
     zd.append_leaf (&leaves, zd.Leaf_Template { name = "?", instantiate = probe_instantiate })
+    zd.append_leaf (&leaves, zd.Leaf_Template { name = "?A", instantiate = probeA_instantiate })
+    zd.append_leaf (&leaves, zd.Leaf_Template { name = "?B", instantiate = probeB_instantiate })
+    zd.append_leaf (&leaves, zd.Leaf_Template { name = "?C", instantiate = probeC_instantiate })
     zd.append_leaf (&leaves, zd.Leaf_Template { name = "trash", instantiate = trash_instantiate })
 
     zd.append_leaf (&leaves, zd.Leaf_Template { name = "Low Level Read Text File", instantiate = low_level_read_text_file_instantiate })

@@ -130,6 +130,7 @@ function hangOperationOntoAsst (asst, opName, opFileName) {
 	return asst.addOperation (opName, compiledSemantics);
     } catch (e) {
 	console.error (`${grammarName} ${grammarFileName} ${rwrFileName}`);
+	console.error (`[try using node.js on the code below, to get better error reporting]`);
 	throw Error (`while loading operation ${opName}: ${evalableSemanticsFunctionsString}: ${e.message}`);
     }
 }

@@ -412,10 +412,9 @@ syncfilewrite_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
 		// NOTE(justasd): 644 (owner read, write; group read; others read)
 		mode = os.S_IRUSR | os.S_IWUSR | os.S_IRGRP | os.S_IROTH
 	}
-	fd, open_errnum := os.open (path = inst.filename, flags =  os.O_WRONLY|os.O_CREATE|os.O_TRUNC, mode = mode)
+	fd, open_errnum := os.open (path = inst.filename, flags =  os.O_WRONLY|os.O_CREATE, mode = mode)
 	if open_errnum == 0 {
 	    numchars, write_errnum := os.write (fd, transmute([]u8)contents)
-	    close_errnum := os.close (fd)
 	    if write_errnum == 0 {
 		zd.send (eh, "done", zd.new_datum_bang (), msg)
 	    } else {
@@ -465,7 +464,7 @@ stringconcat_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
 	}
 	concatenated_string : string
 	if 0 == len (inst.buffer) {
-	    concatenated_string = fmt.aprintf ("%s", s)
+	    concatenGGXFated_string = fmt.aprintf ("%s", s)
 	} else if 0 == len (s) {
 	    concatenated_string = fmt.aprintf ("%s", inst.buffer)
 	} else {
