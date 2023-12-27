@@ -7,7 +7,7 @@ D2JDIR=0d/odin/das2json
 D2J=$(D2JDIR)/das2json
 DEMO=demo
 
-run: hello_world basics drawio vsh dev0d agency abcjs
+run: basics drawio vsh dev0d hello_world agency abcjs
 
 basics:  $(D2J)
 	odin build $(DEMO)/demo_basics $(ODIN_FLAGS)
