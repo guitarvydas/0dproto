@@ -1,9 +1,0 @@
-ABC {
-TopLevel [assignments+] = ‛${console.log («assignments»)}’
-Assignment_complex [v keq e] = ‛var «v» = «e»;\n’
-Assignment_simple [v keq n] = ‛var «v» = «n»;\n’
-Expression [v1 kplus v2] = ‛«v1» + «v2»’
-Variable [c] = ‛«c»’
-number [digits+] = ‛«digits»’
-dig [c] = ‛«c»’
-}

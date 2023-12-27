@@ -210,7 +210,7 @@ trash_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
 literal_instantiate :: proc (name: string, owner : ^zd.Eh) -> ^zd.Eh {
     i := strings.index_rune (name, '\'')
     quoted := name [i+1:(len (name) - 1)]
-    name_with_id := gensym(name)
+    name_with_id := gensym(quoted)
     pstr := string_dup_to_heap (quoted)
     return zd.make_leaf (name_with_id, owner, pstr^, literal_handle)
 }
