@@ -4,10 +4,6 @@
         "name": "main",
         "children": [
             {
-                "name": "To Common Lisp",
-                "id": 10
-            },
-            {
                 "name": "Read Text File",
                 "id": 12
             },
@@ -17,7 +13,15 @@
             },
             {
                 "name": "To Python",
+                "id": 21
+            },
+            {
+                "name": "To Wasm",
                 "id": 22
+            },
+            {
+                "name": "To Common Lisp",
+                "id": 27
             }
         ],
         "connections": [
@@ -42,6 +46,19 @@
                 },
                 "source_port": "str",
                 "target": {
+                    "name": "To Common Lisp",
+                    "id": 27
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "Read Text File",
+                    "id": 12
+                },
+                "source_port": "str",
+                "target": {
                     "name": "To Javascript",
                     "id": 18
                 },
@@ -55,8 +72,8 @@
                 },
                 "source_port": "str",
                 "target": {
-                    "name": "To Common Lisp",
-                    "id": 10
+                    "name": "To Python",
+                    "id": 21
                 },
                 "target_port": "input"
             },
@@ -68,23 +85,10 @@
                 },
                 "source_port": "str",
                 "target": {
-                    "name": "To Python",
+                    "name": "To Wasm",
                     "id": 22
                 },
                 "target_port": "input"
-            },
-            {
-                "dir": 2,
-                "source": {
-                    "name": "Read Text File",
-                    "id": 12
-                },
-                "source_port": "error",
-                "target": {
-                    "name": "",
-                    "id": 0
-                },
-                "target_port": "error"
             },
             {
                 "dir": 2,
@@ -102,6 +106,32 @@
             {
                 "dir": 2,
                 "source": {
+                    "name": "To Python",
+                    "id": 21
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "Python"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "To Python",
+                    "id": 21
+                },
+                "source_port": "error",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "error"
+            },
+            {
+                "dir": 2,
+                "source": {
                     "name": "To Javascript",
                     "id": 18
                 },
@@ -115,8 +145,8 @@
             {
                 "dir": 2,
                 "source": {
-                    "name": "To Common Lisp",
-                    "id": 10
+                    "name": "Read Text File",
+                    "id": 12
                 },
                 "source_port": "error",
                 "target": {
@@ -129,7 +159,20 @@
                 "dir": 2,
                 "source": {
                     "name": "To Common Lisp",
-                    "id": 10
+                    "id": 27
+                },
+                "source_port": "error",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "error"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "To Common Lisp",
+                    "id": 27
                 },
                 "source_port": "output",
                 "target": {
@@ -141,7 +184,7 @@
             {
                 "dir": 2,
                 "source": {
-                    "name": "To Python",
+                    "name": "To Wasm",
                     "id": 22
                 },
                 "source_port": "output",
@@ -149,12 +192,12 @@
                     "name": "",
                     "id": 0
                 },
-                "target_port": "Python"
+                "target_port": "Wasm"
             },
             {
                 "dir": 2,
                 "source": {
-                    "name": "To Python",
+                    "name": "To Wasm",
                     "id": 22
                 },
                 "source_port": "error",
@@ -629,6 +672,177 @@
                 "dir": 1,
                 "source": {
                     "name": "'demo/demo_arith/arithpy.rwr'",
+                    "id": 4
+                },
+                "source_port": "\u237a",
+                "target": {
+                    "name": "Translate",
+                    "id": 9
+                },
+                "target_port": "rwrfn"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "'Arithmetic'",
+                    "id": 20
+                },
+                "source_port": "\u237a",
+                "target": {
+                    "name": "Translate",
+                    "id": 9
+                },
+                "target_port": "grammar name"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "Translate",
+                    "id": 9
+                },
+                "source_port": "error",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "error"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "Translate",
+                    "id": 9
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "output"
+            }
+        ]
+    },
+    {
+        "file": "src/demo_arith.drawio",
+        "name": "To Wasm",
+        "children": [
+            {
+                "name": "'demo/demo_arith/arithwasm.rwr'",
+                "id": 4
+            },
+            {
+                "name": "Translate",
+                "id": 9
+            },
+            {
+                "name": "'demo/demo_arith/arith.ohm'",
+                "id": 17
+            },
+            {
+                "name": "'Arithmetic'",
+                "id": 20
+            },
+            {
+                "name": "'demo/demo_arith/null.js'",
+                "id": 23
+            }
+        ],
+        "connections": [
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "'demo/demo_arith/null.js'",
+                    "id": 23
+                },
+                "target_port": "\u237a"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "'Arithmetic'",
+                    "id": 20
+                },
+                "target_port": "\u237a"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "'demo/demo_arith/arith.ohm'",
+                    "id": 17
+                },
+                "target_port": "\u237a"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "'demo/demo_arith/arithwasm.rwr'",
+                    "id": 4
+                },
+                "target_port": "\u237a"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "input",
+                "target": {
+                    "name": "Translate",
+                    "id": 9
+                },
+                "target_port": "input"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "'demo/demo_arith/null.js'",
+                    "id": 23
+                },
+                "source_port": "\u237a",
+                "target": {
+                    "name": "Translate",
+                    "id": 9
+                },
+                "target_port": "rwrsupportfn"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "'demo/demo_arith/arith.ohm'",
+                    "id": 17
+                },
+                "source_port": "\u237a",
+                "target": {
+                    "name": "Translate",
+                    "id": 9
+                },
+                "target_port": "ohmfn"
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "'demo/demo_arith/arithwasm.rwr'",
                     "id": 4
                 },
                 "source_port": "\u237a",

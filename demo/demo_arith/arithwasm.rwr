@@ -1,0 +1,25 @@
+Arithmetic {
+  Exp [AddExp] = ‛«AddExp»’
+
+  AddExp_plus  [AddExp kplus MulExp] = ‛\n«AddExp»\n«MulExp»\nf64.add’
+  AddExp_minus [AddExp kplus MulExp] = ‛\n«AddExp»\n«MulExp»\nf64.sub’
+  AddExp_else   [Exp]                 = ‛«Exp»’
+
+  MulExp_times  [MulExp kasterisk ExpExp] = ‛\n«MulExp»\n«MulExp»\nf64.mul’
+  MulExp_divide [MulExp kslash    ExpExp] = ‛\n«MulExp»\n«MulExp»\nf64.div’
+  MulExp_else   [ExpExp]                  = ‛«ExpExp»’
+
+  ExpExp_power [PriExp kcaret ExpExp] = ‛\n(NIY «PriExp»^«ExpExp»)’
+  ExpExp_else  [PriExp]               = ‛«PriExp»’
+
+  PriExp_paren  [lp Exp rp] = ‛«Exp»’
+  PriExp_pos    [kplus  Exp] = ‛«Exp»’
+  PriExp_neg    [kminus Exp] = ‛\n«Exp»\nf64.neg’
+  PriExp_ident  [x]          = ‛«x»’
+  PriExp_number [x]          = ‛«x»’
+
+  ident [letter alnumz*] = ‛local.get $«letter»«alnumz»’
+
+  number_fract [digitz* kdot digits+] = ‛f64.const «digitz».«digits»’
+  number_whole [digits+]              = ‛f64.const «digits»’
+}

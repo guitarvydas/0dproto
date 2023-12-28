@@ -22,6 +22,7 @@ components_to_include_in_project :: proc (leaves: ^[dynamic]zd.Leaf_Template) {
     zd.append_leaf (leaves, std.string_constant ("demo/demo_arith/arithcl.rwr"))
     zd.append_leaf (leaves, std.string_constant ("demo/demo_arith/arithjs.rwr"))
     zd.append_leaf (leaves, std.string_constant ("demo/demo_arith/arithpy.rwr"))
+    zd.append_leaf (leaves, std.string_constant ("demo/demo_arith/arithwasm.rwr"))
     zd.append_leaf (leaves, std.string_constant ("demo/demo_arith/null.js"))
 }
 
