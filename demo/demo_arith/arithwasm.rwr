@@ -1,31 +1,6 @@
 Arithmetic {
   Exp [AddExp] = ‛«AddExp»’
 
-  AddExp_plus  [AddExp kplus MulExp] = ‛\n«AddExp»\n«MulExp»\nf64.add’
-  AddExp_minus [AddExp kplus MulExp] = ‛\n«AddExp»\n«MulExp»\nf64.sub’
-  AddExp       [Exp]                 = ‛«Exp»’
-
-  MulExp_times  [MulExp kasterisk ExpExp] = ‛\n«MulExp»\n«ExpExp»\nf64.mul’
-  MulExp_divide [MulExp kslash    ExpExp] = ‛\n«MulExp»\n«ExpExp»\nf64.div’
-  MulExp        [ExpExp]                  = ‛«ExpExp»’
-
-  ExpExp_power [PriExp kcaret ExpExp] = ‛\n(NIY «PriExp»^«ExpExp»)’
-  ExpExp       [PriExp]               = ‛«PriExp»’
-
-  PriExp_paren  [lp Exp rp] = ‛«Exp»’
-  PriExp_pos    [kplus  Exp] = ‛«Exp»’
-  PriExp_neg    [kminus Exp] = ‛«Exp»\nf64.neg’
-  PriExp        [x]          = ‛«x»’
-
-  ident [letter alnumz*] = ‛\nlocal.get $«letter»«alnumz»’
-
-  number_fract [digitz* kdot digits+] = ‛f64.const «digitz».«digits»’
-  number_whole [digits+]              = ‛f64.const «digits»’
-}
-
-Arithmetic {
-  Exp [AddExp] = ‛«AddExp»’
-
   AddExp_plus  [AddExp kplus MulExp] = ‛(f64.add «AddExp» «MulExp»)’
   AddExp_minus [AddExp kplus MulExp] = ‛(f64.sub «AddExp» «MulExp»)’
   AddExp        [Exp]                 = ‛«Exp»’
@@ -42,7 +17,7 @@ Arithmetic {
   PriExp_neg    [kminus Exp] = ‛(f64.sub (f64.const 0) «Exp»)’
   PriExp        [x]          = ‛«x»’
 
-  ident [letter alnumz*] = ‛«letter»«alnumz»’
+  ident [letter alnumz*] = ‛(local.get $«letter»«alnumz»)’
 
   number_fract [digitz* kdot digits+] = ‛«digitz».«digits»’
   number_whole [digits+]              = ‛«digits»’
