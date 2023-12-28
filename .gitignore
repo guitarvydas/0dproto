@@ -1,0 +1,14 @@
+*~
+_*
+.DS_Store*
+node_modules/*
+*.mov
+junk.*
+junk*
+fab/
+pattern_*
+temp.0d
+
+\#Makefile#
+
+odin/std/.#std 3.odin
