@@ -3,14 +3,14 @@ Arithmetic {
 
   AddExp_plus  [AddExp kplus MulExp] = ‛«AddExp» + «MulExp»’
   AddExp_minus [AddExp kplus MulExp] = ‛«AddExp» - «MulExp»’
-  AddExp_else   [Exp]                 = ‛«Exp»’
+  AddExp        [Exp]                 = ‛«Exp»’
 
   MulExp_times  [MulExp kasterisk ExpExp] = ‛«MulExp» * «ExpExp»’
   MulExp_divide [MulExp kslash    ExpExp] = ‛«MulExp» / «ExpExp»’
-  MulExp_else   [ExpExp]                  = ‛«ExpExp»’
+  MulExp        [ExpExp]                  = ‛«ExpExp»’
 
   ExpExp_power [PriExp kcaret ExpExp] = ‛Number.parseFloat(«PriExp»).toExponential(«ExpExp»)’
-  ExpExp_else  [PriExp]               = ‛«PriExp»’
+  ExpExp       [PriExp]               = ‛«PriExp»’
 
   PriExp_paren  [lp Exp rp] = ‛«Exp»’
   PriExp_pos    [kplus  Exp] = ‛«Exp»’

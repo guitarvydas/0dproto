@@ -5,16 +5,16 @@ Arithmetic {
   AddExp
     = AddExp "+" MulExp  -- plus
     | AddExp "-" MulExp  -- minus
-    | MulExp             -- else
+    | MulExp
 
   MulExp
     = MulExp "*" ExpExp  -- times
     | MulExp "/" ExpExp  -- divide
-    | ExpExp             -- else
+    | ExpExp
 
   ExpExp
     = PriExp "^" ExpExp  -- power
-    | PriExp             -- else
+    | PriExp
 
   PriExp
     = "(" Exp ")"  -- paren
