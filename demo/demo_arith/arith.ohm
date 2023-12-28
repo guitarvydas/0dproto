@@ -1,31 +1,31 @@
 Arithmetic {
   Exp
     = AddExp
-​
+
   AddExp
     = AddExp "+" MulExp  -- plus
     | AddExp "-" MulExp  -- minus
     | MulExp             -- else
-​
+
   MulExp
     = MulExp "*" ExpExp  -- times
     | MulExp "/" ExpExp  -- divide
     | ExpExp             -- else
-​
+
   ExpExp
     = PriExp "^" ExpExp  -- power
     | PriExp             -- else
-​
+
   PriExp
     = "(" Exp ")"  -- paren
     | "+" PriExp   -- pos
     | "-" PriExp   -- neg
     | ident        -- ident
     | number       -- number
-​
+
   ident  (an identifier)
     = letter alnum*
-​
+
   number  (a number)
     = digit* "." digit+  -- fract
     | digit+             -- whole

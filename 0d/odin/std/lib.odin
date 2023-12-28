@@ -31,10 +31,7 @@ run :: proc (r : ^zd.Component_Registry, main_container_name : string, diagram_s
         diagram_source_file,
     )
     injectfn (main_container)
-    dump_outputs (main_container)
-    fmt.println ("---error maybe---")
     print_error_maybe (main_container)
-    fmt.println ("---output---")
     print_output (main_container)
 }
 

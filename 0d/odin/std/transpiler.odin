@@ -28,8 +28,13 @@ ohmjs_maybe :: proc (eh: ^zd.Eh, inst: ^OhmJS_Instance_Data, causingMsg: ^zd.Mes
     if "" != inst.grammarname && "" != inst.grammarfilename && "" != inst.semanticsfilename && "" != inst.input {
         cmd := fmt.aprintf ("0d/odin/std/ohmjs.js %s %s %s", inst.grammarname, inst.grammarfilename, inst.semanticsfilename)
 	captured_output, err := zd.run_command (cmd, inst.input)
-        zd.send_string (eh, "output", strings.trim_space (captured_output), causingMsg)
-	zd.send_string (eh, "error", strings.trim_space (err), causingMsg)
+
+	errstring := strings.trim_space (err)
+	if len (errstring) == 0 {
+            zd.send_string (eh, "output", strings.trim_space (captured_output), causingMsg)
+	} else {
+	    zd.send_string (eh, "error", errstring, causingMsg)
+	}
     }
 }
 

@@ -41,8 +41,7 @@ function makeAST (grammarName, grammarText) {
 	if (ast === undefined) { throw (Error (`can't find grammar ${grammarName} (${grammarName} ${grammarFileName} ${rwrFileName}`)); }
 	return ast
     } catch (e) {
-	console.error (`internal problem: makeAST threw an error ${grammarName} ${grammarFileName} ${rwrFileName}`);
-	throw (e);
+	throw (Error (`internal problem: makeAST threw an error\n${grammarName} ${grammarFileName} ${rwrFileName}\n${e.message}`));
     }
 }
 /////
@@ -51,13 +50,11 @@ function patternMatch (src, ast) {
     try {
 	matchResult = ast.match (src);
     } catch (e) {
-	console.error (`internal problem: patternMatch threw an error ${grammarName} ${grammarFileName} ${rwrFileName}`);
-	throw (e);
+	throw (Error (`internal problem: patternMatch threw an error ${grammarName} ${grammarFileName} ${rwrFileName}\n${e.message}`));
     }
     if (matchResult.failed ()) {
 	fs.writeFileSync ('/tmp/patternMatch_src', src);
-	console.error (`match result failed in patternMatch ${grammarName} ${grammarFileName} ${rwrFileName} (see /tmp/patternMatch_src)`);
-	throw (Error (matchResult.message));
+	throw (Error (`match result failed in patternMatch ${grammarName} ${grammarFileName} ${rwrFileName} (see /tmp/patternMatch_src)\n${matchResult.message}`));
     } else { 
 	return matchResult;
     }
@@ -129,9 +126,7 @@ function hangOperationOntoAsst (asst, opName, opFileName) {
 	compiledSemantics = eval (evalableSemanticsFunctionsString);
 	return asst.addOperation (opName, compiledSemantics);
     } catch (e) {
-	console.error (`${grammarName} ${grammarFileName} ${rwrFileName}`);
-	console.error (`[try using node.js on the code below, to get better error reporting]`);
-	throw Error (`while loading operation ${opName}: ${evalableSemanticsFunctionsString}: ${e.message}`);
+	throw Error (`while loading operation ${opName}: ${evalableSemanticsFunctionsString}: ${e.message}\n${grammarName} ${grammarFileName} ${rwrFileName}\n[try using node.js on the code below, to get better error reporting]`);
     }
 }
 /////
@@ -142,15 +137,12 @@ function processCST (opName, asst, cst) {
 	return (asst (cst) [opName]) ();
     } catch (e) {
 	_tracing = true;
-	console.error (`${grammarName} ${grammarFileName} ${rwrFileName}`);
-	console.error (`error during processing of the AST, src written to /tmp/src\n${e}`);
 	fs.writeFileSync ('/tmp/src', src);
+	throw Error (`error during processing of the AST, src written to /tmp/src\n${e}\n${grammarName} ${grammarFileName} ${rwrFileName}`);
 	try {
 	    return (asst (cst) [opName]) ();
 	} catch (eagain) {
-	    console.error (`${grammarName} ${grammarFileName} ${rwrFileName}`);
-	    console.error (`error during processing of the AST, src written to /tmp/src\n${e}`);
-	    throw eagain;
+	    throw (`error during processing of the AST, src written to /tmp/src\n${e}\n${grammarName} ${grammarFileName} ${rwrFileName}\n${eagain.message}`);
 	}
     }
 }
@@ -183,7 +175,6 @@ function main () {
 	return walked;
 	
     } catch (e) {
-	console.log ("");
 	console.error (e.message.trim ());
 	process.exit (1);
     }
