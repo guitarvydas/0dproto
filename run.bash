@@ -1,2 +1,2 @@
 #!/bin/bash
-make -s | grep -v 'ignoring duplicate'
+make -s 2>&1 | grep -v 'ignoring duplicate'

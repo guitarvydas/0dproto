@@ -86,7 +86,6 @@ print_output :: proc (main_container : ^zd.Eh) {
 print_error_maybe :: proc (main_container : ^zd.Eh) {
     error_port := "error"
     err, found := zd.fetch_first_output (main_container, error_port)
-    fmt.printf ("err: %v\n", err)
     if found && (0 < len (strings.trim (err.repr (err), " \t\n"))) {
 	fmt.println("\n\n--- !!! ERRORS !!! ---")
 	zd.print_specific_output (main_container, error_port, false)
