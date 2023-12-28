@@ -7,7 +7,7 @@ D2JDIR=0d/odin/das2json
 D2J=$(D2JDIR)/das2json
 DEMO=demo
 
-run: basics drawio vsh dev0d hello_world agency abcjs
+run: basics drawio vsh dev0d hello_world agency abcjs arithmetic
 
 basics:  $(D2J)
 	odin build $(DEMO)/demo_basics $(ODIN_FLAGS)
@@ -42,6 +42,11 @@ abcjs: $(D2J) $(SRC)/demo_abcjs.drawio
 	$(D2J) $(SRC)/demo_abcjs.drawio
 	odin build  $(DEMO)/demo_abcjs $(ODIN_FLAGS)
 	./demo_abcjs $(SRC)/demo_abcjs.drawio
+
+arithmetic: $(D2J) $(SRC)/demo_arith.drawio
+	$(D2J) $(SRC)/demo_arith.drawio
+	odin build  $(DEMO)/demo_arith $(ODIN_FLAGS)
+	./demo_arith $(SRC)/demo_arith.drawio
 
 
 $(D2J):
