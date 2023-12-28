@@ -15,8 +15,7 @@ Arithmetic {
   PriExp_paren  [lp Exp rp] = ‛«Exp»’
   PriExp_pos    [kplus  Exp] = ‛«Exp»’
   PriExp_neg    [kminus Exp] = ‛-«Exp»’
-  PriExp_ident  [x]          = ‛«x»’
-  PriExp_number [x]          = ‛«x»’
+  PriExp        [x]          = ‛«x»’
 
   ident [letter alnumz*] = ‛«letter»«alnumz»’
 
