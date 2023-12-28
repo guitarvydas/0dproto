@@ -35,6 +35,21 @@ run :: proc (r : ^zd.Component_Registry, main_container_name : string, diagram_s
     print_output (main_container)
 }
 
+run_all_outputs :: proc (r : ^zd.Component_Registry, main_container_name : string, diagram_source_file : string, injectfn : #type proc (^zd.Eh)) {
+    pregistry := r
+    // get entrypoint container
+    main_container, ok := zd.get_component_instance(pregistry, main_container_name, owner=nil)
+    fmt.assertf(
+        ok,
+        "Couldn't find main container with page name %s in file %s (check tab names, or disable compression?)\n",
+        main_container_name,
+        diagram_source_file,
+    )
+    injectfn (main_container)
+    print_error_maybe (main_container)
+    dump_outputs (main_container)
+}
+
 run_demo :: proc (r : ^zd.Component_Registry, main_container_name : string, diagram_source_file : string, injectfn : #type proc (^zd.Eh)) {
     pregistry := r
     // get entrypoint container
