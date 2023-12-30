@@ -9,8 +9,8 @@ import "core:strings"
 import zd "../0d"
 
 parse_command_line_args :: proc (default_diagram_source_file, default_main_container_name : string) -> (diagram_source_file, main_container_name: string) {
-    diagram_source_file = slice.get(os.args, 1) or_else default_diagram_source_file
-    main_container_name = slice.get(os.args, 2) or_else default_main_container_name
+    main_container_name = slice.get(os.args, 1) or_else default_main_container_name
+    diagram_source_file = slice.get(os.args, 2) or_else default_diagram_source_file
     
     if !os.exists(diagram_source_file) {
         fmt.println("Source diagram file", diagram_source_file, "does not exist.")

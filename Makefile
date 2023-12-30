@@ -16,37 +16,37 @@ basics:  $(D2J)
 hello_world: $(D2J) $(SRC)/demo_hello_world.drawio
 	$(D2J) $(SRC)/demo_hello_world.drawio
 	odin build $(DEMO)/demo_hello_world $(ODIN_FLAGS)
-	./demo_hello_world $(SRC)/demo_hello_world.drawio
+	./demo_hello_world main $(SRC)/demo_hello_world.drawio
 
 drawio: $(D2J) $(SRC)/demo_drawio.drawio
 	odin build  $(DEMO)/demo_drawio $(ODIN_FLAGS)
 	$(D2J) $(SRC)/demo_drawio.drawio
-	./demo_drawio $(SRC)/demo_drawio.drawio
+	./demo_drawio main $(SRC)/demo_drawio.drawio
 
 vsh: $(D2J) $(SRC)/demo_vsh.drawio
 	$(D2J) $(SRC)/demo_vsh.drawio
 	odin build  $(DEMO)/demo_vsh $(ODIN_FLAGS)
-	./demo_vsh $(SRC)/demo_vsh.drawio
+	./demo_vsh main $(SRC)/demo_vsh.drawio
 
 dev0d: $(D2J) $(SRC)/demo_dev0d.drawio
 	$(D2J) $(SRC)/demo_dev0d.drawio
 	odin build  $(DEMO)/demo_dev0d $(ODIN_FLAGS)
-	./demo_dev0d $(SRC)/demo_dev0d.drawio
+	./demo_dev0d main $(SRC)/demo_dev0d.drawio
 
 agency: $(D2J) $(SRC)/demo_agency.drawio ../llm/agency/main
 	$(D2J) $(SRC)/demo_agency.drawio
 	odin build  $(DEMO)/demo_agency $(ODIN_FLAGS)
-	./demo_agency $(SRC)/demo_agency.drawio
+	./demo_agency main $(SRC)/demo_agency.drawio
 
 abcjs: $(D2J) $(SRC)/demo_abcjs.drawio
 	$(D2J) $(SRC)/demo_abcjs.drawio
 	odin build  $(DEMO)/demo_abcjs $(ODIN_FLAGS)
-	./demo_abcjs $(SRC)/demo_abcjs.drawio
+	./demo_abcjs main $(SRC)/demo_abcjs.drawio
 
 arith: $(D2J) $(SRC)/demo_arith.drawio
 	$(D2J) $(SRC)/demo_arith.drawio
 	odin build  $(DEMO)/demo_arith $(ODIN_FLAGS)
-	./demo_arith $(SRC)/demo_arith.drawio
+	./demo_arith main $(SRC)/demo_arith.drawio
 
 
 $(D2J):
