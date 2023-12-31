@@ -1,11 +1,14 @@
 .PHONY: run check build vsh
 
 SRC=src
+LIBSRC=libsrc
 ODIN_FLAGS ?= -debug -o:none
 0D=0d/odin/0d/*.odin 0d/odin/std/*.odin
 D2JDIR=0d/odin/das2json
 D2J=$(D2JDIR)/das2json
 DEMO=demo
+
+dev: abcjs
 
 run: basics drawio vsh dev0d hello_world agency abcjs arith
 
@@ -40,8 +43,9 @@ agency: $(D2J) $(SRC)/demo_agency.drawio ../llm/agency/main
 
 abcjs: $(D2J) $(SRC)/demo_abcjs.drawio
 	$(D2J) $(SRC)/demo_abcjs.drawio
+	$(D2J) $(LIBSRC)/translate.drawio
 	odin build  $(DEMO)/demo_abcjs $(ODIN_FLAGS)
-	./demo_abcjs main $(SRC)/demo_abcjs.drawio
+	./demo_abcjs main $(SRC)/demo_abcjs.drawio $(LIBSRC)/translate.drawio
 
 arith: $(D2J) $(SRC)/demo_arith.drawio
 	$(D2J) $(SRC)/demo_arith.drawio
