@@ -40,25 +40,25 @@ Template :: union {
 
 
     
-json2internal :: proc (container_xml : string) -> ^[]ir.Container_Decl {
+json2internal :: proc (container_xml : string) -> [dynamic]ir.Container_Decl {
     fname := fmt.aprintf ("%v.json", filepath.base (container_xml))
     read_fd, read_errnum := os.open (path=fname, flags=os.O_RDONLY)
     fmt.assertf (read_errnum == 0, "read open error on %v, err=%v\n", fname, read_errnum)
     data, success := os.read_entire_file_from_handle (read_fd)
     fmt.assertf (success, "read error on file %s errno=%v", fname, os.get_last_error ())
     s := transmute(string)data
-    decls := new ([]ir.Container_Decl)
-    unmarshal_err := json.unmarshal_string (s, decls)
+    decls : [dynamic]ir.Container_Decl
+    unmarshal_err := json.unmarshal_string (s, &decls)
     fmt.assertf (unmarshal_err == nil || unmarshal_err == .None, "failure converting from JSON to internal format %v\n", unmarshal_err)
     os.close (read_fd)
     return decls
 }
 
-delete_decls :: proc (^[]ir.Container_Decl) {
+delete_decls :: proc ([dynamic]ir.Container_Decl) {
     // TBD
 }
 
-make_component_registry :: proc(leaves: []Leaf_Template, containers: ^[]ir.Container_Decl) -> ^Component_Registry {
+make_component_registry :: proc(leaves: []Leaf_Template, containers: [dynamic]ir.Container_Decl) -> ^Component_Registry {
 
     reg :=  new (Component_Registry)
 

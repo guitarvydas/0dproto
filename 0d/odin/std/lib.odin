@@ -29,7 +29,8 @@ parse_command_line_args :: proc () -> (main_container_name: string, diagram_sour
     return main_container_name,  diagram_source_files
 }
 
-initialize_component_palette :: proc (diagram_source_files: [dynamic]string, project_specific_components : #type proc ([dynamic]zd.Leaf_Template)) -> zd.Component_Registry {
+initialize_component_palette :: proc (diagram_source_files: [dynamic]string,
+				      project_specific_components : #type proc (^[dynamic]zd.Leaf_Template)) -> zd.Component_Registry {
     leaves := make([dynamic]zd.Leaf_Instantiator)
     all_containers : [dynamic]ir.Container_Decl
     
@@ -44,12 +45,13 @@ initialize_component_palette :: proc (diagram_source_files: [dynamic]string, pro
         instantiate = stdout_instantiate,
     })
     initialize_stock_components (&leaves)
-    project_specific_components (&leaves)
+    project_specific_components (&leaves) // add user specified leaves
 
     for filename in diagram_source_files {
 	containers_within_single_file := zd.json2internal (filename)
-	fmt.eprintf ("icp type of all_containers %v value=%v\n", typeid_of (type_of (all_containers)), all_containers)
-	append (&all_containers, ..containers_within_single_file)
+	for container in containers_within_single_file {
+	    append (&all_containers, container)
+	}
     }
     palette := zd.make_component_registry(leaves[:], all_containers)
     return palette^
