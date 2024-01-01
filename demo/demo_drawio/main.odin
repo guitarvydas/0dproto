@@ -94,13 +94,9 @@ main :: proc() {
         },
     }
 
-    fmt.println ("A")
     main_container_name, diagram_name := parse_command_line ()
-    fmt.println ("B", diagram_name, main_container_name)
     decls := zd.json2internal (diagram_name)
-    fmt.println ("C")
     parts := zd.make_component_registry(leaves, decls)
-    fmt.println ("D")
 
     fmt.println("--- Diagram: Sequential Routing ---")
     {
