@@ -8,8 +8,6 @@ D2JDIR=0d/odin/das2json
 D2J=$(D2JDIR)/das2json
 DEMO=demo
 
-dev: abcjs
-
 run: basics drawio vsh dev0d hello_world agency abcjs arith
 
 basics:  $(D2J)
