@@ -9,9 +9,9 @@ import "../../0d/odin/std"
 
 main :: proc() {
     context.logger = std.log (zd.log_all) // see ../../0d/odin/std/lib.odin for other options
-    diagram_name, main_container_name := std.parse_command_line_args ("<specify on command line>", "main")
-    palette := std.initialize_component_palette (diagram_name, components_to_include_in_project)
-    std.run_demo_debug (&palette, main_container_name, diagram_name, start_function)
+    main_container_name, diagram_names := std.parse_command_line_args ()
+    palette := std.initialize_component_palette (diagram_names, components_to_include_in_project)
+    std.run_demo_debug (&palette, main_container_name, diagram_names, start_function)
 }
 
 start_function :: proc (main_container : ^zd.Eh) {

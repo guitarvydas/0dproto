@@ -7,85 +7,54 @@ import "core:slice"
 import "core:strings"
 
 import zd "../0d"
+import "../ir"
 
-parse_command_line_args :: proc (default_diagram_source_file, default_main_container_name : string) -> (diagram_source_file, main_container_name: string) {
-    diagram_source_file = slice.get(os.args, 1) or_else default_diagram_source_file
-    main_container_name = slice.get(os.args, 2) or_else default_main_container_name
-    
-    if !os.exists(diagram_source_file) {
-        fmt.println("Source diagram file", diagram_source_file, "does not exist.")
-        os.exit(1)
+parse_command_line_args :: proc () -> (main_container_name: string, diagram_source_files : [dynamic]string,) {
+    diagram_source_files = make ([dynamic]string)
+    if len (os.args) < (2+1) { // 0'th arg is the name of the program itself, we need at least 2 more args
+	fmt.eprintf ("usage: app <main tab name> <diagram file name 1> <diagram file name 2> ...\n")
+	os.exit (1)
     }
-    return diagram_source_file, main_container_name
+    main_container_name = slice.get(os.args, 1) or_else strings.clone ("main")
+    for i := 2 ; i < len (os.args) ; i += 1 {
+	dname, ok := slice.get (os.args, i)    
+	if !ok || !os.exists(dname) {
+            fmt.println("[lib] Source diagram file", dname, "does not exist.")
+            os.exit(1)
+	}
+	dname_in_heap := new (string)
+	dname_in_heap^ = dname
+	append (&diagram_source_files, dname_in_heap^)
+    }
+    return main_container_name,  diagram_source_files
 }
 
-// run prints only the output on port "output", whereas run_demo prints all outputs
-run :: proc (r : ^zd.Component_Registry, main_container_name : string, diagram_source_file : string, injectfn : #type proc (^zd.Eh)) {
-    pregistry := r
-    // get entrypoint container
-    main_container, ok := zd.get_component_instance(pregistry, main_container_name, owner=nil)
-    fmt.assertf(
-        ok,
-        "Couldn't find main container with page name %s in file %s (check tab names, or disable compression?)\n",
-        main_container_name,
-        diagram_source_file,
-    )
-    injectfn (main_container)
-    print_error_maybe (main_container)
-    print_output (main_container)
-}
+initialize_component_palette :: proc (diagram_source_files: [dynamic]string,
+				      project_specific_components : #type proc (^[dynamic]zd.Leaf_Template)) -> zd.Component_Registry {
+    leaves := make([dynamic]zd.Leaf_Instantiator)
+    all_containers : [dynamic]ir.Container_Decl
+    
+    // set up shell leaves
+    for i := 0 ; i < len (diagram_source_files) ; i += 1 {
+	collect_process_leaves(diagram_source_files[i], &leaves)
+    }
 
-run_all_outputs :: proc (r : ^zd.Component_Registry, main_container_name : string, diagram_source_file : string, injectfn : #type proc (^zd.Eh)) {
-    pregistry := r
-    // get entrypoint container
-    main_container, ok := zd.get_component_instance(pregistry, main_container_name, owner=nil)
-    fmt.assertf(
-        ok,
-        "Couldn't find main container with page name %s in file %s (check tab names, or disable compression?)\n",
-        main_container_name,
-        diagram_source_file,
-    )
-    injectfn (main_container)
-    print_error_maybe (main_container)
-    dump_outputs (main_container)
-}
+    // export native leaves
+    zd.append_leaf (&leaves, zd.Leaf_Instantiator {
+        name = "stdout",
+        instantiate = stdout_instantiate,
+    })
+    initialize_stock_components (&leaves)
+    project_specific_components (&leaves) // add user specified leaves
 
-run_demo :: proc (r : ^zd.Component_Registry, main_container_name : string, diagram_source_file : string, injectfn : #type proc (^zd.Eh)) {
-    pregistry := r
-    // get entrypoint container
-    main_container, ok := zd.get_component_instance(pregistry, main_container_name, owner=nil)
-    fmt.assertf(
-        ok,
-        "Couldn't find main container with page name %s in file %s (check tab names, or disable compression?)\n",
-        main_container_name,
-        diagram_source_file,
-    )
-    injectfn (main_container)
-    dump_outputs (main_container)
-    fmt.println("\n\n--- done ---")
-}
-
-
-
-run_demo_debug :: proc (r : ^zd.Component_Registry, main_container_name : string, diagram_source_file : string, injectfn : #type proc (^zd.Eh)) {
-    pregistry := r
-    // get entrypoint container
-    main_container, ok := zd.get_component_instance(pregistry, main_container_name, owner=nil)
-    fmt.assertf(
-        ok,
-        "Couldn't find main container with page name %s in file %s (check tab names, or disable compression?)\n",
-        main_container_name,
-        diagram_source_file,
-    )
-
-    dump_hierarchy (main_container)
-
-    injectfn (main_container)
-
-    dump_outputs (main_container)
-    dump_stats (pregistry)
-
-    fmt.println("\n\n--- done ---")
+    for filename in diagram_source_files {
+	containers_within_single_file := zd.json2internal (filename)
+	for container in containers_within_single_file {
+	    append (&all_containers, container)
+	}
+    }
+    palette := zd.make_component_registry(leaves[:], all_containers)
+    return palette^
 }
 
 print_output_verbose :: proc (main_container : ^zd.Eh) {
@@ -105,49 +74,6 @@ print_error_maybe :: proc (main_container : ^zd.Eh) {
 	fmt.println("\n\n--- !!! ERRORS !!! ---")
 	zd.print_specific_output (main_container, error_port, false)
     }
-}
-
-
-initialize_component_palette :: proc (diagram_source_file: string, project_specific_components : #type proc (^[dynamic]zd.Leaf_Template)) -> zd.Component_Registry {
-    leaves := make([dynamic]zd.Leaf_Instantiator)
-
-    // set up shell leaves
-    collect_process_leaves(diagram_source_file, &leaves)
-
-    // export native leaves
-    zd.append_leaf (&leaves, zd.Leaf_Instantiator {
-        name = "stdout",
-        instantiate = stdout_instantiate,
-    })
-    zd.append_leaf (&leaves, zd.Leaf_Template { name = "1then2", instantiate = deracer_instantiate })
-    zd.append_leaf (&leaves, zd.Leaf_Template { name = "?", instantiate = probe_instantiate })
-    zd.append_leaf (&leaves, zd.Leaf_Template { name = "?A", instantiate = probeA_instantiate })
-    zd.append_leaf (&leaves, zd.Leaf_Template { name = "?B", instantiate = probeB_instantiate })
-    zd.append_leaf (&leaves, zd.Leaf_Template { name = "?C", instantiate = probeC_instantiate })
-    zd.append_leaf (&leaves, zd.Leaf_Template { name = "trash", instantiate = trash_instantiate })
-
-    zd.append_leaf (&leaves, zd.Leaf_Template { name = "Low Level Read Text File", instantiate = low_level_read_text_file_instantiate })
-    zd.append_leaf (&leaves, zd.Leaf_Template { name = "Read Text From FD", instantiate = read_text_from_fd_instantiate })
-    zd.append_leaf (&leaves, zd.Leaf_Template { name = "Open Text File", instantiate = open_text_file_instantiate })
-    zd.append_leaf (&leaves, zd.Leaf_Template { name = "Ensure String Datum", instantiate = ensure_string_datum_instantiate })
-
-    zd.append_leaf (&leaves, zd.Leaf_Template { name = "syncfilewrite", instantiate = syncfilewrite_instantiate })
-    zd.append_leaf (&leaves, zd.Leaf_Template { name = "Bang", instantiate = bang_instantiate })
-    zd.append_leaf (&leaves, zd.Leaf_Template { name = "stringconcat", instantiate = stringconcat_instantiate })
-    // for fakepipe
-    zd.append_leaf (&leaves, zd.Leaf_Template { name = "fakepipename", instantiate = fakepipename_instantiate })
-    // for transpiler (ohmjs)
-    zd.append_leaf (&leaves, zd.Leaf_Template { name = "OhmJS", instantiate = ohmjs_instantiate })
-    zd.append_leaf (&leaves, string_constant ("RWR"))
-    zd.append_leaf (&leaves, string_constant ("0d/odin/std/rwr.ohm"))
-    zd.append_leaf (&leaves, string_constant ("0d/odin/std/rwr.sem.js"))
-
-
-    project_specific_components (&leaves)
-
-    containers := zd.json2internal (diagram_source_file)
-    palette := zd.make_component_registry(leaves[:], containers)
-    return palette^
 }
 
 

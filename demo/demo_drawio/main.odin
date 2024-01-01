@@ -15,6 +15,7 @@ package demo_drawio
 import "core:fmt"
 import "core:time"
 import zd "../../0d/odin/0d"
+import "../../0d/odin/ir"
 
 import "core:log"
 import "core:runtime"
@@ -93,7 +94,7 @@ main :: proc() {
         },
     }
 
-    diagram_name, main_container_name := parse_command_line_args ()
+    main_container_name, diagram_name := parse_command_line ()
     decls := zd.json2internal (diagram_name)
     parts := zd.make_component_registry(leaves, decls)
 
@@ -128,13 +129,14 @@ main :: proc() {
     }
 }
 
-parse_command_line_args :: proc () -> (diagram_source_file, main_container_name: string) {
-    diagram_source_file = slice.get(os.args, 1) or_else "<?>"
-    main_container_name = slice.get(os.args, 2) or_else "main"
+// this is written more generally in ../0d/odin/std/lib.odin:parse_command_line_args, but we'll hard-code it here for this example...
+parse_command_line :: proc () -> (main_container_name: string, diagram_source_file : string) {
+    main_container_name = slice.get(os.args, 1) or_else "main"
+    diagram_source_file = slice.get(os.args, 2) or_else "<?>"
     
     if !os.exists(diagram_source_file) {
         fmt.println("Source diagram file", diagram_source_file, "does not exist.")
         os.exit(1)
     }
-    return diagram_source_file, main_container_name
+    return main_container_name, diagram_source_file
 }

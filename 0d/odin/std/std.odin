@@ -91,7 +91,6 @@ process_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
 		// fire only one output port
 		// on error, send both, stdout and stderr to the error port
 		if len (stderr) > 0 {
-		    fmt.printf ("%v: %v\n", cmd, stderr) // debug
 		    zd.send_string(eh, "error", fmt.aprintf ("%v: %v", cmd, stderr), msg)
 		} else {
                     zd.send_string (eh, "output", transmute(string)stdout, msg)
