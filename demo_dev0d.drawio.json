@@ -1,6 +1,6 @@
 [
     {
-        "file": "src/demo_vsh.drawio",
+        "file": "src/demo_dev0d.drawio",
         "name": "main",
         "children": [
             {
@@ -8,7 +8,7 @@
                 "id": 5
             },
             {
-                "name": "$ grep vsh",
+                "name": "$ grep -v 'PID'",
                 "id": 8
             },
             {
@@ -38,7 +38,7 @@
                 },
                 "source_port": "output",
                 "target": {
-                    "name": "$ grep vsh",
+                    "name": "$ grep -v 'PID'",
                     "id": 8
                 },
                 "target_port": "input"
@@ -46,8 +46,8 @@
             {
                 "dir": 1,
                 "source": {
-                    "name": "$ ps",
-                    "id": 5
+                    "name": "$ grep -v 'PID'",
+                    "id": 8
                 },
                 "source_port": "output",
                 "target": {
@@ -55,19 +55,6 @@
                     "id": 12
                 },
                 "target_port": "input"
-            },
-            {
-                "dir": 2,
-                "source": {
-                    "name": "$ grep vsh",
-                    "id": 8
-                },
-                "source_port": "output",
-                "target": {
-                    "name": "",
-                    "id": 0
-                },
-                "target_port": "ps"
             },
             {
                 "dir": 2,
@@ -81,6 +68,32 @@
                     "id": 0
                 },
                 "target_port": "processes"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "$ ps",
+                    "id": 5
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "ps"
+            },
+            {
+                "dir": 2,
+                "source": {
+                    "name": "$ grep -v 'PID'",
+                    "id": 8
+                },
+                "source_port": "output",
+                "target": {
+                    "name": "",
+                    "id": 0
+                },
+                "target_port": "grepped"
             }
         ]
     }
