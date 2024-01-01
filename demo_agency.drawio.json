@@ -1,10 +1,10 @@
 [
     {
-        "file": "src/demo_hello_world.drawio",
+        "file": "src/demo_agency.drawio",
         "name": "main",
         "children": [
             {
-                "name": "'Hello World'",
+                "name": "$ ./llm/agency/main -model gpt-3.5-turbo -maxTokens 1000 -temp=1 -prompt \"Translate to Russian\" \"I love winter\"",
                 "id": 4
             }
         ],
@@ -17,18 +17,18 @@
                 },
                 "source_port": "input",
                 "target": {
-                    "name": "'Hello World'",
+                    "name": "$ ./llm/agency/main -model gpt-3.5-turbo -maxTokens 1000 -temp=1 -prompt \"Translate to Russian\" \"I love winter\"",
                     "id": 4
                 },
-                "target_port": "\u237a"
+                "target_port": "input"
             },
             {
                 "dir": 2,
                 "source": {
-                    "name": "'Hello World'",
+                    "name": "$ ./llm/agency/main -model gpt-3.5-turbo -maxTokens 1000 -temp=1 -prompt \"Translate to Russian\" \"I love winter\"",
                     "id": 4
                 },
-                "source_port": "\u237a",
+                "source_port": "output",
                 "target": {
                     "name": "",
                     "id": 0
