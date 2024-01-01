@@ -41,9 +41,9 @@ agency: $(D2J) $(SRC)/demo_agency.drawio ../llm/agency/main
 
 abcjs: $(D2J) $(SRC)/demo_abcjs.drawio
 	$(D2J) $(SRC)/demo_abcjs.drawio
-	$(D2J) $(LIBSRC)/translate.drawio
+	$(D2J) $(LIBSRC)/transpile.drawio
 	odin build  $(DEMO)/demo_abcjs $(ODIN_FLAGS)
-	./demo_abcjs main $(SRC)/demo_abcjs.drawio $(LIBSRC)/translate.drawio
+	./demo_abcjs main $(SRC)/demo_abcjs.drawio $(LIBSRC)/transpile.drawio
 
 arith: $(D2J) $(SRC)/demo_arith.drawio
 	$(D2J) $(SRC)/demo_arith.drawio
