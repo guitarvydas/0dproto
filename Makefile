@@ -47,8 +47,9 @@ abcjs: $(D2J) $(SRC)/demo_abcjs.drawio
 
 arith: $(D2J) $(SRC)/demo_arith.drawio
 	$(D2J) $(SRC)/demo_arith.drawio
+	$(D2J) $(LIBSRC)/transpile.drawio
 	odin build  $(DEMO)/demo_arith $(ODIN_FLAGS)
-	./demo_arith main $(SRC)/demo_arith.drawio
+	./demo_arith main $(SRC)/demo_arith.drawio $(LIBSRC)/transpile.drawio
 
 
 $(D2J):
