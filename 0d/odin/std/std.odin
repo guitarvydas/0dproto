@@ -442,12 +442,15 @@ bang_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
 
 ///
 StringConcat_Instance_Data :: struct {
-    buffer : string
+    buffer1 : string,
+    buffer2 : string,
+    count : int
 }
 
 stringconcat_instantiate :: proc(name: string, owner : ^zd.Eh) -> ^zd.Eh {
     name_with_id := gensym("stringconcat")
     instp := new (StringConcat_Instance_Data)
+    instp.count = 0
     return zd.make_leaf (name_with_id, owner, instp^, stringconcat_handle)
 }
 
@@ -455,24 +458,36 @@ stringconcat_handle :: proc(eh: ^zd.Eh, msg: ^zd.Message) {
     inst := &eh.instance_data.(StringConcat_Instance_Data)
     switch msg.port {
     case "1":
-	inst.buffer = strings.clone (msg.datum.repr (msg.datum))
+	inst.buffer1 = strings.clone (msg.datum.repr (msg.datum))
+	inst.count = inst.count + 1
+	maybe_stringconcat (eh, inst, msg)
     case "2":
-	s := strings.clone (msg.datum.repr (msg.datum))
-	if 0 == len (inst.buffer) && 0 == len (s) {
-	    fmt.printf ("stringconcat %d %d\n", len (inst.buffer), len (s))
-	    fmt.assertf (false, "something is wrong in stringconcat, both strings are 0 length\n")
-	}
+	inst.buffer2 = strings.clone (msg.datum.repr (msg.datum))
+	inst.count = inst.count + 1
+	maybe_stringconcat (eh, inst, msg)
+    case:
+        fmt.assertf (false, "bad msg.port for stringconcat: %v\n", msg.port)
+    }
+}
+
+maybe_stringconcat :: proc (eh : ^zd.Eh, inst : ^StringConcat_Instance_Data, msg: ^zd.Message) {
+    if 0 == len (inst.buffer1) && 0 == len (inst.buffer2) {
+	fmt.printf ("stringconcat %d %d\n", len (inst.buffer1), len (inst.buffer2))
+	fmt.assertf (false, "something is wrong in stringconcat, both strings are 0 length\n")
+    }
+    if inst.count >= 2 {
 	concatenated_string : string
-	if 0 == len (inst.buffer) {
-	    concatenated_string = fmt.aprintf ("%s", s)
-	} else if 0 == len (s) {
-	    concatenated_string = fmt.aprintf ("%s", inst.buffer)
+	if 0 == len (inst.buffer1) {
+	    concatenated_string = fmt.aprintf ("%s", inst.buffer2)
+	} else if 0 == len (inst.buffer2) {
+	    concatenated_string = fmt.aprintf ("%s", inst.buffer1)
 	} else {
-	    concatenated_string = fmt.aprintf ("%s%s", inst.buffer, s)
+	    concatenated_string = fmt.aprintf ("%s%s", inst.buffer1, inst.buffer2)
 	}
 	zd.send_string (eh, "output", concatenated_string, msg)
-     case:
-        fmt.assertf (false, "bad msg.port for stringconcat: %v\n", msg.port)
+	inst.buffer1 = ""
+	inst.buffer2 = ""
+	inst.count = 0
     }
 }
 
