@@ -5,7 +5,7 @@ import "core:fmt"
 import zd "../0d"
 
 log_hierarchy :: proc (c : ^zd.Eh) {
-    log.infof ("%s\n", build_hierarchy (c))
+    fmt.eprintf ("%s\n", build_hierarchy (c))
 }
 
 build_hierarchy :: proc (c : ^zd.Eh) -> string {
