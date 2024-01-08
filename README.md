@@ -2,9 +2,40 @@
 
 0D compiler compiles diagrams in `src/*.drawio` to code and runs the code.
 
-## Steps
-1. Parse diagrams, with given syntax rules, and exhale the diagrams as JSON.
-2. Inhale the JSON and execute.
+Included are several demos, including 
+- basics: use of only text for a simple 0D app
+- drawio: use of diagrams for a simple 0D app
+- vsh: Visual SHell - replacing /bin/sh with diagrams and bolting diagrams to existing software
+- dev0d: debugging the 0D kernel to bootstrap diagrammatic programming
+- agency: simple use of an LLM (Emil Valeev's `Agency` which uses the openai API)
+- abc: demo of building an ultra-simple language compiler and interpreter
+
+## Usage (Demos)
+`make`
+
+or...
+`make basics`
+`make drawio`
+`make vsh`
+`make dev0d`
+`make agency`
+
+# Directory Hierarchy
+0d
+	- odin
+		- 0D
+		- std
+		- ir
+		- das2json
+
+- 0D/odin/0D contains the 0Dkernel
+- 0D/odin/std contains standard libraries and standard components for using 0D
+- 0D/odin/ir contains an Odin structure definition for an Intermediate Representation spit out by das2json and consumed by std
+- das2json contains the Odin code for parsing diagrams and converting them to JSON
+
+Step 0 is to create source code for an app. Currently we use draw.io as the editor.
+Step 1 is to convert the diagram to JSON form mimicing the format in 0D/odin/ir
+Step 2 is to execute the converted diagram.  This is the final "app".
 
 # Details
 
@@ -351,3 +382,9 @@ DaS means Diagrams as Syntax.  DPL means Diagrammatic Programming Languages.
 
 ### TPL - Textual Programming Languages
 N.B. TPLs, such as Python, Rust, Javascript, etc. can, also, be used to write textual code for 0D Components.  See demo_basics above.
+
+### Appendix - Examples for `components_to_include_in_project`
+components_to_include_in_project :: proc (leaves: ^[dynamic]zd.Leaf_Template) {
+    zd.append_leaf (leaves, zd.Leaf_Template { name = "trash", instantiate = trash_instantiate })
+    zd.append_leaf (leaves, std.string_constant ("rwr.ohm"))
+}

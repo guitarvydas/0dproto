@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2023-12-03T11:27:01.733Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.8 Chrome/114.0.5735.289 Electron/25.5.0 Safari/537.36" etag="goMJ01HdGnoNY-6Ruflf" version="21.6.8" type="device">
+<mxfile host="Electron" modified="2023-12-25T21:12:19.439Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.11 Chrome/114.0.5735.289 Electron/25.9.8 Safari/537.36" etag="OuF4g5w5nnsH1M1-_kin" version="22.1.11" type="device">
   <diagram name="main" id="NX2ZdiZaVYGTieyJJVev">
-    <mxGraphModel dx="879" dy="644" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="956" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -13,7 +13,7 @@
         <mxCell id="8PcMY7WavIbh0EGFxXic-15" value="output" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1;glass=0;sketch=0;fontSize=12;points=[[0,0.5,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[1,0.5,0,0,0]];shadow=1;" parent="1" vertex="1">
           <mxGeometry x="480" y="312.5" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="8PcMY7WavIbh0EGFxXic-35" value="$ ../llm/agency/main -model gpt-3.5-turbo -maxTokens 1000 -temp=1 -prompt &quot;Translate to Russian&quot; &quot;I love winter&quot;" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;connectable=0;" parent="1" vertex="1">
+        <mxCell id="8PcMY7WavIbh0EGFxXic-35" value="$ ./llm/agency/main -model gpt-3.5-turbo -maxTokens 1000 -temp=1 -prompt &quot;Translate to Russian&quot; &quot;I love winter&quot;" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;connectable=0;" parent="1" vertex="1">
           <mxGeometry x="190" y="275.5" width="200" height="144.5" as="geometry">
             <mxRectangle x="-98" y="-1230" width="99" height="26" as="alternateBounds" />
           </mxGeometry>

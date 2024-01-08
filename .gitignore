@@ -12,3 +12,21 @@ temp.0d
 \#Makefile#
 
 odin/std/.#std 3.odin
+<<<<<<< HEAD
+=======
+
+0d/odin/das2json/das2json
+
+demo_abcjs
+demo_abcjs.dSYM/
+demo_agency
+demo_agency.dSYM/
+demo_arith
+demo_arith.dSYM/
+demo_basics
+demo_basics.dSYM/
+demo_drawio
+demo_drawio.dSYM/
+demo_dev0d
+demo_dev0d.dSYM/
+>>>>>>> dev
