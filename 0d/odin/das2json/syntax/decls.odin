@@ -1,6 +1,7 @@
 package syntax
 
 import "../../ir"
+import "core:fmt"
 
 // Collects all declarations on the passed page, using the semantics outlined below.
 container_decl_from_page :: proc(page: Page) -> ir.Container_Decl {
@@ -8,6 +9,8 @@ container_decl_from_page :: proc(page: Page) -> ir.Container_Decl {
     decl.name = page.name
 
     decl.children = collect_children(page.cells)
+
+    lint_connections (page.cells)
 
     connections := make([dynamic]ir.Connect_Decl)
     collect_down_decls(page.cells, &connections)
@@ -150,4 +153,22 @@ collect_through_decls :: proc(cells: []Cell, decls: ^[dynamic]ir.Connect_Decl) {
 
         append(decls, decl)
     }
+}
+
+lint_connections :: proc(cells: []Cell) {
+    ok := true
+    for cell in cells {
+        if cell.type != .Arrow do continue
+
+        source_port := cells[cell.source]
+        target_port := cells[cell.target]
+
+	drawio_top_level_idx := 1
+	if source_port.parent <= drawio_top_level_idx || target_port.parent <= drawio_top_level_idx {
+	    fmt.eprintf ("suspicious (floating?) cell %v->%v in connection\n",
+			 source_port.value, target_port.value)
+	    ok = false
+	}
+    }
+    fmt.assertf (ok, "quit: suspicious drawing")
 }
