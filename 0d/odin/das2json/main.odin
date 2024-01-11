@@ -34,7 +34,7 @@ drawio2json :: proc (container_xml : string) -> string {
 	// NOTE(justasd): 644 (owner read, write; group read; others read)
 	mode = os.S_IRUSR | os.S_IWUSR | os.S_IRGRP | os.S_IROTH
     }
-    fd, open_errnum := os.open (path = fname, flags =  os.O_WRONLY|os.O_CREATE, mode = mode)
+    fd, open_errnum := os.open (path = fname, flags =  os.O_WRONLY|os.O_CREATE|os.O_TRUNC, mode = mode)
     if open_errnum == 0 {
 	numchars, write_errnum := os.write (fd, transmute([]u8)sjson)
 	if write_errnum != 0 {
