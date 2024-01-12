@@ -157,18 +157,32 @@ collect_through_decls :: proc(cells: []Cell, decls: ^[dynamic]ir.Connect_Decl) {
 
 lint_connections :: proc(cells: []Cell) {
     ok := true
+    
+    // drawio always makes 2 elements at the top
+    // find their ids in the cells array
+    drawio_top_idx : int
+    for cell in cells {
+	if cell.parent == 0 {
+	    drawio_top_idx = cell.id
+	}
+    }
+    drawio_second_idx : int
+    for cell in cells {
+	if cell.parent == drawio_top_idx {
+	    drawio_second_idx = cell.id
+	}
+    }
     for cell in cells {
         if cell.type != .Arrow do continue
 
         source_port := cells[cell.source]
         target_port := cells[cell.target]
 
-	drawio_top_level_idx := 1
-	if source_port.parent <= drawio_top_level_idx || target_port.parent <= drawio_top_level_idx {
-	    fmt.eprintf ("suspicious (floating?) cell %v->%v in connection\n",
-			 source_port.value, target_port.value)
-	    ok = false
-	}
+	if ( (source_port.type == .Rhombus && source_port.parent == drawio_top_idx) )	    || ( (source_port.type == .Rect) && ((source_port.parent == drawio_top_idx ) ||  ( source_port.parent == drawio_second_idx )) )	    || ( (target_port.type == .Rhombus && target_port.parent == drawio_top_idx) )	    || ( (target_port.type == .Rect) && ((target_port.parent == drawio_top_idx ) || ( target_port.parent == drawio_second_idx )) ) {
+		fmt.eprintf ("suspicious (floating?) cell %v->%v in connection\n",
+			     source_port.value, target_port.value)
+		ok = false
+	    }
     }
     fmt.assertf (ok, "quit: suspicious drawing")
 }
