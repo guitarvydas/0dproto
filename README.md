@@ -14,11 +14,15 @@ Included are several demos, including
 `make`
 
 or...
+`make agency`
+`make arith`
+`make vsh`
+`make abcjs`
 `make basics`
 `make drawio`
-`make vsh`
 `make dev0d`
-`make agency`
+`make hello_world`
+
 
 # Directory Hierarchy
 0d
@@ -66,7 +70,7 @@ Components are *templates* (similar to *classes*).  Components can be instantiat
 
 Templates have unique names.  Instances do not need to be explicitly named. The underlying 0D engine guarantees that each instance is unique (in a manner similar to *references* to *objects* in class-based languages).
 
-Components have input and output *ports*.  Input ports are drawn as white pills (small rounded rectangles), and output ports are drawn as dark-blue pills.  Each port has a unique name.  The names are scoped to be visible only within their parent component.  The scope of input port names is unique from the scope of output port names within the same component, i.e. a component can use the same name for an input port as for an output port, but every input name must be different from every other input name and every output name must be different from every other output name within the same component.  Different components can use the same names for ports as other components, for example, many components have input ports named "input".  Those port names do not clash, they are "locally scoped" to their parent components.
+Components have input and output *ports*.  Input ports are drawn as white pills (small rounded rectangles), and output ports are drawn as dark-blue pills.  Each port has a unique name.  The names are scoped to be visible only within their parent component.  The scope of input port names is unique from the scope of output port names within the same component, i.e. a component can use the same name for an input port as for an output port, but every input name must be different from every other input name within the same component and every output name must be different from every other output name within the same component.  Different components can use the same names for ports as other components, for example, many components have input ports named "input".  Those port names do not clash, they are "locally scoped" to their parent components.
 
 Containers also have special ports called *gates*.  Gates represent the top-level inputs and outputs of a Container.  Input gates are drawn as white rhombuses with a name, and, output gates are drawn as blue rhombuses with a name.
 
@@ -272,7 +276,7 @@ Cause is a *2-tuple*
 1. the ISU that is handling the message (an `ė` (spelled `eh` in ASCII))
 2. the Message being handled.
 
-`ISU` means Isolated Software Unit.  An ISU is a piece of code with 0 dependency leaks. It is like a procedure with a set of inputs *and* a set of outputs.  It cannot call procedures in other ISUs, it can only send messages to other ISUs.  Message sending is like IPCs in processes, not so-called Message Sending in Smalltalk (which is a just a form of function calling with named parameters).  If an ISU calls functions, those functions must be contained within the same ISU.  If you were to draw a diagram of an ISU, it would be a rectangle (or other closed figure) with input ports and output ports (see the blue rectangles with ports in the above diagrams). The ports are not hard-wired to other parts of the system.  An ISU is totally isolated and self-contained.  See below for a discussion of parameters.
+`ISU` means Isolated Software Unit.  An ISU is a piece of code with 0 dependency leaks. It is like a procedure with a set of inputs *and* a set of outputs.  It cannot call procedures in other ISUs, it can only send messages to other ISUs.  Message sending is like IPCs in processes, not so-called Message Sending in Smalltalk (which is a just a form of subroutine calling with named parameters).  If an ISU calls functions, those functions must be contained within the same ISU.  If you were to draw a diagram of an ISU, it would be a rectangle (or other closed figure) with input ports and output ports (see the blue rectangles with ports in the above diagrams). The ports are not hard-wired to other parts of the system.  An ISU is totally isolated and self-contained.  See below for a discussion of parameters.
 
 In 0D, we use the name Component to mean ISU.
 
@@ -333,7 +337,7 @@ Operands are basically OOP and functions.
 
 Operations are "syntax" (probably OhmJS will be used to make this quick and easy).
 
-Pure functions, mathematics, can be used to describe *data*, but don't do so well at describing *control flow*.  Data and control flow are two separate issues (data is "shape", control flow is "meaning/stepping-through/interpretation of data").  Currently, in most exiting languages (e.g. Python, Rust, etc.) we use conditional evaluation of functions to fake out control flow.  Yet, conditional evaluation and control flow are very separate issues, that should be treated separately.
+Pure functions in mathematics can be used to describe *data*, but don't do so well at describing *control flow*.  Data and control flow are two separate issues (data is "shape", control flow is "meaning/stepping-through/interpretation of data").  Currently, in most exiting languages (e.g. Python, Rust, etc.) we use conditional evaluation of functions to fake out control flow.  Yet, conditional evaluation and control flow are very separate issues, that should be treated separately.
 
 Inspiration for this thread of thinking comes from *gcc* and Cordy's *Orthogonal Code Generator* work.  *GCC* uses ideas from Fraser/Davidson peephole technology, namely *RTL*, to make it easier to generate great code.  *OCG* is a further elaboration on such ideas and suggests the design and use of a declarative DSL for expressing code exhalation decision trees. 
 # Appendix - Parameters and Return Values
@@ -342,7 +346,7 @@ A group of parameters passed to a function in modern languages, is actually just
 
 Likewise, output values are just single, contiguous blobs of data that can be deconstructed into multiple types.
 
-True multiple input parameters, are blobs of data that arrive at *different times* on different ports True multiple output parameters, are blobs of data that are created at different times on different output ports.
+True multiple input parameters, are blobs of data that arrive at *different times* on different ports. True multiple output parameters, are blobs of data that are created at different times on different output ports.
 
 A parameter list in conventional programming languages, is just a single input port.  A complete blob of data arrives - all at once, with no time separation - at the input port.  The receiving procedure / function immediately deconstructs the blob into distinct types of data.  The input data, though, all arrives at once grouped together into a homogenous blob of data, hence, it is but a single input, regardless of how it is deconstructed.
 
@@ -384,7 +388,9 @@ DaS means Diagrams as Syntax.  DPL means Diagrammatic Programming Languages.
 N.B. TPLs, such as Python, Rust, Javascript, etc. can, also, be used to write textual code for 0D Components.  See demo_basics above.
 
 ### Appendix - Examples for `components_to_include_in_project`
+```
 components_to_include_in_project :: proc (leaves: ^[dynamic]zd.Leaf_Template) {
     zd.append_leaf (leaves, zd.Leaf_Template { name = "trash", instantiate = trash_instantiate })
     zd.append_leaf (leaves, std.string_constant ("rwr.ohm"))
 }
+```
